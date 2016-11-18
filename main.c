@@ -8,7 +8,7 @@
 		4.   参数键：设置参数大小，可通过液晶屏显示；
 		5.   参数右移键：设置参数的位，与参数键结合，来设置每位参数的大小，可通过液晶屏光标显示；
         6.   重设键： 将设置返回到初始化状态；
-   
+
 * 按键：   探头设置键，测量键，复位键，时间设置键，参数设置键，右移键，左移键；
 * 接口：
            输入：1.	六个按键通过74HC244接单片机的数据总线；
@@ -32,7 +32,7 @@
 
 #include "STC15F2K60S2.h"
 #include "intrins.h"
-#include "config.h" 
+#include "config.h"
 #include "absacc.h"
 
 
@@ -40,7 +40,7 @@ bdata bit Flag_KeyInput;                         //探头按键标志，默认0
 bdata bit Flag_KeyTime;                          //测量时间标志，0
 bdata bit Flag_KeyPara;                          //输入参数标志，0
 bdata bit Flag_KeyRight;                         //右移标志，默认0
-bdata bit Flag_KeyLeft;                          //左移标志，0                                                        
+bdata bit Flag_KeyLeft;                          //左移标志，0
 bdata bit Flag_KeyReset;                         //重新显示标志，0
 bdata bit Flag_KeyOK;                            //测量标志，默认0
 bdata bit Flag_Warn;                             //报警标志
@@ -75,14 +75,14 @@ uchar Count_Times[8];						//AJ1+累加计数次数
 ulong Average_Counts[8][10];//平滑平均变量
 uchar Display_Flag[8];
 uchar Refresh_Time=3;
-uchar DCS_Send[121];
+uchar DCS_Send[67];
 
 
 extern void Serial_Port_Two_Initial();
 extern void Serial_Port_One_Initial();
 extern void display_b();
 extern void Init_MCU();
-extern void Init_RAM();							
+extern void Init_RAM();
 extern void Init_Para();
 extern bit Speak_Alarm();
 extern void Select_Mast();
@@ -105,21 +105,21 @@ extern uint idata compare[24];
 *            主函数
 **********************************/
 void main()
-{ 
+{
 	Init_IO();                                    //I/O口初始化,
 	Init_MCU();                                   //主函数初始化，T0定时器工作在方式1初始化，显示"请稍等，初始化中",GATE=0,
 	Init_RAM();                                   //位变量初始化
 	Init_Para();                                  //参数初始化,初始化参数，从IIC读取阈值等信息赋予给参量
 	Init_Buf();									//并口通讯数组初始化
-	//Select_Mast();                                //判断主从机	
+	//Select_Mast();                                //判断主从机
 	Init_Time0();	                             //开启定时器0。定时器0初始化，工作在方式一，定时初值：H:0xDC,L:0x00;中断计数初始化？定时5ms,NumT0=0;
     Lcd_Clear();								//LCD清屏
 	Lcd_Start();								//显示"清华大学/n核能与新能源技术研究院"
 	EX0=1;                                        //只允许外部0中断，中断0为键盘
-	IT0=1;                                        //外部中断0 
+	IT0=1;                                        //外部中断0
 	while(1)
-	{  	
-//	   BackUp_Display();	
+	{
+//	   BackUp_Display();
 	   Select_Mast();                                //判断主从机，写入主从机标志Flag_Mast=1(主机)0(从机)
 	   key_function(); 								//按键功能，在while循环中不断检测按键标志，按键标志由按键外部中断来更改
 	   if(Flag_Tim0)	                         //8253计数定时结束时，读取探头的计数，刚开始Flag_Tim0=0，仅当Flag8253Counting计数定时标识为1，且计数器中断次数大于设定的中断次数时，Flag_timo才会等于1
@@ -127,11 +127,14 @@ void main()
 			Flag_Tim0 = 0;		                 //定时标志清0
 			Flag_Warn = 0;		                 //报警标志清0
 			GetAndDisdata(); 	                 //从8253的锁存器得到测量计数器结果,存入至buf数组
-			ShowData();                          //显示测量数据 
+			ShowData();                          //显示测量数据
 			//shortdelay(1000);	          		//
-	        Transfer();                          //并行传输数据
-	        Transfer_DCS();
-//			bakeup_conv_data();           
+			if(Zhu_Cong==1)
+			{
+	    	Transfer();                          //并行传输数据
+			}
+	    Transfer_DCS();
+//			bakeup_conv_data();
 			Init_8253();   						//初始化8253
 			                                      //定时结束时，立刻又开始初始化进行计数
 	   }
@@ -143,12 +146,12 @@ void main()
 	            Led_Flash();
 			}
 			if((Flag_Warn_Led==1) && (PCOLSIG==0))      //屏幕上红灯闪烁间隔定时,程序中没有找到PCOLSIG=0的程序段
-			{	
+			{
 				Flag_Warn_Led = 0;
 				RedLed_Flash();							//灯闪烁
-			 } 
+			 }
 	    }
-	}             
+	}
 }
 
 
@@ -158,34 +161,34 @@ void main()
 void Int0() interrupt 0
  {
 	uint  idata i;
-	uchar idata Ptem1,Ptem2;                               
+	uchar idata Ptem1,Ptem2;
 	ES=0;                                           //禁止串口中断
-	IE2=0x00;                                       //禁止串口2中断  
+	IE2=0x00;                                       //禁止串口2中断
 	EX0=0;                                          //禁止外部0中断
 	Keyvar=Keypress;
 	Ptem1=Keyvar;                                   //读取端口的地址是否先给它全部置1
-	Ptem1=Ptem1&0x7F;                          
+	Ptem1=Ptem1&0x7F;
 	for(i=0;i<3000;i++);                            //延时去抖
 	Ptem2=Keyvar;
-	Ptem2=Ptem2&0x7F;                  
+	Ptem2=Ptem2&0x7F;
 	if(Ptem1!=Ptem2)
 	{
 	  EX0=1;
 	}
-	else 
+	else
 	{
 	   if(Keypress==0x7E)                     //按键1：参数设置
 			 Flag_KeyPara=1;
-	   else if(Keypress==0x7D)                //按键2：测量 
+	   else if(Keypress==0x7D)                //按键2：测量
 		     Flag_KeyOK=1;
 	   else if(Keypress==0x7B)                //按键3：参数右移
 		     Flag_KeyRight=1;
 	   else if(Keypress==0x77)                //按键4：重新设置
-		     Flag_KeyReset=1;                    
+		     Flag_KeyReset=1;
 	   else if(Keypress==0x6F)                //按键5：时间设置
-		     Flag_KeyTime=1; 
+		     Flag_KeyTime=1;
 	   else if(Keypress==0x5F)                //按键6：探头设置
-		     Flag_KeyInput=1; 
+		     Flag_KeyInput=1;
        else if(Keypress==0x3F)                //按键7：参数左移
              Flag_KeyLeft=1;
 	}
@@ -198,17 +201,17 @@ void Int0() interrupt 0
 ****************************************/
 void Init_MCU()
 {
-	/*定时计数器的初始化*/                         
-	TMOD=0x01;                                 //T0为定时器，工作在方式1                                        
+	/*定时计数器的初始化*/
+	TMOD=0x01;                                 //T0为定时器，工作在方式1
 	GATE=0;                                    //8253不工作
-	EA=0;                                      //先屏蔽所有中断 
+	EA=0;                                      //先屏蔽所有中断
 	TR0=0;										//暂时关闭定时器0
     IE0=0;                                     //将外部中断0清0
 	/*为LCD显示  禁止串口中断*/
 	EX0=0;                                     //禁止外部1中断
-	ET0=0;                                     //禁止定时0中断                        
+	ET0=0;                                     //禁止定时0中断
 	ES=0;                                      //禁止串口1中断
-	IE2=0x00;                                  //禁止串口2中断 
+	IE2=0x00;                                  //禁止串口2中断
 	/*******串口初始化*********/
     serial_port_two_initial();                 //串口2中断初始化(未找到定义)
     serial_port_one_initial();
@@ -216,14 +219,14 @@ void Init_MCU()
     Lcd_Clear();                               //串口2清屏
     //picture();                               //串口2初始图片
     Lcd_init();                                //串口2初始化LCD显示（请稍等，进行初始化中”
-	Clear();                                   //清除光标
+		Clear();                                   //清除光标
 }
 /****************************************
 *         参数初始化
 ****************************************/
 void Init_Para()
 {
-	uchar i,j,k,y,m,n,q,x;//,w ,jj 
+	uchar i,j,k,y,m,n,q,x;//,w ,jj
 //	uchar s,z;
 	uchar p=0;
 
@@ -236,9 +239,9 @@ void Init_Para()
 	}
 	for(j=0;j<8;j++)
 	{
-	    YuGe[j]=0;      
-		YuTenth[j]=0;      
-		YuCent[j]=0;     
+	    YuGe[j]=0;
+		YuTenth[j]=0;
+		YuCent[j]=0;
 		YuThouth[j]=0;
         Flag_need_warn[j]=0;
         State_On_Off[j]=0;
@@ -257,11 +260,11 @@ void Init_Para()
 		dt_in[4*m+1]=0;
 		dt_in[4*m+2]=0;
 		dt_in[4*m+3]=0;
-    } 	
+    }
 	for(n=0;n<65;n++)                           //初始化接收数组
 	{
        send_buf[n]=0;							//NIM_A向NIM_B发送数据的数组
-	}  	
+	}
 /*	for(s=0;s<20;s++)
 	{
 		backup_data[s] = 0;
@@ -269,8 +272,8 @@ void Init_Para()
 	for(y=0;y<8;y++)
 	{
         Flag_need_warn[y]=0;
-        State_On_Off[y]=0;      
-//		data_A[y]=0;  
+        State_On_Off[y]=0;
+//		data_A[y]=0;
 	}
 /*	for(z=0;z<12;z++)
 	{
@@ -305,17 +308,17 @@ void Init_Para()
 		if(p%11==0)
 		{
 			 p++;
-		 } 
+		 }
 	    if((dt_in[p*4+1] <= 9)&&(dt_in[p*4+2] <= 9)&&(dt_in[p*4+3] <= 9)&&(dt_in[p*4+4] <= 9))
         {
 			DataThouth[q+1] = dt_in[p*4+1];		//千分位
 			DataCent[q+1] = dt_in[p*4+2];		//百分位
 			DataTenth[q+1] = dt_in[p*4+3];		//十分位
 			DataGe[q+1] = dt_in[p*4+4]; 		//个位
-			
+
 		  }
 	   }
-	/********读取阈值***********/ 
+	/********读取阈值***********/
     for(k=0;k<8;k++)
 	{
 	 if((dt_in[(k*44)+1] <= 9)&&(dt_in[(k*44)+2] <= 9)&&(dt_in[(k*44)+3] <= 9)&&(dt_in[(k*44)+4] <= 9))
@@ -325,8 +328,8 @@ void Init_Para()
 			YuTenth[k] = dt_in[(k*44)+3];
 			YuGe[k] = dt_in[(k*44)+4];
 	    }
-	}	   
-   if(dt_in[1]<=9) 
+	}
+   if(dt_in[1]<=9)
    {
 	   Incdata=dt_in[1];
    }
@@ -358,7 +361,7 @@ void Init_RAM()
 	Note1 = 1;									//并口从机接收数据标志初始化(P4^4)
 	Ack0 = 1;									//并口主机接收完数据应答信号标志(P3^5)
 	Ack1 = 1;  									//并口主机发送完数据应答信号标志(P4^6)
-	Speak = 1;                                    //高电平代表蜂鸣器不响(P1^0)	
+	Speak = 1;                                    //高电平代表蜂鸣器不响(P1^0)
 	Incdata = 0;                                  //参数大小初始化
 	Inctime = 0;                                  //时间按键增加标志初始化
 	Incinput = 8;                                 //默认显示探头个数为8个
@@ -371,7 +374,7 @@ void Init_RAM()
 		Channel_Display[i]=0;
 	}
 	Incdataright = 1;							//右移按键初始化
-	jishucount=0;                             
+	jishucount=0;
     Var_Led = 0xff;                               //led报警指示灯
 	Led573 = Var_Led; 								//用XBYTE传输数据给LED
     Var_Signal1 = 0x00;                           //探头控制信号标志，接计数管
@@ -388,8 +391,8 @@ void Init_RAM()
     bSbOld = 1;   									//备用机显示按键布尔标志
 	Judge_Speak = 1;                               //高电平代表蜂鸣器不工作，P1^7蜂鸣器开关按键
 	bSsNew = Judge_Speak;	                       //蜂鸣器工作
-    bSsOld = bSsNew;    
-    Zhu_Cong = 1;                                  //主从机标志信号，高电平代表是主机             	
+    bSsOld = bSsNew;
+    Zhu_Cong = 1;                                  //主从机标志信号，高电平代表是主机
 	Flag_KeyInput = 0;                             //探头个数标志
 	Flag_KeyTime = 0;                              //测量时间标志
 	Flag_KeyPara = 0;                              //输入参数标志
@@ -399,7 +402,7 @@ void Init_RAM()
 	Flag_KeyLeft = 0;
 	Flag_Tim0 = 0;
 	Flag_Warn_Led = 0;
-	FlagMasColSlavOK = 0; 
+	FlagMasColSlavOK = 0;
 	Flag8253Cnting = 0;
 	Flag_Warn_Count = 0;
 	measure_flag=1;
@@ -410,9 +413,9 @@ void Init_RAM()
 	Flag_InputChange = 0;
 //	Flag_serial1_led = 0;
 	CmOverTime = 0;
-    Flag_Collateral = 0;  
-    FlagCollFall = 0;   		
-	Flag_Meant = 0; 
+    Flag_Collateral = 0;
+    FlagCollFall = 0;
+	Flag_Meant = 0;
 //	Flag_data_change = 0;
 //	Flag_Commond = 1;
 	Max_Time=0;										//AA1+所有通道最长的计数时间
@@ -429,11 +432,11 @@ void Init_IO()                       //设置I/O端口类型
 	P3M0 &= 0xCF;
 
 	P3M1 &= 0x3C;
-	P3M0 |= 0xC3;                   //设置P3.1, p3.0口为强推挽输出	
+	P3M0 |= 0xC3;                   //设置P3.1, p3.0口为强推挽输出
 
 	//P4M1 &= 0xAF;                   //设置P4口为强推挽输出
 	//P4M0 |= 0x50;
-	
+
 }
 
 /************************************
@@ -451,12 +454,12 @@ void Init_IO()                       //设置I/O端口类型
           	bRet = 0;          //不采集从机数据
 	     }
         else
-         {        	      
+         {
 			bRet = 1;          //采集从机数据
          }
 		bSwOld=bSwNew;
     }
-   	return bRet;	
+   	return bRet;
 }*/
 
 /************************************
@@ -471,19 +474,19 @@ void Select_Mast()
     else if(Zhu_Cong==0)
      {
       	Flag_Mast = 0;         //从机
-     }		
+     }
 }
 
 /************************************
 *       备用机显示按键处理（****************4.21号上午觉得有问题：备用显示按键是普通按键，不是开关按键形式）
 *************************************/
 /*void BackUp_Display(void)
-{	
+{
 	bSbNew = PALE;
     if(bSbNew != bSbOld)
     {
 		if(bSbNew == 0)
-         {  
+         {
 			Flag_Commond = ~Flag_Commond;
          }
 		bSbOld = bSbNew;
@@ -506,12 +509,12 @@ bit Speak_Alarm()
           	bspeak = 0;        //蜂鸣器不工作
 	     }
         else
-         {       
+         {
 			bspeak = 1;      //蜂鸣器工作
          }
 		bSsOld=bSsNew;
     }
-   	return bspeak;	
+   	return bspeak;
 }
 /**********************************
 *          按键功能
@@ -578,25 +581,29 @@ void Transfer()
 			Send_Word(send_buf,NUMSENDBYTES);         //发送数据
        }
        if(Flag_Mast==1)                               //主机
-       {		
-            Collect_Word(receive_buf,57);    
-	  
+       {
+            Collect_Word(receive_buf,57);
+
        }
-         	   
+
 }
 /****************************************
 *          DCS串行传输
 ****************************************/
 void Transfer_DCS()
 {
-uchar i;
-	if(measure_flag)	
+	uchar i,temp;
+	if(measure_flag)
 	{
-		for(i=0;i<121;i++)
+		temp=DCS_Send[0];
+		for(i=1;i<66;i++)
+		{
+			temp=temp^DCS_Send[i];
+		}
+		DCS_Send[66]=temp;
+		for(i=0;i<67;i++)
 		{
 			T1byte(DCS_Send[i]);
 		}
 	}
 }
-
-

@@ -265,13 +265,13 @@ void Init_8253()
   C82535C=0x34;                                                                   //00110100
   C825350D=0xff;
   C825350D=0xff;
-  for(i=0;i<121;i++)
+  for(i=0;i<67;i++)
   {
-	DCS_Send[i]=0;
+    DCS_Send[i]=0;
   }
   for(i=0;i<=7;i++)
   {
-	DoseRata[i] = 0;						//每组探头测得的剂量率
+    DoseRata[i] = 0;						//每组探头测得的剂量率
   }
   Var_Led=0xff;                                                                   //led指示
   Led573=Var_Led;
@@ -287,7 +287,7 @@ void ShowData()
 {
   uchar i,m,j,k;                                                                    //AE1-:Var1用来判断使用的探测器的局部变量，相当于Channel_Detector,不再需要
   ulong count_temp,jishuguan_count_temp,dianlishi_count_temp;
-  float idata jtemp,yudecide,jishuguan_rata,jishuguan_jtemp,dianlishi_jtemp;
+  float idata temp,jtemp,yudecide,jishuguan_rata,jishuguan_jtemp,dianlishi_jtemp;
   double yu,yudata,mtemp;
   uchar Tbcd[12];                                                                 //测得的数据的bcd码数组
   Lcd_Clear();
@@ -413,7 +413,7 @@ void ShowData()
           				Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),高电平
           				Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
 					}
-				
+
 			}
 			if((Channel_Detector[i][1]==2)&&(Calculated[i]==0))//DL1量程，5次定时计数一秒相加
 			{
@@ -474,8 +474,8 @@ void ShowData()
           				Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),低电平
           				Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
 					}
-				
-			} 
+
+			}
 			if((Channel_Detector[i][1]==1)&&(Calculated[i]==0))//GM2量程，10次定时计数一秒相加，5次平滑平均
 			{
 				Count[i][0]=Count[i][1];
@@ -507,7 +507,7 @@ void ShowData()
 				Count_Times[i]=0;
 				Real_Count[i]=0;
 
-					
+
 					//if((Average_Times[i]==3)||(Average_Times[i]==4))//在有三个计数值后开始算平均值并显示
 					//{
 					//	for(j=0;j<Average_Times[i];j++)
@@ -537,7 +537,7 @@ void ShowData()
           				Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),低电平
           				Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
 					}
-				
+
 			}
 			if((Channel_Detector[i][1]==0)&&(Calculated[i]==0))//GM1量程，10次定时计数一秒相加，10次平滑平均
 			{
@@ -599,7 +599,7 @@ void ShowData()
           				Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),低电平
           				Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
 					}
-				
+
 			}
 		}
 		else if(Channel_Detector[i][0]!=Channel_Detector[i][1])//当前后两次计数的量程不一样
@@ -673,7 +673,7 @@ void ShowData()
 					Channel_Detector[i][1]=3;
 					Channel_Detector[i][0]=3;
 				}
-				
+
 				Calculated[i]=1;//计算过标志
 				Count_Times[i]+=1;//定时计数次数加1
 				Channel_Detector[i][0]=Channel_Detector[i][1];//更新量程历史状态
@@ -802,7 +802,7 @@ void ShowData()
 				Para[3]=(float)((float)(DataThouth[m+4]*1000+DataCent[m+4]*100+DataTenth[m+4]*10+DataGe[m+4])*10);
 				DoseRata[j]=(float)(Para[3]*(Real_Count_Display[j]-Para[2]));
 			}
-		}	
+		}
       /**********单位换算后为jtemp************/
       if(DoseRata[j]<0)                                                         //修改2012.6.15通过均值计算
       {
@@ -826,6 +826,97 @@ void ShowData()
           Flag_dw=3;
         }
       }
+      /*****DCS发送数据准备****/
+      if(DoseRata[j]<0)                                                         //若计算剂量小于零向DCS发送0
+      {
+        DCS_Send[j*4+4]=0x30;
+        DCS_Send[j*4+5]=0x30;
+        DCS_Send[j*4+6]=0x30;
+        DCS_Send[j*4+7]=0x30;
+      }
+      else if(DoseRata[j]>=0)
+      {
+        if(DoseRata[j]<1)
+        {
+          temp=(float)DoseRata[j]*1000;
+          DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
+          DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
+          DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
+          DCS_Send[j*4+7]=0x30;
+        }
+        else if((DoseRata[j]>=1)&&(DoseRata[j]<10))
+        {
+          temp=(float)DoseRata[j]*100;
+          DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
+          DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
+          DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
+          DCS_Send[j*4+7]=0x31;
+        }
+        else if((DoseRata[j]>=10)&&(DoseRata[j]<100))
+        {
+          temp=(float)DoseRata[j]*10;
+          DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
+          DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
+          DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
+          DCS_Send[j*4+7]=0x32;
+        }
+        else if((DoseRata[j]>=100)&&(DoseRata[j]<1000))
+        {
+          temp=(float)DoseRata[j];
+          DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
+          DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
+          DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
+          DCS_Send[j*4+7]=0x33;
+        }
+        else if((DoseRata[j]>=1000)&&(DoseRata[j]<10000))
+        {
+          temp=(float)DoseRata[j]/10.0;
+          DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
+          DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
+          DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
+          DCS_Send[j*4+7]=0x34;
+        }
+        else if((DoseRata[j]>=10000)&&(DoseRata[j]<100000))
+        {
+          temp=(float)DoseRata[j]/100.0;
+          DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
+          DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
+          DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
+          DCS_Send[j*4+7]=0x35;
+        }
+        else if((DoseRata[j]>=100000)&&(DoseRata[j]<1000000))
+        {
+          temp=(float)DoseRata[j]/1000.0;
+          DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
+          DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
+          DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
+          DCS_Send[j*4+7]=0x36;
+        }
+        else if((DoseRata[j]>=1000000)&&(DoseRata[j]<10000000))
+        {
+          temp=(float)DoseRata[j]/10000.0;
+          DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
+          DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
+          DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
+          DCS_Send[j*4+7]=0x37;
+        }
+        else if((DoseRata[j]>=10000000)&&(DoseRata[j]<100000000))
+        {
+          temp=(float)DoseRata[j]/100000.0;
+          DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
+          DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
+          DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
+          DCS_Send[j*4+7]=0x38;
+        }
+        else if((DoseRata[j]>=100000000)&&(DoseRata[j]<1000000000))
+        {
+          temp=(float)DoseRata[j]/1000000.0;
+          DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
+          DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
+          DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
+          DCS_Send[j*4+7]=0x39;
+        }
+      }
       /***********剂量率转换单位后转换成可以显示的BCD码*************/
       if((Tbcd[5]<=9)&&(Tbcd[4]<=9)&&(Tbcd[3]<=9)&&(Tbcd[2]<=9)&&(Tbcd[1]<=9)&&(Tbcd[0]<=9))//4.21似乎多余，可不可以修改掉
       {
@@ -843,14 +934,6 @@ void ShowData()
         if(Flag_dw==3)
           yudecide=(float)((Tbcd[5]*100+Tbcd[4]*10+Tbcd[3]+Tbcd[2]*0.1+Tbcd[1]*0.01+Tbcd[0]*0.001)*1000000);
       }
-	  /***********准备发送的数据**********/
-	  DCS_Send[8*j]=Tbcd[5];
-	  DCS_Send[8*j+1]=Tbcd[4];
-	  DCS_Send[8*j+2]=Tbcd[3];
-	  DCS_Send[8*j+3]=Tbcd[2];
-	  DCS_Send[8*j+4]=Tbcd[1];
-	  DCS_Send[8*j+5]=Tbcd[0];
-	  DCS_Send[8*j+6]=Flag_dw;
       /***********判断阈值*************/
       mtemp=(YuThouth[j]+YuCent[j]*0.1+YuTenth[j]*0.01);                          //暂时没根据位数修改2012.6.15
       yu=(double)(pow(10,YuGe[j]));
@@ -862,14 +945,12 @@ void ShowData()
           Flag_Warn=1;                                                            //报警标志置一
         }
         Flag_need_Flash[j]=1;                                                     //LED闪烁标志置1
-        DCS_Send[8*j+7]=1;
         State_Flash[j]=1;
         Var_Led=Var_Led&Svar0[j];                                                 //LED报警指示灯（char）Svar0[8]={0xFE,0xFD,0xFB,0xF7,0xEF,0xDF,0xBF,0x7F}
       }
       else if(yudecide<yudata)
       {
         Flag_need_Flash[j]=0;
-		DCS_Send[8*j+7]=0;
         State_Flash[j]=0;
         Var_Led=Var_Led|Svar1[j];
       }
@@ -971,6 +1052,17 @@ void ShowData()
       send_buf[8*j+5]=Tbcd[0];
       send_buf[8*j+6]=Flag_dw;                                                    //发送单位标志
       send_buf[8*j+7]=Flag_need_Flash[j];                                         //LED闪烁标志
+    }
+    for(j=0;j<8;j++)                                                              //置DCS数据的报警信号
+    {
+      if(Flag_need_Flash[j])
+      {
+        DCS_Send[64]=DCS_Send[64]|Svar1[j];
+      }
+      else
+      {
+        DCS_Send[64]=DCS_Send[64]&Svar0[j];
+      }
     }                                                                             //8个探头均显示执行完
     Flag_Warn_Count=1;
     jishucount++;                                                                 //计数次数增加（算平均值时用）
@@ -1177,10 +1269,10 @@ void ShowData()
 ************************************/
 void shortdelay(uint i)
 {
-uint k;
-uint n;
-for(k=0;k<i;k++)
-for(n=200;n>0;n--);
+  uint k;
+  uint n;
+  for(k=0;k<i;k++)
+    for(n=200;n>0;n--);
 }
 
 /********************************
@@ -1188,15 +1280,15 @@ for(n=200;n>0;n--);
 ********************************/
 void Alarm()
 {
-uchar n;
-for(n=0;n<10;n++)
-{
-Led573=Var_Led;
-if(Flag_Warn==1)                                                                  //声音报警
-{
-Speak=1;
-}
-}
+  uchar n;
+  for(n=0;n<10;n++)
+  {
+    Led573=Var_Led;
+    if(Flag_Warn==1)                                                                  //声音报警
+    {
+      Speak=1;
+    }
+  }
 }
 
 /*******************************
@@ -1204,20 +1296,19 @@ Speak=1;
 *******************************/
 void Updata_Flash(uchar j)
 {
-if(Flag_need_Flash[j])
-{
-if(State_Flash[j]==1)
-{
-State_Flash[j]=0;
-}
-else
-{
-State_Flash[j]=1;
-}
-}
-else
-State_Flash[j]=0;
-
+  if(Flag_need_Flash[j])
+  {
+    if(State_Flash[j]==1)
+    {
+      State_Flash[j]=0;
+    }
+    else
+    {
+      State_Flash[j]=1;
+    }
+  }
+  else
+  State_Flash[j]=0;
 }
 
 /***********************************
@@ -1225,12 +1316,12 @@ State_Flash[j]=0;
 ************************************/
 void Led_Flash(void )
 {
-uchar i;
-for(i=0;i<8;i++)
-{
-Updata_Flash(i);                                                                  //状态取反
-Led_Disp(i,Flag_need_Flash[i],State_Flash[i]);                                    //灯状态显示
-}
+  uchar i;
+  for(i=0;i<8;i++)
+  {
+    Updata_Flash(i);                                                                  //状态取反
+    Led_Disp(i,Flag_need_Flash[i],State_Flash[i]);                                    //灯状态显示
+  }
 }
 
 /************************************
@@ -1238,25 +1329,25 @@ Led_Disp(i,Flag_need_Flash[i],State_Flash[i]);                                  
 *************************************/
 void Led_Disp(uchar Num,uchar Flag,uchar State)
 {
-if(Flag)
-{
-if(State)
-{
-Var_Led=Var_Led&Svar0[Num];                                                       //指示灯亮
-Led573=Var_Led;
-if(Flag_Warn==1)                                                                  //需要蜂鸣器工作
-{
-Speak=0;                                                                          //蜂鸣器响
-shortdelay(100);
-}
-return;
-}
-}
-Var_Led=Var_Led|Svar1[Num];                                                       //指示灯灭
-Led573=Var_Led;
-if(Flag_Warn==1)                                                                  //需要蜂鸣器工作
-{
-Speak=1;                                                                          //蜂鸣器不响
-shortdelay(100);
-}
+  if(Flag)
+  {
+    if(State)
+    {
+      Var_Led=Var_Led&Svar0[Num];                                                       //指示灯亮
+      Led573=Var_Led;
+      if(Flag_Warn==1)                                                                  //需要蜂鸣器工作
+      {
+        Speak=0;                                                                          //蜂鸣器响
+        shortdelay(100);
+      }
+      return;
+    }
+  }
+  Var_Led=Var_Led|Svar1[Num];                                                       //指示灯灭
+  Led573=Var_Led;
+  if(Flag_Warn==1)                                                                  //需要蜂鸣器工作
+  {
+    Speak=1;                                                                          //蜂鸣器不响
+    shortdelay(100);
+  }
 }

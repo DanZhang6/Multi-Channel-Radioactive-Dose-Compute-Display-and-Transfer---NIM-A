@@ -7,7 +7,7 @@
 *********************************************************************/
 #include "STC15F2K60S2.h"
 #include "intrins.h"
-#include "config.h" 
+#include "config.h"
 #include "absacc.h"
 #include "stdio.h"
 #include "math.h"
@@ -19,21 +19,21 @@ void Warning_Disp(uchar Num,uchar Flag,uchar State);
 void Updata_Led(uchar j);
 
 /*************************************
-*         显示从机计数率   
+*         显示从机计数率
 *************************************/
 void display_b()
-{    
+{
     uchar idata j;
     Lcd_Clear();
 	for(j=0;j<receive_buf[56];j++)
 	{
-	   /********剂量率显示**********/ 
+	   /********剂量率显示**********/
 	    Txtext(60,42+(j*58),"探头");
 		Tnumber(160,42+(j*58),j+9);
 		Txtext(210,42+(j*58),":");
 		if(receive_buf[8*j] != 0)
 		{
-			Tnumber(230,42+(j*58),receive_buf[8*j]); 
+			Tnumber(230,42+(j*58),receive_buf[8*j]);
 			Tnumber(270,42+(j*58),receive_buf[8*j+1]);
 			Tnumber(310,42+(j*58),receive_buf[8*j+2]);
 			Txtext(350,42+(j*58),".");
@@ -63,17 +63,17 @@ void display_b()
 		 }
 	   /**********计量单位显示***********/
 		if(receive_buf[8*j+6]==1)
-		{   
+		{
 			Txtext(510,42+(j*58),"Bq/L");
 		}
 		else if(receive_buf[8*j+6]==2)
 		{
 			Txtext(510,42+(j*58),"KBq/L");
-		} 
+		}
 		else if(receive_buf[8*j+6]==3)
 		{
 			Txtext(510,42+(j*58),"MBq/L");
-		}		
+		}
 		if(receive_buf[8*j+7] == 1)
 		{
 		    WarnLed_On(5,42+(j*58));        // 修改
