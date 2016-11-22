@@ -72,7 +72,7 @@ uchar data Keyvar=0xFF;                    //按键变量
 uchar jishucount;							//第几次计数，用来求平均值时知道这是第几次计数
 uchar  Average_Times[8];								//AJ1+滑动平均次数
 uchar Count_Times[8];						//AJ1+累加计数次数
-ulong Average_Counts[8][10];//平滑平均变量
+ulong Average_Counts[8][5];//平滑平均变量
 uchar Display_Flag[8];
 uchar Refresh_Time=3;
 uchar DCS_Send[67];
@@ -249,7 +249,7 @@ void Init_Para()
 		count_change_flag[j]=0;
 		Channel_Detector[j][0]=3;
 		Channel_Detector[j][1]=4;					//AC1+初始均为DL3
-		for(i=0;i<11;i++)
+		for(i=0;i<6;i++)
 		{
 			Average_Counts[j][i]=0;
 		}

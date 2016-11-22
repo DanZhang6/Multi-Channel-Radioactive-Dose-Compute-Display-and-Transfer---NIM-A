@@ -44,7 +44,7 @@
 #define C825352D XBYTE[0xa200]
 
 uchar buf[32];                                                          //AB1*从8253中读到的计数器数据，15个计数器，低八位高八位，从3-32，1为探头个数，2为测量时间
-uchar Channel_Detector[8][2];                                                        //AC1+通道探头选择标志，1:电离室0:计数管
+uchar Channel_Detector[8][2];                                                     //AC1+通道探头选择标志，1:电离室0:计数管
 uchar DataGe[75];                                                                 //探测器标定参数的个位，初始时个十百千均为0
 uchar DataTenth[75];                                                              //探测器标定参数的十分位
 uchar DataCent[75];                                                               //探测器标定参数的百分位
@@ -317,9 +317,8 @@ void ShowData()
   **1,为保证即使多个通道不在同一量程，高量程的通道也能有其响应更快的更新速度，程序一秒计数一次，10秒计数为十次一秒计数的相加
   **  ，剂量率显示一秒刷新一次。
   **2,程序中计数率计算、量程换挡、剂量计算显示各部分分开执行
-  **3,
   */
-  for(i=0;i<=7;i++)                                                               //七个探头逐个检测
+  for(i=0;i<=7;i++)                                                               //8个探头逐个检测
   {
 		if(Channel_Detector[i][0]==Channel_Detector[i][1])//当前一次量程和此次量程一样时
 		{
@@ -341,7 +340,15 @@ void ShowData()
 				}
 				Calculated[i]=1;//计算过标志
 				Count_Times[i]+=1;
-				if((Count[i][1]<(37*Refresh_Time))&&(Count[i][2]<(37*Refresh_Time)))//量程切换
+				if((Count[i][1]<(37*Refresh_Time))&&(Count[i][2]<(37*Refresh_Time))&&(i<7))//量程切换前7个探头判定条件
+				{
+					Channel_Detector[i][0]=Channel_Detector[i][1];
+					Channel_Detector[i][1]=3;
+					Var_Signal1=Var_Signal1&Svar0[i];                                       //控制信号1接计数管，低电平
+          			Var_Signal2=Var_Signal2|Svar1[i];                                       //控制信号2接电离室10(8),高电平
+          			Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
+				}
+				if((Count[i][1]<(28*Refresh_Time))&&(Count[i][2]<(28*Refresh_Time))&&(i==7))//量程切换第八个探头判定条件
 				{
 					Channel_Detector[i][0]=Channel_Detector[i][1];
 					Channel_Detector[i][1]=3;
@@ -369,7 +376,15 @@ void ShowData()
 				}
 				Calculated[i]=1;//计算过标志
 				Count_Times[i]+=1;//定时计数次数加1
-				if((Count[i][1]>(5719*Refresh_Time))&&(Count[i][2]>(5719*Refresh_Time)))//量程切换
+				if((Count[i][1]>(5719*Refresh_Time))&&(Count[i][2]>(5719*Refresh_Time))&&(i<7))//量程切换
+				{
+					Channel_Detector[i][0]=Channel_Detector[i][1];
+					Channel_Detector[i][1]=4;
+					Var_Signal1=Var_Signal1&Svar0[i];                                       //控制信号1接计数管，低电平
+          			Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),高电平
+          			Var_Signal3=Var_Signal3|Svar1[i];                                       //控制信号2接电离室10(6),低电平
+				}
+				if((Count[i][1]>(7447*Refresh_Time))&&(Count[i][2]>(7447*Refresh_Time))&&(i==7))//量程切换
 				{
 					Channel_Detector[i][0]=Channel_Detector[i][1];
 					Channel_Detector[i][1]=4;
@@ -385,50 +400,47 @@ void ShowData()
           			Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),高电平
           			Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
 				}
-
-
-					Real_Count_Display[i]=(float)(Real_Count[i]);
-					Real_Count_Display[i]*=5;
-					Real_Count_Display[i]/=3;
-					Display_Flag[i]=1;//允许显示
-					Channel_Display[i]=3;
-					Real_Count[i]=0;
-					Count_Times[i]=0;//定时计数归零
-
-					if((Display_Flag[i]==1)&&((Real_Count_Display[i]/5)>5719)&&(Channel_Detector[i][0]==Channel_Detector[i][1]))//量程切换,加后两句是防止重复换挡
-					{
-						Channel_Detector[i][0]=Channel_Detector[i][1];
-						Channel_Detector[i][1]=4;
-						Display_Flag[i]=0;
-						Var_Signal1=Var_Signal1&Svar0[i];                                       //控制信号1接计数管，低电平
-          				Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),高电平
-          				Var_Signal3=Var_Signal3|Svar1[i];                                       //控制信号2接电离室10(6),低电平
-					}
-					if((Display_Flag[i]==1)&&((Real_Count_Display[i]/5)<35)&&(Channel_Detector[i][0]==Channel_Detector[i][1])&&(i!=7))
-					{
-						Channel_Detector[i][0]=Channel_Detector[i][1];
-						Channel_Detector[i][1]=2;
-						Display_Flag[i]=0;
-						Var_Signal1=Var_Signal1&Svar0[i];                                       //控制信号1接计数管，低电平
-          				Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),高电平
-          				Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
-					}
-
+				Real_Count_Display[i]=(float)(Real_Count[i]);
+				Real_Count_Display[i]*=5;
+				Real_Count_Display[i]/=3;
+				Display_Flag[i]=1;//允许显示
+				Channel_Display[i]=3;
+				Real_Count[i]=0;
+				Count_Times[i]=0;//定时计数归零
+				if((Display_Flag[i]==1)&&((Real_Count_Display[i]/5)>5719)&&(Channel_Detector[i][0]==Channel_Detector[i][1])&&(i<7))//量程切换,加后两句是防止重复换挡
+				{
+					Channel_Detector[i][0]=Channel_Detector[i][1];
+					Channel_Detector[i][1]=4;
+					Display_Flag[i]=0;
+					Var_Signal1=Var_Signal1&Svar0[i];                                       //控制信号1接计数管，低电平
+          			Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),高电平
+          			Var_Signal3=Var_Signal3|Svar1[i];                                       //控制信号2接电离室10(6),低电平
+				}
+				if((Display_Flag[i]==1)&&((Real_Count_Display[i]/5)>7447)&&(Channel_Detector[i][0]==Channel_Detector[i][1])&&(i==7))//量程切换,加后两句是防止重复换挡
+				{
+					Channel_Detector[i][0]=Channel_Detector[i][1];
+					Channel_Detector[i][1]=4;
+					Display_Flag[i]=0;
+					Var_Signal1=Var_Signal1&Svar0[i];                                       //控制信号1接计数管，低电平
+          			Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),高电平
+          			Var_Signal3=Var_Signal3|Svar1[i];                                       //控制信号2接电离室10(6),低电平
+				}
+				if((Display_Flag[i]==1)&&((Real_Count_Display[i]/5)<35)&&(Channel_Detector[i][0]==Channel_Detector[i][1])&&(i!=7))
+				{
+					Channel_Detector[i][0]=Channel_Detector[i][1];
+					Channel_Detector[i][1]=2;
+					Display_Flag[i]=0;
+					Var_Signal1=Var_Signal1&Svar0[i];                                       //控制信号1接计数管，低电平
+          			Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),高电平
+          			Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
+				}
 			}
 			if((Channel_Detector[i][1]==2)&&(Calculated[i]==0))//DL1量程，5次定时计数一秒相加
 			{
 				Count[i][0]=Count[i][1];
 				Count[i][1]=Count[i][2];
-				if(i<7)//前6个探头和第七个探头取计数位置不一样
-				{
-					Count[i][2]=buf[4*i+5]*256+buf[4*i+4];
-					Real_Count[i]=(ulong)(buf[4*i+5]*256+buf[4*i+4]);
-				}
-				else if(i==7)//前6个探头和第七个探头取计数位置不一样
-				{
-					Count[i][2]=buf[31]*256+buf[30];
-					Real_Count[i]=(ulong)(buf[31]*256+buf[30]);
-				}
+				Count[i][2]=buf[4*i+5]*256+buf[4*i+4];
+				Real_Count[i]=(ulong)(buf[4*i+5]*256+buf[4*i+4]);
 				Calculated[i]=1;//计算过标志
 				Count_Times[i]+=1;//定时计数次数加1
 				if((Count[i][1]>(5411*Refresh_Time))&&(Count[i][2]>(5411*Refresh_Time)))//量程切换
@@ -447,15 +459,13 @@ void ShowData()
           			Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),低电平
           			Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
 				}
-
 					Real_Count_Display[i]=(float)(Real_Count[i]);
-					Real_Count_Display[i]*=5;
-					Real_Count_Display[i]/=3;
+					Real_Count_Display[i]*=5;//这里是CP5S
+					Real_Count_Display[i]/=Refresh_Time;
 					Display_Flag[i]=1;//允许显示
 					Channel_Display[i]=2;
 					Real_Count[i]=0;
 					Count_Times[i]=0;//定时计数归零
-
 					if((Display_Flag[i]==1)&&((Real_Count_Display[i]/5)>5411)&&(Channel_Detector[i][0]==Channel_Detector[i][1]))//量程切换
 					{
 						Channel_Detector[i][0]=Channel_Detector[i][1];
@@ -474,7 +484,6 @@ void ShowData()
           				Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),低电平
           				Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
 					}
-
 			}
 			if((Channel_Detector[i][1]==1)&&(Calculated[i]==0))//GM2量程，10次定时计数一秒相加，5次平滑平均
 			{
@@ -492,7 +501,7 @@ void ShowData()
           			Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),低电平
           			Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
 				}
-				if((Count[i][0]<4)&&(Count[i][1]<4)&&(Count[i][2]<4))
+				if((Count[i][0]<(1.32*Refresh_Time))&&(Count[i][1]<(1.32*Refresh_Time))&&(Count[i][2]<(1.32*Refresh_Time)))
 				{
 					Channel_Detector[i][0]=Channel_Detector[i][1];
 					Channel_Detector[i][1]=0;
@@ -500,46 +509,58 @@ void ShowData()
           			Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),低电平
           			Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
 				}
-				Real_Count[i]*=20;//换算为CPM
+				Real_Count[i]*=20;//换算为CPM(注意对应的是3秒的 Refresh Time)
 				Real_Count_Display[i]=Real_Count[i];
 				Channel_Display[i]=1;
 				Display_Flag[i]=1;
 				Count_Times[i]=0;
 				Real_Count[i]=0;
-
-
-					//if((Average_Times[i]==3)||(Average_Times[i]==4))//在有三个计数值后开始算平均值并显示
+				//if(Count_Times[i]==2)
+				//{
+					//Average_Counts[i][Average_Times[i]]=Real_Count[i];//将计数率赋值给平均值
+					//Average_Times[i]+=1;//平滑平均次数加1
+					//Count_Times[i]=0;
+					//Real_Count[i]=0;
+				//}
+				//if((Average_Times[i]>=2)&&(Average_Times[i]<=5))//在有2个计数值后开始算平均值并显示
+				//{
+					//for(j=0;j<Average_Times[i];j++)
 					//{
-					//	for(j=0;j<Average_Times[i];j++)
-					//	{
-					//		Real_Count_Display[i]+=(float)(Average_Counts[i][j]);//所有待平滑平均值相加
-					//	}
-					//	Real_Count_Display[i]/=Average_Times[i];//算平滑平均值
-					//	Display_Flag[i]=1;//允许显示
-					//	Channel_Display[i]=1;//更新显示量程
+						//Real_Count_Display[i]+=(float)(Average_Counts[i][j]);
 					//}
-
-					if((Display_Flag[i]==1)&&((Real_Count_Display[i]/60)>6019)&&(Channel_Detector[i][0]==Channel_Detector[i][1]))//量程切换
-					{
-						Channel_Detector[i][0]=Channel_Detector[i][1];
-						Channel_Detector[i][1]=2;
-						Display_Flag[i]=0;
-						Var_Signal1=Var_Signal1&Svar0[i];                                       //控制信号1接计数管，低电平
-          				Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),低电平
-          				Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
-					}
-					if((Display_Flag[i]==1)&&((Real_Count_Display[i]/60)<1.32)&&(Channel_Detector[i][0]==Channel_Detector[i][1]))
-					{
-						Channel_Detector[i][0]=Channel_Detector[i][1];
-						Channel_Detector[i][1]=0;
-						Display_Flag[i]=0;
-						Var_Signal1=Var_Signal1|Svar1[i];                                       //控制信号1接计数管，为高电平
-          				Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),低电平
-          				Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
-					}
-
+					//Real_Count_Display[i]/=(float)(Average_Times[i]);
+					//Real_Count_Display[i]*=(60/(Refresh_Time*2));//因为要换算成CPM
+					//Display_Flag[i]=1;//允许显示
+					//Channel_Display[i]=0;
+					//if(Average_Times[i]==5)
+					//{
+						//for(j=0;j<(Average_Times[i]-1);j++)
+						//{
+							//Average_Counts[i][j]=Average_Counts[i][j+1];
+						//}
+						//Average_Times[i]-=1;//为了让次数
+					//}
+				//}
+				//if((Display_Flag[i]==1)&&((Real_Count_Display[i]/60)>6019)&&(Channel_Detector[i][0]==Channel_Detector[i][1]))//量程切换
+				//{
+					//Channel_Detector[i][0]=Channel_Detector[i][1];
+					//Channel_Detector[i][1]=2;
+					//Display_Flag[i]=0;
+					//Var_Signal1=Var_Signal1&Svar0[i];                                       //控制信号1接计数管，低电平
+          			//Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),低电平
+          			//Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
+				//}
+				//if((Display_Flag[i]==1)&&((Real_Count_Display[i]/60)<1.32)&&(Channel_Detector[i][0]==Channel_Detector[i][1]))
+				//{
+					//Channel_Detector[i][0]=Channel_Detector[i][1];
+					//Channel_Detector[i][1]=0;
+					//Display_Flag[i]=0;
+					//Var_Signal1=Var_Signal1|Svar1[i];                                       //控制信号1接计数管，为高电平
+          			//Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),低电平
+          			//Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
+				//}
 			}
-			if((Channel_Detector[i][1]==0)&&(Calculated[i]==0))//GM1量程，10次定时计数一秒相加，10次平滑平均
+			if((Channel_Detector[i][1]==0)&&(Calculated[i]==0))//GM1量程，2次定时计数3秒相加，5次平滑平均
 			{
 				Count[i][0]=Count[i][1];
 				Count[i][1]=Count[i][2];
@@ -547,7 +568,7 @@ void ShowData()
 				Real_Count[i]+=(ulong)(buf[4*i+3]*256+buf[4*i+2]);
 				Calculated[i]=1;//计算过标志
 				Count_Times[i]+=1;//定时计数次数加1
-				if((Count[i][0]>4)&&(Count[i][1]>4)&&(Count[i][2]>4))//量程切换
+				if((Count[i][0]>(1.32*Refresh_Time))&&(Count[i][1]>(1.32*Refresh_Time))&&(Count[i][2]>(1.32*Refresh_Time)))//量程切换
 				{
 					Channel_Detector[i][0]=Channel_Detector[i][1];
 					Channel_Detector[i][1]=1;
@@ -555,58 +576,54 @@ void ShowData()
           			Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),低电平
           			Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
 				}
-
 					Real_Count[i]*=20;//换算为CPM
 					Real_Count_Display[i]=Real_Count[i];
 					Channel_Display[i]=0;
 					Display_Flag[i]=1;
 					Count_Times[i]=0;
 					Real_Count[i]=0;
-					//Average_Counts[i][Average_Times[i]]=Real_Count[i];//将计数率赋值给平均值
-					//Average_Times[i]+=1;//平滑平均次数加1
-					//if((Average_Times[i]>=3)&&(Average_Times[i]<10))//在有三个计数值后开始算平均值并显示
+					//if(Count_Times[i]==2)
 					//{
-					//	for(j=0;j<Average_Times[i];j++)
-					//	{
-					//		Real_Count_Display[i]+=(float)(Average_Counts[i][j]);
-					//	}
-					//	Real_Count_Display[i]/=(float)(Average_Times[i]);
-					//	Display_Flag[i]=1;//允许显示
-					//	Channel_Display[i]=0;
+					//	Average_Counts[i][Average_Times[i]]=Real_Count[i];//将计数率赋值给平均值
+					//	Average_Times[i]+=1;//平滑平均次数加1
+					//	Count_Times[i]=0;
+					//	Real_Count[i]=0;
 					//}
-					/*if(Average_Times[i]==1)//在有三个计数值后开始算平均值并显示
-					{
-						for(j=0;j<Average_Times[i];j++)
-						{
-							Real_Count_Display[i]+=(float)(Average_Counts[i][j]);
-						}
-						Real_Count_Display[i]/=(float)(Average_Times[i]);
-						Display_Flag[i]=1;//允许显示
-						Channel_Display[i]=0;
-						for(j=0;j<(Average_Times[i]-1);j++)
-						{
-							Average_Counts[i][j]=Average_Counts[i][j+1];
-						}*/
-						//Average_Times[i]-=1;//为了让次数
+					//if((Average_Times[i]>=2)&&(Average_Times[i]<=5))//在有2个计数值后开始算平均值并显示
+					//{
+						//for(j=0;j<Average_Times[i];j++)
+						//{
+							//Real_Count_Display[i]+=(float)(Average_Counts[i][j]);
+						//}
+						//Real_Count_Display[i]/=(float)(Average_Times[i]);
+						//Real_Count_Display[i]*=(60/(Refresh_Time*2));//因为要换算成CPM
+						//Display_Flag[i]=1;//允许显示
+						//Channel_Display[i]=0;
+						//if(Average_Times[i]==5)
+						//{
+							//for(j=0;j<(Average_Times[i]-1);j++)
+							//{
+								//Average_Counts[i][j]=Average_Counts[i][j+1];
+							//}
+							//Average_Times[i]-=1;//为了让次数
+						//}
 					//}
-
-					if((Display_Flag[i]==1)&&((Real_Count_Display[i]/60)>1.32)&&(Channel_Detector[i][0]==Channel_Detector[i][1]))//量程切换
-					{
-						Channel_Detector[i][0]=Channel_Detector[i][1];
-						Channel_Detector[i][1]=2;
-						Display_Flag[i]=0;
-						Var_Signal1=Var_Signal1|Svar1[i];                                       //控制信号1接计数管，为高电平
-          				Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),低电平
-          				Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
-					}
-
+					//if((Display_Flag[i]==1)&&((Real_Count_Display[i]/60)>1.32)&&(Channel_Detector[i][0]==Channel_Detector[i][1]))//量程切换
+					//{
+						//Channel_Detector[i][0]=Channel_Detector[i][1];
+						//Channel_Detector[i][1]=1;
+						//Display_Flag[i]=0;
+						//Var_Signal1=Var_Signal1|Svar1[i];                                       //控制信号1接计数管，为高电平
+          				//Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),低电平
+          				//Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
+					//}
 			}
 		}
 		else if(Channel_Detector[i][0]!=Channel_Detector[i][1])//当前后两次计数的量程不一样
 		{
 			if((Channel_Detector[i][1]==4)&&(Calculated[i]==0))//DL3量程，定时计数一秒，直接用来计算
 			{
-				for(k=0;k<=2;k++)
+				for(k=0;k<=2;k++)//初始化单次跳档判断变量，防止意外降档
 				{
 					Count[i][k]=1000*Refresh_Time;//一秒计数使其不换档
 				}

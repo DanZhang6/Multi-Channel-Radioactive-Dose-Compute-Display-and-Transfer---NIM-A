@@ -29,7 +29,7 @@ extern uchar Flag_need_warn[8];                   //需要报警标志
 extern uchar State_On_Off[8];                     //指示灯状态标志
 extern uchar buf[32];               //AB1*要发送的数据的高低位
 extern uchar Channel_Detector[8][2];			//AC1+通道探头选择标志，1:电离室0:计数管
-extern ulong Average_Counts[8][10];
+extern ulong Average_Counts[8][5];
 extern ulong Count[8][3];						//历史计数
 extern uchar send_buf[65];            //add 8  Flag_need_Flash  delect 32 yuzhi   4.21
 extern uchar dt_in[331];
@@ -96,9 +96,8 @@ extern uint CntWarn;
 extern uint CntColTimer;
 extern uint NumT0;
 extern uint CmOverTime;
-
-
-
+extern uchar code Svar1[8];
+extern uchar code Svar0[8];
 
 extern void Lcd_init();
 extern void Lcd_Start();
