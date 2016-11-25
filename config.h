@@ -29,7 +29,7 @@ extern uchar Flag_need_warn[8];                   //需要报警标志
 extern uchar State_On_Off[8];                     //指示灯状态标志
 extern uchar buf[32];               //AB1*要发送的数据的高低位
 extern uchar Channel_Detector[8][2];			//AC1+通道探头选择标志，1:电离室0:计数管
-extern ulong Average_Counts[8][5];
+extern uint Average_Counts[8][5];
 extern ulong Count[8][3];						//历史计数
 extern uchar send_buf[65];            //add 8  Flag_need_Flash  delect 32 yuzhi   4.21
 extern uchar dt_in[331];
@@ -45,11 +45,10 @@ extern uchar Flag_dw;
 extern uchar data_A[8];
 extern uchar data_B[12];
 extern uchar count_change_flag[8];
-extern float Real_Count_Display[8];
+extern double Real_Count_Display[8];
 extern uchar Setted_Time[8];
 extern float DoseRata[8];                                                                //每组探头测得的剂量率
-extern ulong Real_Count[8];
-extern uchar Count_Times[8];
+extern uint Real_Count[8];
 extern uchar Init_Time;
 extern uchar Inctime;
 extern uchar Incinput;

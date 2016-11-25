@@ -11,12 +11,12 @@
 *   4.根据计数率的不同，选择不同的单位（uGy/s,mGy/s,Gy/s）;
 
 ***********************************************************************************************/
-#include"STC15F2K60S2.h"
-#include"intrins.h"
-#include"config.h"
-#include"absacc.h"
-#include"stdio.h"
-#include"math.h"
+#include "STC15F2K60S2.h"
+#include "intrins.h"
+#include "config.h"
+#include "absacc.h"
+#include "stdio.h"
+#include "math.h"
 
 #define C82531C XBYTE[0x8300]                                       //8253的命令端口（地址），CS4=1,CS3=1,CS2=1,CS1=1,CS0=0,A1A0=11；
 #define C825310D XBYTE[0x8000]                                      //计数器0CS4=1,CS3=1,CS2=1,CS1=1,CS0=0,A1A0=00；
@@ -60,7 +60,7 @@ uchar Calculated[8];                                                            
 uchar Flag_dw;                                                                    //单位标志
 uchar Max_Time;                                                                   //AA1+所有通道最长的计数时间
 uint Tdata;                                                                 //探头计数率
-ulong Real_Count[8];
+uint Real_Count[8];
 ulong Count[8][3];																	//一秒计数历史
 uint idata jishuguan_data;                                                        //标定时的计数管计数值相当于Tdata
 uint idata dianlishi_data;                                                        //标定时的电离室计数值相当于Tdata
@@ -73,7 +73,11 @@ bit Flag_Warn_Count;                                                            
 uchar Flag_need_Flash[8];                                                         //LED闪烁标志
 uchar State_Flash[8];
 uchar count_change_flag[8];                                                       //计数改变标志？
-
+float code a0=0.0625;
+float code a1=0.0625;
+float code a2=0.125;
+float code a3=0.25;
+float code a4=0.5;
 uchar code Svar1[8]={0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80};                   //信号数组
 uchar code Svar0[8]={0xFE,0xFD,0xFB,0xF7,0xEF,0xDF,0xBF,0x7F};
 extern uchar jishucount;
@@ -325,21 +329,19 @@ void ShowData()
 			if((Channel_Detector[i][1]==4)&&(Calculated[i]==0))//DL3量程，定时计数3秒，直接用来计算
 			{
 				Real_Count[i]=0;//此量程每次都要清零
-				Count_Times[i]=0;//累加次数清零
 				Count[i][0]=Count[i][1];
 				Count[i][1]=Count[i][2];
 				if(i<7)//前6个探头和第七个探头取计数位置不一样
 				{
 					Count[i][2]=buf[4*i+5]*256+buf[4*i+4];
-					Real_Count[i]=(ulong)(buf[4*i+5]*256+buf[4*i+4]);
+					Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]);
 				}
 				else if(i==7)//前6个探头和第七个探头取计数位置不一样
 				{
 					Count[i][2]=buf[31]*256+buf[30];
-					Real_Count[i]=(ulong)(buf[31]*256+buf[30]);
+					Real_Count[i]=(uint)(buf[31]*256+buf[30]);
 				}
 				Calculated[i]=1;//计算过标志
-				Count_Times[i]+=1;
 				if((Count[i][1]<(37*Refresh_Time))&&(Count[i][2]<(37*Refresh_Time))&&(i<7))//量程切换前7个探头判定条件
 				{
 					Channel_Detector[i][0]=Channel_Detector[i][1];
@@ -367,15 +369,14 @@ void ShowData()
 				if(i<7)//前6个探头和第七个探头取计数位置不一样
 				{
 					Count[i][2]=buf[4*i+5]*256+buf[4*i+4];
-					Real_Count[i]=(ulong)(buf[4*i+5]*256+buf[4*i+4]);
+					Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]);
 				}
 				else if(i==7)//前6个探头和第七个探头取计数位置不一样
 				{
 					Count[i][2]=buf[31]*256+buf[30];
-					Real_Count[i]=(ulong)(buf[31]*256+buf[30]);
+					Real_Count[i]=(uint)(buf[31]*256+buf[30]);
 				}
 				Calculated[i]=1;//计算过标志
-				Count_Times[i]+=1;//定时计数次数加1
 				if((Count[i][1]>(5719*Refresh_Time))&&(Count[i][2]>(5719*Refresh_Time))&&(i<7))//量程切换
 				{
 					Channel_Detector[i][0]=Channel_Detector[i][1];
@@ -406,7 +407,6 @@ void ShowData()
 				Display_Flag[i]=1;//允许显示
 				Channel_Display[i]=3;
 				Real_Count[i]=0;
-				Count_Times[i]=0;//定时计数归零
 				if((Display_Flag[i]==1)&&((Real_Count_Display[i]/5)>5719)&&(Channel_Detector[i][0]==Channel_Detector[i][1])&&(i<7))//量程切换,加后两句是防止重复换挡
 				{
 					Channel_Detector[i][0]=Channel_Detector[i][1];
@@ -440,9 +440,8 @@ void ShowData()
 				Count[i][0]=Count[i][1];
 				Count[i][1]=Count[i][2];
 				Count[i][2]=buf[4*i+5]*256+buf[4*i+4];
-				Real_Count[i]=(ulong)(buf[4*i+5]*256+buf[4*i+4]);
+				Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]);
 				Calculated[i]=1;//计算过标志
-				Count_Times[i]+=1;//定时计数次数加1
 				if((Count[i][1]>(5411*Refresh_Time))&&(Count[i][2]>(5411*Refresh_Time)))//量程切换
 				{
 					Channel_Detector[i][0]=Channel_Detector[i][1];
@@ -465,7 +464,6 @@ void ShowData()
 					Display_Flag[i]=1;//允许显示
 					Channel_Display[i]=2;
 					Real_Count[i]=0;
-					Count_Times[i]=0;//定时计数归零
 					if((Display_Flag[i]==1)&&((Real_Count_Display[i]/5)>5411)&&(Channel_Detector[i][0]==Channel_Detector[i][1]))//量程切换
 					{
 						Channel_Detector[i][0]=Channel_Detector[i][1];
@@ -490,9 +488,8 @@ void ShowData()
 				Count[i][0]=Count[i][1];
 				Count[i][1]=Count[i][2];
 				Count[i][2]=buf[4*i+3]*256+buf[4*i+2];
-				Real_Count[i]+=(ulong)(buf[4*i+3]*256+buf[4*i+2]);
+				Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]);
 				Calculated[i]=1;//计算过标志
-				Count_Times[i]+=1;//定时计数次数加1
 				if((Count[i][0]>(6019*Refresh_Time))&&(Count[i][1]>(6019*Refresh_Time))&&(Count[i][2]>(6019*Refresh_Time)))//量程切换
 				{
 					Channel_Detector[i][0]=Channel_Detector[i][1];
@@ -510,11 +507,31 @@ void ShowData()
           			Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
 				}
 				Real_Count[i]*=20;//换算为CPM(注意对应的是3秒的 Refresh Time)
-				Real_Count_Display[i]=Real_Count[i];
-				Channel_Display[i]=1;
-				Display_Flag[i]=1;
-				Count_Times[i]=0;
-				Real_Count[i]=0;
+				Average_Counts[i][Average_Times[i]]=Real_Count[i];
+				Average_Times[i]+=1;
+				if(Average_Times[i]<5)
+				{
+					switch(Average_Times[i])
+					{
+						case 1: Real_Count_Display[i]=Average_Counts[i][0]; break;
+						case 2: Real_Count_Display[i]=Average_Counts[i][0]*0.4+Average_Counts[i][1]*0.6; break;
+						case 3: Real_Count_Display[i]=Average_Counts[i][0]*a3+Average_Counts[i][1]*a3+Average_Counts[i][2]*a4; break;
+						case 4: Real_Count_Display[i]=Average_Counts[i][0]*a2+Average_Counts[i][1]*a2+Average_Counts[i][2]*a3+Average_Counts[i][3]*a4; break;
+					}
+					Display_Flag[i]=1;
+					Channel_Display[i]=0;
+				}
+				if(Average_Times[i]==5)
+				{
+					Real_Count_Display[i]=Average_Counts[i][0]*a0+Average_Counts[i][1]*a1+Average_Counts[i][2]*a2+Average_Counts[i][3]*a3+Average_Counts[i][4]*a4;
+					for(j=0;j<4;j++)
+					{
+						Average_Counts[i][j]=Average_Counts[i][j+1];
+					}
+					Average_Times[i]-=1;//为了让次数
+					Display_Flag[i]=1;
+					Channel_Display[i]=1;
+				}
 				//if(Count_Times[i]==2)
 				//{
 					//Average_Counts[i][Average_Times[i]]=Real_Count[i];//将计数率赋值给平均值
@@ -565,9 +582,8 @@ void ShowData()
 				Count[i][0]=Count[i][1];
 				Count[i][1]=Count[i][2];
 				Count[i][2]=buf[4*i+3]*256+buf[4*i+2];
-				Real_Count[i]+=(ulong)(buf[4*i+3]*256+buf[4*i+2]);
+				Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]);
 				Calculated[i]=1;//计算过标志
-				Count_Times[i]+=1;//定时计数次数加1
 				if((Count[i][0]>(1.32*Refresh_Time))&&(Count[i][1]>(1.32*Refresh_Time))&&(Count[i][2]>(1.32*Refresh_Time)))//量程切换
 				{
 					Channel_Detector[i][0]=Channel_Detector[i][1];
@@ -576,12 +592,32 @@ void ShowData()
           			Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),低电平
           			Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
 				}
-					Real_Count[i]*=20;//换算为CPM
-					Real_Count_Display[i]=Real_Count[i];
-					Channel_Display[i]=0;
-					Display_Flag[i]=1;
-					Count_Times[i]=0;
-					Real_Count[i]=0;
+					Real_Count[i]*=20;//换算为CPM(注意对应的是3秒的 Refresh Time)
+					Average_Counts[i][Average_Times[i]]=Real_Count[i];
+					Average_Times[i]+=1;
+					if(Average_Times[i]<5)
+					{
+						switch(Average_Times[i])
+						{
+							case 1: Real_Count_Display[i]=Average_Counts[i][0]; break;
+							case 2: Real_Count_Display[i]=Average_Counts[i][0]*0.4+Average_Counts[i][1]*0.6; break;
+							case 3: Real_Count_Display[i]=Average_Counts[i][0]*a3+Average_Counts[i][1]*a3+Average_Counts[i][2]*a4; break;
+							case 4: Real_Count_Display[i]=Average_Counts[i][0]*a2+Average_Counts[i][1]*a2+Average_Counts[i][2]*a3+Average_Counts[i][3]*a4; break;
+						}
+						Display_Flag[i]=1;
+						Channel_Display[i]=0;
+					}
+					else if(Average_Times[i]==5)
+					{
+						Real_Count_Display[i]=Average_Counts[i][0]*a0+Average_Counts[i][1]*a1+Average_Counts[i][2]*a2+Average_Counts[i][3]*a3+Average_Counts[i][4]*a4;
+						for(j=0;j<4;j++)
+						{
+							Average_Counts[i][j]=Average_Counts[i][j+1];
+						}
+						Average_Times[i]-=1;//为了让次数
+						Display_Flag[i]=1;
+						Channel_Display[i]=0;
+					}
 					//if(Count_Times[i]==2)
 					//{
 					//	Average_Counts[i][Average_Times[i]]=Real_Count[i];//将计数率赋值给平均值
@@ -628,18 +664,16 @@ void ShowData()
 					Count[i][k]=1000*Refresh_Time;//一秒计数使其不换档
 				}
 				Real_Count[i]=0;//跳转到此量程需要清零
-				Count_Times[i]=0;//累加次数清零
 				if(i<7)//前6个探头和第七个探头取计数位置不一样
 				{
 					Count[i][2]=buf[4*i+5]*256+buf[4*i+4];
-					Real_Count[i]=(ulong)(buf[4*i+5]*256+buf[4*i+4]);
+					Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]);
 				}
 				else if(i==7)//前6个探头和第七个探头取计数位置不一样
 				{
 					Count[i][2]=buf[31]*256+buf[30];
-					Real_Count[i]=(ulong)(buf[31]*256+buf[30]);
+					Real_Count[i]=(uint)(buf[31]*256+buf[30]);
 				}
-				Count_Times[i]+=1;
 				Calculated[i]=1;//计算过标志
 				Real_Count_Display[i]=(float)((Real_Count[i]*5)/Refresh_Time);
 				Display_Flag[i]=1;//直接允许显示
@@ -653,20 +687,18 @@ void ShowData()
 					Count[i][k]=2000*Refresh_Time;//一秒计数使其不换档
 				}
 				Real_Count[i]=0;//跳转量程后需要清零
-				Count_Times[i]=0;//累加次数清零
 				Display_Flag[i]=0;//显示及换挡标志清零
 				if(i<7)//前6个探头和第七个探头取计数位置不一样
 				{
 					Count[i][2]=buf[4*i+5]*256+buf[4*i+4];
-					Real_Count[i]=(ulong)(buf[4*i+5]*256+buf[4*i+4]);
+					Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]);
 				}
 				else if(i==7)//前6个探头和第七个探头取计数位置不一样
 				{
 					Count[i][2]=buf[31]*256+buf[30];
-					Real_Count[i]=(ulong)(buf[31]*256+buf[30]);
+					Real_Count[i]=(uint)(buf[31]*256+buf[30]);
 				}
 				Calculated[i]=1;//计算过标志
-				Count_Times[i]+=1;//定时计数次数加1
 				Channel_Detector[i][0]=Channel_Detector[i][1];//更新量程历史状态
 			}
 			if((Channel_Detector[i][1]==2)&&(Calculated[i]==0))//DL1量程，5次定时计数一秒相加
@@ -676,23 +708,21 @@ void ShowData()
 					Count[i][k]=2000*Refresh_Time;//一秒计数使其不换档
 				}
 				Real_Count[i]=0;//跳转量程后需要清零
-				Count_Times[i]=0;//累加次数清零
 				Display_Flag[i]=0;//显示及换挡标志清零
 				if(i<7)//前6个探头和第七个探头取计数位置不一样
 				{
 					Count[i][2]=buf[4*i+5]*256+buf[4*i+4];
-					Real_Count[i]=(ulong)(buf[4*i+5]*256+buf[4*i+4]);
+					Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]);
 				}
 				else if(i==7)//前6个探头和第七个探头取计数位置不一样
 				{
 					Count[i][2]=buf[31]*256+buf[30];
-					Real_Count[i]=(ulong)(buf[31]*256+buf[30]);
+					Real_Count[i]=(uint)(buf[31]*256+buf[30]);
 					Channel_Detector[i][1]=3;
 					Channel_Detector[i][0]=3;
 				}
 
 				Calculated[i]=1;//计算过标志
-				Count_Times[i]+=1;//定时计数次数加1
 				Channel_Detector[i][0]=Channel_Detector[i][1];//更新量程历史状态
 			}
 			if((Channel_Detector[i][1]==1)&&(Calculated[i]==0))//GM2量程，10次定时计数一秒相加，5次平滑平均
@@ -702,7 +732,6 @@ void ShowData()
 					Count[i][k]=1000*Refresh_Time;//一秒计数使其不换档
 				}
 				Real_Count[i]=0;//跳转量程后需要清零
-				Count_Times[i]=0;//累加次数清零
 				Display_Flag[i]=0;//显示及换挡标志清零
 				Average_Times[i]=0;//平滑平均次数清零
 				for(j=0;j<10;j++)
@@ -710,9 +739,15 @@ void ShowData()
 					Average_Counts[i][j]=0;//平滑平均清零
 				}
 				Count[i][2]=buf[4*i+3]*256+buf[4*i+2];
-				Real_Count[i]+=(ulong)(buf[4*i+3]*256+buf[4*i+2]);
+				Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]);
+				
+				Real_Count[i]*=20;//换算为CPM(注意对应的是3秒的 Refresh Time)
+				Average_Counts[i][Average_Times[i]]=Real_Count[i];
+				Average_Times[i]+=1;
+				Real_Count_Display[i]=Average_Counts[i][Average_Times[i]];
+				Display_Flag[i]=1;
+				Channel_Display[i]=1;
 				Calculated[i]=1;//计算过标志
-				Count_Times[i]+=1;//定时计数次数加1
 				Channel_Detector[i][0]=Channel_Detector[i][1];//更新量程历史状态
 			}
 			if((Channel_Detector[i][1]==0)&&(Calculated[i]==0))//GM2量程，10次定时计数一秒相加，5次平滑平均
@@ -722,7 +757,6 @@ void ShowData()
 					Count[i][k]=1*Refresh_Time;//一秒计数使其不换档
 				}
 				Real_Count[i]=0;//跳转量程后需要清零
-				Count_Times[i]=0;//累加次数清零
 				Display_Flag[i]=0;//显示及换挡标志清零
 				Average_Times[i]=0;//平滑平均次数清零
 				for(j=0;j<10;j++)
@@ -730,9 +764,14 @@ void ShowData()
 					Average_Counts[i][j]=0;//平滑平均清零
 				}
 				Count[i][2]=buf[4*i+3]*256+buf[4*i+2];
-				Real_Count[i]+=(ulong)(buf[4*i+3]*256+buf[4*i+2]);
+				Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]);
+				Real_Count[i]*=20;//换算为CPM(注意对应的是3秒的 Refresh Time)
+				Average_Counts[i][Average_Times[i]]=Real_Count[i];
+				Average_Times[i]+=1;
+				Real_Count_Display[i]=Average_Counts[i][Average_Times[i]];
+				Display_Flag[i]=1;
+				Channel_Display[i]=0;
 				Calculated[i]=1;//计算过标志
-				Count_Times[i]+=1;//定时计数次数加1
 				Channel_Detector[i][0]=Channel_Detector[i][1];//更新量程历史状态
 			}
 		}
@@ -776,31 +815,31 @@ void ShowData()
 			{
 				Para[0]=(float)(DataThouth[m+1]*1000+DataCent[m+1]*100+DataTenth[m+1]*10+DataGe[m+1]);//调节参数
 				Para[1]=(float)((float)(DataThouth[m+2]*1000+DataCent[m+2]*100+DataTenth[m+2]*10+DataGe[m+2])/1000000);
-				DoseRata[j]=(float)(Para[1]*(Real_Count_Display[j]-Para[0]));
+				DoseRata[j]=(float)(Para[1]*((uint)Real_Count_Display[j]-Para[0]));
 			}
 			else if(Channel_Display[j]==1)
 			{
 				Para[2]=(float)(DataThouth[m+3]*1000+DataCent[m+3]*100+DataTenth[m+3]*10+DataGe[m+3]);//调节参数
         		Para[3]=(float)((float)(DataThouth[m+4]*1000+DataCent[m+4]*100+DataTenth[m+4]*10+DataGe[m+4])/1000000);
-				DoseRata[j]=(float)(Para[3]*(Real_Count_Display[j]-Para[2]));
+				DoseRata[j]=(float)(Para[3]*((uint)Real_Count_Display[j]-Para[2]));
 			}
 			else if(Channel_Display[j]==2)
 			{
 				Para[4]=(float)(DataThouth[m+5]*1000+DataCent[m+5]*100+DataTenth[m+5]*10+DataGe[m+5]);//调节参数
         		Para[5]=(float)((float)(DataThouth[m+6]*1000+DataCent[m+6]*100+DataTenth[m+6]*10+DataGe[m+6])/1000);
-				DoseRata[j]=(float)(Para[5]*(Real_Count_Display[j]-Para[4]));
+				DoseRata[j]=(float)(Para[5]*((uint)Real_Count_Display[j]-Para[4]));
 			}
 			else if(Channel_Display[j]==3)
 			{
 				Para[6]=(float)(DataThouth[m+7]*1000+DataCent[m+7]*100+DataTenth[m+7]*10+DataGe[m+7]);//调节参数
         		Para[7]=(float)((float)(DataThouth[m+8]*1000+DataCent[m+8]*100+DataTenth[m+8]*10+DataGe[m+8])/10);
-				DoseRata[j]=(float)(Para[7]*(Real_Count_Display[j]-Para[6]));
+				DoseRata[j]=(float)(Para[7]*((uint)Real_Count_Display[j]-Para[6]));
 			}
 			else if(Channel_Display[j]==4)
 			{
 				Para[8]=(float)(DataThouth[m+9]*1000+DataCent[m+9]*100+DataTenth[m+9]*10+DataGe[m+9]);//调节参数
         		Para[9]=(float)((float)((DataThouth[m+10]*1000+DataCent[m+10]*100+DataTenth[m+10]*10+DataGe[m+10])*10));
-				DoseRata[j]=(float)(Para[9]*(Real_Count_Display[j]-Para[8]));
+				DoseRata[j]=(float)(Para[9]*((uint)Real_Count_Display[j]-Para[8]));
 			}
 		}
 		else if(j==7)
@@ -811,13 +850,13 @@ void ShowData()
 			{
 				Para[0]=(float)(DataThouth[m+1]*1000+DataCent[m+1]*100+DataTenth[m+1]*10+DataGe[m+1]);//调节参数
 				Para[1]=(float)((float)(DataThouth[m+2]*1000+DataCent[m+2]*100+DataTenth[m+2]*10+DataGe[m+2])/10);
-				DoseRata[j]=(float)(Para[1]*(Real_Count_Display[j]-Para[0]));
+				DoseRata[j]=(float)(Para[1]*((uint)Real_Count_Display[j]-Para[0]));
 			}
 			else if(Channel_Display[j]==4)
 			{
 				Para[2]=(float)(DataThouth[m+3]*1000+DataCent[m+3]*100+DataTenth[m+3]*10+DataGe[m+3]);//调节参数
 				Para[3]=(float)((float)(DataThouth[m+4]*1000+DataCent[m+4]*100+DataTenth[m+4]*10+DataGe[m+4])*10);
-				DoseRata[j]=(float)(Para[3]*(Real_Count_Display[j]-Para[2]));
+				DoseRata[j]=(float)(Para[3]*((uint)Real_Count_Display[j]-Para[2]));
 			}
 		}
       /**********单位换算后为jtemp************/
@@ -985,8 +1024,7 @@ void ShowData()
       Txtext(90,13+(j*58),":");                                                   //显示冒号
 	  Tnumber(470,13+(j*58),Channel_Detector[j][1]);
 	  Tnumber(440,13+(j*58),Channel_Detector[j][0]);
-	  Tnumber(410,13+(j*58),Count_Times[j]);
-	  Tnumber(380,13+(j*58),Average_Times[j]);
+	  Tnumber(390,13+(j*58),Average_Times[j]);
       if(Tbcd[5]!=0)                                                              //若百位非零，根据数的大小来显示
       {
         Tnumber(130,13+(j*58),Tbcd[5]);

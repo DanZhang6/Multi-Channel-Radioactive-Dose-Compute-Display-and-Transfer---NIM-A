@@ -11,7 +11,7 @@
 #include "absacc.h"
 
 uchar Inctime;						//时间按键增加标志
-float Real_Count_Display[8];			//AA1*原为Redrawtime
+double Real_Count_Display[8];			//AA1*原为Redrawtime
 uchar Setted_Time[8];				//AB1+
 uchar Init_Time=10;					//AD1*默认时间为10s
 

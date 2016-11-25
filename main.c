@@ -71,8 +71,7 @@ uchar dt_in[331];                       	 //IIC存储数组，四位一组，共83组,芯片内
 uchar data Keyvar=0xFF;                    //按键变量
 uchar jishucount;							//第几次计数，用来求平均值时知道这是第几次计数
 uchar  Average_Times[8];								//AJ1+滑动平均次数
-uchar Count_Times[8];						//AJ1+累加计数次数
-ulong Average_Counts[8][5];//平滑平均变量
+uint Average_Counts[8][5];//平滑平均变量
 uchar Display_Flag[8];
 uchar Refresh_Time=3;
 uchar DCS_Send[67];
