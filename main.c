@@ -127,12 +127,12 @@ void main()
 			Flag_Warn = 0;		                 //报警标志清0
 			GetAndDisdata(); 	                 //从8253的锁存器得到测量计数器结果,存入至buf数组
 			ShowData();                          //显示测量数据
-			//shortdelay(1000);	          		//
-			if(Zhu_Cong==1)
+			//shortdelay(1000);	          		
+			if(Zhu_Cong==1)						//只有当主从机按钮为松开状态才会从NIM-B获取数据
 			{
-	    	Transfer();                          //并行传输数据
+	    		Transfer();                          //并行传输数据
 			}
-	    Transfer_DCS();
+	    	Transfer_DCS();
 //			bakeup_conv_data();
 			Init_8253();   						//初始化8253
 			                                      //定时结束时，立刻又开始初始化进行计数

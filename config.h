@@ -122,6 +122,8 @@ extern void setparameter();
 extern void parameterright();
 extern void GetAndDisdata();
 extern void ShowData();
+extern void Trxtext(uint idata x,uint idata y,uchar *s);
+extern void Trnumber(int idata x,int idata y,uint idata n);
 extern void init();
 extern void SendData();
 extern void setinput();
@@ -152,5 +154,7 @@ sbit Ack0=P3^5;             //并口主机接收完数据应答信号标志
 sbit Note1=P3^7;            //AH1*,原4.4，并口从机接收数据标志
 sbit Ack1=P3^6;             //AH1*,原4.6，并口主机接收完数据应答信号标志
 sbit PALE=P4^5;             //备用显示屏按键，高电平表示不显示备用机
+sbit OE_573=P4^1;
+sbit IN_573=P5^5;
 
 #endif

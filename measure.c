@@ -48,13 +48,14 @@ void ShowSetResult()
   Lcd_Clear();
   if(measure_flag==1)						//若没有按探头标定按键
   {
-     Txtext(152,148,"探头共计：");
-     Tnumber(392,148,Incinput);
-     Txtext(440,148,"个");
-     Txtext(152,216,"测量时间：");
-     Tnumber(392,216,Init_Time);				//AA1*原为Redrawtime;
-     Txtext(480,216,"秒");
-     Txtext(152,284,"进行测量中..."); 
+     Txtext(102,98,"探头共计：");
+     Tnumber(342,98,Incinput);
+     Txtext(390,98,"个");
+     Txtext(102,166,"测量时间：");
+     Tnumber(342,166,3);				//AA1*原为Redrawtime;
+     Txtext(390,166,"秒");
+	 Txtext(102,234,"探头初始化请静候30秒");
+     Txtext(102,302,"进行测量中..."); 
   }
   else
   {

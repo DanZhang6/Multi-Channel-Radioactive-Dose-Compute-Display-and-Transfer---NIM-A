@@ -76,6 +76,73 @@ void TxEOF()       //发送帧结束符CC 33 C3 3C
  }
 
 /****************************
+*      红色数字显示
+******************************/
+void Trnumber(int idata x,int idata y,uint idata n)
+	{
+		 uchar idata a,b,c,d,e;
+		 Txbyte(0xAA);
+		 Txbyte(0x98);
+		 Tword(x);				//x坐标
+		 Tword(y);				//y坐标
+		 Txbyte(0x24);
+		 Txbyte(0xC1);			//显示背景色
+		 Txbyte(0x05);
+		 Txbyte(0xff);			//白色
+		 Txbyte(0xff);			//红色
+		 Txbyte(0xf8);//红色
+		 Txbyte(0x00);
+		 a=n/10000; 		//数据转换成ASCII码
+		 b=n%10000/1000;
+		 c=n%10000%1000/100;
+		 d=n%10000%1000%100/10;
+		 e=n%10000%1000%100%10;
+		 if(a!=0)
+		 {
+			 Txbyte(a+0x30);
+			 Txbyte(b+0x30);
+			 Txbyte(c+0x30);
+			 Txbyte(d+0x30);
+			 Txbyte(e+0x30);
+		 }	
+		 else
+		 {
+			  if(b!=0)
+			   {
+				 Txbyte(b+0x30);
+				 Txbyte(c+0x30);
+				 Txbyte(d+0x30);
+				 Txbyte(e+0x30);
+			   } 
+			  else
+			   {
+				if(c!=0)
+				{
+					 Txbyte(c+0x30);
+					 Txbyte(d+0x30);
+					 Txbyte(e+0x30);
+				 } 
+				 else
+				  {
+					if(d!=0)
+					{
+						 Txbyte(d+0x30);
+						 Txbyte(e+0x30);
+					 } 
+					else
+					 {
+						Txbyte(e+0x30);
+					 }
+				}
+			}
+		}
+		  
+		 TxEOF();		   //发送结束符
+		 shortdelay(20);
+	}
+	
+
+/****************************
 *      串口2数据显示
 ******************************/ 
 void Tnumber(int idata x,int idata y,uint idata n)
@@ -86,7 +153,7 @@ void Tnumber(int idata x,int idata y,uint idata n)
 	 Tword(x);              //x坐标
 	 Tword(y);	            //y坐标
      Txbyte(0x24);
-     Txbyte(0xC1);          //显示背景色
+     Txbyte(0x81);          //不显示背景色
      Txbyte(0x05);
      Txbyte(0xff);
      Txbyte(0xff);
@@ -140,6 +207,31 @@ void Tnumber(int idata x,int idata y,uint idata n)
 	 TxEOF();	       //发送结束符
 	 shortdelay(20);
 }
+
+/*****************************
+*       红色字体显示
+******************************/
+void Trxtext(uint idata x,uint idata y,uchar *s)
+  {
+	   Txbyte(0xAA);      //帧头0xAA
+	   Txbyte(0x98);      //48*48点阵
+	   Tword(x);	      //x坐标
+	   Tword(y);	      //y坐标
+       Txbyte(0x24);
+	   Txbyte(0xC1);      //显示背景色
+	   Txbyte(0x05);
+	   Txbyte(0xff);
+	   Txbyte(0xff);
+	   Txbyte(0xf8);
+	   Txbyte(0x00);
+	   while(*s)	      //发送字符串内容
+	    {
+		  Txbyte(*s);
+		  s++;
+		  }
+	   TxEOF();		      //发送帧结束符
+       shortdelay(20);
+   }
 
 
 /*****************************
