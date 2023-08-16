@@ -1,0 +1,311 @@
+C51 COMPILER V9.60.7.0   COLLATERAL                                                        08/16/2023 22:48:37 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE COLLATERAL
+OBJECT MODULE PLACED IN .\Objects\collateral.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE collateral.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listing
+                    -s\collateral.lst) TABS(2) OBJECT(.\Objects\collateral.obj)
+
+line level    source
+
+   1          /************************************************************
+   2          *描述：
+   3          *     并行传输设置
+   4          *功能：
+   5          *     NIM-A和NIM-B之间数据传输，通过主机显示从机的计数结果
+   6          
+   7          ***********************************************************/
+   8          #include "STC15F2K60S2.h"
+   9          #include "intrins.h"
+  10          #include "config.h"
+  11          #include "absacc.h"
+  12          
+  13          bit FlagCollErr;                //默认0
+  14          bit FlagColling ;               //默认0
+  15          uint  CntColTimer;                //默认0
+  16          
+  17          //#define receiveradd XBYTE[0xd000]               //并行传输接收地址
+  18          //#define sendadd     XBYTE[0xd800]               //并行传输发送地址
+  19          #define TURE 1
+  20          #define FALSE 0
+  21          
+  22          extern void display_b();
+  23          uchar ChkData(uchar *pub) ;
+  24          /***********************************
+  25          *        检测主机命令
+  26          ***********************************/
+  27          uchar CKMasterCmd()
+  28          {
+  29   1          volatile uchar var;
+  30   1        do
+  31   1        {
+  32   2            if(FlagCollFall)              //等待超过1S,主从机通信失败
+  33   2          {
+  34   3            FlagCollFall = 0;
+  35   3            Flag_Collateral = 0;
+  36   3            CmOverTime = 0;
+  37   3            return FALSE;
+  38   3          }
+  39   2          var=receiveradd;
+  40   2        }
+  41   1        while(var!=0x00);               //等待主机的开始命令0x55
+  42   1        if(var==0x00)
+  43   1        {
+  44   2            FlagCollFall = 0;
+  45   2          Flag_Collateral = 0;
+  46   2          CmOverTime = 0;
+  47   2          return TURE;
+  48   2        }
+  49   1        else
+  50   1        {
+  51   2            FlagCollFall = 0;
+  52   2          Flag_Collateral = 0;
+  53   2          CmOverTime = 0;
+  54   2            return FALSE;
+C51 COMPILER V9.60.7.0   COLLATERAL                                                        08/16/2023 22:48:37 PAGE 2   
+
+  55   2        }
+  56   1      
+  57   1      }
+  58          /*************************************
+  59          *       从机发送数据
+  60          *************************************/
+  61          void Send_Word(uchar *pbuf,uint ibyte)
+  62          {
+  63   1         uint i;
+  64   1         bit  bAck0;
+  65   1      
+  66   1         if(CKMasterCmd())
+  67   1         {
+  68   2             //Lcd_Clear();
+  69   2             //Txtext(100,182,"从机进行发送中...");
+  70   2           i=0;
+  71   2           while(i<ibyte)
+  72   2           {
+  73   3              do
+  74   3            {
+  75   4              if(CKMasterCmd()==FALSE)            //判断主机命令是否是0x55
+  76   4                      {
+  77   5                   //Lcd_Clear();
+  78   5                   //Txtext(100,182,"主从机无法通信");
+  79   5                           return;                        //不是0x55，则跳出函数
+  80   5              }
+  81   4              bAck0=Ack0;
+  82   4            }
+  83   3            while(bAck0==0);                        //等待主机接收数据状态刷新
+  84   3                  sendadd=pbuf[i];                        //主机接收状态刷新，从机往发送地址里送数
+  85   3            Note1=0;                                //数据发送完毕
+  86   3                do
+  87   3            {
+  88   4              if(CKMasterCmd()==FALSE)            //判断主机命令是否是0x55
+  89   4                      {
+  90   5                           return;                        //不是0x55，则跳出函数
+  91   5              }
+  92   4              bAck0=Ack0;
+  93   4            }
+  94   3            while(bAck0==1);                        //等待主机接收完毕数据
+  95   3                  Note1=1;
+  96   3            i++;
+  97   3           }
+  98   2         }
+  99   1         else
+ 100   1         {
+ 101   2            Lcd_Clear();
+ 102   2          Tnumber(100,82,receiveradd);
+ 103   2            Txtext(100,182,"从机接收握手命令失败");
+ 104   2        }
+ 105   1      }
+ 106          
+ 107          /*************************************
+ 108          *       主机采集数据
+ 109          *************************************/
+ 110          void Collect_Word(uchar *pub,uint nbyte)     //主机采集数据
+ 111          {
+ 112   1          uint i,t;
+ 113   1          bit bNote0;
+ 114   1          float temp,temp1;
+ 115   1          sendadd=0x00;                         //给从机发送开始指令
+ 116   1          //Lcd_Clear();
+C51 COMPILER V9.60.7.0   COLLATERAL                                                        08/16/2023 22:48:37 PAGE 3   
+
+ 117   1          //Txtext(100,182,"主机进行接收中...");
+ 118   1          Ack1=1;
+ 119   1          i=0;
+ 120   1          FlagColling = 0;
+ 121   1          while(i<nbyte)
+ 122   1          {
+ 123   2            CntColTimer = 0;                    //字节之间定时中断次数清零,重新计时
+ 124   2            do
+ 125   2            {
+ 126   3              if(FlagCollErr == 1)            //等待超过0.5S
+ 127   3              {
+ 128   4                FlagCollErr = 0;             //超时标志清零
+ 129   4                FlagColling = 0;             //字节之间定时清零
+ 130   4                CntColTimer = 0;             //字节之间定时中断次数清零
+ 131   4                FlagMasColSlavOK = 0;        //灯闪烁定时标志清零，灯不需要闪烁
+ 132   4                Flag_Warn_Led = 0;            //add 5.24
+ 133   4                return;
+ 134   4              }
+ 135   3              bNote0=Note0;
+ 136   3            }
+ 137   2            while(bNote0==1);                   //等待从机刷新数据
+ 138   2            pub[i]=receiveradd;                 //从机刷新完数据，主机从接收地址里读入字节
+ 139   2            Ack1=0;                             //主机字节接收完毕
+ 140   2            i++;
+ 141   2            do
+ 142   2            {
+ 143   3              if(FlagCollErr == 1)            //等待超过0.5S
+ 144   3              {
+ 145   4                FlagCollErr = 0;             //超时标志清零
+ 146   4                FlagColling = 0;             //字节之间定时清零
+ 147   4                CntColTimer = 0;             //字节之间定时中断次数清零
+ 148   4                FlagMasColSlavOK = 0;        //灯闪烁定时标志清零，灯不需要闪烁
+ 149   4                Flag_Warn_Led = 0;            //add 5.24
+ 150   4                return;
+ 151   4              }
+ 152   3              bNote0=Note0;
+ 153   3            }
+ 154   2            while(bNote0==0);                   //need define
+ 155   2            Ack1=1;
+ 156   2          }
+ 157   1          FlagColling = 0;                     //超时标志清零
+ 158   1          CntColTimer = 0;                     //字节之间定时清零
+ 159   1          FlagCollErr = 0;                     //字节之间定时中断次数清零
+ 160   1          if(PCOLSIG==0)                       //要求显示从的数据按键按下   add4.21
+ 161   1          {
+ 162   2               shortdelay(200);
+ 163   2               display_b();                      //显示从机数据
+ 164   2             for(t=0;t<7;t++)       //0-6共7个数据
+ 165   2             {
+ 166   3               temp=(float)(receive_buf[8*t]*100)+(float)(receive_buf[8*t+1]*10)+(float)(receive_buf[8*t+2]);
+ 167   3               temp+=((float)receive_buf[8*t+3]/10.0)+((float)receive_buf[8*t+4]/100.0)+((float)receive_buf[8*t+
+             -5]/1000.0);
+ 168   3               if(receive_buf[8*t+6]==2)
+ 169   3               {
+ 170   4                 temp*=1000;
+ 171   4               }
+ 172   3               else if(receive_buf[8*t+6]==3)
+ 173   3               {
+ 174   4                 temp*=1000000;
+ 175   4               }
+ 176   3               /*****DCS发送数据准备****/
+ 177   3               if(temp<0)                                                 //若计算剂量小于零向DCS发送0
+C51 COMPILER V9.60.7.0   COLLATERAL                                                        08/16/2023 22:48:37 PAGE 4   
+
+ 178   3               {
+ 179   4                 DCS_Send[t*4+32+4]=0x30;
+ 180   4                 DCS_Send[t*4+32+5]=0x30;
+ 181   4                 DCS_Send[t*4+32+6]=0x30;
+ 182   4                 DCS_Send[t*4+32+7]=0x30;
+ 183   4               }
+ 184   3               else if(temp>=0)
+ 185   3               {
+ 186   4                 if(temp<1)
+ 187   4                 {
+ 188   5                   temp1=(float)temp*1000;
+ 189   5                   DCS_Send[t*4+32+4]=(uchar)((int)temp1/100)+0x30;
+ 190   5                   DCS_Send[t*4+32+5]=(uchar)((int)temp1%100/10)+0x30;
+ 191   5                   DCS_Send[t*4+32+6]=(uchar)((int)temp1%100%10)+0x30;
+ 192   5                   DCS_Send[t*4+32+7]=0x30;
+ 193   5                 }
+ 194   4                 else if((temp>=1)&&(temp<10))
+ 195   4                 {
+ 196   5                   temp1=(float)temp*100;
+ 197   5                   DCS_Send[t*4+32+4]=(uchar)((int)temp1/100)+0x30;
+ 198   5                   DCS_Send[t*4+32+5]=(uchar)((int)temp1%100/10)+0x30;
+ 199   5                   DCS_Send[t*4+32+6]=(uchar)((int)temp1%100%10)+0x30;
+ 200   5                   DCS_Send[t*4+32+7]=0x31;
+ 201   5                 }
+ 202   4                 else if((temp>=10)&&(temp<100))
+ 203   4                 {
+ 204   5                   temp1=(float)temp*10;
+ 205   5                   DCS_Send[t*4+32+4]=(uchar)((int)temp1/100)+0x30;
+ 206   5                   DCS_Send[t*4+32+5]=(uchar)((int)temp1%100/10)+0x30;
+ 207   5                   DCS_Send[t*4+32+6]=(uchar)((int)temp1%100%10)+0x30;
+ 208   5                   DCS_Send[t*4+32+7]=0x32;
+ 209   5                 }
+ 210   4                 else if((temp>=100)&&(temp<1000))
+ 211   4                 {
+ 212   5                   temp1=(float)temp;
+ 213   5                   DCS_Send[t*4+32+4]=(uchar)((int)temp1/100)+0x30;
+ 214   5                   DCS_Send[t*4+32+5]=(uchar)((int)temp1%100/10)+0x30;
+ 215   5                   DCS_Send[t*4+32+6]=(uchar)((int)temp1%100%10)+0x30;
+ 216   5                   DCS_Send[t*4+32+7]=0x33;
+ 217   5                 }
+ 218   4                 else if((temp>=1000)&&(temp<10000))
+ 219   4                 {
+ 220   5                   temp1=(float)temp/10.0;
+ 221   5                   DCS_Send[t*4+32+4]=(uchar)((int)temp1/100)+0x30;
+ 222   5                   DCS_Send[t*4+32+5]=(uchar)((int)temp1%100/10)+0x30;
+ 223   5                   DCS_Send[t*4+32+6]=(uchar)((int)temp1%100%10)+0x30;
+ 224   5                   DCS_Send[t*4+32+7]=0x34;
+ 225   5                 }
+ 226   4                 else if((temp>=10000)&&(temp<100000))
+ 227   4                 {
+ 228   5                   temp1=(float)temp/100.0;
+ 229   5                   DCS_Send[t*4+32+4]=(uchar)((int)temp1/100)+0x30;
+ 230   5                   DCS_Send[t*4+32+5]=(uchar)((int)temp1%100/10)+0x30;
+ 231   5                   DCS_Send[t*4+32+6]=(uchar)((int)temp1%100%10)+0x30;
+ 232   5                   DCS_Send[t*4+32+7]=0x35;
+ 233   5                 }
+ 234   4                 else if((temp>=100000)&&(temp<1000000))
+ 235   4                 {
+ 236   5                   temp1=(float)temp/1000.0;
+ 237   5                   DCS_Send[t*4+32+4]=(uchar)((int)temp1/100)+0x30;
+ 238   5                   DCS_Send[t*4+32+5]=(uchar)((int)temp1%100/10)+0x30;
+ 239   5                   DCS_Send[t*4+32+6]=(uchar)((int)temp1%100%10)+0x30;
+C51 COMPILER V9.60.7.0   COLLATERAL                                                        08/16/2023 22:48:37 PAGE 5   
+
+ 240   5                   DCS_Send[t*4+32+7]=0x36;
+ 241   5                 }
+ 242   4                 else if((temp>=1000000)&&(temp<10000000))
+ 243   4                 {
+ 244   5                   temp1=(float)temp/10000.0;
+ 245   5                   DCS_Send[t*4+32+4]=(uchar)((int)temp1/100)+0x30;
+ 246   5                   DCS_Send[t*4+32+5]=(uchar)((int)temp1%100/10)+0x30;
+ 247   5                   DCS_Send[t*4+32+6]=(uchar)((int)temp1%100%10)+0x30;
+ 248   5                   DCS_Send[t*4+32+7]=0x37;
+ 249   5                 }
+ 250   4                 else if((temp>=10000000)&&(temp<100000000))
+ 251   4                 {
+ 252   5                   temp1=(float)temp/100000.0;
+ 253   5                   DCS_Send[t*4+32+4]=(uchar)((int)temp1/100)+0x30;
+ 254   5                   DCS_Send[t*4+32+5]=(uchar)((int)temp1%100/10)+0x30;
+ 255   5                   DCS_Send[t*4+32+6]=(uchar)((int)temp1%100%10)+0x30;
+ 256   5                   DCS_Send[t*4+32+7]=0x38;
+ 257   5                 }
+ 258   4                 else if((temp>=100000000)&&(temp<1000000000))
+ 259   4                 {
+ 260   5                   temp1=(float)temp/1000000.0;
+ 261   5                   DCS_Send[t*4+32+4]=(uchar)((int)temp1/100)+0x30;
+ 262   5                   DCS_Send[t*4+32+5]=(uchar)((int)temp1%100/10)+0x30;
+ 263   5                   DCS_Send[t*4+32+6]=(uchar)((int)temp1%100%10)+0x30;
+ 264   5                   DCS_Send[t*4+32+7]=0x39;
+ 265   5                 }
+ 266   4               }
+ 267   3               if(receive_buf[8*t+7])
+ 268   3               {
+ 269   4                 DCS_Send[65]=DCS_Send[65]|Svar1[t];
+ 270   4               }
+ 271   3               else
+ 272   3               {
+ 273   4                 DCS_Send[65]=DCS_Send[65]&Svar0[t];
+ 274   4               }
+ 275   3             }
+ 276   2             FlagMasColSlavOK = 1;             //指示灯闪烁定时开始标志
+ 277   2           }
+ 278   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   2560    ----
+   CONSTANT SIZE    =     21    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2      21
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      2       2
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

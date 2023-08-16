@@ -1,0 +1,96 @@
+C51 COMPILER V9.60.7.0   MEASURE                                                           08/16/2023 22:48:37 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MEASURE
+OBJECT MODULE PLACED IN .\Objects\measure.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE measure.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\m
+                    -easure.lst) TABS(2) OBJECT(.\Objects\measure.obj)
+
+line level    source
+
+   1          /*************************************************
+   2          *描述：
+   3          *    测量函数设置
+   4          *功能：
+   5          *    1.选择探头工作，初始化8253，并开启定时器；
+   6          *    2.显示时间和探头设置，等待定时到；
+   7          *    3.定时到，刷新屏幕，显示计数率；
+   8          
+   9          **************************************************/
+  10          #include "STC15F2K60S2.h"
+  11          #include "intrins.h"
+  12          #include "config.h" 
+  13          #include "absacc.h"  
+  14          
+  15          void ShowSetResult();
+  16          
+  17          void measure()
+  18          {   
+  19   1           Signal1=Var_Signal1;                   //选择探头
+  20   1           Signal2=Var_Signal2;
+  21   1           Signal3=Var_Signal3; 
+  22   1           ShowSetResult();              //显示当前参数结果
+  23   1           if((Flag_ParaChange == 1)||(Flag_InputChange == 1))   //探头或参数有修改
+  24   1           {
+  25   2             Flag_ParaChange = 0;
+  26   2               Flag_InputChange = 0;
+  27   2          /*设置完的参数存储到AT24C16*/
+  28   2             if(Incinput<9)  
+  29   2                  dt_in[330]=Incinput;      //IIC存储数组(探头个数标志)
+  30   2             else               //注意到这里强制探头数量必须小于9
+  31   2           {
+  32   3                Incinput=8;
+  33   3            dt_in[330]=Incinput;
+  34   3           }
+  35   2             DS_SaveData(dt_in);                 //把调节系数的数据保存到AT24C16芯片中 
+  36   2           }
+  37   1         jishucount=0;
+  38   1         Init_8253();                             //8253初始化     
+  39   1      }
+  40          
+  41          void ShowSetResult()
+  42          {
+  43   1        Flag_RefrInput=0;
+  44   1        Flag_RefrPara=0;
+  45   1        Flag_RefrRight=0;
+  46   1        Flag_RefrTime=0;
+  47   1        Clear();
+  48   1        Lcd_Clear();
+  49   1        if(measure_flag==1)           //若没有按探头标定按键
+  50   1        {
+  51   2           Txtext(102,98,"探头共计：");
+  52   2           Tnumber(342,98,Incinput);
+  53   2           Txtext(390,98,"个");
+  54   2           Txtext(102,166,"测量时间：");
+C51 COMPILER V9.60.7.0   MEASURE                                                           08/16/2023 22:48:37 PAGE 2   
+
+  55   2           Tnumber(342,166,3);        //AA1*原为Redrawtime;
+  56   2           Txtext(390,166,"秒");
+  57   2         Txtext(102,234,"探头初始化请静候30秒");
+  58   2           Txtext(102,302,"进行测量中..."); 
+  59   2        }
+  60   1        else
+  61   1        {
+  62   2           Txtext(152,148,"标定测量：第");
+  63   2           Tnumber(450,148,biaoding_input);
+  64   2           Txtext(484,148,"个探头");
+  65   2           Txtext(152,216,"测量时间：");
+  66   2           Tnumber(392,216,Init_Time);      //AA1*原为Redrawtime;
+  67   2           Txtext(480,216,"秒");
+  68   2           Txtext(152,284,"进行标定测量中..."); 
+  69   2        } 
+  70   1       }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    330    ----
+   CONSTANT SIZE    =    101    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

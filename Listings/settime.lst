@@ -1,0 +1,116 @@
+C51 COMPILER V9.60.7.0   SETTIME                                                           08/16/2023 22:48:38 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE SETTIME
+OBJECT MODULE PLACED IN .\Objects\settime.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE settime.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\s
+                    -ettime.lst) TABS(2) OBJECT(.\Objects\settime.obj)
+
+line level    source
+
+   1          /*************************************************
+   2          *描述：
+   3          *      时间设置
+   4          *功能：
+   5          *      设定计数器测量时间；
+   6          
+   7          **************************************************/
+   8          #include "STC15F2K60S2.h"
+   9          #include "intrins.h"
+  10          #include "config.h" 
+  11          #include "absacc.h"
+  12          
+  13          uchar Inctime;            //时间按键增加标志
+  14          double Real_Count_Display[8];     //AA1*原为Redrawtime
+  15          uchar Setted_Time[8];       //AB1+
+  16          uchar Init_Time=10;         //AD1*默认时间为10s
+  17          
+  18          void settime()
+  19           {    
+  20   1            Flag_RefrInput=0;       //探头个数按键再次按下标志
+  21   1            Flag_RefrPara=0;        //输入参数按键再次按下标志
+  22   1            Flag_RefrRight=0;       //右移按键再次按下标志
+  23   1          Inctime++;                    //按时间输入键次数，则测量时间改变5s或者60s
+  24   1          /*显示设置时间  秒*/  
+  25   1          if(Flag_RefrTime==0)
+  26   1           {
+  27   2                Flag_RefrTime=1;
+  28   2              Clear();
+  29   2              Lcd_Clear();  
+  30   2            Txtext(128,216,"时间设置：");
+  31   2              Tnumber(368,216,0);   //时间修改到5秒，修改时间2012.6.15
+  32   2              Tnumber(416,216,0);
+  33   2            Tnumber(464,216,5);
+  34   2              Txtext(512,216,"秒");
+  35   2            Init_Time=5;          //AA1* 原为Rearawtime
+  36   2          }
+  37   1           else
+  38   1         { 
+  39   2           if((Inctime == 1)||(Inctime >= 8))    //AA1*,>=11,原最大时间120s但占空间太大
+  40   2            {   
+  41   3              Inctime = 1;
+  42   3              Init_Time = 5;      //AA1* 原为Rearawtime
+  43   3                  Tnumber(368,216,0);
+  44   3                  Tnumber(416,216,0);
+  45   3                Tnumber(464,216,5);          //刷新时间为5秒  
+  46   3              }
+  47   2             else if(Inctime == 2)
+  48   2             {  
+  49   3              Init_Time = 10;     //AA1* 原为Rearawtime
+  50   3              Tnumber(368,216,0);
+  51   3                  Tnumber(416,216,1);
+  52   3                Tnumber(464,216,0);
+  53   3             }
+  54   2             else if(Inctime == 3)
+C51 COMPILER V9.60.7.0   SETTIME                                                           08/16/2023 22:48:38 PAGE 2   
+
+  55   2             {  
+  56   3              Init_Time = 20;     //AA1* 原为Rearawtime
+  57   3              Tnumber(368,216,0);
+  58   3                  Tnumber(416,216,2);
+  59   3                Tnumber(464,216,0);
+  60   3             }
+  61   2             else if(Inctime == 4)
+  62   2             {  
+  63   3              Init_Time = 30;     //AA1* 原为Rearawtime
+  64   3              Tnumber(368,216,0);
+  65   3                  Tnumber(416,216,3);
+  66   3                Tnumber(464,216,0);
+  67   3             }
+  68   2          else if(Inctime == 5)
+  69   2             {  
+  70   3              Init_Time = 40;     //AA1* 原为Rearawtime
+  71   3              Tnumber(368,216,0);
+  72   3                  Tnumber(416,216,4);
+  73   3                Tnumber(464,216,0);
+  74   3             }
+  75   2          else if(Inctime == 6)
+  76   2             {  
+  77   3              Init_Time = 50;     //AA1* 原为Rearawtime
+  78   3              Tnumber(368,216,0);
+  79   3                  Tnumber(416,216,5);
+  80   3                Tnumber(464,216,0);
+  81   3             }
+  82   2          else if(Inctime == 7)
+  83   2             {  
+  84   3              Init_Time = 60;     //AA1* 原为Rearawtime
+  85   3              Tnumber(368,216,0);
+  86   3                  Tnumber(416,216,6);
+  87   3                Tnumber(464,216,0);
+  88   3             }
+  89   2            } 
+  90   1      }   
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    427    ----
+   CONSTANT SIZE    =     14    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     42    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

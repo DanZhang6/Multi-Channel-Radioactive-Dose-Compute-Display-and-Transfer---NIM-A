@@ -1,0 +1,421 @@
+C51 COMPILER V9.60.7.0   LCD                                                               08/16/2023 22:48:37 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE LCD
+OBJECT MODULE PLACED IN .\Objects\lcd.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE lcd.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\lcd.l
+                    -st) TABS(2) OBJECT(.\Objects\lcd.obj)
+
+line level    source
+
+   1          /*************************************************
+   2          *描述：
+   3          *     LCD真彩液晶屏指令设置
+   4          *功能：
+   5          *    1. 通过单片机串口显示数字，汉字；
+   6          *    2. 液晶屏光标设置及初始化；
+   7          
+   8          ************************************************/
+   9          #include "STC15F2K60S2.h"
+  10          #include "intrins.h"
+  11          #include "config.h" 
+  12          #include "absacc.h"
+  13          
+  14          void Txbyte(uchar idata i);
+  15          //void Txbyte_1(uchar idata i);
+  16          void Tword(uint idata i);
+  17          void Tword_1(uint idata i);
+  18          void TxEOF();
+  19          void TxEOF_1();
+  20          
+  21          /**************************
+  22          *  向串口2发送一个字节
+  23          ***************************/
+  24          void Txbyte(uchar idata i)
+  25          {
+  26   1         uchar idata temp=0;
+  27   1         IE2=0x00;            //关串口2中断,ES2=0
+  28   1      //   S2CON= S2CON&0xFD;   //B'11111101,清零串口2发送完成中断请求标志
+  29   1         S2BUF=i;
+  30   1         do
+  31   1         {
+  32   2           temp=S2CON;
+  33   2           temp=temp&0x02;
+  34   2          }
+  35   1        while(temp==0);
+  36   1          S2CON=S2CON&0xFD;   //B'11111101,清零串口2发送完成中断请求标志
+  37   1          IE2=0x01;           //允许串口2中断,ES2=1
+  38   1      }
+  39          
+  40          /**************************
+  41          *  向串口1(DCS)发送一个字节
+  42          ***************************/
+  43          void T1byte(uchar idata i)
+  44          {
+  45   1         uchar idata temp=0;
+  46   1         IE&=0xEF;            //关串口1中断,ES=0
+  47   1      //   S2CON= S2CON&0xFD;   //B'11111101,清零串口2发送完成中断请求标志
+  48   1         SBUF=i;
+  49   1        while(TI==0);
+  50   1        TI=0;
+  51   1          IE|=0x10;           //允许串口1中断,ES=1
+  52   1      }
+  53          
+  54          
+C51 COMPILER V9.60.7.0   LCD                                                               08/16/2023 22:48:37 PAGE 2   
+
+  55          /**************************
+  56          *  向串口2发送一个字
+  57          ***************************/
+  58          void Tword(uint idata i)
+  59           {
+  60   1           uchar idata x,y;
+  61   1           x=(i/256);
+  62   1           Txbyte(x);
+  63   1           y=i-256*x;
+  64   1           Txbyte(y);
+  65   1       }
+  66          
+  67          /****************************
+  68          *    向串口2发送帧结束符
+  69          *****************************/
+  70          void TxEOF()       //发送帧结束符CC 33 C3 3C
+  71          {
+  72   1         Txbyte(0xCC);
+  73   1         Txbyte(0x33);
+  74   1         Txbyte(0xC3);
+  75   1         Txbyte(0x3C);
+  76   1       }
+  77          
+  78          /****************************
+  79          *      红色数字显示
+  80          ******************************/
+  81          void Trnumber(int idata x,int idata y,uint idata n)
+  82            {
+  83   1           uchar idata a,b,c,d,e;
+  84   1           Txbyte(0xAA);
+  85   1           Txbyte(0x98);
+  86   1           Tword(x);        //x坐标
+  87   1           Tword(y);        //y坐标
+  88   1           Txbyte(0x24);
+  89   1           Txbyte(0xC1);      //显示背景色
+  90   1           Txbyte(0x05);
+  91   1           Txbyte(0xff);      //白色
+  92   1           Txbyte(0xff);      //红色
+  93   1           Txbyte(0xf8);//红色
+  94   1           Txbyte(0x00);
+  95   1           a=n/10000;     //数据转换成ASCII码
+  96   1           b=n%10000/1000;
+  97   1           c=n%10000%1000/100;
+  98   1           d=n%10000%1000%100/10;
+  99   1           e=n%10000%1000%100%10;
+ 100   1           if(a!=0)
+ 101   1           {
+ 102   2             Txbyte(a+0x30);
+ 103   2             Txbyte(b+0x30);
+ 104   2             Txbyte(c+0x30);
+ 105   2             Txbyte(d+0x30);
+ 106   2             Txbyte(e+0x30);
+ 107   2           }  
+ 108   1           else
+ 109   1           {
+ 110   2              if(b!=0)
+ 111   2               {
+ 112   3               Txbyte(b+0x30);
+ 113   3               Txbyte(c+0x30);
+ 114   3               Txbyte(d+0x30);
+ 115   3               Txbyte(e+0x30);
+ 116   3               } 
+C51 COMPILER V9.60.7.0   LCD                                                               08/16/2023 22:48:37 PAGE 3   
+
+ 117   2              else
+ 118   2               {
+ 119   3              if(c!=0)
+ 120   3              {
+ 121   4                 Txbyte(c+0x30);
+ 122   4                 Txbyte(d+0x30);
+ 123   4                 Txbyte(e+0x30);
+ 124   4               } 
+ 125   3               else
+ 126   3                {
+ 127   4                if(d!=0)
+ 128   4                {
+ 129   5                   Txbyte(d+0x30);
+ 130   5                   Txbyte(e+0x30);
+ 131   5                 } 
+ 132   4                else
+ 133   4                 {
+ 134   5                  Txbyte(e+0x30);
+ 135   5                 }
+ 136   4              }
+ 137   3            }
+ 138   2          }
+ 139   1            
+ 140   1           TxEOF();      //发送结束符
+ 141   1           shortdelay(20);
+ 142   1        }
+ 143            
+ 144          
+ 145          /****************************
+ 146          *      串口2数据显示
+ 147          ******************************/ 
+ 148          void Tnumber(int idata x,int idata y,uint idata n)
+ 149          {
+ 150   1         uchar idata a,b,c,d,e;
+ 151   1         Txbyte(0xAA);
+ 152   1         Txbyte(0x98);
+ 153   1         Tword(x);              //x坐标
+ 154   1         Tword(y);              //y坐标
+ 155   1           Txbyte(0x24);
+ 156   1           Txbyte(0x81);          //不显示背景色
+ 157   1           Txbyte(0x05);
+ 158   1           Txbyte(0xff);
+ 159   1           Txbyte(0xff);
+ 160   1           Txbyte(0x00);
+ 161   1           Txbyte(0x1f);
+ 162   1         a=n/10000;         //数据转换成ASCII码
+ 163   1         b=n%10000/1000;
+ 164   1         c=n%10000%1000/100;
+ 165   1         d=n%10000%1000%100/10;
+ 166   1         e=n%10000%1000%100%10;
+ 167   1         if(a!=0)
+ 168   1         {
+ 169   2           Txbyte(a+0x30);
+ 170   2           Txbyte(b+0x30);
+ 171   2             Txbyte(c+0x30);
+ 172   2             Txbyte(d+0x30);
+ 173   2             Txbyte(e+0x30);
+ 174   2         }  
+ 175   1           else
+ 176   1         {
+ 177   2            if(b!=0)
+ 178   2             {
+C51 COMPILER V9.60.7.0   LCD                                                               08/16/2023 22:48:37 PAGE 4   
+
+ 179   3             Txbyte(b+0x30);
+ 180   3             Txbyte(c+0x30);
+ 181   3               Txbyte(d+0x30);
+ 182   3               Txbyte(e+0x30);
+ 183   3             } 
+ 184   2            else
+ 185   2             {
+ 186   3              if(c!=0)
+ 187   3              {
+ 188   4               Txbyte(c+0x30);
+ 189   4                     Txbyte(d+0x30);
+ 190   4                 Txbyte(e+0x30);
+ 191   4               } 
+ 192   3             else
+ 193   3              {
+ 194   4                if(d!=0)
+ 195   4                {
+ 196   5                 Txbyte(d+0x30);
+ 197   5                         Txbyte(e+0x30);
+ 198   5                 } 
+ 199   4              else
+ 200   4               {
+ 201   5                          Txbyte(e+0x30);
+ 202   5               }
+ 203   4            }
+ 204   3          }
+ 205   2          }
+ 206   1          
+ 207   1         TxEOF();        //发送结束符
+ 208   1         shortdelay(20);
+ 209   1      }
+ 210          
+ 211          /*****************************
+ 212          *       红色字体显示
+ 213          ******************************/
+ 214          void Trxtext(uint idata x,uint idata y,uchar *s)
+ 215            {
+ 216   1           Txbyte(0xAA);      //帧头0xAA
+ 217   1           Txbyte(0x98);      //48*48点阵
+ 218   1           Tword(x);        //x坐标
+ 219   1           Tword(y);        //y坐标
+ 220   1             Txbyte(0x24);
+ 221   1           Txbyte(0xC1);      //显示背景色
+ 222   1           Txbyte(0x05);
+ 223   1           Txbyte(0xff);
+ 224   1           Txbyte(0xff);
+ 225   1           Txbyte(0xf8);
+ 226   1           Txbyte(0x00);
+ 227   1           while(*s)        //发送字符串内容
+ 228   1            {
+ 229   2            Txbyte(*s);
+ 230   2            s++;
+ 231   2            }
+ 232   1           TxEOF();         //发送帧结束符
+ 233   1             shortdelay(20);
+ 234   1         }
+ 235          
+ 236          
+ 237          /*****************************
+ 238          *       串口2文本显示
+ 239          ******************************/
+ 240          void Txtext(uint idata x,uint idata y,uchar *s)
+C51 COMPILER V9.60.7.0   LCD                                                               08/16/2023 22:48:37 PAGE 5   
+
+ 241            {
+ 242   1           Txbyte(0xAA);      //帧头0xAA
+ 243   1           Txbyte(0x98);      //48*48点阵
+ 244   1           Tword(x);        //x坐标
+ 245   1           Tword(y);        //y坐标
+ 246   1             Txbyte(0x24);
+ 247   1           Txbyte(0x81);      //不显示背景色
+ 248   1           Txbyte(0x05);
+ 249   1           Txbyte(0xff);
+ 250   1           Txbyte(0xff);
+ 251   1           Txbyte(0x00);
+ 252   1           Txbyte(0x1f);
+ 253   1           while(*s)        //发送字符串内容
+ 254   1            {
+ 255   2            Txbyte(*s);
+ 256   2            s++;
+ 257   2            }
+ 258   1           TxEOF();         //发送帧结束符
+ 259   1             shortdelay(20);
+ 260   1         }
+ 261          
+ 262          /*******************************
+ 263          *        串口2屏幕初始化
+ 264          *********************************/
+ 265          void Lcd_init()
+ 266          {
+ 267   1         Txtext(250,182,"请 稍 等");
+ 268   1         Txtext(120,250,"进 行 初 始 化 中"); 
+ 269   1       }
+ 270          
+ 271          /*******************************
+ 272          *        串口2屏幕开机
+ 273          *********************************/
+ 274          void Lcd_Start()
+ 275          {
+ 276   1         Txtext(190,182,"清 华 大 学");
+ 277   1         Txtext(50,250,"核能与新能源技术研究院"); 
+ 278   1       }
+ 279          
+ 280          /*******************************
+ 281          *         串口2  清屏
+ 282          ********************************/
+ 283          void Lcd_Clear()
+ 284          {
+ 285   1         Txbyte(0xAA);
+ 286   1         Txbyte(0x52);
+ 287   1         TxEOF();
+ 288   1       }
+ 289          
+ 290          /*************************************
+ 291          *          光标打开
+ 292          *************************************/
+ 293          void Open (uint idata x,uint idata y)
+ 294          {
+ 295   1        Txbyte(0xAA);      //帧头0xAA
+ 296   1        Txbyte(0x44);      //光标显示
+ 297   1          Txbyte(0x01);      //光标显示打开
+ 298   1        Tword(x);        //x坐标
+ 299   1        Tword(y);        //y坐标
+ 300   1        Txbyte(0x1F);
+ 301   1        Txbyte(0x05);
+ 302   1          TxEOF();
+C51 COMPILER V9.60.7.0   LCD                                                               08/16/2023 22:48:37 PAGE 6   
+
+ 303   1      }
+ 304          
+ 305          /*************************************
+ 306          *          光标关闭
+ 307          *************************************/
+ 308          void Close (uint idata x,uint idata y)
+ 309          {
+ 310   1        Txbyte(0xAA);     //帧头0xAA
+ 311   1        Txbyte(0x44);     //光标显示
+ 312   1          Txbyte(0x00);     //光标显示关闭
+ 313   1        Tword(x);      //x坐标
+ 314   1        Tword(y);      //y坐标
+ 315   1        Txbyte(0x1B);
+ 316   1        Txbyte(0x05);
+ 317   1          TxEOF();
+ 318   1      }
+ 319          
+ 320          /************************************
+ 321          *         清除光标
+ 322          *************************************/
+ 323          void Clear()
+ 324          {
+ 325   1        Close(112+Incdataright*48-96,128+wb*68-68);
+ 326   1        Close(432+Incdataright*48-96,128+wb*68-68);
+ 327   1        Close(160+Incdataright*48-144,128+wb*68-68);
+ 328   1        Close(480+Incdataright*48-144,128+wb*68-68);
+ 329   1      }
+ 330          
+ 331          
+ 332          /****************************************
+ 333          *          图片显示
+ 334          ****************************************/
+ 335          /*void picture()
+ 336          {
+ 337              Txbyte(0xAA);       
+ 338              Txbyte(0x70);
+ 339            Txbyte(0x01);
+ 340              TxEOF();
+ 341          }*/
+ 342          
+ 343          /*****************************
+ 344          *       串口2红灯显示
+ 345          ******************************/
+ 346          void WarnLed_On(uint idata x,uint idata y)
+ 347            {
+ 348   1           Txbyte(0xAA);      
+ 349   1           Txbyte(0x9C);      
+ 350   1             Txbyte(0x04); 
+ 351   1             Txbyte(0x00); 
+ 352   1           Txbyte(0x00); 
+ 353   1             Txbyte(0x00); 
+ 354   1             Txbyte(0x00);
+ 355   1             Txbyte(0x00);  
+ 356   1           Txbyte(0x28);      
+ 357   1           Txbyte(0x00);
+ 358   1           Txbyte(0x28);
+ 359   1             Tword(x);       //x坐标
+ 360   1             Tword(y);       //y坐标
+ 361   1           TxEOF();        //发送帧结束符
+ 362   1         }
+ 363          
+ 364          
+C51 COMPILER V9.60.7.0   LCD                                                               08/16/2023 22:48:37 PAGE 7   
+
+ 365          /*****************************
+ 366          *       串口2蓝色显示
+ 367          ******************************/
+ 368          void WarnLed_Off(uint idata x,uint idata y)
+ 369            {
+ 370   1           Txbyte(0xAA);      
+ 371   1           Txbyte(0x9C);      
+ 372   1             Txbyte(0x05); 
+ 373   1             Txbyte(0x00); 
+ 374   1           Txbyte(0x00); 
+ 375   1             Txbyte(0x00); 
+ 376   1             Txbyte(0x00);
+ 377   1             Txbyte(0x00);  
+ 378   1           Txbyte(0x30);      
+ 379   1           Txbyte(0x00);
+ 380   1           Txbyte(0x30);
+ 381   1             Tword(x);       //x坐标
+ 382   1             Tword(y);       //y坐标
+ 383   1           TxEOF();        //发送帧结束符
+ 384   1         }
+ 385          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1330    ----
+   CONSTANT SIZE    =     62    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       8
+   IDATA SIZE       =   ----      14
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
