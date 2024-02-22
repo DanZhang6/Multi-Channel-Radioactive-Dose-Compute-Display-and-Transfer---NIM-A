@@ -1,10 +1,10 @@
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 1   
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE 8253COUNT
 OBJECT MODULE PLACED IN .\Objects\8253count.obj
-COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE 8253count.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings
-                    -\8253count.lst) TABS(2) OBJECT(.\Objects\8253count.obj)
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE 8253count.c LARGE OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Li
+                    -stings\8253count.lst) TABS(2) OBJECT(.\Objects\8253count.obj)
 
 line level    source
 
@@ -62,7 +62,7 @@ line level    source
   46          uchar buf[32];                                                          //AB1*¥”8253÷–∂¡µΩµƒº∆ ˝∆˜ ˝æ›£¨15
              -∏ˆº∆ ˝∆˜£¨µÕ∞ÀŒª∏ﬂ∞ÀŒª£¨¥”3-32£¨1Œ™ÃΩÕ∑∏ˆ ˝£¨2Œ™≤‚¡ø ±º‰
   47          uchar Channel_Detector[8][2];                                                     //AC1+Õ®µ¿ÃΩÕ∑—°‘Ò±Í÷æ£¨
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 2   
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 2   
 
              -1:µÁ¿Î “0:º∆ ˝π‹
   48          uchar DataGe[75];                                                                 //ÃΩ≤‚∆˜±Í∂®≤Œ ˝µƒ∏ˆŒª£¨
@@ -126,7 +126,7 @@ line level    source
   96          /*************************************
   97          *8253º∆ ˝÷µ
   98          **************************************/
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 3   
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 3   
 
   99          void GetAndDisdata()                                                              //º∆ ˝ÕÍ≥…∫Ûµ⁄“ª∏ˆ‘À––µƒ
              -≥Ã–Ú
@@ -190,7 +190,7 @@ line level    source
  145   1        buf[12]=0xff-tl;
  146   1        th=C825320D;
  147   1        buf[13]=0xff-th;
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 4   
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 4   
 
  148   1      
  149   1        C82533C=0x84;                                                                   //À¯¥Êµ⁄»˝∆¨8253º∆ ˝∆˜2µ
@@ -254,7 +254,7 @@ line level    source
  192   1        tl=C825351D;                                                                    //read825316bitsdata(fir
              -stLthenH)
  193   1        buf[28]=0xff-tl;
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 5   
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 5   
 
  194   1        th=C825351D;
  195   1        buf[29]=0xff-th;
@@ -318,7 +318,7 @@ line level    source
  249   1        C82534C=0xb4;                                                                   //10110100
  250   1        C825342D=0xff;
  251   1        C825342D=0xff;
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 6   
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 6   
 
  252   1      
  253   1        C82534C=0x74;                                                                   //01110100
@@ -348,1673 +348,1407 @@ line level    source
  277   1        {
  278   2          DoseRata[i] = 0;            //√ø◊ÈÃΩÕ∑≤‚µ√µƒº¡¡ø¬ 
  279   2        }
- 280   1        OE_573=1;                 //573 ‰≥ˆ∏ﬂ◊ËÃ¨
- 281   1        IN_573=0;
- 282   1        Var_Led=0xff;                                                                   //led÷∏ æ
- 283   1        Led573=Var_Led;
- 284   1        EX0=0;                                                                          //πÿÕ‚≤ø÷–∂œ0
- 285   1        /*∂® ±º∆ ˝∆˜µƒ≥ı ºªØ*/                                                                         //AJ1-,“∆
+ 280   1        Var_Led=0xff;                                                                   //led÷∏ æ
+ 281   1        Led573=Var_Led;
+ 282   1        EX0=0;                                                                          //πÿÕ‚≤ø÷–∂œ0
+ 283   1        /*∂® ±º∆ ˝∆˜µƒ≥ı ºªØ*/                                                                         //AJ1-,“∆
              -∂Ø÷¡∂® ±÷–∂œ¿Ôø™Gate,8253ø™∆Ùº∆ ˝
- 286   1        Flag8253Cnting=1;
- 287   1        NumT0=0;
- 288   1      }
- 289          /************************************
- 290          *œ‘ æº∆ ˝
- 291          ************************************/
- 292          void ShowData()
- 293          {
- 294   1        uchar i,m,j,k;                                                                    //AE1-:Var1”√¿¥≈–∂œ π”
+ 284   1        Flag8253Cnting=1;
+ 285   1        NumT0=0;
+ 286   1      }
+ 287          /************************************
+ 288          *œ‘ æº∆ ˝
+ 289          ************************************/
+ 290          void ShowData()
+ 291          {
+ 292   1        uchar i,m,j,k;                                                                    //AE1-:Var1”√¿¥≈–∂œ π”
              -√µƒÃΩ≤‚∆˜µƒæ÷≤ø±‰¡ø£¨œ‡µ±”⁄Channel_Detector,≤ª‘Ÿ–Ë“™
- 295   1        ulong count_temp,jishuguan_count_temp,dianlishi_count_temp;
- 296   1        float idata temp,jtemp,yudecide,jishuguan_rata,jishuguan_jtemp,dianlishi_jtemp;
- 297   1        double yu,yudata,mtemp;
- 298   1        uchar Tbcd[12];                                                                 //≤‚µ√µƒ ˝æ›µƒbcd¬Î ˝◊È
- 299   1        Lcd_Clear();
- 300   1        /*AC1+‘⁄’‚¿Ôbuf( Æ¡˘Œª∏ﬂµÕº∆ ˝ ˝æ›)“™◊™ªª≥…uint ¿‡–ÕµƒTdata ˝æ›,≤¢«“ÃΩÕ∑ ˝ƒø“™«Â≥˛
- 301   1        º”»Î—°ÃΩÕ∑±Í÷æ*/
- 302   1        /*AJ1-,∏ƒŒ™–¬À„∑®
- 303   1        for(i=0;i<=7;i++)                                                               //∆ﬂ∏ˆÃΩÕ∑÷∏ˆºÏ≤‚
- 304   1        {
- 305   1          if(i<7)
- 306   1          {
- 307   1            if(Channel_Detector[i]==0)                                                  //»Áπ˚ÃΩÕ∑ π”√µƒ «µÁ¿Î “
- 308   1            {
- 309   1                Real_Count[i]=buf[4*i+4]*256+buf[4*i+3];
- 310   1            }
- 311   1            else
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 7   
+ 293   1        ulong count_temp,jishuguan_count_temp,dianlishi_count_temp;
+ 294   1        float idata temp,jtemp,yudecide,jishuguan_rata,jishuguan_jtemp,dianlishi_jtemp;
+ 295   1        double yu,yudata,mtemp;
+ 296   1        uchar Tbcd[12];                                                                 //≤‚µ√µƒ ˝æ›µƒbcd¬Î ˝◊È
+ 297   1        Lcd_Clear();
+ 298   1        /*AC1+‘⁄’‚¿Ôbuf( Æ¡˘Œª∏ﬂµÕº∆ ˝ ˝æ›)“™◊™ªª≥…uint ¿‡–ÕµƒTdata ˝æ›,≤¢«“ÃΩÕ∑ ˝ƒø“™«Â≥˛
+ 299   1        º”»Î—°ÃΩÕ∑±Í÷æ*/
+ 300   1        /*AJ1-,∏ƒŒ™–¬À„∑®
+ 301   1        for(i=0;i<=7;i++)                                                               //∆ﬂ∏ˆÃΩÕ∑÷∏ˆºÏ≤‚
+ 302   1        {
+ 303   1          if(i<7)
+ 304   1          {
+ 305   1            if(Channel_Detector[i]==0)                                                  //»Áπ˚ÃΩÕ∑ π”√µƒ «µÁ¿Î “
+ 306   1            {
+ 307   1                Real_Count[i]=buf[4*i+4]*256+buf[4*i+3];
+ 308   1            }
+ 309   1            else
+ 310   1            {
+ 311   1                Real_Count[i]=buf[4*i+6]*256+buf[4*i+5];
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 7   
 
- 312   1            {
- 313   1                Real_Count[i]=buf[4*i+6]*256+buf[4*i+5];
- 314   1            }
- 315   1           }
- 316   1          else
- 317   1          {
- 318   1              Real_Count[i]=buf[32]*256+buf[31];
- 319   1          }
- 320   1        }
- 321   1        -----------------*/
- 322   1        /*≥Ã–ÚÀµ√˜:
- 323   1        **1,Œ™±£÷§º¥ π∂‡∏ˆÕ®µ¿≤ª‘⁄Õ¨“ª¡ø≥Ã£¨∏ﬂ¡ø≥ÃµƒÕ®µ¿“≤ƒ‹”–∆‰œÏ”¶∏¸øÏµƒ∏¸–¬ÀŸ∂»£¨≥Ã–Ú“ª√Îº∆ ˝“ª¥Œ£¨10√Îº∆ ˝Œ™
+ 312   1            }
+ 313   1           }
+ 314   1          else
+ 315   1          {
+ 316   1              Real_Count[i]=buf[32]*256+buf[31];
+ 317   1          }
+ 318   1        }
+ 319   1        -----------------*/
+ 320   1        /*≥Ã–ÚÀµ√˜:
+ 321   1        **1,Œ™±£÷§º¥ π∂‡∏ˆÕ®µ¿≤ª‘⁄Õ¨“ª¡ø≥Ã£¨∏ﬂ¡ø≥ÃµƒÕ®µ¿“≤ƒ‹”–∆‰œÏ”¶∏¸øÏµƒ∏¸–¬ÀŸ∂»£¨≥Ã–Ú“ª√Îº∆ ˝“ª¥Œ£¨10√Îº∆ ˝Œ™
              - Æ¥Œ“ª√Îº∆ ˝µƒœ‡º”
- 324   1        **  £¨º¡¡ø¬ œ‘ æ“ª√ÎÀ¢–¬“ª¥Œ°£
- 325   1        **2,≥Ã–Ú÷–º∆ ˝¬ º∆À„°¢¡ø≥Ãªªµ≤°¢º¡¡øº∆À„œ‘ æ∏˜≤ø∑÷∑÷ø™÷¥––
- 326   1        */
- 327   1        for(i=0;i<=7;i++)                                                               //8∏ˆÃΩÕ∑÷∏ˆºÏ≤‚
- 328   1        {
- 329   2          if(Channel_Detector[i][0]==Channel_Detector[i][1])//µ±«∞“ª¥Œ¡ø≥Ã∫Õ¥À¥Œ¡ø≥Ã“ª—˘ ±
- 330   2          {
- 331   3            if((Channel_Detector[i][1]==4)&&(Calculated[i]==0))//DL3¡ø≥Ã£¨∂® ±º∆ ˝3√Î£¨÷±Ω””√¿¥º∆À„
- 332   3            {
- 333   4              Real_Count[i]=0;//¥À¡ø≥Ã√ø¥Œ∂º“™«Â¡„
- 334   4              Count[i][0]=Count[i][1];
- 335   4              Count[i][1]=Count[i][2];
- 336   4              if(i<7)//«∞6∏ˆÃΩÕ∑∫Õµ⁄∆ﬂ∏ˆÃΩÕ∑»°º∆ ˝Œª÷√≤ª“ª—˘
- 337   4              {
- 338   5      <<<<<<< Updated upstream
-*** ERROR C141 IN LINE 338 OF 8253count.c: syntax error near '<<', expected 'hdata'
-*** ERROR C202 IN LINE 338 OF 8253count.c: 'Updated': undefined identifier
- 339   5                Count[i][2]=buf[4*i+5]*256+buf[4*i+4];
- 340   5                Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]);
- 341   5              }
- 342   4              else if(i==7)//«∞6∏ˆÃΩÕ∑∫Õµ⁄∆ﬂ∏ˆÃΩÕ∑»°º∆ ˝Œª÷√≤ª“ª—˘
- 343   4              {
- 344   5                Count[i][2]=buf[31]*256+buf[30];
- 345   5                Real_Count[i]=(uint)(buf[31]*256+buf[30]);
- 346   5      =======
-*** ERROR C141 IN LINE 346 OF 8253count.c: syntax error near '==', expected '__asm'
- 347   5                Count[i][2]=buf[4*i+5]*256+buf[4*i+4]-1;      //º”“ª «“ÚŒ™‘⁄º∆ ˝÷‹∆⁄ƒ⁄ª·”…”≤º˛∏¯“ª∏ˆ¬ˆ≥Â
- 348   5                Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]-1);
- 349   5              }
- 350   4              else if(i==7)//«∞6∏ˆÃΩÕ∑∫Õµ⁄∆ﬂ∏ˆÃΩÕ∑»°º∆ ˝Œª÷√≤ª“ª—˘
- 351   4              {
- 352   5                Count[i][2]=buf[31]*256+buf[30]-1;
- 353   5                Real_Count[i]=(uint)(buf[31]*256+buf[30]-1);
- 354   5      >>>>>>> Stashed changes
-*** ERROR C141 IN LINE 354 OF 8253count.c: syntax error near '>>', expected '__asm'
-*** ERROR C202 IN LINE 354 OF 8253count.c: 'Stashed': undefined identifier
- 355   5              }
- 356   4              Calculated[i]=1;//º∆À„π˝±Í÷æ
- 357   4              if((Count[i][1]<(37*Refresh_Time))&&(Count[i][2]<(37*Refresh_Time))&&(i<7))//¡ø≥Ã«–ªª«∞7∏ˆÃΩÕ∑≈–∂®Ãıº˛
- 358   4              {
- 359   5                Channel_Detector[i][0]=Channel_Detector[i][1];
- 360   5                Channel_Detector[i][1]=3;
- 361   5                Var_Signal1=Var_Signal1&Svar0[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨µÕµÁ∆Ω
- 362   5                      Var_Signal2=Var_Signal2|Svar1[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
+ 322   1        **  £¨º¡¡ø¬ œ‘ æ“ª√ÎÀ¢–¬“ª¥Œ°£
+ 323   1        **2,≥Ã–Ú÷–º∆ ˝¬ º∆À„°¢¡ø≥Ãªªµ≤°¢º¡¡øº∆À„œ‘ æ∏˜≤ø∑÷∑÷ø™÷¥––
+ 324   1        */
+ 325   1        for(i=0;i<=7;i++)                                                               //8∏ˆÃΩÕ∑÷∏ˆºÏ≤‚
+ 326   1        {
+ 327   2          if(Channel_Detector[i][0]==Channel_Detector[i][1])//µ±«∞“ª¥Œ¡ø≥Ã∫Õ¥À¥Œ¡ø≥Ã“ª—˘ ±
+ 328   2          {
+ 329   3            if((Channel_Detector[i][1]==4)&&(Calculated[i]==0))//DL3¡ø≥Ã£¨∂® ±º∆ ˝3√Î£¨÷±Ω””√¿¥º∆À„
+ 330   3            {
+ 331   4              Real_Count[i]=0;//¥À¡ø≥Ã√ø¥Œ∂º“™«Â¡„
+ 332   4              Count[i][0]=Count[i][1];
+ 333   4              Count[i][1]=Count[i][2];
+ 334   4              if(i<7)//«∞6∏ˆÃΩÕ∑∫Õµ⁄∆ﬂ∏ˆÃΩÕ∑»°º∆ ˝Œª÷√≤ª“ª—˘
+ 335   4              {
+ 336   5                Count[i][2]=buf[4*i+5]*256+buf[4*i+4]-1;      //º”“ª «“ÚŒ™‘⁄º∆ ˝÷‹∆⁄ƒ⁄ª·”…”≤º˛∏¯“ª∏ˆ¬ˆ≥Â
+ 337   5                Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]-1);
+ 338   5              }
+ 339   4              else if(i==7)//«∞6∏ˆÃΩÕ∑∫Õµ⁄∆ﬂ∏ˆÃΩÕ∑»°º∆ ˝Œª÷√≤ª“ª—˘
+ 340   4              {
+ 341   5                Count[i][2]=buf[31]*256+buf[30]-1;
+ 342   5                Real_Count[i]=(uint)(buf[31]*256+buf[30]-1);
+ 343   5              }
+ 344   4              Calculated[i]=1;//º∆À„π˝±Í÷æ
+ 345   4              if((Count[i][1]<(37*Refresh_Time))&&(Count[i][2]<(37*Refresh_Time))&&(i<7))//¡ø≥Ã«–ªª«∞7∏ˆÃΩÕ∑≈–∂®Ãıº˛
+ 346   4              {
+ 347   5                Channel_Detector[i][0]=Channel_Detector[i][1];
+ 348   5                Channel_Detector[i][1]=3;
+ 349   5                Var_Signal1=Var_Signal1&Svar0[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨µÕµÁ∆Ω
+ 350   5                      Var_Signal2=Var_Signal2|Svar1[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
              -(8),∏ﬂµÁ∆Ω
- 363   5                      Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
+ 351   5                      Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
              -(6),µÕµÁ∆Ω
- 364   5              }
- 365   4              if((Count[i][1]<(28*Refresh_Time))&&(Count[i][2]<(28*Refresh_Time))&&(i==7))//¡ø≥Ã«–ªªµ⁄∞À∏ˆÃΩÕ∑≈–∂®Ãı
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 8   
-
+ 352   5              }
+ 353   4              if((Count[i][1]<(28*Refresh_Time))&&(Count[i][2]<(28*Refresh_Time))&&(i==7))//¡ø≥Ã«–ªªµ⁄∞À∏ˆÃΩÕ∑≈–∂®Ãı
              -º˛
- 366   4              {
- 367   5                Channel_Detector[i][0]=Channel_Detector[i][1];
- 368   5                Channel_Detector[i][1]=3;
- 369   5                Var_Signal1=Var_Signal1&Svar0[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨µÕµÁ∆Ω
- 370   5                      Var_Signal2=Var_Signal2|Svar1[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
+ 354   4              {
+ 355   5                Channel_Detector[i][0]=Channel_Detector[i][1];
+ 356   5                Channel_Detector[i][1]=3;
+ 357   5                Var_Signal1=Var_Signal1&Svar0[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨µÕµÁ∆Ω
+ 358   5                      Var_Signal2=Var_Signal2|Svar1[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
              -(8),∏ﬂµÁ∆Ω
- 371   5                      Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
+ 359   5                      Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
              -(6),µÕµÁ∆Ω
- 372   5              }
- 373   4              Real_Count_Display[i]=(float)((Real_Count[i]*5)/Refresh_Time);
-*** ERROR C215 IN LINE 373 OF 8253count.c: illegal type conversion
- 374   4              Channel_Display[i]=4;
- 375   4              Display_Flag[i]=1;//÷±Ω”‘ –Ìœ‘ æ
- 376   4            }
- 377   3            if((Channel_Detector[i][1]==3)&&(Calculated[i]==0))//DL2¡ø≥Ã£¨¡Ω¥Œ∂® ±º∆ ˝“ª√Îœ‡º”
- 378   3            {
- 379   4              Count[i][0]=Count[i][1];
- 380   4              Count[i][1]=Count[i][2];
- 381   4              if(i<7)//«∞6∏ˆÃΩÕ∑∫Õµ⁄∆ﬂ∏ˆÃΩÕ∑»°º∆ ˝Œª÷√≤ª“ª—˘
- 382   4              {
- 383   5      <<<<<<< Updated upstream
-*** ERROR C141 IN LINE 383 OF 8253count.c: syntax error near '<<', expected 'hdata'
-*** ERROR C202 IN LINE 383 OF 8253count.c: 'Updated': undefined identifier
- 384   5                Count[i][2]=buf[4*i+5]*256+buf[4*i+4];
- 385   5                Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]);
- 386   5              }
- 387   4              else if(i==7)//«∞6∏ˆÃΩÕ∑∫Õµ⁄∆ﬂ∏ˆÃΩÕ∑»°º∆ ˝Œª÷√≤ª“ª—˘
- 388   4              {
- 389   5                Count[i][2]=buf[31]*256+buf[30];
- 390   5                Real_Count[i]=(uint)(buf[31]*256+buf[30]);
- 391   5      =======
-*** ERROR C141 IN LINE 391 OF 8253count.c: syntax error near '==', expected '__asm'
- 392   5                Count[i][2]=buf[4*i+5]*256+buf[4*i+4]-1;
- 393   5                Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]-1);
- 394   5              }
- 395   4              else if(i==7)//«∞6∏ˆÃΩÕ∑∫Õµ⁄∆ﬂ∏ˆÃΩÕ∑»°º∆ ˝Œª÷√≤ª“ª—˘
- 396   4              {
- 397   5                Count[i][2]=buf[31]*256+buf[30]-1;
- 398   5                Real_Count[i]=(uint)(buf[31]*256+buf[30]-1);
- 399   5      >>>>>>> Stashed changes
-*** ERROR C141 IN LINE 399 OF 8253count.c: syntax error near '>>', expected '__asm'
-*** ERROR C202 IN LINE 399 OF 8253count.c: 'Stashed': undefined identifier
- 400   5              }
- 401   4              Calculated[i]=1;//º∆À„π˝±Í÷æ
- 402   4              if((Count[i][1]>(5719*Refresh_Time))&&(Count[i][2]>(5719*Refresh_Time))&&(i<7))//¡ø≥Ã«–ªª
- 403   4              {
- 404   5                Channel_Detector[i][0]=Channel_Detector[i][1];
- 405   5                Channel_Detector[i][1]=4;
- 406   5                Var_Signal1=Var_Signal1&Svar0[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨µÕµÁ∆Ω
- 407   5                      Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
+ 360   5              }
+ 361   4              Real_Count_Display[i]=(float)((Real_Count[i]*5)/Refresh_Time);
+ 362   4              Channel_Display[i]=4;
+ 363   4              Display_Flag[i]=1;//÷±Ω”‘ –Ìœ‘ æ
+ 364   4            }
+ 365   3            if((Channel_Detector[i][1]==3)&&(Calculated[i]==0))//DL2¡ø≥Ã£¨¡Ω¥Œ∂® ±º∆ ˝“ª√Îœ‡º”
+ 366   3            {
+ 367   4              Count[i][0]=Count[i][1];
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 8   
+
+ 368   4              Count[i][1]=Count[i][2];
+ 369   4              if(i<7)//«∞6∏ˆÃΩÕ∑∫Õµ⁄∆ﬂ∏ˆÃΩÕ∑»°º∆ ˝Œª÷√≤ª“ª—˘
+ 370   4              {
+ 371   5                Count[i][2]=buf[4*i+5]*256+buf[4*i+4]-1;
+ 372   5                Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]-1);
+ 373   5              }
+ 374   4              else if(i==7)//«∞6∏ˆÃΩÕ∑∫Õµ⁄∆ﬂ∏ˆÃΩÕ∑»°º∆ ˝Œª÷√≤ª“ª—˘
+ 375   4              {
+ 376   5                Count[i][2]=buf[31]*256+buf[30]-1;
+ 377   5                Real_Count[i]=(uint)(buf[31]*256+buf[30]-1);
+ 378   5              }
+ 379   4              Calculated[i]=1;//º∆À„π˝±Í÷æ
+ 380   4              if((Count[i][1]>(5719*Refresh_Time))&&(Count[i][2]>(5719*Refresh_Time))&&(i<7))//¡ø≥Ã«–ªª
+ 381   4              {
+ 382   5                Channel_Detector[i][0]=Channel_Detector[i][1];
+ 383   5                Channel_Detector[i][1]=4;
+ 384   5                Var_Signal1=Var_Signal1&Svar0[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨µÕµÁ∆Ω
+ 385   5                      Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
              -(8),∏ﬂµÁ∆Ω
- 408   5                      Var_Signal3=Var_Signal3|Svar1[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
+ 386   5                      Var_Signal3=Var_Signal3|Svar1[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
              -(6),µÕµÁ∆Ω
- 409   5              }
- 410   4              if((Count[i][1]>(7447*Refresh_Time))&&(Count[i][2]>(7447*Refresh_Time))&&(i==7))//¡ø≥Ã«–ªª
+ 387   5              }
+ 388   4              if((Count[i][1]>(7447*Refresh_Time))&&(Count[i][2]>(7447*Refresh_Time))&&(i==7))//¡ø≥Ã«–ªª
+ 389   4              {
+ 390   5                Channel_Detector[i][0]=Channel_Detector[i][1];
+ 391   5                Channel_Detector[i][1]=4;
+ 392   5                Var_Signal1=Var_Signal1&Svar0[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨µÕµÁ∆Ω
+ 393   5                      Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
+             -(8),∏ﬂµÁ∆Ω
+ 394   5                      Var_Signal3=Var_Signal3|Svar1[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
+             -(6),µÕµÁ∆Ω
+ 395   5              }
+ 396   4              if(((Count[i][1]<(35*Refresh_Time))&&(Count[i][2]<(35*Refresh_Time)))&&(i!=7))//µ⁄∆ﬂ∏ˆÃΩÕ∑÷ª”–¡Ω∏ˆ¡ø≥Ã
+ 397   4              {
+ 398   5                Channel_Detector[i][0]=Channel_Detector[i][1];
+ 399   5                Channel_Detector[i][1]=2;
+ 400   5                Var_Signal1=Var_Signal1&Svar0[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨µÕµÁ∆Ω
+ 401   5                      Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
+             -(8),∏ﬂµÁ∆Ω
+ 402   5                      Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
+             -(6),µÕµÁ∆Ω
+ 403   5              }
+ 404   4              Real_Count_Display[i]=(float)(Real_Count[i]);
+ 405   4              Real_Count_Display[i]*=5;
+ 406   4              Real_Count_Display[i]/=3;
+ 407   4              Display_Flag[i]=1;//‘ –Ìœ‘ æ
+ 408   4              Channel_Display[i]=3;
+ 409   4              Real_Count[i]=0;
+ 410   4              if((Display_Flag[i]==1)&&((Real_Count_Display[i]/5)>5719)&&(Channel_Detector[i][0]==Channel_Detector[i
+             -][1])&&(i<7))//¡ø≥Ã«–ªª,º”∫Û¡Ωæ‰ «∑¿÷π÷ÿ∏¥ªªµ≤
  411   4              {
  412   5                Channel_Detector[i][0]=Channel_Detector[i][1];
  413   5                Channel_Detector[i][1]=4;
- 414   5                Var_Signal1=Var_Signal1&Svar0[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨µÕµÁ∆Ω
- 415   5                      Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
+ 414   5                Display_Flag[i]=0;
+ 415   5                Var_Signal1=Var_Signal1&Svar0[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨µÕµÁ∆Ω
+ 416   5                      Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
              -(8),∏ﬂµÁ∆Ω
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 9   
-
- 416   5                      Var_Signal3=Var_Signal3|Svar1[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
+ 417   5                      Var_Signal3=Var_Signal3|Svar1[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
              -(6),µÕµÁ∆Ω
- 417   5              }
- 418   4              if(((Count[i][1]<(35*Refresh_Time))&&(Count[i][2]<(35*Refresh_Time)))&&(i!=7))//µ⁄∆ﬂ∏ˆÃΩÕ∑÷ª”–¡Ω∏ˆ¡ø≥Ã
- 419   4              {
- 420   5                Channel_Detector[i][0]=Channel_Detector[i][1];
- 421   5                Channel_Detector[i][1]=2;
- 422   5                Var_Signal1=Var_Signal1&Svar0[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨µÕµÁ∆Ω
- 423   5                      Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
-             -(8),∏ﬂµÁ∆Ω
- 424   5                      Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
-             -(6),µÕµÁ∆Ω
- 425   5              }
- 426   4              Real_Count_Display[i]=(float)(Real_Count[i]);
-*** ERROR C215 IN LINE 426 OF 8253count.c: illegal type conversion
- 427   4              Real_Count_Display[i]*=5;
- 428   4              Real_Count_Display[i]/=3;
- 429   4              Display_Flag[i]=1;//‘ –Ìœ‘ æ
- 430   4              Channel_Display[i]=3;
- 431   4              Real_Count[i]=0;
- 432   4              if((Display_Flag[i]==1)&&((Real_Count_Display[i]/5)>5719)&&(Channel_Detector[i][0]==Channel_Detector[i
-             -][1])&&(i<7))//¡ø≥Ã«–ªª,º”∫Û¡Ωæ‰ «∑¿÷π÷ÿ∏¥ªªµ≤
- 433   4              {
- 434   5                Channel_Detector[i][0]=Channel_Detector[i][1];
- 435   5                Channel_Detector[i][1]=4;
- 436   5                Display_Flag[i]=0;
- 437   5                Var_Signal1=Var_Signal1&Svar0[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨µÕµÁ∆Ω
- 438   5                      Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
-             -(8),∏ﬂµÁ∆Ω
- 439   5                      Var_Signal3=Var_Signal3|Svar1[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
-             -(6),µÕµÁ∆Ω
- 440   5              }
- 441   4              if((Display_Flag[i]==1)&&((Real_Count_Display[i]/5)>7447)&&(Channel_Detector[i][0]==Channel_Detector[i
+ 418   5              }
+ 419   4              if((Display_Flag[i]==1)&&((Real_Count_Display[i]/5)>7447)&&(Channel_Detector[i][0]==Channel_Detector[i
              -][1])&&(i==7))//¡ø≥Ã«–ªª,º”∫Û¡Ωæ‰ «∑¿÷π÷ÿ∏¥ªªµ≤
- 442   4              {
- 443   5                Channel_Detector[i][0]=Channel_Detector[i][1];
- 444   5                Channel_Detector[i][1]=4;
- 445   5                Display_Flag[i]=0;
- 446   5                Var_Signal1=Var_Signal1&Svar0[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨µÕµÁ∆Ω
- 447   5                      Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 9   
+
+ 420   4              {
+ 421   5                Channel_Detector[i][0]=Channel_Detector[i][1];
+ 422   5                Channel_Detector[i][1]=4;
+ 423   5                Display_Flag[i]=0;
+ 424   5                Var_Signal1=Var_Signal1&Svar0[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨µÕµÁ∆Ω
+ 425   5                      Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
              -(8),∏ﬂµÁ∆Ω
- 448   5                      Var_Signal3=Var_Signal3|Svar1[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
+ 426   5                      Var_Signal3=Var_Signal3|Svar1[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
              -(6),µÕµÁ∆Ω
- 449   5              }
- 450   4              if((Display_Flag[i]==1)&&((Real_Count_Display[i]/5)<35)&&(Channel_Detector[i][0]==Channel_Detector[i][
+ 427   5              }
+ 428   4              if((Display_Flag[i]==1)&&((Real_Count_Display[i]/5)<35)&&(Channel_Detector[i][0]==Channel_Detector[i][
              -1])&&(i!=7))
- 451   4              {
- 452   5                Channel_Detector[i][0]=Channel_Detector[i][1];
- 453   5                Channel_Detector[i][1]=2;
- 454   5                Display_Flag[i]=0;
- 455   5                Var_Signal1=Var_Signal1&Svar0[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨µÕµÁ∆Ω
- 456   5                      Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
+ 429   4              {
+ 430   5                Channel_Detector[i][0]=Channel_Detector[i][1];
+ 431   5                Channel_Detector[i][1]=2;
+ 432   5                Display_Flag[i]=0;
+ 433   5                Var_Signal1=Var_Signal1&Svar0[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨µÕµÁ∆Ω
+ 434   5                      Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
              -(8),∏ﬂµÁ∆Ω
- 457   5                      Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
+ 435   5                      Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
              -(6),µÕµÁ∆Ω
- 458   5              }
- 459   4            }
- 460   3            if((Channel_Detector[i][1]==2)&&(Calculated[i]==0))//DL1¡ø≥Ã£¨5¥Œ∂® ±º∆ ˝“ª√Îœ‡º”
- 461   3            {
- 462   4              Count[i][0]=Count[i][1];
- 463   4              Count[i][1]=Count[i][2];
- 464   4      <<<<<<< Updated upstream
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 10  
-
-*** ERROR C141 IN LINE 464 OF 8253count.c: syntax error near '<<', expected '__asm'
-*** ERROR C202 IN LINE 464 OF 8253count.c: 'Updated': undefined identifier
- 465   4              Count[i][2]=buf[4*i+5]*256+buf[4*i+4];
- 466   4              Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]);
- 467   4      =======
-*** ERROR C141 IN LINE 467 OF 8253count.c: syntax error near '==', expected '__asm'
- 468   4              Count[i][2]=buf[4*i+5]*256+buf[4*i+4]-1;
- 469   4              Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]-1);
- 470   4      >>>>>>> Stashed changes
-*** ERROR C141 IN LINE 470 OF 8253count.c: syntax error near '>>', expected '__asm'
-*** ERROR C202 IN LINE 470 OF 8253count.c: 'Stashed': undefined identifier
- 471   4              Calculated[i]=1;//º∆À„π˝±Í÷æ
- 472   4              if((Count[i][1]>(5411*Refresh_Time))&&(Count[i][2]>(5411*Refresh_Time)))//¡ø≥Ã«–ªª
- 473   4              {
- 474   5                Channel_Detector[i][0]=Channel_Detector[i][1];
- 475   5                Channel_Detector[i][1]=3;
- 476   5                Var_Signal1=Var_Signal1&Svar0[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨µÕµÁ∆Ω
- 477   5                      Var_Signal2=Var_Signal2|Svar1[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
+ 436   5              }
+ 437   4            }
+ 438   3            if((Channel_Detector[i][1]==2)&&(Calculated[i]==0))//DL1¡ø≥Ã£¨5¥Œ∂® ±º∆ ˝“ª√Îœ‡º”
+ 439   3            {
+ 440   4              Count[i][0]=Count[i][1];
+ 441   4              Count[i][1]=Count[i][2];
+ 442   4              Count[i][2]=buf[4*i+5]*256+buf[4*i+4]-1;
+ 443   4              Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]-1);
+ 444   4              Calculated[i]=1;//º∆À„π˝±Í÷æ
+ 445   4              if((Count[i][1]>(5411*Refresh_Time))&&(Count[i][2]>(5411*Refresh_Time)))//¡ø≥Ã«–ªª
+ 446   4              {
+ 447   5                Channel_Detector[i][0]=Channel_Detector[i][1];
+ 448   5                Channel_Detector[i][1]=3;
+ 449   5                Var_Signal1=Var_Signal1&Svar0[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨µÕµÁ∆Ω
+ 450   5                      Var_Signal2=Var_Signal2|Svar1[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
              -(8),∏ﬂµÁ∆Ω
- 478   5                      Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
+ 451   5                      Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
              -(6),µÕµÁ∆Ω
- 479   5              }
- 480   4              if((Count[i][1]<(158*Refresh_Time))&&(Count[i][2]<(158*Refresh_Time)))
- 481   4              {
- 482   5                Channel_Detector[i][0]=Channel_Detector[i][1];
- 483   5                Channel_Detector[i][1]=1;
- 484   5                Var_Signal1=Var_Signal1|Svar1[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨Œ™∏ﬂµÁ∆Ω
- 485   5                      Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
+ 452   5              }
+ 453   4              if((Count[i][1]<(158*Refresh_Time))&&(Count[i][2]<(158*Refresh_Time)))
+ 454   4              {
+ 455   5                Channel_Detector[i][0]=Channel_Detector[i][1];
+ 456   5                Channel_Detector[i][1]=1;
+ 457   5                Var_Signal1=Var_Signal1|Svar1[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨Œ™∏ﬂµÁ∆Ω
+ 458   5                      Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
              -(8),µÕµÁ∆Ω
- 486   5                      Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
+ 459   5                      Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
              -(6),µÕµÁ∆Ω
- 487   5              }
- 488   4                Real_Count_Display[i]=(float)(Real_Count[i]);
-*** ERROR C215 IN LINE 488 OF 8253count.c: illegal type conversion
- 489   4                Real_Count_Display[i]*=5;//’‚¿Ô «CP5S
- 490   4                Real_Count_Display[i]/=Refresh_Time;
- 491   4                Display_Flag[i]=1;//‘ –Ìœ‘ æ
- 492   4                Channel_Display[i]=2;
- 493   4                Real_Count[i]=0;
- 494   4                if((Display_Flag[i]==1)&&((Real_Count_Display[i]/5)>5411)&&(Channel_Detector[i][0]==Channel_Detector[
+ 460   5              }
+ 461   4                Real_Count_Display[i]=(float)(Real_Count[i]);
+ 462   4                Real_Count_Display[i]*=5;//’‚¿Ô «CP5S
+ 463   4                Real_Count_Display[i]/=Refresh_Time;
+ 464   4                Display_Flag[i]=1;//‘ –Ìœ‘ æ
+ 465   4                Channel_Display[i]=2;
+ 466   4                Real_Count[i]=0;
+ 467   4                if((Display_Flag[i]==1)&&((Real_Count_Display[i]/5)>5411)&&(Channel_Detector[i][0]==Channel_Detector[
              -i][1]))//¡ø≥Ã«–ªª
- 495   4                {
- 496   5                  Channel_Detector[i][0]=Channel_Detector[i][1];
- 497   5                  Channel_Detector[i][1]=3;
- 498   5                  Display_Flag[i]=0;
- 499   5                  Var_Signal1=Var_Signal1&Svar0[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨µÕµÁ∆Ω
- 500   5                        Var_Signal2=Var_Signal2|Svar1[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “1
+ 468   4                {
+ 469   5                  Channel_Detector[i][0]=Channel_Detector[i][1];
+ 470   5                  Channel_Detector[i][1]=3;
+ 471   5                  Display_Flag[i]=0;
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 10  
+
+ 472   5                  Var_Signal1=Var_Signal1&Svar0[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨µÕµÁ∆Ω
+ 473   5                        Var_Signal2=Var_Signal2|Svar1[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “1
              -0(8),∏ﬂµÁ∆Ω
- 501   5                        Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “1
+ 474   5                        Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “1
              -0(6),µÕµÁ∆Ω
- 502   5                }
- 503   4                if((Display_Flag[i]==1)&&((Real_Count_Display[i]/5)<158)&&(Channel_Detector[i][0]==Channel_Detector[i
+ 475   5                }
+ 476   4                if((Display_Flag[i]==1)&&((Real_Count_Display[i]/5)<158)&&(Channel_Detector[i][0]==Channel_Detector[i
              -][1]))
- 504   4                {
- 505   5                  Channel_Detector[i][0]=Channel_Detector[i][1];
- 506   5                  Channel_Detector[i][1]=1;
- 507   5                  Display_Flag[i]=0;
- 508   5                  Var_Signal1=Var_Signal1|Svar1[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨Œ™∏ﬂµÁ∆
+ 477   4                {
+ 478   5                  Channel_Detector[i][0]=Channel_Detector[i][1];
+ 479   5                  Channel_Detector[i][1]=1;
+ 480   5                  Display_Flag[i]=0;
+ 481   5                  Var_Signal1=Var_Signal1|Svar1[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨Œ™∏ﬂµÁ∆
              -Ω
- 509   5                        Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “1
+ 482   5                        Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “1
              -0(8),µÕµÁ∆Ω
- 510   5                        Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “1
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 11  
-
+ 483   5                        Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “1
              -0(6),µÕµÁ∆Ω
- 511   5                }
- 512   4            }
- 513   3            if((Channel_Detector[i][1]==1)&&(Calculated[i]==0))//GM2¡ø≥Ã£¨10¥Œ∂® ±º∆ ˝“ª√Îœ‡º”£¨5¥Œ∆Ωª¨∆Ωæ˘
- 514   3            {
- 515   4              Count[i][0]=Count[i][1];
- 516   4              Count[i][1]=Count[i][2];
- 517   4      <<<<<<< Updated upstream
-*** ERROR C141 IN LINE 517 OF 8253count.c: syntax error near '<<', expected '__asm'
-*** ERROR C202 IN LINE 517 OF 8253count.c: 'Updated': undefined identifier
- 518   4              Count[i][2]=buf[4*i+3]*256+buf[4*i+2];
- 519   4              Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]);
- 520   4      =======
-*** ERROR C141 IN LINE 520 OF 8253count.c: syntax error near '==', expected '__asm'
- 521   4              Count[i][2]=buf[4*i+3]*256+buf[4*i+2]-1;
- 522   4              Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]-1);
- 523   4      >>>>>>> Stashed changes
-*** ERROR C141 IN LINE 523 OF 8253count.c: syntax error near '>>', expected '__asm'
-*** ERROR C202 IN LINE 523 OF 8253count.c: 'Stashed': undefined identifier
- 524   4              Calculated[i]=1;//º∆À„π˝±Í÷æ
- 525   4              if((Count[i][0]>(6019*Refresh_Time))&&(Count[i][1]>(6019*Refresh_Time))&&(Count[i][2]>(6019*Refresh_Ti
+ 484   5                }
+ 485   4            }
+ 486   3            if((Channel_Detector[i][1]==1)&&(Calculated[i]==0))//GM2¡ø≥Ã£¨10¥Œ∂® ±º∆ ˝“ª√Îœ‡º”£¨5¥Œ∆Ωª¨∆Ωæ˘
+ 487   3            {
+ 488   4              Count[i][0]=Count[i][1];
+ 489   4              Count[i][1]=Count[i][2];
+ 490   4              Count[i][2]=buf[4*i+3]*256+buf[4*i+2]-1;
+ 491   4              Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]-1);
+ 492   4              Calculated[i]=1;//º∆À„π˝±Í÷æ
+ 493   4              if((Count[i][0]>(6019*Refresh_Time))&&(Count[i][1]>(6019*Refresh_Time))&&(Count[i][2]>(6019*Refresh_Ti
              -me)))//¡ø≥Ã«–ªª
- 526   4              {
- 527   5                Channel_Detector[i][0]=Channel_Detector[i][1];
- 528   5                Channel_Detector[i][1]=2;
- 529   5                Var_Signal1=Var_Signal1&Svar0[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨µÕµÁ∆Ω
- 530   5                      Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
+ 494   4              {
+ 495   5                Channel_Detector[i][0]=Channel_Detector[i][1];
+ 496   5                Channel_Detector[i][1]=2;
+ 497   5                Var_Signal1=Var_Signal1&Svar0[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨µÕµÁ∆Ω
+ 498   5                      Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
              -(8),µÕµÁ∆Ω
- 531   5                      Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
+ 499   5                      Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
              -(6),µÕµÁ∆Ω
- 532   5              }
- 533   4              if((Count[i][0]<(1.32*Refresh_Time))&&(Count[i][1]<(1.32*Refresh_Time))&&(Count[i][2]<(1.32*Refresh_Ti
+ 500   5              }
+ 501   4              if((Count[i][0]<(1.32*Refresh_Time))&&(Count[i][1]<(1.32*Refresh_Time))&&(Count[i][2]<(1.32*Refresh_Ti
              -me)))
- 534   4              {
- 535   5                Channel_Detector[i][0]=Channel_Detector[i][1];
- 536   5                Channel_Detector[i][1]=0;
- 537   5                Var_Signal1=Var_Signal1|Svar1[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨Œ™∏ﬂµÁ∆Ω
- 538   5                      Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
+ 502   4              {
+ 503   5                Channel_Detector[i][0]=Channel_Detector[i][1];
+ 504   5                Channel_Detector[i][1]=0;
+ 505   5                Var_Signal1=Var_Signal1|Svar1[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨Œ™∏ﬂµÁ∆Ω
+ 506   5                      Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
              -(8),µÕµÁ∆Ω
- 539   5                      Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
+ 507   5                      Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
              -(6),µÕµÁ∆Ω
- 540   5              }
- 541   4              Real_Count[i]*=20;//ªªÀ„Œ™CPM(◊¢“‚∂‘”¶µƒ «3√Îµƒ Refresh Time)
- 542   4              Average_Counts[i][Average_Times[i]]=Real_Count[i];
- 543   4              Average_Times[i]+=1;
- 544   4              if(Average_Times[i]<5)
- 545   4              {
- 546   5                switch(Average_Times[i])
- 547   5                {
- 548   6                  case 1: Real_Count_Display[i]=Average_Counts[i][0]; break;
- 549   6                  case 2: Real_Count_Display[i]=Average_Counts[i][0]*0.4+Average_Counts[i][1]*0.6; break;
- 550   6                  case 3: Real_Count_Display[i]=Average_Counts[i][0]*a3+Average_Counts[i][1]*a3+Average_Counts[i][2]*a
+ 508   5              }
+ 509   4              Real_Count[i]*=20;//ªªÀ„Œ™CPM(◊¢“‚∂‘”¶µƒ «3√Îµƒ Refresh Time)
+ 510   4              Average_Counts[i][Average_Times[i]]=Real_Count[i];
+ 511   4              Average_Times[i]+=1;
+ 512   4              if(Average_Times[i]<5)
+ 513   4              {
+ 514   5                switch(Average_Times[i])
+ 515   5                {
+ 516   6                  case 1: Real_Count_Display[i]=Average_Counts[i][0]; break;
+ 517   6                  case 2: Real_Count_Display[i]=Average_Counts[i][0]*0.4+Average_Counts[i][1]*0.6; break;
+ 518   6                  case 3: Real_Count_Display[i]=Average_Counts[i][0]*a3+Average_Counts[i][1]*a3+Average_Counts[i][2]*a
              -4; break;
- 551   6                  case 4: Real_Count_Display[i]=Average_Counts[i][0]*a2+Average_Counts[i][1]*a2+Average_Counts[i][2]*a
+ 519   6                  case 4: Real_Count_Display[i]=Average_Counts[i][0]*a2+Average_Counts[i][1]*a2+Average_Counts[i][2]*a
              -3+Average_Counts[i][3]*a4; break;
- 552   6                }
- 553   5                Display_Flag[i]=1;
- 554   5                Channel_Display[i]=0;
- 555   5              }
- 556   4              if(Average_Times[i]==5)
- 557   4              {
- 558   5                Real_Count_Display[i]=Average_Counts[i][0]*a0+Average_Counts[i][1]*a1+Average_Counts[i][2]*a2+Average
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 12  
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 11  
 
+ 520   6                }
+ 521   5                Display_Flag[i]=1;
+ 522   5                Channel_Display[i]=0;
+ 523   5              }
+ 524   4              if(Average_Times[i]==5)
+ 525   4              {
+ 526   5                Real_Count_Display[i]=Average_Counts[i][0]*a0+Average_Counts[i][1]*a1+Average_Counts[i][2]*a2+Average
              -_Counts[i][3]*a3+Average_Counts[i][4]*a4;
- 559   5                for(j=0;j<4;j++)
- 560   5                {
- 561   6                  Average_Counts[i][j]=Average_Counts[i][j+1];
- 562   6                }
- 563   5                Average_Times[i]-=1;//Œ™¡À»√¥Œ ˝
- 564   5                Display_Flag[i]=1;
- 565   5                Channel_Display[i]=1;
- 566   5              }
- 567   4              //if(Count_Times[i]==2)
- 568   4              //{
- 569   4                //Average_Counts[i][Average_Times[i]]=Real_Count[i];//Ω´º∆ ˝¬ ∏≥÷µ∏¯∆Ωæ˘÷µ
- 570   4                //Average_Times[i]+=1;//∆Ωª¨∆Ωæ˘¥Œ ˝º”1
- 571   4                //Count_Times[i]=0;
- 572   4                //Real_Count[i]=0;
- 573   4              //}
- 574   4              //if((Average_Times[i]>=2)&&(Average_Times[i]<=5))//‘⁄”–2∏ˆº∆ ˝÷µ∫Ûø™ ºÀ„∆Ωæ˘÷µ≤¢œ‘ æ
- 575   4              //{
- 576   4                //for(j=0;j<Average_Times[i];j++)
- 577   4                //{
- 578   4                  //Real_Count_Display[i]+=(float)(Average_Counts[i][j]);
- 579   4                //}
- 580   4                //Real_Count_Display[i]/=(float)(Average_Times[i]);
- 581   4                //Real_Count_Display[i]*=(60/(Refresh_Time*2));//“ÚŒ™“™ªªÀ„≥…CPM
- 582   4                //Display_Flag[i]=1;//‘ –Ìœ‘ æ
- 583   4                //Channel_Display[i]=0;
- 584   4                //if(Average_Times[i]==5)
- 585   4                //{
- 586   4                  //for(j=0;j<(Average_Times[i]-1);j++)
- 587   4                  //{
- 588   4                    //Average_Counts[i][j]=Average_Counts[i][j+1];
- 589   4                  //}
- 590   4                  //Average_Times[i]-=1;//Œ™¡À»√¥Œ ˝
- 591   4                //}
- 592   4              //}
- 593   4              //if((Display_Flag[i]==1)&&((Real_Count_Display[i]/60)>6019)&&(Channel_Detector[i][0]==Channel_Detecto
+ 527   5                for(j=0;j<4;j++)
+ 528   5                {
+ 529   6                  Average_Counts[i][j]=Average_Counts[i][j+1];
+ 530   6                }
+ 531   5                Average_Times[i]-=1;//Œ™¡À»√¥Œ ˝
+ 532   5                Display_Flag[i]=1;
+ 533   5                Channel_Display[i]=1;
+ 534   5              }
+ 535   4              //if(Count_Times[i]==2)
+ 536   4              //{
+ 537   4                //Average_Counts[i][Average_Times[i]]=Real_Count[i];//Ω´º∆ ˝¬ ∏≥÷µ∏¯∆Ωæ˘÷µ
+ 538   4                //Average_Times[i]+=1;//∆Ωª¨∆Ωæ˘¥Œ ˝º”1
+ 539   4                //Count_Times[i]=0;
+ 540   4                //Real_Count[i]=0;
+ 541   4              //}
+ 542   4              //if((Average_Times[i]>=2)&&(Average_Times[i]<=5))//‘⁄”–2∏ˆº∆ ˝÷µ∫Ûø™ ºÀ„∆Ωæ˘÷µ≤¢œ‘ æ
+ 543   4              //{
+ 544   4                //for(j=0;j<Average_Times[i];j++)
+ 545   4                //{
+ 546   4                  //Real_Count_Display[i]+=(float)(Average_Counts[i][j]);
+ 547   4                //}
+ 548   4                //Real_Count_Display[i]/=(float)(Average_Times[i]);
+ 549   4                //Real_Count_Display[i]*=(60/(Refresh_Time*2));//“ÚŒ™“™ªªÀ„≥…CPM
+ 550   4                //Display_Flag[i]=1;//‘ –Ìœ‘ æ
+ 551   4                //Channel_Display[i]=0;
+ 552   4                //if(Average_Times[i]==5)
+ 553   4                //{
+ 554   4                  //for(j=0;j<(Average_Times[i]-1);j++)
+ 555   4                  //{
+ 556   4                    //Average_Counts[i][j]=Average_Counts[i][j+1];
+ 557   4                  //}
+ 558   4                  //Average_Times[i]-=1;//Œ™¡À»√¥Œ ˝
+ 559   4                //}
+ 560   4              //}
+ 561   4              //if((Display_Flag[i]==1)&&((Real_Count_Display[i]/60)>6019)&&(Channel_Detector[i][0]==Channel_Detecto
              -r[i][1]))//¡ø≥Ã«–ªª
- 594   4              //{
- 595   4                //Channel_Detector[i][0]=Channel_Detector[i][1];
- 596   4                //Channel_Detector[i][1]=2;
- 597   4                //Display_Flag[i]=0;
- 598   4                //Var_Signal1=Var_Signal1&Svar0[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨µÕµÁ∆Ω
- 599   4                      //Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “
+ 562   4              //{
+ 563   4                //Channel_Detector[i][0]=Channel_Detector[i][1];
+ 564   4                //Channel_Detector[i][1]=2;
+ 565   4                //Display_Flag[i]=0;
+ 566   4                //Var_Signal1=Var_Signal1&Svar0[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨µÕµÁ∆Ω
+ 567   4                      //Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “
              -10(8),µÕµÁ∆Ω
- 600   4                      //Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “
+ 568   4                      //Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “
              -10(6),µÕµÁ∆Ω
- 601   4              //}
- 602   4              //if((Display_Flag[i]==1)&&((Real_Count_Display[i]/60)<1.32)&&(Channel_Detector[i][0]==Channel_Detecto
+ 569   4              //}
+ 570   4              //if((Display_Flag[i]==1)&&((Real_Count_Display[i]/60)<1.32)&&(Channel_Detector[i][0]==Channel_Detecto
              -r[i][1]))
- 603   4              //{
- 604   4                //Channel_Detector[i][0]=Channel_Detector[i][1];
- 605   4                //Channel_Detector[i][1]=0;
- 606   4                //Display_Flag[i]=0;
- 607   4                //Var_Signal1=Var_Signal1|Svar1[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨Œ™∏ﬂµÁ
+ 571   4              //{
+ 572   4                //Channel_Detector[i][0]=Channel_Detector[i][1];
+ 573   4                //Channel_Detector[i][1]=0;
+ 574   4                //Display_Flag[i]=0;
+ 575   4                //Var_Signal1=Var_Signal1|Svar1[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨Œ™∏ﬂµÁ
              -∆Ω
- 608   4                      //Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 12  
+
+ 576   4                      //Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “
              -10(8),µÕµÁ∆Ω
- 609   4                      //Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “
+ 577   4                      //Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “
              -10(6),µÕµÁ∆Ω
- 610   4              //}
- 611   4            }
- 612   3            if((Channel_Detector[i][1]==0)&&(Calculated[i]==0))//GM1¡ø≥Ã£¨2¥Œ∂® ±º∆ ˝3√Îœ‡º”£¨5¥Œ∆Ωª¨∆Ωæ˘
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 13  
-
- 613   3            {
- 614   4              Count[i][0]=Count[i][1];
- 615   4              Count[i][1]=Count[i][2];
- 616   4      <<<<<<< Updated upstream
-*** ERROR C141 IN LINE 616 OF 8253count.c: syntax error near '<<', expected '__asm'
-*** ERROR C202 IN LINE 616 OF 8253count.c: 'Updated': undefined identifier
- 617   4              Count[i][2]=buf[4*i+3]*256+buf[4*i+2];
- 618   4              Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]);
- 619   4      =======
-*** ERROR C141 IN LINE 619 OF 8253count.c: syntax error near '==', expected '__asm'
- 620   4              Count[i][2]=buf[4*i+3]*256+buf[4*i+2]-1;
- 621   4              Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]-1);
- 622   4      >>>>>>> Stashed changes
-*** ERROR C141 IN LINE 622 OF 8253count.c: syntax error near '>>', expected '__asm'
-*** ERROR C202 IN LINE 622 OF 8253count.c: 'Stashed': undefined identifier
- 623   4              Calculated[i]=1;//º∆À„π˝±Í÷æ
- 624   4              if((Count[i][0]>(1.32*Refresh_Time))&&(Count[i][1]>(1.32*Refresh_Time))&&(Count[i][2]>(1.32*Refresh_Ti
+ 578   4              //}
+ 579   4            }
+ 580   3            if((Channel_Detector[i][1]==0)&&(Calculated[i]==0))//GM1¡ø≥Ã£¨2¥Œ∂® ±º∆ ˝3√Îœ‡º”£¨5¥Œ∆Ωª¨∆Ωæ˘
+ 581   3            {
+ 582   4              Count[i][0]=Count[i][1];
+ 583   4              Count[i][1]=Count[i][2];
+ 584   4              Count[i][2]=buf[4*i+3]*256+buf[4*i+2]-1;
+ 585   4              Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]-1);
+ 586   4              Calculated[i]=1;//º∆À„π˝±Í÷æ
+ 587   4              if((Count[i][0]>(1.32*Refresh_Time))&&(Count[i][1]>(1.32*Refresh_Time))&&(Count[i][2]>(1.32*Refresh_Ti
              -me)))//¡ø≥Ã«–ªª
- 625   4              {
- 626   5                Channel_Detector[i][0]=Channel_Detector[i][1];
- 627   5                Channel_Detector[i][1]=1;
- 628   5                Var_Signal1=Var_Signal1|Svar1[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨Œ™∏ﬂµÁ∆Ω
- 629   5                      Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
+ 588   4              {
+ 589   5                Channel_Detector[i][0]=Channel_Detector[i][1];
+ 590   5                Channel_Detector[i][1]=1;
+ 591   5                Var_Signal1=Var_Signal1|Svar1[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨Œ™∏ﬂµÁ∆Ω
+ 592   5                      Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
              -(8),µÕµÁ∆Ω
- 630   5                      Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
+ 593   5                      Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î “10
              -(6),µÕµÁ∆Ω
- 631   5              }
- 632   4                Real_Count[i]*=20;//ªªÀ„Œ™CPM(◊¢“‚∂‘”¶µƒ «3√Îµƒ Refresh Time)
- 633   4                Average_Counts[i][Average_Times[i]]=Real_Count[i];
- 634   4                Average_Times[i]+=1;
- 635   4                if(Average_Times[i]<5)
- 636   4                {
- 637   5                  switch(Average_Times[i])
- 638   5                  {
- 639   6                    case 1: Real_Count_Display[i]=Average_Counts[i][0]; break;
- 640   6                    case 2: Real_Count_Display[i]=Average_Counts[i][0]*0.4+Average_Counts[i][1]*0.6; break;
- 641   6                    case 3: Real_Count_Display[i]=Average_Counts[i][0]*a3+Average_Counts[i][1]*a3+Average_Counts[i][2]*
+ 594   5              }
+ 595   4                Real_Count[i]*=20;//ªªÀ„Œ™CPM(◊¢“‚∂‘”¶µƒ «3√Îµƒ Refresh Time)
+ 596   4                Average_Counts[i][Average_Times[i]]=Real_Count[i];
+ 597   4                Average_Times[i]+=1;
+ 598   4                if(Average_Times[i]<5)
+ 599   4                {
+ 600   5                  switch(Average_Times[i])
+ 601   5                  {
+ 602   6                    case 1: Real_Count_Display[i]=Average_Counts[i][0]; break;
+ 603   6                    case 2: Real_Count_Display[i]=Average_Counts[i][0]*0.4+Average_Counts[i][1]*0.6; break;
+ 604   6                    case 3: Real_Count_Display[i]=Average_Counts[i][0]*a3+Average_Counts[i][1]*a3+Average_Counts[i][2]*
              -a4; break;
- 642   6                    case 4: Real_Count_Display[i]=Average_Counts[i][0]*a2+Average_Counts[i][1]*a2+Average_Counts[i][2]*
+ 605   6                    case 4: Real_Count_Display[i]=Average_Counts[i][0]*a2+Average_Counts[i][1]*a2+Average_Counts[i][2]*
              -a3+Average_Counts[i][3]*a4; break;
- 643   6                  }
- 644   5                  Display_Flag[i]=1;
- 645   5                  Channel_Display[i]=0;
- 646   5                }
- 647   4                else if(Average_Times[i]==5)
- 648   4                {
- 649   5                  Real_Count_Display[i]=Average_Counts[i][0]*a0+Average_Counts[i][1]*a1+Average_Counts[i][2]*a2+Averag
+ 606   6                  }
+ 607   5                  Display_Flag[i]=1;
+ 608   5                  Channel_Display[i]=0;
+ 609   5                }
+ 610   4                else if(Average_Times[i]==5)
+ 611   4                {
+ 612   5                  Real_Count_Display[i]=Average_Counts[i][0]*a0+Average_Counts[i][1]*a1+Average_Counts[i][2]*a2+Averag
              -e_Counts[i][3]*a3+Average_Counts[i][4]*a4;
- 650   5                  for(j=0;j<4;j++)
- 651   5                  {
- 652   6                    Average_Counts[i][j]=Average_Counts[i][j+1];
- 653   6                  }
- 654   5                  Average_Times[i]-=1;//Œ™¡À»√¥Œ ˝
- 655   5                  Display_Flag[i]=1;
- 656   5                  Channel_Display[i]=0;
- 657   5                }
- 658   4                //if(Count_Times[i]==2)
- 659   4                //{
- 660   4                //  Average_Counts[i][Average_Times[i]]=Real_Count[i];//Ω´º∆ ˝¬ ∏≥÷µ∏¯∆Ωæ˘÷µ
- 661   4                //  Average_Times[i]+=1;//∆Ωª¨∆Ωæ˘¥Œ ˝º”1
- 662   4                //  Count_Times[i]=0;
- 663   4                //  Real_Count[i]=0;
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 14  
+ 613   5                  for(j=0;j<4;j++)
+ 614   5                  {
+ 615   6                    Average_Counts[i][j]=Average_Counts[i][j+1];
+ 616   6                  }
+ 617   5                  Average_Times[i]-=1;//Œ™¡À»√¥Œ ˝
+ 618   5                  Display_Flag[i]=1;
+ 619   5                  Channel_Display[i]=0;
+ 620   5                }
+ 621   4                //if(Count_Times[i]==2)
+ 622   4                //{
+ 623   4                //  Average_Counts[i][Average_Times[i]]=Real_Count[i];//Ω´º∆ ˝¬ ∏≥÷µ∏¯∆Ωæ˘÷µ
+ 624   4                //  Average_Times[i]+=1;//∆Ωª¨∆Ωæ˘¥Œ ˝º”1
+ 625   4                //  Count_Times[i]=0;
+ 626   4                //  Real_Count[i]=0;
+ 627   4                //}
+ 628   4                //if((Average_Times[i]>=2)&&(Average_Times[i]<=5))//‘⁄”–2∏ˆº∆ ˝÷µ∫Ûø™ ºÀ„∆Ωæ˘÷µ≤¢œ‘ æ
+ 629   4                //{
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 13  
 
- 664   4                //}
- 665   4                //if((Average_Times[i]>=2)&&(Average_Times[i]<=5))//‘⁄”–2∏ˆº∆ ˝÷µ∫Ûø™ ºÀ„∆Ωæ˘÷µ≤¢œ‘ æ
- 666   4                //{
- 667   4                  //for(j=0;j<Average_Times[i];j++)
- 668   4                  //{
- 669   4                    //Real_Count_Display[i]+=(float)(Average_Counts[i][j]);
- 670   4                  //}
- 671   4                  //Real_Count_Display[i]/=(float)(Average_Times[i]);
- 672   4                  //Real_Count_Display[i]*=(60/(Refresh_Time*2));//“ÚŒ™“™ªªÀ„≥…CPM
- 673   4                  //Display_Flag[i]=1;//‘ –Ìœ‘ æ
- 674   4                  //Channel_Display[i]=0;
- 675   4                  //if(Average_Times[i]==5)
- 676   4                  //{
- 677   4                    //for(j=0;j<(Average_Times[i]-1);j++)
- 678   4                    //{
- 679   4                      //Average_Counts[i][j]=Average_Counts[i][j+1];
- 680   4                    //}
- 681   4                    //Average_Times[i]-=1;//Œ™¡À»√¥Œ ˝
- 682   4                  //}
- 683   4                //}
- 684   4                //if((Display_Flag[i]==1)&&((Real_Count_Display[i]/60)>1.32)&&(Channel_Detector[i][0]==Channel_Detect
+ 630   4                  //for(j=0;j<Average_Times[i];j++)
+ 631   4                  //{
+ 632   4                    //Real_Count_Display[i]+=(float)(Average_Counts[i][j]);
+ 633   4                  //}
+ 634   4                  //Real_Count_Display[i]/=(float)(Average_Times[i]);
+ 635   4                  //Real_Count_Display[i]*=(60/(Refresh_Time*2));//“ÚŒ™“™ªªÀ„≥…CPM
+ 636   4                  //Display_Flag[i]=1;//‘ –Ìœ‘ æ
+ 637   4                  //Channel_Display[i]=0;
+ 638   4                  //if(Average_Times[i]==5)
+ 639   4                  //{
+ 640   4                    //for(j=0;j<(Average_Times[i]-1);j++)
+ 641   4                    //{
+ 642   4                      //Average_Counts[i][j]=Average_Counts[i][j+1];
+ 643   4                    //}
+ 644   4                    //Average_Times[i]-=1;//Œ™¡À»√¥Œ ˝
+ 645   4                  //}
+ 646   4                //}
+ 647   4                //if((Display_Flag[i]==1)&&((Real_Count_Display[i]/60)>1.32)&&(Channel_Detector[i][0]==Channel_Detect
              -or[i][1]))//¡ø≥Ã«–ªª
- 685   4                //{
- 686   4                  //Channel_Detector[i][0]=Channel_Detector[i][1];
- 687   4                  //Channel_Detector[i][1]=1;
- 688   4                  //Display_Flag[i]=0;
- 689   4                  //Var_Signal1=Var_Signal1|Svar1[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨Œ™∏ﬂµ
+ 648   4                //{
+ 649   4                  //Channel_Detector[i][0]=Channel_Detector[i][1];
+ 650   4                  //Channel_Detector[i][1]=1;
+ 651   4                  //Display_Flag[i]=0;
+ 652   4                  //Var_Signal1=Var_Signal1|Svar1[i];                                       //øÿ÷∆–≈∫≈1Ω”º∆ ˝π‹£¨Œ™∏ﬂµ
              -Á∆Ω
- 690   4                        //Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î 
+ 653   4                        //Var_Signal2=Var_Signal2&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î 
              -“10(8),µÕµÁ∆Ω
- 691   4                        //Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î 
+ 654   4                        //Var_Signal3=Var_Signal3&Svar0[i];                                       //øÿ÷∆–≈∫≈2Ω”µÁ¿Î 
              -“10(6),µÕµÁ∆Ω
- 692   4                //}
- 693   4            }
- 694   3          }
- 695   2          else if(Channel_Detector[i][0]!=Channel_Detector[i][1])//µ±«∞∫Û¡Ω¥Œº∆ ˝µƒ¡ø≥Ã≤ª“ª—˘
- 696   2          {
- 697   3            if((Channel_Detector[i][1]==4)&&(Calculated[i]==0))//DL3¡ø≥Ã£¨∂® ±º∆ ˝“ª√Î£¨÷±Ω””√¿¥º∆À„
- 698   3            {
- 699   4              for(k=0;k<=2;k++)//≥ı ºªØµ•¥ŒÃ¯µµ≈–∂œ±‰¡ø£¨∑¿÷π“‚Õ‚Ωµµµ
- 700   4              {
- 701   5                Count[i][k]=1000*Refresh_Time;//“ª√Îº∆ ˝ π∆‰≤ªªªµµ
- 702   5              }
- 703   4              Real_Count[i]=0;//Ã¯◊™µΩ¥À¡ø≥Ã–Ë“™«Â¡„
- 704   4              if(i<7)//«∞6∏ˆÃΩÕ∑∫Õµ⁄∆ﬂ∏ˆÃΩÕ∑»°º∆ ˝Œª÷√≤ª“ª—˘
- 705   4              {
- 706   5      <<<<<<< Updated upstream
-*** ERROR C141 IN LINE 706 OF 8253count.c: syntax error near '<<', expected 'hdata'
-*** ERROR C202 IN LINE 706 OF 8253count.c: 'Updated': undefined identifier
- 707   5                Count[i][2]=buf[4*i+5]*256+buf[4*i+4];
- 708   5                Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]);
+ 655   4                //}
+ 656   4            }
+ 657   3          }
+ 658   2          else if(Channel_Detector[i][0]!=Channel_Detector[i][1])//µ±«∞∫Û¡Ω¥Œº∆ ˝µƒ¡ø≥Ã≤ª“ª—˘
+ 659   2          {
+ 660   3            if((Channel_Detector[i][1]==4)&&(Calculated[i]==0))//DL3¡ø≥Ã£¨∂® ±º∆ ˝“ª√Î£¨÷±Ω””√¿¥º∆À„
+ 661   3            {
+ 662   4              for(k=0;k<=2;k++)//≥ı ºªØµ•¥ŒÃ¯µµ≈–∂œ±‰¡ø£¨∑¿÷π“‚Õ‚Ωµµµ
+ 663   4              {
+ 664   5                Count[i][k]=1000*Refresh_Time;//“ª√Îº∆ ˝ π∆‰≤ªªªµµ
+ 665   5              }
+ 666   4              Real_Count[i]=0;//Ã¯◊™µΩ¥À¡ø≥Ã–Ë“™«Â¡„
+ 667   4              if(i<7)//«∞6∏ˆÃΩÕ∑∫Õµ⁄∆ﬂ∏ˆÃΩÕ∑»°º∆ ˝Œª÷√≤ª“ª—˘
+ 668   4              {
+ 669   5                Count[i][2]=buf[4*i+5]*256+buf[4*i+4]-1;
+ 670   5                Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]-1);
+ 671   5              }
+ 672   4              else if(i==7)//«∞6∏ˆÃΩÕ∑∫Õµ⁄∆ﬂ∏ˆÃΩÕ∑»°º∆ ˝Œª÷√≤ª“ª—˘
+ 673   4              {
+ 674   5                Count[i][2]=buf[31]*256+buf[30]-1;
+ 675   5                Real_Count[i]=(uint)(buf[31]*256+buf[30]-1);
+ 676   5              }
+ 677   4              Calculated[i]=1;//º∆À„π˝±Í÷æ
+ 678   4              Real_Count_Display[i]=(float)((Real_Count[i]*5)/Refresh_Time);
+ 679   4              Display_Flag[i]=1;//÷±Ω”‘ –Ìœ‘ æ
+ 680   4              Channel_Display[i]=4;
+ 681   4              Channel_Detector[i][0]=Channel_Detector[i][1];//∏¸–¬¡ø≥Ã¿˙ ∑◊¥Ã¨
+ 682   4            }
+ 683   3            if((Channel_Detector[i][1]==3)&&(Calculated[i]==0))//DL2¡ø≥Ã£¨¡Ω¥Œ∂® ±º∆ ˝“ª√Îœ‡º”
+ 684   3            {
+ 685   4              for(k=0;k<=2;k++)
+ 686   4              {
+ 687   5                Count[i][k]=2000*Refresh_Time;//“ª√Îº∆ ˝ π∆‰≤ªªªµµ
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 14  
+
+ 688   5              }
+ 689   4              Real_Count[i]=0;//Ã¯◊™¡ø≥Ã∫Û–Ë“™«Â¡„
+ 690   4              Display_Flag[i]=0;//œ‘ æº∞ªªµ≤±Í÷æ«Â¡„
+ 691   4              if(i<7)//«∞6∏ˆÃΩÕ∑∫Õµ⁄∆ﬂ∏ˆÃΩÕ∑»°º∆ ˝Œª÷√≤ª“ª—˘
+ 692   4              {
+ 693   5                Count[i][2]=buf[4*i+5]*256+buf[4*i+4]-1;
+ 694   5                Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]-1);
+ 695   5              }
+ 696   4              else if(i==7)//«∞6∏ˆÃΩÕ∑∫Õµ⁄∆ﬂ∏ˆÃΩÕ∑»°º∆ ˝Œª÷√≤ª“ª—˘
+ 697   4              {
+ 698   5                Count[i][2]=buf[31]*256+buf[30]-1;
+ 699   5                Real_Count[i]=(uint)(buf[31]*256+buf[30]-1);
+ 700   5              }
+ 701   4              Calculated[i]=1;//º∆À„π˝±Í÷æ
+ 702   4              Channel_Detector[i][0]=Channel_Detector[i][1];//∏¸–¬¡ø≥Ã¿˙ ∑◊¥Ã¨
+ 703   4            }
+ 704   3            if((Channel_Detector[i][1]==2)&&(Calculated[i]==0))//DL1¡ø≥Ã£¨5¥Œ∂® ±º∆ ˝“ª√Îœ‡º”
+ 705   3            {
+ 706   4              for(k=0;k<=2;k++)
+ 707   4              {
+ 708   5                Count[i][k]=2000*Refresh_Time;//“ª√Îº∆ ˝ π∆‰≤ªªªµµ
  709   5              }
- 710   4              else if(i==7)//«∞6∏ˆÃΩÕ∑∫Õµ⁄∆ﬂ∏ˆÃΩÕ∑»°º∆ ˝Œª÷√≤ª“ª—˘
- 711   4              {
- 712   5                Count[i][2]=buf[31]*256+buf[30];
- 713   5                Real_Count[i]=(uint)(buf[31]*256+buf[30]);
- 714   5      =======
-*** ERROR C141 IN LINE 714 OF 8253count.c: syntax error near '==', expected '__asm'
- 715   5                Count[i][2]=buf[4*i+5]*256+buf[4*i+4]-1;
- 716   5                Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]-1);
- 717   5              }
- 718   4              else if(i==7)//«∞6∏ˆÃΩÕ∑∫Õµ⁄∆ﬂ∏ˆÃΩÕ∑»°º∆ ˝Œª÷√≤ª“ª—˘
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 15  
-
- 719   4              {
- 720   5                Count[i][2]=buf[31]*256+buf[30]-1;
- 721   5                Real_Count[i]=(uint)(buf[31]*256+buf[30]-1);
- 722   5      >>>>>>> Stashed changes
-*** ERROR C141 IN LINE 722 OF 8253count.c: syntax error near '>>', expected '__asm'
-*** ERROR C202 IN LINE 722 OF 8253count.c: 'Stashed': undefined identifier
+ 710   4              Real_Count[i]=0;//Ã¯◊™¡ø≥Ã∫Û–Ë“™«Â¡„
+ 711   4              Display_Flag[i]=0;//œ‘ æº∞ªªµ≤±Í÷æ«Â¡„
+ 712   4              if(i<7)//«∞6∏ˆÃΩÕ∑∫Õµ⁄∆ﬂ∏ˆÃΩÕ∑»°º∆ ˝Œª÷√≤ª“ª—˘
+ 713   4              {
+ 714   5                Count[i][2]=buf[4*i+5]*256+buf[4*i+4]-1;
+ 715   5                Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]-1);
+ 716   5              }
+ 717   4              else if(i==7)//«∞6∏ˆÃΩÕ∑∫Õµ⁄∆ﬂ∏ˆÃΩÕ∑»°º∆ ˝Œª÷√≤ª“ª—˘
+ 718   4              {
+ 719   5                Count[i][2]=buf[31]*256+buf[30]-1;
+ 720   5                Real_Count[i]=(uint)(buf[31]*256+buf[30]-1);
+ 721   5                Channel_Detector[i][1]=3;
+ 722   5                Channel_Detector[i][0]=3;
  723   5              }
- 724   4              Calculated[i]=1;//º∆À„π˝±Í÷æ
- 725   4              Real_Count_Display[i]=(float)((Real_Count[i]*5)/Refresh_Time);
-*** ERROR C215 IN LINE 725 OF 8253count.c: illegal type conversion
- 726   4              Display_Flag[i]=1;//÷±Ω”‘ –Ìœ‘ æ
- 727   4              Channel_Display[i]=4;
- 728   4              Channel_Detector[i][0]=Channel_Detector[i][1];//∏¸–¬¡ø≥Ã¿˙ ∑◊¥Ã¨
- 729   4            }
- 730   3            if((Channel_Detector[i][1]==3)&&(Calculated[i]==0))//DL2¡ø≥Ã£¨¡Ω¥Œ∂® ±º∆ ˝“ª√Îœ‡º”
- 731   3            {
- 732   4              for(k=0;k<=2;k++)
- 733   4              {
- 734   5                Count[i][k]=2000*Refresh_Time;//“ª√Îº∆ ˝ π∆‰≤ªªªµµ
- 735   5              }
- 736   4              Real_Count[i]=0;//Ã¯◊™¡ø≥Ã∫Û–Ë“™«Â¡„
- 737   4              Display_Flag[i]=0;//œ‘ æº∞ªªµ≤±Í÷æ«Â¡„
- 738   4              if(i<7)//«∞6∏ˆÃΩÕ∑∫Õµ⁄∆ﬂ∏ˆÃΩÕ∑»°º∆ ˝Œª÷√≤ª“ª—˘
- 739   4              {
- 740   5      <<<<<<< Updated upstream
-*** ERROR C141 IN LINE 740 OF 8253count.c: syntax error near '<<', expected 'hdata'
-*** ERROR C202 IN LINE 740 OF 8253count.c: 'Updated': undefined identifier
- 741   5                Count[i][2]=buf[4*i+5]*256+buf[4*i+4];
- 742   5                Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]);
- 743   5              }
- 744   4              else if(i==7)//«∞6∏ˆÃΩÕ∑∫Õµ⁄∆ﬂ∏ˆÃΩÕ∑»°º∆ ˝Œª÷√≤ª“ª—˘
- 745   4              {
- 746   5                Count[i][2]=buf[31]*256+buf[30];
- 747   5                Real_Count[i]=(uint)(buf[31]*256+buf[30]);
- 748   5      =======
-*** ERROR C141 IN LINE 748 OF 8253count.c: syntax error near '==', expected '__asm'
- 749   5                Count[i][2]=buf[4*i+5]*256+buf[4*i+4]-1;
- 750   5                Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]-1);
- 751   5              }
- 752   4              else if(i==7)//«∞6∏ˆÃΩÕ∑∫Õµ⁄∆ﬂ∏ˆÃΩÕ∑»°º∆ ˝Œª÷√≤ª“ª—˘
- 753   4              {
- 754   5                Count[i][2]=buf[31]*256+buf[30]-1;
- 755   5                Real_Count[i]=(uint)(buf[31]*256+buf[30]-1);
- 756   5      >>>>>>> Stashed changes
-*** ERROR C141 IN LINE 756 OF 8253count.c: syntax error near '>>', expected '__asm'
-*** ERROR C202 IN LINE 756 OF 8253count.c: 'Stashed': undefined identifier
- 757   5              }
- 758   4              Calculated[i]=1;//º∆À„π˝±Í÷æ
- 759   4              Channel_Detector[i][0]=Channel_Detector[i][1];//∏¸–¬¡ø≥Ã¿˙ ∑◊¥Ã¨
- 760   4            }
- 761   3            if((Channel_Detector[i][1]==2)&&(Calculated[i]==0))//DL1¡ø≥Ã£¨5¥Œ∂® ±º∆ ˝“ª√Îœ‡º”
- 762   3            {
- 763   4              for(k=0;k<=2;k++)
- 764   4              {
- 765   5                Count[i][k]=2000*Refresh_Time;//“ª√Îº∆ ˝ π∆‰≤ªªªµµ
- 766   5              }
- 767   4              Real_Count[i]=0;//Ã¯◊™¡ø≥Ã∫Û–Ë“™«Â¡„
- 768   4              Display_Flag[i]=0;//œ‘ æº∞ªªµ≤±Í÷æ«Â¡„
- 769   4              if(i<7)//«∞6∏ˆÃΩÕ∑∫Õµ⁄∆ﬂ∏ˆÃΩÕ∑»°º∆ ˝Œª÷√≤ª“ª—˘
- 770   4              {
- 771   5      <<<<<<< Updated upstream
-*** ERROR C141 IN LINE 771 OF 8253count.c: syntax error near '<<', expected 'hdata'
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 16  
+ 724   4      
+ 725   4              Calculated[i]=1;//º∆À„π˝±Í÷æ
+ 726   4              Channel_Detector[i][0]=Channel_Detector[i][1];//∏¸–¬¡ø≥Ã¿˙ ∑◊¥Ã¨
+ 727   4            }
+ 728   3            if((Channel_Detector[i][1]==1)&&(Calculated[i]==0))//GM2¡ø≥Ã£¨10¥Œ∂® ±º∆ ˝“ª√Îœ‡º”£¨5¥Œ∆Ωª¨∆Ωæ˘
+ 729   3            {
+ 730   4              for(k=0;k<=2;k++)
+ 731   4              {
+ 732   5                Count[i][k]=1000*Refresh_Time;//“ª√Îº∆ ˝ π∆‰≤ªªªµµ
+ 733   5              }
+ 734   4              Real_Count[i]=0;//Ã¯◊™¡ø≥Ã∫Û–Ë“™«Â¡„
+ 735   4              Display_Flag[i]=0;//œ‘ æº∞ªªµ≤±Í÷æ«Â¡„
+ 736   4              Average_Times[i]=0;//∆Ωª¨∆Ωæ˘¥Œ ˝«Â¡„
+ 737   4              for(j=0;j<10;j++)
+ 738   4              {
+ 739   5                Average_Counts[i][j]=0;//∆Ωª¨∆Ωæ˘«Â¡„
+ 740   5              }
+ 741   4              Count[i][2]=buf[4*i+3]*256+buf[4*i+2]-1;
+ 742   4              Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]-1);
+ 743   4              
+ 744   4              Real_Count[i]*=20;//ªªÀ„Œ™CPM(◊¢“‚∂‘”¶µƒ «3√Îµƒ Refresh Time)
+ 745   4              Average_Counts[i][Average_Times[i]]=Real_Count[i];
+ 746   4              Average_Times[i]+=1;
+ 747   4              Real_Count_Display[i]=Average_Counts[i][Average_Times[i]];
+ 748   4              Display_Flag[i]=1;
+ 749   4              Channel_Display[i]=1;
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 15  
 
-*** ERROR C202 IN LINE 771 OF 8253count.c: 'Updated': undefined identifier
- 772   5                Count[i][2]=buf[4*i+5]*256+buf[4*i+4];
- 773   5                Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]);
- 774   5              }
- 775   4              else if(i==7)//«∞6∏ˆÃΩÕ∑∫Õµ⁄∆ﬂ∏ˆÃΩÕ∑»°º∆ ˝Œª÷√≤ª“ª—˘
- 776   4              {
- 777   5                Count[i][2]=buf[31]*256+buf[30];
- 778   5                Real_Count[i]=(uint)(buf[31]*256+buf[30]);
- 779   5      =======
-*** ERROR C141 IN LINE 779 OF 8253count.c: syntax error near '==', expected '__asm'
- 780   5                Count[i][2]=buf[4*i+5]*256+buf[4*i+4]-1;
- 781   5                Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]-1);
- 782   5              }
- 783   4              else if(i==7)//«∞6∏ˆÃΩÕ∑∫Õµ⁄∆ﬂ∏ˆÃΩÕ∑»°º∆ ˝Œª÷√≤ª“ª—˘
- 784   4              {
- 785   5                Count[i][2]=buf[31]*256+buf[30]-1;
- 786   5                Real_Count[i]=(uint)(buf[31]*256+buf[30]-1);
- 787   5      >>>>>>> Stashed changes
-*** ERROR C141 IN LINE 787 OF 8253count.c: syntax error near '>>', expected '__asm'
-*** ERROR C202 IN LINE 787 OF 8253count.c: 'Stashed': undefined identifier
- 788   5                Channel_Detector[i][1]=3;
- 789   5                Channel_Detector[i][0]=3;
- 790   5              }
- 791   4      
- 792   4              Calculated[i]=1;//º∆À„π˝±Í÷æ
- 793   4              Channel_Detector[i][0]=Channel_Detector[i][1];//∏¸–¬¡ø≥Ã¿˙ ∑◊¥Ã¨
- 794   4            }
- 795   3            if((Channel_Detector[i][1]==1)&&(Calculated[i]==0))//GM2¡ø≥Ã£¨10¥Œ∂® ±º∆ ˝“ª√Îœ‡º”£¨5¥Œ∆Ωª¨∆Ωæ˘
- 796   3            {
- 797   4              for(k=0;k<=2;k++)
- 798   4              {
- 799   5                Count[i][k]=1000*Refresh_Time;//“ª√Îº∆ ˝ π∆‰≤ªªªµµ
- 800   5              }
- 801   4              Real_Count[i]=0;//Ã¯◊™¡ø≥Ã∫Û–Ë“™«Â¡„
- 802   4              Display_Flag[i]=0;//œ‘ æº∞ªªµ≤±Í÷æ«Â¡„
- 803   4              Average_Times[i]=0;//∆Ωª¨∆Ωæ˘¥Œ ˝«Â¡„
- 804   4              for(j=0;j<10;j++)
- 805   4              {
- 806   5                Average_Counts[i][j]=0;//∆Ωª¨∆Ωæ˘«Â¡„
- 807   5              }
- 808   4      <<<<<<< Updated upstream
-*** ERROR C141 IN LINE 808 OF 8253count.c: syntax error near '<<', expected '__asm'
-*** ERROR C202 IN LINE 808 OF 8253count.c: 'Updated': undefined identifier
- 809   4              Count[i][2]=buf[4*i+3]*256+buf[4*i+2];
- 810   4              Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]);
- 811   4      =======
-*** ERROR C141 IN LINE 811 OF 8253count.c: syntax error near '==', expected '__asm'
- 812   4              Count[i][2]=buf[4*i+3]*256+buf[4*i+2]-1;
- 813   4              Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]-1);
- 814   4      >>>>>>> Stashed changes
-*** ERROR C141 IN LINE 814 OF 8253count.c: syntax error near '>>', expected '__asm'
-*** ERROR C202 IN LINE 814 OF 8253count.c: 'Stashed': undefined identifier
- 815   4              
- 816   4              Real_Count[i]*=20;//ªªÀ„Œ™CPM(◊¢“‚∂‘”¶µƒ «3√Îµƒ Refresh Time)
- 817   4              Average_Counts[i][Average_Times[i]]=Real_Count[i];
- 818   4              Average_Times[i]+=1;
- 819   4              Real_Count_Display[i]=Average_Counts[i][Average_Times[i]];
- 820   4              Display_Flag[i]=1;
- 821   4              Channel_Display[i]=1;
- 822   4              Calculated[i]=1;//º∆À„π˝±Í÷æ
- 823   4              Channel_Detector[i][0]=Channel_Detector[i][1];//∏¸–¬¡ø≥Ã¿˙ ∑◊¥Ã¨
- 824   4            }
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 17  
-
- 825   3            if((Channel_Detector[i][1]==0)&&(Calculated[i]==0))//GM2¡ø≥Ã£¨10¥Œ∂® ±º∆ ˝“ª√Îœ‡º”£¨5¥Œ∆Ωª¨∆Ωæ˘
- 826   3            {
- 827   4              for(k=0;k<=2;k++)
- 828   4              {
- 829   5                Count[i][k]=1*Refresh_Time;//“ª√Îº∆ ˝ π∆‰≤ªªªµµ
- 830   5              }
- 831   4              Real_Count[i]=0;//Ã¯◊™¡ø≥Ã∫Û–Ë“™«Â¡„
- 832   4              Display_Flag[i]=0;//œ‘ æº∞ªªµ≤±Í÷æ«Â¡„
- 833   4              Average_Times[i]=0;//∆Ωª¨∆Ωæ˘¥Œ ˝«Â¡„
- 834   4              for(j=0;j<10;j++)
- 835   4              {
- 836   5                Average_Counts[i][j]=0;//∆Ωª¨∆Ωæ˘«Â¡„
- 837   5              }
- 838   4      <<<<<<< Updated upstream
-*** ERROR C141 IN LINE 838 OF 8253count.c: syntax error near '<<', expected '__asm'
-*** ERROR C202 IN LINE 838 OF 8253count.c: 'Updated': undefined identifier
- 839   4              Count[i][2]=buf[4*i+3]*256+buf[4*i+2];
- 840   4              Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]);
- 841   4      =======
-*** ERROR C141 IN LINE 841 OF 8253count.c: syntax error near '==', expected '__asm'
- 842   4              Count[i][2]=buf[4*i+3]*256+buf[4*i+2]-1;
- 843   4              Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]-1);
- 844   4      >>>>>>> Stashed changes
-*** ERROR C141 IN LINE 844 OF 8253count.c: syntax error near '>>', expected '__asm'
-*** ERROR C202 IN LINE 844 OF 8253count.c: 'Stashed': undefined identifier
- 845   4              Real_Count[i]*=20;//ªªÀ„Œ™CPM(◊¢“‚∂‘”¶µƒ «3√Îµƒ Refresh Time)
- 846   4              Average_Counts[i][Average_Times[i]]=Real_Count[i];
- 847   4              Average_Times[i]+=1;
- 848   4              Real_Count_Display[i]=Average_Counts[i][Average_Times[i]];
- 849   4              Display_Flag[i]=1;
- 850   4              Channel_Display[i]=0;
- 851   4              Calculated[i]=1;//º∆À„π˝±Í÷æ
- 852   4              Channel_Detector[i][0]=Channel_Detector[i][1];//∏¸–¬¡ø≥Ã¿˙ ∑◊¥Ã¨
- 853   4            }
- 854   3          }
- 855   2        }
- 856   1        /*Ω´∏˘æ›º¡¡ø¬ ÷µ÷ÿ–¬…Ë÷√µƒÃΩÕ∑–≈∫≈∏ƒ±‰±Í÷æ÷¥––*/
- 857   1        Signal1=Var_Signal1;//ÃΩÕ∑–≈∫≈◊™±‰
- 858   1        Signal2=Var_Signal3;//2016-8-26µ˜ªªVar_Signal2,Var_Signal3£¨“ÚŒ™¡Ω’ﬂ‘⁄”≤º˛…œ±ª≈™ªÏ¡À
- 859   1        Signal3=Var_Signal2;
- 860   1        /*AC1+‘⁄’‚¿Ôbuf( Æ¡˘Œª∏ﬂµÕº∆ ˝ ˝æ›)“™◊™ªª≥…uint ¿‡–ÕµƒTdata ˝æ›,≤¢«“ÃΩÕ∑ ˝ƒø“™«Â≥˛
- 861   1        º”»Î—°ÃΩÕ∑±Í÷æ*/
- 862   1        if(measure_flag)                                                                //(1)measure_flag‘⁄Init_
+ 750   4              Calculated[i]=1;//º∆À„π˝±Í÷æ
+ 751   4              Channel_Detector[i][0]=Channel_Detector[i][1];//∏¸–¬¡ø≥Ã¿˙ ∑◊¥Ã¨
+ 752   4            }
+ 753   3            if((Channel_Detector[i][1]==0)&&(Calculated[i]==0))//GM2¡ø≥Ã£¨10¥Œ∂® ±º∆ ˝“ª√Îœ‡º”£¨5¥Œ∆Ωª¨∆Ωæ˘
+ 754   3            {
+ 755   4              for(k=0;k<=2;k++)
+ 756   4              {
+ 757   5                Count[i][k]=1*Refresh_Time;//“ª√Îº∆ ˝ π∆‰≤ªªªµµ
+ 758   5              }
+ 759   4              Real_Count[i]=0;//Ã¯◊™¡ø≥Ã∫Û–Ë“™«Â¡„
+ 760   4              Display_Flag[i]=0;//œ‘ æº∞ªªµ≤±Í÷æ«Â¡„
+ 761   4              Average_Times[i]=0;//∆Ωª¨∆Ωæ˘¥Œ ˝«Â¡„
+ 762   4              for(j=0;j<10;j++)
+ 763   4              {
+ 764   5                Average_Counts[i][j]=0;//∆Ωª¨∆Ωæ˘«Â¡„
+ 765   5              }
+ 766   4              Count[i][2]=buf[4*i+3]*256+buf[4*i+2]-1;
+ 767   4              Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]-1);
+ 768   4              Real_Count[i]*=20;//ªªÀ„Œ™CPM(◊¢“‚∂‘”¶µƒ «3√Îµƒ Refresh Time)
+ 769   4              Average_Counts[i][Average_Times[i]]=Real_Count[i];
+ 770   4              Average_Times[i]+=1;
+ 771   4              Real_Count_Display[i]=Average_Counts[i][Average_Times[i]];
+ 772   4              Display_Flag[i]=1;
+ 773   4              Channel_Display[i]=0;
+ 774   4              Calculated[i]=1;//º∆À„π˝±Í÷æ
+ 775   4              Channel_Detector[i][0]=Channel_Detector[i][1];//∏¸–¬¡ø≥Ã¿˙ ∑◊¥Ã¨
+ 776   4            }
+ 777   3          }
+ 778   2        }
+ 779   1        /*Ω´∏˘æ›º¡¡ø¬ ÷µ÷ÿ–¬…Ë÷√µƒÃΩÕ∑–≈∫≈∏ƒ±‰±Í÷æ÷¥––*/
+ 780   1        Signal1=Var_Signal1;//ÃΩÕ∑–≈∫≈◊™±‰
+ 781   1        Signal2=Var_Signal3;//2016-8-26µ˜ªªVar_Signal2,Var_Signal3£¨“ÚŒ™¡Ω’ﬂ‘⁄”≤º˛…œ±ª≈™ªÏ¡À
+ 782   1        Signal3=Var_Signal2;
+ 783   1        /*AC1+‘⁄’‚¿Ôbuf( Æ¡˘Œª∏ﬂµÕº∆ ˝ ˝æ›)“™◊™ªª≥…uint ¿‡–ÕµƒTdata ˝æ›,≤¢«“ÃΩÕ∑ ˝ƒø“™«Â≥˛
+ 784   1        º”»Î—°ÃΩÕ∑±Í÷æ*/
+ 785   1        if(measure_flag)                                                                //(1)measure_flag‘⁄Init_
              -RAM÷–≥ı ºªØ±‰Œ™1
- 863   1        {
- 864   2          for(j=0;j<8;j++)                                                       //(2)¥Êº∆ ˝«¯Œ™buf[3]-buf[32];Ã
+ 786   1        {
+ 787   2          for(j=0;j<8;j++)                                                       //(2)¥Êº∆ ˝«¯Œ™buf[3]-buf[32];Ã
              -ΩÕ∑∏ˆ ˝±Í÷æ
- 865   2          {
- 866   3            Tdata=(uint)(Count[j][2]/3);                                                        //ÃΩÕ∑º∆ ˝¬ uint
+ 788   2          {
+ 789   3            Tdata=(uint)(Count[j][2]/3);                                                        //ÃΩÕ∑º∆ ˝¬ uint
              - ,◊œ…´Œ™»´æ÷±‰¡ø£¨¿∂…´Œ™æ÷≤ø±‰¡ø
- 867   3            jtemp=0;                                                                    //float
- 868   3            yudata=0;                                                                   //double
- 869   3            mtemp=0;                                                                    //double
- 870   3            yu=0;                                                                       //double
- 871   3            Tbcd[5]=0;                                                                  //uchar  ˝◊Èπ≤12Œª£¨≤‚µ√
+ 790   3            jtemp=0;                                                                    //float
+ 791   3            yudata=0;                                                                   //double
+ 792   3            mtemp=0;                                                                    //double
+ 793   3            yu=0;                                                                       //double
+ 794   3            Tbcd[5]=0;                                                                  //uchar  ˝◊Èπ≤12Œª£¨≤‚µ√
              -µƒ ˝æ›µƒbcd¬Î ˝◊È
- 872   3            Tbcd[4]=0;
- 873   3            Tbcd[3]=0;
- 874   3            Tbcd[2]=0;
- 875   3            Tbcd[1]=0;
- 876   3            Tbcd[0]=0;
- 877   3            m=j*10;                                                                     //±£¡Ù
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 18  
-
- 878   3            /*********≈–∂œº∆ ˝¬ ***********/
- 879   3            /*********«∞∆ﬂ∏ˆÃΩÕ∑ÃΩ≤‚∆˜…Ë÷√£¨»°µ√8253º∆ ˝÷µº«¬º‘⁄Tdata*/
- 880   3          if(j<7)                                                                     //(3)«∞∆ﬂ∏ˆÃΩÕ∑º»”–µÁ¿Î ““≤
+ 795   3            Tbcd[4]=0;
+ 796   3            Tbcd[3]=0;
+ 797   3            Tbcd[2]=0;
+ 798   3            Tbcd[1]=0;
+ 799   3            Tbcd[0]=0;
+ 800   3            m=j*10;                                                                     //±£¡Ù
+ 801   3            /*********≈–∂œº∆ ˝¬ ***********/
+ 802   3            /*********«∞∆ﬂ∏ˆÃΩÕ∑ÃΩ≤‚∆˜…Ë÷√£¨»°µ√8253º∆ ˝÷µº«¬º‘⁄Tdata*/
+ 803   3          if(j<7)                                                                     //(3)«∞∆ﬂ∏ˆÃΩÕ∑º»”–µÁ¿Î ““≤
              -”–º∆ ˝∆˜£¨µ⁄∞À∏ˆ÷ª”–µÁ¿Î “π ∑÷ø™¥¶¿Ì
- 881   3            {
- 882   4                Display_Flag[j]=0;
- 883   4            if(Channel_Display[j]==0)
- 884   4            {
- 885   5              Para[0]=(float)(DataThouth[m+1]*1000+DataCent[m+1]*100+DataTenth[m+1]*10+DataGe[m+1]);//µ˜Ω⁄≤Œ ˝
-*** ERROR C215 IN LINE 885 OF 8253count.c: illegal type conversion
- 886   5              Para[1]=(float)((float)(DataThouth[m+2]*1000+DataCent[m+2]*100+DataTenth[m+2]*10+DataGe[m+2])/1000000)
+ 804   3            {
+ 805   4                Display_Flag[j]=0;
+ 806   4            if(Channel_Display[j]==0)
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 16  
+
+ 807   4            {
+ 808   5              Para[0]=(float)(DataThouth[m+1]*1000+DataCent[m+1]*100+DataTenth[m+1]*10+DataGe[m+1]);//µ˜Ω⁄≤Œ ˝
+ 809   5              Para[1]=(float)((float)(DataThouth[m+2]*1000+DataCent[m+2]*100+DataTenth[m+2]*10+DataGe[m+2])/1000000)
              -;
-*** ERROR C215 IN LINE 886 OF 8253count.c: illegal type conversion
- 887   5              DoseRata[j]=(float)(Para[1]*((uint)Real_Count_Display[j]-Para[0]));
-*** ERROR C215 IN LINE 887 OF 8253count.c: illegal type conversion
- 888   5            }
- 889   4            else if(Channel_Display[j]==1)
- 890   4            {
- 891   5              Para[2]=(float)(DataThouth[m+3]*1000+DataCent[m+3]*100+DataTenth[m+3]*10+DataGe[m+3]);//µ˜Ω⁄≤Œ ˝
-*** ERROR C215 IN LINE 891 OF 8253count.c: illegal type conversion
- 892   5                  Para[3]=(float)((float)(DataThouth[m+4]*1000+DataCent[m+4]*100+DataTenth[m+4]*10+DataGe[m+4])/10
+ 810   5              DoseRata[j]=(float)(Para[1]*((uint)Real_Count_Display[j]-Para[0]));
+ 811   5            }
+ 812   4            else if(Channel_Display[j]==1)
+ 813   4            {
+ 814   5              Para[2]=(float)(DataThouth[m+3]*1000+DataCent[m+3]*100+DataTenth[m+3]*10+DataGe[m+3]);//µ˜Ω⁄≤Œ ˝
+ 815   5                  Para[3]=(float)((float)(DataThouth[m+4]*1000+DataCent[m+4]*100+DataTenth[m+4]*10+DataGe[m+4])/10
              -00000);
-*** ERROR C215 IN LINE 892 OF 8253count.c: illegal type conversion
- 893   5              DoseRata[j]=(float)(Para[3]*((uint)Real_Count_Display[j]-Para[2]));
-*** ERROR C215 IN LINE 893 OF 8253count.c: illegal type conversion
- 894   5            }
- 895   4            else if(Channel_Display[j]==2)
- 896   4            {
- 897   5              Para[4]=(float)(DataThouth[m+5]*1000+DataCent[m+5]*100+DataTenth[m+5]*10+DataGe[m+5]);//µ˜Ω⁄≤Œ ˝
-*** ERROR C215 IN LINE 897 OF 8253count.c: illegal type conversion
- 898   5                  Para[5]=(float)((float)(DataThouth[m+6]*1000+DataCent[m+6]*100+DataTenth[m+6]*10+DataGe[m+6])/10
+ 816   5              DoseRata[j]=(float)(Para[3]*((uint)Real_Count_Display[j]-Para[2]));
+ 817   5            }
+ 818   4            else if(Channel_Display[j]==2)
+ 819   4            {
+ 820   5              Para[4]=(float)(DataThouth[m+5]*1000+DataCent[m+5]*100+DataTenth[m+5]*10+DataGe[m+5]);//µ˜Ω⁄≤Œ ˝
+ 821   5                  Para[5]=(float)((float)(DataThouth[m+6]*1000+DataCent[m+6]*100+DataTenth[m+6]*10+DataGe[m+6])/10
              -00);
-*** ERROR C215 IN LINE 898 OF 8253count.c: illegal type conversion
- 899   5              DoseRata[j]=(float)(Para[5]*((uint)Real_Count_Display[j]-Para[4]));
-*** ERROR C215 IN LINE 899 OF 8253count.c: illegal type conversion
- 900   5            }
- 901   4            else if(Channel_Display[j]==3)
- 902   4            {
- 903   5              Para[6]=(float)(DataThouth[m+7]*1000+DataCent[m+7]*100+DataTenth[m+7]*10+DataGe[m+7]);//µ˜Ω⁄≤Œ ˝
-*** ERROR C215 IN LINE 903 OF 8253count.c: illegal type conversion
- 904   5                  Para[7]=(float)((float)(DataThouth[m+8]*1000+DataCent[m+8]*100+DataTenth[m+8]*10+DataGe[m+8])/10
+ 822   5              DoseRata[j]=(float)(Para[5]*((uint)Real_Count_Display[j]-Para[4]));
+ 823   5            }
+ 824   4            else if(Channel_Display[j]==3)
+ 825   4            {
+ 826   5              Para[6]=(float)(DataThouth[m+7]*1000+DataCent[m+7]*100+DataTenth[m+7]*10+DataGe[m+7]);//µ˜Ω⁄≤Œ ˝
+ 827   5                  Para[7]=(float)((float)(DataThouth[m+8]*1000+DataCent[m+8]*100+DataTenth[m+8]*10+DataGe[m+8])/10
              -);
-*** ERROR C215 IN LINE 904 OF 8253count.c: illegal type conversion
- 905   5              DoseRata[j]=(float)(Para[7]*((uint)Real_Count_Display[j]-Para[6]));
-*** ERROR C215 IN LINE 905 OF 8253count.c: illegal type conversion
- 906   5            }
- 907   4            else if(Channel_Display[j]==4)
- 908   4            {
- 909   5              Para[8]=(float)(DataThouth[m+9]*1000+DataCent[m+9]*100+DataTenth[m+9]*10+DataGe[m+9]);//µ˜Ω⁄≤Œ ˝
-*** ERROR C215 IN LINE 909 OF 8253count.c: illegal type conversion
- 910   5                  Para[9]=(float)((float)((DataThouth[m+10]*1000+DataCent[m+10]*100+DataTenth[m+10]*10+DataGe[m+10
+ 828   5              DoseRata[j]=(float)(Para[7]*((uint)Real_Count_Display[j]-Para[6]));
+ 829   5            }
+ 830   4            else if(Channel_Display[j]==4)
+ 831   4            {
+ 832   5              Para[8]=(float)(DataThouth[m+9]*1000+DataCent[m+9]*100+DataTenth[m+9]*10+DataGe[m+9]);//µ˜Ω⁄≤Œ ˝
+ 833   5                  Para[9]=(float)((float)((DataThouth[m+10]*1000+DataCent[m+10]*100+DataTenth[m+10]*10+DataGe[m+10
              -])*10));
-*** ERROR C215 IN LINE 910 OF 8253count.c: illegal type conversion
- 911   5              DoseRata[j]=(float)(Para[9]*((uint)Real_Count_Display[j]-Para[8]));
-*** ERROR C215 IN LINE 911 OF 8253count.c: illegal type conversion
- 912   5            }
- 913   4          }
- 914   3          else if(j==7)
- 915   3          {
- 916   4            Display_Flag[j]=0;
- 917   4            //Txtext(10,13+(j*58),"Dh");
- 918   4            if(Channel_Display[j]==3)
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 19  
-
- 919   4            {
- 920   5              Para[0]=(float)(DataThouth[m+1]*1000+DataCent[m+1]*100+DataTenth[m+1]*10+DataGe[m+1]);//µ˜Ω⁄≤Œ ˝
-*** ERROR C215 IN LINE 920 OF 8253count.c: illegal type conversion
- 921   5              Para[1]=(float)((float)(DataThouth[m+2]*1000+DataCent[m+2]*100+DataTenth[m+2]*10+DataGe[m+2])/10);
-*** ERROR C215 IN LINE 921 OF 8253count.c: illegal type conversion
- 922   5              DoseRata[j]=(float)(Para[1]*((uint)Real_Count_Display[j]-Para[0]));
-*** ERROR C215 IN LINE 922 OF 8253count.c: illegal type conversion
- 923   5            }
- 924   4            else if(Channel_Display[j]==4)
- 925   4            {
- 926   5              Para[2]=(float)(DataThouth[m+3]*1000+DataCent[m+3]*100+DataTenth[m+3]*10+DataGe[m+3]);//µ˜Ω⁄≤Œ ˝
-*** ERROR C215 IN LINE 926 OF 8253count.c: illegal type conversion
- 927   5              Para[3]=(float)((float)(DataThouth[m+4]*1000+DataCent[m+4]*100+DataTenth[m+4]*10+DataGe[m+4])*10);
-*** ERROR C215 IN LINE 927 OF 8253count.c: illegal type conversion
- 928   5              DoseRata[j]=(float)(Para[3]*((uint)Real_Count_Display[j]-Para[2]));
-*** ERROR C215 IN LINE 928 OF 8253count.c: illegal type conversion
- 929   5            }
- 930   4          }
- 931   3            /**********µ•ŒªªªÀ„∫ÛŒ™jtemp************/
- 932   3          if(DoseRata[j]==0)
- 933   3          {
- 934   4          Flag_dw=1;
- 935   4          }
- 936   3            if(DoseRata[j]<0)                                                         //–ﬁ∏ƒ2012.6.15Õ®π˝æ˘÷µº∆À
+ 834   5              DoseRata[j]=(float)(Para[9]*((uint)Real_Count_Display[j]-Para[8]));
+ 835   5            }
+ 836   4          }
+ 837   3          else if(j==7)
+ 838   3          {
+ 839   4            Display_Flag[j]=0;
+ 840   4            //Txtext(10,13+(j*58),"Dh");
+ 841   4            if(Channel_Display[j]==3)
+ 842   4            {
+ 843   5              Para[0]=(float)(DataThouth[m+1]*1000+DataCent[m+1]*100+DataTenth[m+1]*10+DataGe[m+1]);//µ˜Ω⁄≤Œ ˝
+ 844   5              Para[1]=(float)((float)(DataThouth[m+2]*1000+DataCent[m+2]*100+DataTenth[m+2]*10+DataGe[m+2])/10);
+ 845   5              DoseRata[j]=(float)(Para[1]*((uint)Real_Count_Display[j]-Para[0]));
+ 846   5            }
+ 847   4            else if(Channel_Display[j]==4)
+ 848   4            {
+ 849   5              Para[2]=(float)(DataThouth[m+3]*1000+DataCent[m+3]*100+DataTenth[m+3]*10+DataGe[m+3]);//µ˜Ω⁄≤Œ ˝
+ 850   5              Para[3]=(float)((float)(DataThouth[m+4]*1000+DataCent[m+4]*100+DataTenth[m+4]*10+DataGe[m+4])*10);
+ 851   5              DoseRata[j]=(float)(Para[3]*((uint)Real_Count_Display[j]-Para[2]));
+ 852   5            }
+ 853   4          }
+ 854   3            /**********µ•ŒªªªÀ„∫ÛŒ™jtemp************/
+ 855   3          if(DoseRata[j]==0)
+ 856   3          {
+ 857   4          Flag_dw=1;
+ 858   4          }
+ 859   3            if(DoseRata[j]<0)                                                         //–ﬁ∏ƒ2012.6.15Õ®π˝æ˘÷µº∆À
              -„
- 937   3            {
- 938   4              jtemp=0.0;
- 939   4            }
- 940   3            else if(DoseRata[j]>=0)                                                   //Mean_Value∆Ωæ˘÷µµ•ŒªŒ™uG
+ 860   3            {
+ 861   4              jtemp=0.0;
+ 862   4            }
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 17  
+
+ 863   3            else if(DoseRata[j]>=0)                                                   //Mean_Value∆Ωæ˘÷µµ•ŒªŒ™uG
              -y/h
- 941   3            {
- 942   4              if(DoseRata[j]<1000)                                                    //Mean_Value<1000±Ì æµ•ŒªŒ
+ 864   3            {
+ 865   4              if(DoseRata[j]<1000)                                                    //Mean_Value<1000±Ì æµ•ŒªŒ
              -™uGy/h
- 943   4              {
- 944   5                jtemp=(float)DoseRata[j];
-*** ERROR C215 IN LINE 944 OF 8253count.c: illegal type conversion
- 945   5                Flag_dw=1;
- 946   5              }
- 947   4              else if((DoseRata[j]>=1000)&&(DoseRata[j]<1000000))                   //1000<Mean_Value<1000000±Ì 
+ 866   4              {
+ 867   5                jtemp=(float)DoseRata[j];
+ 868   5                Flag_dw=1;
+ 869   5              }
+ 870   4              else if((DoseRata[j]>=1000)&&(DoseRata[j]<1000000))                   //1000<Mean_Value<1000000±Ì 
              -æmGy/h
- 948   4              {
- 949   5                jtemp=(float)(DoseRata[j]/1000);
-*** ERROR C215 IN LINE 949 OF 8253count.c: illegal type conversion
- 950   5                Flag_dw=2;
- 951   5              }
- 952   4              else if(DoseRata[j]>=1000000)                                           //Mean_Value>=1000000±Ì æG
+ 871   4              {
+ 872   5                jtemp=(float)(DoseRata[j]/1000);
+ 873   5                Flag_dw=2;
+ 874   5              }
+ 875   4              else if(DoseRata[j]>=1000000)                                           //Mean_Value>=1000000±Ì æG
              -y/h
- 953   4              {
- 954   5                jtemp=(float)(DoseRata[j]/1000000);
-*** ERROR C215 IN LINE 954 OF 8253count.c: illegal type conversion
- 955   5                Flag_dw=3;
- 956   5              }
- 957   4            }
- 958   3            /*****DCS∑¢ÀÕ ˝æ›◊º±∏****/
- 959   3            if(DoseRata[j]<0)                                                         //»Ùº∆À„º¡¡ø–°”⁄¡„œÚDCS∑¢À
+ 876   4              {
+ 877   5                jtemp=(float)(DoseRata[j]/1000000);
+ 878   5                Flag_dw=3;
+ 879   5              }
+ 880   4            }
+ 881   3            /*****DCS∑¢ÀÕ ˝æ›◊º±∏****/
+ 882   3            if(DoseRata[j]<0)                                                         //»Ùº∆À„º¡¡ø–°”⁄¡„œÚDCS∑¢À
              -Õ0
- 960   3            {
- 961   4              DCS_Send[j*4+4]=0x30;
- 962   4              DCS_Send[j*4+5]=0x30;
- 963   4              DCS_Send[j*4+6]=0x30;
- 964   4              DCS_Send[j*4+7]=0x30;
- 965   4            }
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 20  
+ 883   3            {
+ 884   4              DCS_Send[j*4+4]=0x30;
+ 885   4              DCS_Send[j*4+5]=0x30;
+ 886   4              DCS_Send[j*4+6]=0x30;
+ 887   4              DCS_Send[j*4+7]=0x30;
+ 888   4            }
+ 889   3            else if(DoseRata[j]>=0)
+ 890   3            {
+ 891   4              if(DoseRata[j]<1)
+ 892   4              {
+ 893   5                temp=(float)DoseRata[j]*1000;
+ 894   5                DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
+ 895   5                DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
+ 896   5                DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
+ 897   5                DCS_Send[j*4+7]=0x30;
+ 898   5              }
+ 899   4              else if((DoseRata[j]>=1)&&(DoseRata[j]<10))
+ 900   4              {
+ 901   5                temp=(float)DoseRata[j]*100;
+ 902   5                DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
+ 903   5                DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
+ 904   5                DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
+ 905   5                DCS_Send[j*4+7]=0x31;
+ 906   5              }
+ 907   4              else if((DoseRata[j]>=10)&&(DoseRata[j]<100))
+ 908   4              {
+ 909   5                temp=(float)DoseRata[j]*10;
+ 910   5                DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
+ 911   5                DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
+ 912   5                DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
+ 913   5                DCS_Send[j*4+7]=0x32;
+ 914   5              }
+ 915   4              else if((DoseRata[j]>=100)&&(DoseRata[j]<1000))
+ 916   4              {
+ 917   5                temp=(float)DoseRata[j];
+ 918   5                DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
+ 919   5                DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 18  
 
- 966   3            else if(DoseRata[j]>=0)
- 967   3            {
- 968   4              if(DoseRata[j]<1)
- 969   4              {
- 970   5                temp=(float)DoseRata[j]*1000;
-*** ERROR C215 IN LINE 970 OF 8253count.c: illegal type conversion
- 971   5                DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
- 972   5                DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
- 973   5                DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
- 974   5                DCS_Send[j*4+7]=0x30;
- 975   5              }
- 976   4              else if((DoseRata[j]>=1)&&(DoseRata[j]<10))
- 977   4              {
- 978   5                temp=(float)DoseRata[j]*100;
-*** ERROR C215 IN LINE 978 OF 8253count.c: illegal type conversion
- 979   5                DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
- 980   5                DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
- 981   5                DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
- 982   5                DCS_Send[j*4+7]=0x31;
- 983   5              }
- 984   4              else if((DoseRata[j]>=10)&&(DoseRata[j]<100))
- 985   4              {
- 986   5                temp=(float)DoseRata[j]*10;
-*** ERROR C215 IN LINE 986 OF 8253count.c: illegal type conversion
- 987   5                DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
- 988   5                DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
- 989   5                DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
- 990   5                DCS_Send[j*4+7]=0x32;
- 991   5              }
- 992   4              else if((DoseRata[j]>=100)&&(DoseRata[j]<1000))
- 993   4              {
- 994   5                temp=(float)DoseRata[j];
-*** ERROR C215 IN LINE 994 OF 8253count.c: illegal type conversion
- 995   5                DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
- 996   5                DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
- 997   5                DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
- 998   5                DCS_Send[j*4+7]=0x33;
- 999   5              }
-1000   4              else if((DoseRata[j]>=1000)&&(DoseRata[j]<10000))
-1001   4              {
-1002   5                temp=(float)DoseRata[j]/10.0;
-*** ERROR C215 IN LINE 1002 OF 8253count.c: illegal type conversion
-1003   5                DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
-1004   5                DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
-1005   5                DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
-1006   5                DCS_Send[j*4+7]=0x34;
-1007   5              }
-1008   4              else if((DoseRata[j]>=10000)&&(DoseRata[j]<100000))
-1009   4              {
-1010   5                temp=(float)DoseRata[j]/100.0;
-*** ERROR C215 IN LINE 1010 OF 8253count.c: illegal type conversion
-1011   5                DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
-1012   5                DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
-1013   5                DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
-1014   5                DCS_Send[j*4+7]=0x35;
-1015   5              }
-1016   4              else if((DoseRata[j]>=100000)&&(DoseRata[j]<1000000))
-1017   4              {
-1018   5                temp=(float)DoseRata[j]/1000.0;
-*** ERROR C215 IN LINE 1018 OF 8253count.c: illegal type conversion
-1019   5                DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
-1020   5                DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 21  
-
-1021   5                DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
-1022   5                DCS_Send[j*4+7]=0x36;
-1023   5              }
-1024   4              else if((DoseRata[j]>=1000000)&&(DoseRata[j]<10000000))
-1025   4              {
-1026   5                temp=(float)DoseRata[j]/10000.0;
-*** ERROR C215 IN LINE 1026 OF 8253count.c: illegal type conversion
-1027   5                DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
-1028   5                DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
-1029   5                DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
-1030   5                DCS_Send[j*4+7]=0x37;
-1031   5              }
-1032   4              else if((DoseRata[j]>=10000000)&&(DoseRata[j]<100000000))
-1033   4              {
-1034   5                temp=(float)DoseRata[j]/100000.0;
-*** ERROR C215 IN LINE 1034 OF 8253count.c: illegal type conversion
-1035   5                DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
-1036   5                DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
-1037   5                DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
-1038   5                DCS_Send[j*4+7]=0x38;
-1039   5              }
-1040   4              else if((DoseRata[j]>=100000000)&&(DoseRata[j]<1000000000))
-1041   4              {
-1042   5                temp=(float)DoseRata[j]/1000000.0;
-*** ERROR C215 IN LINE 1042 OF 8253count.c: illegal type conversion
-1043   5                DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
-1044   5                DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
-1045   5                DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
-1046   5                DCS_Send[j*4+7]=0x39;
-1047   5              }
-1048   4            }
-1049   3            /***********º¡¡ø¬ ◊™ªªµ•Œª∫Û◊™ªª≥…ø…“‘œ‘ æµƒBCD¬Î*************/
-1050   3            if((Tbcd[5]<=9)&&(Tbcd[4]<=9)&&(Tbcd[3]<=9)&&(Tbcd[2]<=9)&&(Tbcd[1]<=9)&&(Tbcd[0]<=9))//4.21À∆∫ı∂‡”‡
+ 920   5                DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
+ 921   5                DCS_Send[j*4+7]=0x33;
+ 922   5              }
+ 923   4              else if((DoseRata[j]>=1000)&&(DoseRata[j]<10000))
+ 924   4              {
+ 925   5                temp=(float)DoseRata[j]/10.0;
+ 926   5                DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
+ 927   5                DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
+ 928   5                DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
+ 929   5                DCS_Send[j*4+7]=0x34;
+ 930   5              }
+ 931   4              else if((DoseRata[j]>=10000)&&(DoseRata[j]<100000))
+ 932   4              {
+ 933   5                temp=(float)DoseRata[j]/100.0;
+ 934   5                DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
+ 935   5                DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
+ 936   5                DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
+ 937   5                DCS_Send[j*4+7]=0x35;
+ 938   5              }
+ 939   4              else if((DoseRata[j]>=100000)&&(DoseRata[j]<1000000))
+ 940   4              {
+ 941   5                temp=(float)DoseRata[j]/1000.0;
+ 942   5                DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
+ 943   5                DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
+ 944   5                DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
+ 945   5                DCS_Send[j*4+7]=0x36;
+ 946   5              }
+ 947   4              else if((DoseRata[j]>=1000000)&&(DoseRata[j]<10000000))
+ 948   4              {
+ 949   5                temp=(float)DoseRata[j]/10000.0;
+ 950   5                DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
+ 951   5                DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
+ 952   5                DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
+ 953   5                DCS_Send[j*4+7]=0x37;
+ 954   5              }
+ 955   4              else if((DoseRata[j]>=10000000)&&(DoseRata[j]<100000000))
+ 956   4              {
+ 957   5                temp=(float)DoseRata[j]/100000.0;
+ 958   5                DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
+ 959   5                DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
+ 960   5                DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
+ 961   5                DCS_Send[j*4+7]=0x38;
+ 962   5              }
+ 963   4              else if((DoseRata[j]>=100000000)&&(DoseRata[j]<1000000000))
+ 964   4              {
+ 965   5                temp=(float)DoseRata[j]/1000000.0;
+ 966   5                DCS_Send[j*4+4]=(uchar)((int)temp/100)+0x30;
+ 967   5                DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
+ 968   5                DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
+ 969   5                DCS_Send[j*4+7]=0x39;
+ 970   5              }
+ 971   4            }
+ 972   3            /***********º¡¡ø¬ ◊™ªªµ•Œª∫Û◊™ªª≥…ø…“‘œ‘ æµƒBCD¬Î*************/
+ 973   3            if((Tbcd[5]<=9)&&(Tbcd[4]<=9)&&(Tbcd[3]<=9)&&(Tbcd[2]<=9)&&(Tbcd[1]<=9)&&(Tbcd[0]<=9))//4.21À∆∫ı∂‡”‡
              -£¨ø…≤ªø…“‘–ﬁ∏ƒµÙ
-1051   3            {
-1052   4              Tbcd[5]=(uchar)(((int)jtemp)/100);                                         //∞ŸŒª
-1053   4              Tbcd[4]=(uchar)(((int)jtemp)%100/10);                                      // ÆŒª
-1054   4              Tbcd[3]=(uchar)(((int)jtemp)%100%10);                                      //∏ˆŒª
-1055   4              count_temp=(jtemp-(int)jtemp)*1000;                                         //º∆À„–°”⁄1µƒ≤ø∑÷£¨∞—–
+ 974   3            {
+ 975   4              Tbcd[5]=(uchar)(((int)jtemp)/100);                                         //∞ŸŒª
+ 976   4              Tbcd[4]=(uchar)(((int)jtemp)%100/10);                                      // ÆŒª
+ 977   4              Tbcd[3]=(uchar)(((int)jtemp)%100%10);                                      //∏ˆŒª
+ 978   4              count_temp=(jtemp-(int)jtemp)*1000;                                         //º∆À„–°”⁄1µƒ≤ø∑÷£¨∞—–
              -° ˝≤ø∑÷±‰¥Û£¨±£¡Ù»˝Œª–° ˝
-1056   4              Tbcd[2]=(uchar)(count_temp/100);                                           //–°–° ˝ Æ∑÷Œª
-1057   4              Tbcd[1]=(uchar)(count_temp%100/10);                                        //–° ˝∞Ÿ∑÷Œª
-1058   4              Tbcd[0]=(uchar)(count_temp%100%10);                                        //–° ˝«ß∑÷Œª
-1059   4              if(Flag_dw==1)                                                              //∏˘æ›Tbcd[]º∆À„yudeci
+ 979   4              Tbcd[2]=(uchar)(count_temp/100);                                           //–°–° ˝ Æ∑÷Œª
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 19  
+
+ 980   4              Tbcd[1]=(uchar)(count_temp%100/10);                                        //–° ˝∞Ÿ∑÷Œª
+ 981   4              Tbcd[0]=(uchar)(count_temp%100%10);                                        //–° ˝«ß∑÷Œª
+ 982   4              if(Flag_dw==1)                                                              //∏˘æ›Tbcd[]º∆À„yudeci
              -de(float)”√¿¥≈–∂œº¡¡ø¬  «∑Ò≥¨π˝„–÷µ
-1060   4                yudecide=(float)(Tbcd[5]*100+Tbcd[4]*10+Tbcd[3]+Tbcd[2]*0.1+Tbcd[1]*0.01+Tbcd[0]*0.001);
-*** ERROR C215 IN LINE 1060 OF 8253count.c: illegal type conversion
-1061   4              if(Flag_dw==2)
-1062   4                yudecide=(float)((Tbcd[5]*100+Tbcd[4]*10+Tbcd[3]+Tbcd[2]*0.1+Tbcd[1]*0.01+Tbcd[0]*0.001)*1000);
-*** ERROR C215 IN LINE 1062 OF 8253count.c: illegal type conversion
-1063   4              if(Flag_dw==3)
-1064   4                yudecide=(float)((Tbcd[5]*100+Tbcd[4]*10+Tbcd[3]+Tbcd[2]*0.1+Tbcd[1]*0.01+Tbcd[0]*0.001)*1000000
+ 983   4                yudecide=(float)(Tbcd[5]*100+Tbcd[4]*10+Tbcd[3]+Tbcd[2]*0.1+Tbcd[1]*0.01+Tbcd[0]*0.001);
+ 984   4              if(Flag_dw==2)
+ 985   4                yudecide=(float)((Tbcd[5]*100+Tbcd[4]*10+Tbcd[3]+Tbcd[2]*0.1+Tbcd[1]*0.01+Tbcd[0]*0.001)*1000);
+ 986   4              if(Flag_dw==3)
+ 987   4                yudecide=(float)((Tbcd[5]*100+Tbcd[4]*10+Tbcd[3]+Tbcd[2]*0.1+Tbcd[1]*0.01+Tbcd[0]*0.001)*1000000
              -);
-*** ERROR C215 IN LINE 1064 OF 8253count.c: illegal type conversion
-1065   4            }
-1066   3            /***********≈–∂œ„–÷µ*************/
-1067   3            mtemp=(YuThouth[j]+YuCent[j]*0.1+YuTenth[j]*0.01);                          //‘› ±√ª∏˘æ›Œª ˝–ﬁ∏ƒ2012
+ 988   4            }
+ 989   3            /***********≈–∂œ„–÷µ*************/
+ 990   3            mtemp=(YuThouth[j]+YuCent[j]*0.1+YuTenth[j]*0.01);                          //‘› ±√ª∏˘æ›Œª ˝–ﬁ∏ƒ2012
              -.6.15
-1068   3            yu=(double)(pow(10,YuGe[j]));
-1069   3            yudata=(double)(mtemp*yu);
-1070   3            if(yudecide>=yudata)                                                        //»Áπ˚º∆ ˝≥¨π˝ƒ≥“ª∏ˆ∑∂Œß
+ 991   3            yu=(double)(pow(10,YuGe[j]));
+ 992   3            yudata=(double)(mtemp*yu);
+ 993   3            if(yudecide>=yudata)                                                        //»Áπ˚º∆ ˝≥¨π˝ƒ≥“ª∏ˆ∑∂Œß
              -£¨‘Ú…˘“Ù±®æØ
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 22  
-
-1071   3            {
-1072   4              if((Judge_Speak==0)||(Speak_Alarm()==1))                                  //∑‰√˘∆˜±®æØ£¨Speak_Alar
+ 994   3            {
+ 995   4              if((Judge_Speak==0)||(Speak_Alarm()==1))                                  //∑‰√˘∆˜±®æØ£¨Speak_Alar
              -m∑µªÿ1∑‰√˘∆˜π§◊˜
-1073   4              {
-1074   5                Flag_Warn=1;                                                            //±®æØ±Í÷æ÷√“ª
-1075   5              }
-1076   4              Flag_need_Flash[j]=1;                                                     //LED…¡À∏±Í÷æ÷√1
-1077   4              State_Flash[j]=1;
-1078   4              Var_Led=Var_Led&Svar0[j];                                                 //LED±®æØ÷∏ æµ∆£®char£©S
+ 996   4              {
+ 997   5                Flag_Warn=1;                                                            //±®æØ±Í÷æ÷√“ª
+ 998   5              }
+ 999   4              Flag_need_Flash[j]=1;                                                     //LED…¡À∏±Í÷æ÷√1
+1000   4              State_Flash[j]=1;
+1001   4              Var_Led=Var_Led&Svar0[j];                                                 //LED±®æØ÷∏ æµ∆£®char£©S
              -var0[8]={0xFE,0xFD,0xFB,0xF7,0xEF,0xDF,0xBF,0x7F}
-1079   4            }
-1080   3            else if(yudecide<yudata)
-1081   3            {
-1082   4              Flag_need_Flash[j]=0;
-1083   4              State_Flash[j]=0;
-1084   4              Var_Led=Var_Led|Svar1[j];
-1085   4            }
-1086   3            /*AI1*º¡¡ø¬ œ‘ æ”¶µ±‘⁄ÃΩ≤‚∆˜±Í÷æ∏ƒ±‰÷Æ«∞******º¡¡ø¬ œ‘ æ**********/
-1087   3          //if(Channel_Detector[j]==0)
-1088   3          //{
-1089   3            //  Txtext(10,13+(j*58),"Gh");                                                  //AH1œ‘ æÃΩÕ∑
-1090   3          //}
-1091   3          //else
-1092   3          //{
-1093   3          //Txtext(10,13+(j*58),"Dh");
-1094   3          //}
-1095   3          /*AI1*******º¡¡ø¬ œ‘ æ**********/
-1096   3      <<<<<<< Updated upstream
-*** ERROR C141 IN LINE 1096 OF 8253count.c: syntax error near '<<', expected '__asm'
-*** ERROR C202 IN LINE 1096 OF 8253count.c: 'Updated': undefined identifier
-1097   3            Tnumber(60,13+(j*58),j+1);                                                  //œ‘ æÃΩÕ∑∫≈
-1098   3            Txtext(90,13+(j*58),":");                                                   //œ‘ æ√∞∫≈
-1099   3          Tnumber(470,13+(j*58),Channel_Detector[j][1]);
-1100   3          Tnumber(440,13+(j*58),Channel_Detector[j][0]);
-1101   3          Tnumber(390,13+(j*58),Average_Times[j]);
-1102   3            if(Tbcd[5]!=0)                                                              //»Ù∞ŸŒª∑«¡„£¨∏˘æ› ˝µƒ¥Û
-             -–°¿¥œ‘ æ
-1103   3            {
-1104   4              Tnumber(130,13+(j*58),Tbcd[5]);
-1105   4              Tnumber(160,13+(j*58),Tbcd[4]);
-1106   4              Tnumber(190,13+(j*58),Tbcd[3]);
-1107   4              Txtext(220,13+(j*58),".");
-1108   4              Tnumber(240,13+(j*58),Tbcd[2]);
-1109   4              Tnumber(270,13+(j*58),Tbcd[1]);
-1110   4              Tnumber(300,13+(j*58),Tbcd[0]);
-1111   4              if(Tdata<10)                                                              //”√”⁄œ‘ æTdataÀ¯¥Êµƒº∆ 
-             -˝÷µœ‘ æ
-1112   4              Tnumber(576,13+(j*58),Tdata);                                             //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6.2
-             -4
-1113   4              else if((Tdata>=10)&&(Tdata<100))
-1114   4              Tnumber(556,13+(j*58),Tdata);
-1115   4              else if((Tdata>=100)&&(Tdata<1000))
-1116   4              Tnumber(536,13+(j*58),Tdata);
-1117   4              else if((Tdata>=1000)&&(Tdata<10000))
-1118   4              Tnumber(516,13+(j*58),Tdata);
-1119   4              else if(Tdata>=10000)
-1120   4              Tnumber(496,13+(j*58),Tdata);
-1121   4            }
-1122   3            else
-1123   3            {
-1124   4              if(Tbcd[4]!=0)                                                            //∞ŸŒªŒ™¡„ ÆŒª∑«¡„
-1125   4              {
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 23  
-
-1126   5                Tnumber(160,13+(j*58),Tbcd[4]);
-1127   5                Tnumber(190,13+(j*58),Tbcd[3]);
-1128   5                Txtext(220,13+(j*58),".");
-1129   5                Tnumber(240,13+(j*58),Tbcd[2]);
-1130   5                Tnumber(270,13+(j*58),Tbcd[1]);
-1131   5                Tnumber(300,13+(j*58),Tbcd[0]);
-1132   5                if(Tdata<10)
-1133   5                  Tnumber(576,13+(j*58),Tdata);                                         //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6.2
-             -4
-1134   5                else if((Tdata>=10)&&(Tdata<100))
-1135   5                  Tnumber(556,13+(j*58),Tdata);
-1136   5                else if((Tdata>=100)&&(Tdata<1000))
-1137   5                  Tnumber(536,13+(j*58),Tdata);
-1138   5                else if((Tdata>=1000)&&(Tdata<10000))
-1139   5                  Tnumber(516,13+(j*58),Tdata);
-1140   5                else if(Tdata>=10000)
-1141   5                  Tnumber(496,13+(j*58),Tdata);                                         //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6.2
-             -4
-1142   5              }
-1143   4              else                                                                      //∞ŸŒª ÆŒªŒªæ˘Œ™¡„£¨∏ˆŒª
-             -∑«¡„
-1144   4              {
-1145   5                Tnumber(190,13+(j*58),Tbcd[3]);
-1146   5                Txtext(220,13+(j*58),".");                                              //.’º20∏ˆœÒÀÿ
-1147   5                Tnumber(240,13+(j*58),Tbcd[2]);                                         //“ª∏ˆ ˝◊÷’º30∏ˆœÒÀÿ
-1148   5                Tnumber(270,13+(j*58),Tbcd[1]);
-1149   5                Tnumber(300,13+(j*58),Tbcd[0]);
-1150   5                if(Tdata<10)
-1151   5                  Tnumber(576,13+(j*58),Tdata);                                         //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6.2
-             -4
-1152   5                else if((Tdata>=10)&&(Tdata<100))                                       //ø…“‘ø¥º˚“ª∏ˆ ˝◊÷’º20œÒ
-             -Àÿ
-1153   5                  Tnumber(556,13+(j*58),Tdata);
-1154   5                else if((Tdata>=100)&&(Tdata<1000))
-1155   5                  Tnumber(536,13+(j*58),Tdata);
-1156   5                else if((Tdata>=1000)&&(Tdata<10000))
-1157   5                  Tnumber(516,13+(j*58),Tdata);
-1158   5                else if(Tdata>=10000)
-1159   5                  Tnumber(496,13+(j*58),Tdata);
-1160   5              }
-1161   4          }
-1162   3            /**********º∆¡øµ•Œªœ‘ æ***********/
-1163   3            if(Flag_dw==1)                                                              //≤‚ ‘ÕÍ≥…∫Ûº”…œ2012.6.2
-             -4
-1164   3            {
-1165   4              Txtext(340,13+(j*58),"u");
-1166   4            }
-1167   3            else if(Flag_dw==2)
-1168   3            {
-1169   4              Txtext(340,13+(j*58),"m");
-1170   4            }
-1171   3            else if(Flag_dw==3)
-1172   3            {
-1173   4              Txtext(340,13+(j*58),"G");
-1174   4            }
-1175   3            Alarm();                                                                    //±®æØ
-1176   3      =======
-*** ERROR C141 IN LINE 1176 OF 8253count.c: syntax error near '==', expected '__asm'
-1177   3          if(Flag_need_Flash[j]==0)
-1178   3          {
-1179   4            if((Channel_Display[j]==0)||(Channel_Display[j]==1))
-1180   4          {
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 24  
-
-1181   5            Txtext(10,13+(j*58),"GM");                          //AH1œ‘ æÃΩÕ∑
-1182   5          }
-1183   4          else
-1184   4          {
-1185   5            Txtext(10,13+(j*58),"DL");
-1186   5          }
-1187   4              Tnumber(60,13+(j*58),j+1);                                                  //œ‘ æÃΩÕ∑∫≈
-1188   4              Txtext(90,13+(j*58),":");                                                   //œ‘ æ√∞∫≈
-1189   4            Tnumber(470,13+(j*58),Channel_Detector[j][1]);
-1190   4            Tnumber(440,13+(j*58),Channel_Detector[j][0]);
-1191   4            Tnumber(390,13+(j*58),Average_Times[j]);
-1192   4              if(Tbcd[5]!=0)                                                              //»Ù∞ŸŒª∑«¡„£¨∏˘æ› ˝µƒ¥
+1002   4            }
+1003   3            else if(yudecide<yudata)
+1004   3            {
+1005   4              Flag_need_Flash[j]=0;
+1006   4              State_Flash[j]=0;
+1007   4              Var_Led=Var_Led|Svar1[j];
+1008   4            }
+1009   3            /*AI1*º¡¡ø¬ œ‘ æ”¶µ±‘⁄ÃΩ≤‚∆˜±Í÷æ∏ƒ±‰÷Æ«∞******º¡¡ø¬ œ‘ æ**********/
+1010   3          //if(Channel_Detector[j]==0)
+1011   3          //{
+1012   3            //  Txtext(10,13+(j*58),"Gh");                                                  //AH1œ‘ æÃΩÕ∑
+1013   3          //}
+1014   3          //else
+1015   3          //{
+1016   3          //Txtext(10,13+(j*58),"Dh");
+1017   3          //}
+1018   3          /*AI1*******º¡¡ø¬ œ‘ æ**********/
+1019   3          if(Flag_need_Flash[j]==0)
+1020   3          {
+1021   4            if((Channel_Display[j]==0)||(Channel_Display[j]==1))
+1022   4          {
+1023   5            Txtext(10,13+(j*58),"GM");                          //AH1œ‘ æÃΩÕ∑
+1024   5          }
+1025   4          else
+1026   4          {
+1027   5            Txtext(10,13+(j*58),"DL");
+1028   5          }
+1029   4              Tnumber(60,13+(j*58),j+1);                                                  //œ‘ æÃΩÕ∑∫≈
+1030   4              Txtext(90,13+(j*58),":");                                                   //œ‘ æ√∞∫≈
+1031   4            Tnumber(470,13+(j*58),Channel_Detector[j][1]);
+1032   4            Tnumber(440,13+(j*58),Channel_Detector[j][0]);
+1033   4            Tnumber(390,13+(j*58),Average_Times[j]);
+1034   4              if(Tbcd[5]!=0)                                                              //»Ù∞ŸŒª∑«¡„£¨∏˘æ› ˝µƒ¥
              -Û–°¿¥œ‘ æ
-1193   4              {
-1194   5                Tnumber(130,13+(j*58),Tbcd[5]);
-1195   5                Tnumber(160,13+(j*58),Tbcd[4]);
-1196   5                Tnumber(190,13+(j*58),Tbcd[3]);
-1197   5                Txtext(220,13+(j*58),".");
-1198   5                Tnumber(240,13+(j*58),Tbcd[2]);
-1199   5                Tnumber(270,13+(j*58),Tbcd[1]);
-1200   5                Tnumber(300,13+(j*58),Tbcd[0]);
-1201   5                if(Tdata<10)                                                              //”√”⁄œ‘ æTdataÀ¯¥Êµƒº∆
-             - ˝÷µœ‘ æ
-1202   5                Tnumber(576,13+(j*58),Tdata);                                             //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6.
-             -24
-1203   5                else if((Tdata>=10)&&(Tdata<100))
-1204   5                Tnumber(556,13+(j*58),Tdata);
-1205   5                else if((Tdata>=100)&&(Tdata<1000))
-1206   5                Tnumber(536,13+(j*58),Tdata);
-1207   5                else if((Tdata>=1000)&&(Tdata<10000))
-1208   5                Tnumber(516,13+(j*58),Tdata);
-1209   5                else if(Tdata>=10000)
-1210   5                Tnumber(496,13+(j*58),Tdata);
-1211   5              }
-1212   4              else
-1213   4              {
-1214   5                if(Tbcd[4]!=0)                                                            //∞ŸŒªŒ™¡„ ÆŒª∑«¡„
-1215   5                {
-1216   6                  Tnumber(160,13+(j*58),Tbcd[4]);
-1217   6                  Tnumber(190,13+(j*58),Tbcd[3]);
-1218   6                  Txtext(220,13+(j*58),".");
-1219   6                  Tnumber(240,13+(j*58),Tbcd[2]);
-1220   6                  Tnumber(270,13+(j*58),Tbcd[1]);
-1221   6                  Tnumber(300,13+(j*58),Tbcd[0]);
-1222   6                  if(Tdata<10)
-1223   6                    Tnumber(576,13+(j*58),Tdata);                                         //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6.
-             -24
-1224   6                  else if((Tdata>=10)&&(Tdata<100))
-1225   6                    Tnumber(556,13+(j*58),Tdata);
-1226   6                  else if((Tdata>=100)&&(Tdata<1000))
-1227   6                    Tnumber(536,13+(j*58),Tdata);
-1228   6                  else if((Tdata>=1000)&&(Tdata<10000))
-1229   6                    Tnumber(516,13+(j*58),Tdata);
-1230   6                  else if(Tdata>=10000)
-1231   6                    Tnumber(496,13+(j*58),Tdata);                                         //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6.
-             -24
-1232   6                }
-1233   5                else                                                                      //∞ŸŒª ÆŒªŒªæ˘Œ™¡„£¨∏ˆŒ
-             -ª∑«¡„
-1234   5                {
-1235   6                  Tnumber(190,13+(j*58),Tbcd[3]);
-1236   6                  Txtext(220,13+(j*58),".");                                              //.’º20∏ˆœÒÀÿ
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 25  
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 20  
 
-1237   6                  Tnumber(240,13+(j*58),Tbcd[2]);                                         //“ª∏ˆ ˝◊÷’º30∏ˆœÒÀÿ
-1238   6                  Tnumber(270,13+(j*58),Tbcd[1]);
-1239   6                  Tnumber(300,13+(j*58),Tbcd[0]);
-1240   6                  if(Tdata<10)
-1241   6                    Tnumber(576,13+(j*58),Tdata);                                         //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6.
+1035   4              {
+1036   5                Tnumber(130,13+(j*58),Tbcd[5]);
+1037   5                Tnumber(160,13+(j*58),Tbcd[4]);
+1038   5                Tnumber(190,13+(j*58),Tbcd[3]);
+1039   5                Txtext(220,13+(j*58),".");
+1040   5                Tnumber(240,13+(j*58),Tbcd[2]);
+1041   5                Tnumber(270,13+(j*58),Tbcd[1]);
+1042   5                Tnumber(300,13+(j*58),Tbcd[0]);
+1043   5                if(Tdata<10)                                                              //”√”⁄œ‘ æTdataÀ¯¥Êµƒº∆
+             - ˝÷µœ‘ æ
+1044   5                Tnumber(576,13+(j*58),Tdata);                                             //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6.
              -24
-1242   6                  else if((Tdata>=10)&&(Tdata<100))                                       //ø…“‘ø¥º˚“ª∏ˆ ˝◊÷’º20œ
+1045   5                else if((Tdata>=10)&&(Tdata<100))
+1046   5                Tnumber(556,13+(j*58),Tdata);
+1047   5                else if((Tdata>=100)&&(Tdata<1000))
+1048   5                Tnumber(536,13+(j*58),Tdata);
+1049   5                else if((Tdata>=1000)&&(Tdata<10000))
+1050   5                Tnumber(516,13+(j*58),Tdata);
+1051   5                else if(Tdata>=10000)
+1052   5                Tnumber(496,13+(j*58),Tdata);
+1053   5              }
+1054   4              else
+1055   4              {
+1056   5                if(Tbcd[4]!=0)                                                            //∞ŸŒªŒ™¡„ ÆŒª∑«¡„
+1057   5                {
+1058   6                  Tnumber(160,13+(j*58),Tbcd[4]);
+1059   6                  Tnumber(190,13+(j*58),Tbcd[3]);
+1060   6                  Txtext(220,13+(j*58),".");
+1061   6                  Tnumber(240,13+(j*58),Tbcd[2]);
+1062   6                  Tnumber(270,13+(j*58),Tbcd[1]);
+1063   6                  Tnumber(300,13+(j*58),Tbcd[0]);
+1064   6                  if(Tdata<10)
+1065   6                    Tnumber(576,13+(j*58),Tdata);                                         //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6.
+             -24
+1066   6                  else if((Tdata>=10)&&(Tdata<100))
+1067   6                    Tnumber(556,13+(j*58),Tdata);
+1068   6                  else if((Tdata>=100)&&(Tdata<1000))
+1069   6                    Tnumber(536,13+(j*58),Tdata);
+1070   6                  else if((Tdata>=1000)&&(Tdata<10000))
+1071   6                    Tnumber(516,13+(j*58),Tdata);
+1072   6                  else if(Tdata>=10000)
+1073   6                    Tnumber(496,13+(j*58),Tdata);                                         //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6.
+             -24
+1074   6                }
+1075   5                else                                                                      //∞ŸŒª ÆŒªŒªæ˘Œ™¡„£¨∏ˆŒ
+             -ª∑«¡„
+1076   5                {
+1077   6                  Tnumber(190,13+(j*58),Tbcd[3]);
+1078   6                  Txtext(220,13+(j*58),".");                                              //.’º20∏ˆœÒÀÿ
+1079   6                  Tnumber(240,13+(j*58),Tbcd[2]);                                         //“ª∏ˆ ˝◊÷’º30∏ˆœÒÀÿ
+1080   6                  Tnumber(270,13+(j*58),Tbcd[1]);
+1081   6                  Tnumber(300,13+(j*58),Tbcd[0]);
+1082   6                  if(Tdata<10)
+1083   6                    Tnumber(576,13+(j*58),Tdata);                                         //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6.
+             -24
+1084   6                  else if((Tdata>=10)&&(Tdata<100))                                       //ø…“‘ø¥º˚“ª∏ˆ ˝◊÷’º20œ
              -ÒÀÿ
-1243   6                    Tnumber(556,13+(j*58),Tdata);
-1244   6                  else if((Tdata>=100)&&(Tdata<1000))
-1245   6                    Tnumber(536,13+(j*58),Tdata);
-1246   6                  else if((Tdata>=1000)&&(Tdata<10000))
-1247   6                    Tnumber(516,13+(j*58),Tdata);
-1248   6                  else if(Tdata>=10000)
-1249   6                    Tnumber(496,13+(j*58),Tdata);
-1250   6                }
-1251   5            }
-1252   4              /**********º∆¡øµ•Œªœ‘ æ***********/
-1253   4              if(Flag_dw==1)                                                              //≤‚ ‘ÕÍ≥…∫Ûº”…œ2012.6.
+1085   6                    Tnumber(556,13+(j*58),Tdata);
+1086   6                  else if((Tdata>=100)&&(Tdata<1000))
+1087   6                    Tnumber(536,13+(j*58),Tdata);
+1088   6                  else if((Tdata>=1000)&&(Tdata<10000))
+1089   6                    Tnumber(516,13+(j*58),Tdata);
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 21  
+
+1090   6                  else if(Tdata>=10000)
+1091   6                    Tnumber(496,13+(j*58),Tdata);
+1092   6                }
+1093   5            }
+1094   4              /**********º∆¡øµ•Œªœ‘ æ***********/
+1095   4              if(Flag_dw==1)                                                              //≤‚ ‘ÕÍ≥…∫Ûº”…œ2012.6.
              -24
-1254   4              {
-1255   5                Txtext(340,13+(j*58),"uGy/h");
-1256   5              }
-1257   4              else if(Flag_dw==2)
-1258   4              {
-1259   5                Txtext(340,13+(j*58),"mGy/h");
-1260   5              }
-1261   4              else if(Flag_dw==3)
-1262   4              {
-1263   5                Txtext(340,13+(j*58),"Gy/h");
-1264   5              }
-1265   4              Alarm();                                                                    //±®æØ
-1266   4            }
-1267   3          if(Flag_need_Flash[j]==1)
-1268   3          {
-1269   4          if((Channel_Display[j]==0)||(Channel_Display[j]==1))
-1270   4          {
-1271   5            Trxtext(7,13+(j*58),"  ");
-1272   5            Trxtext(10,13+(j*58),"GM                        ");                       //AH1œ‘ æÃΩÕ∑
-1273   5          }
-1274   4          else
-1275   4          {
-1276   5            Trxtext(7,13+(j*58),"  ");
-1277   5            Trxtext(10,13+(j*58),"DL                        ");
-1278   5          }
-1279   4              Trnumber(60,13+(j*58),j+1);                                                  //œ‘ æÃΩÕ∑∫≈
-1280   4              Trxtext(90,13+(j*58),":");                                                   //œ‘ æ√∞∫≈
-1281   4            Trnumber(470,13+(j*58),Channel_Detector[j][1]);
-1282   4            Trnumber(440,13+(j*58),Channel_Detector[j][0]);
-1283   4            Trnumber(390,13+(j*58),Average_Times[j]);
-1284   4              if(Tbcd[5]!=0)                                                              //»Ù∞ŸŒª∑«¡„£¨∏˘æ› ˝µƒ¥
+1096   4              {
+1097   5                Txtext(340,13+(j*58),"u");
+1098   5              }
+1099   4              else if(Flag_dw==2)
+1100   4              {
+1101   5                Txtext(340,13+(j*58),"m");
+1102   5              }
+1103   4              else if(Flag_dw==3)
+1104   4              {
+1105   5                Txtext(340,13+(j*58),"G");
+1106   5              }
+1107   4              Alarm();                                                                    //±®æØ
+1108   4            }
+1109   3          if(Flag_need_Flash[j]==1)
+1110   3          {
+1111   4          if((Channel_Display[j]==0)||(Channel_Display[j]==1))
+1112   4          {
+1113   5            Trxtext(7,13+(j*58),"  ");
+1114   5            Trxtext(10,13+(j*58),"GM                        ");                       //AH1œ‘ æÃΩÕ∑
+1115   5          }
+1116   4          else
+1117   4          {
+1118   5            Trxtext(7,13+(j*58),"  ");
+1119   5            Trxtext(10,13+(j*58),"DL                        ");
+1120   5          }
+1121   4              Trnumber(60,13+(j*58),j+1);                                                  //œ‘ æÃΩÕ∑∫≈
+1122   4              Trxtext(90,13+(j*58),":");                                                   //œ‘ æ√∞∫≈
+1123   4            Trnumber(470,13+(j*58),Channel_Detector[j][1]);
+1124   4            Trnumber(440,13+(j*58),Channel_Detector[j][0]);
+1125   4            Trnumber(390,13+(j*58),Average_Times[j]);
+1126   4              if(Tbcd[5]!=0)                                                              //»Ù∞ŸŒª∑«¡„£¨∏˘æ› ˝µƒ¥
              -Û–°¿¥œ‘ æ
-1285   4              {
-1286   5                Trnumber(130,13+(j*58),Tbcd[5]);
-1287   5                Trnumber(160,13+(j*58),Tbcd[4]);
-1288   5                Trnumber(190,13+(j*58),Tbcd[3]);
-1289   5                Trxtext(220,13+(j*58),".");
-1290   5                Trnumber(240,13+(j*58),Tbcd[2]);
-1291   5                Trnumber(270,13+(j*58),Tbcd[1]);
-1292   5                Trnumber(300,13+(j*58),Tbcd[0]);
-1293   5                if(Tdata<10)                                                              //”√”⁄œ‘ æTdataÀ¯¥Êµƒº∆
+1127   4              {
+1128   5                Trnumber(130,13+(j*58),Tbcd[5]);
+1129   5                Trnumber(160,13+(j*58),Tbcd[4]);
+1130   5                Trnumber(190,13+(j*58),Tbcd[3]);
+1131   5                Trxtext(220,13+(j*58),".");
+1132   5                Trnumber(240,13+(j*58),Tbcd[2]);
+1133   5                Trnumber(270,13+(j*58),Tbcd[1]);
+1134   5                Trnumber(300,13+(j*58),Tbcd[0]);
+1135   5                if(Tdata<10)                                                              //”√”⁄œ‘ æTdataÀ¯¥Êµƒº∆
              - ˝÷µœ‘ æ
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 26  
+1136   5                Trnumber(576,13+(j*58),Tdata);                                             //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6
+             -.24
+1137   5                else if((Tdata>=10)&&(Tdata<100))
+1138   5                Trnumber(556,13+(j*58),Tdata);
+1139   5                else if((Tdata>=100)&&(Tdata<1000))
+1140   5                Trnumber(536,13+(j*58),Tdata);
+1141   5                else if((Tdata>=1000)&&(Tdata<10000))
+1142   5                Trnumber(516,13+(j*58),Tdata);
+1143   5                else if(Tdata>=10000)
+1144   5                Trnumber(496,13+(j*58),Tdata);
+1145   5              }
+1146   4              else
+1147   4              {
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 22  
 
-1294   5                Trnumber(576,13+(j*58),Tdata);                                             //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6
+1148   5                if(Tbcd[4]!=0)                                                            //∞ŸŒªŒ™¡„ ÆŒª∑«¡„
+1149   5                {
+1150   6                  Trnumber(160,13+(j*58),Tbcd[4]);
+1151   6                  Trnumber(190,13+(j*58),Tbcd[3]);
+1152   6                  Trxtext(220,13+(j*58),".");
+1153   6                  Trnumber(240,13+(j*58),Tbcd[2]);
+1154   6                  Trnumber(270,13+(j*58),Tbcd[1]);
+1155   6                  Trnumber(300,13+(j*58),Tbcd[0]);
+1156   6                  if(Tdata<10)
+1157   6                    Trnumber(576,13+(j*58),Tdata);                                         //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6
              -.24
-1295   5                else if((Tdata>=10)&&(Tdata<100))
-1296   5                Trnumber(556,13+(j*58),Tdata);
-1297   5                else if((Tdata>=100)&&(Tdata<1000))
-1298   5                Trnumber(536,13+(j*58),Tdata);
-1299   5                else if((Tdata>=1000)&&(Tdata<10000))
-1300   5                Trnumber(516,13+(j*58),Tdata);
-1301   5                else if(Tdata>=10000)
-1302   5                Trnumber(496,13+(j*58),Tdata);
-1303   5              }
-1304   4              else
-1305   4              {
-1306   5                if(Tbcd[4]!=0)                                                            //∞ŸŒªŒ™¡„ ÆŒª∑«¡„
-1307   5                {
-1308   6                  Trnumber(160,13+(j*58),Tbcd[4]);
-1309   6                  Trnumber(190,13+(j*58),Tbcd[3]);
-1310   6                  Trxtext(220,13+(j*58),".");
-1311   6                  Trnumber(240,13+(j*58),Tbcd[2]);
-1312   6                  Trnumber(270,13+(j*58),Tbcd[1]);
-1313   6                  Trnumber(300,13+(j*58),Tbcd[0]);
-1314   6                  if(Tdata<10)
-1315   6                    Trnumber(576,13+(j*58),Tdata);                                         //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6
+1158   6                  else if((Tdata>=10)&&(Tdata<100))
+1159   6                    Trnumber(556,13+(j*58),Tdata);
+1160   6                  else if((Tdata>=100)&&(Tdata<1000))
+1161   6                    Trnumber(536,13+(j*58),Tdata);
+1162   6                  else if((Tdata>=1000)&&(Tdata<10000))
+1163   6                    Trnumber(516,13+(j*58),Tdata);
+1164   6                  else if(Tdata>=10000)
+1165   6                    Trnumber(496,13+(j*58),Tdata);                                         //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6
              -.24
-1316   6                  else if((Tdata>=10)&&(Tdata<100))
-1317   6                    Trnumber(556,13+(j*58),Tdata);
-1318   6                  else if((Tdata>=100)&&(Tdata<1000))
-1319   6                    Trnumber(536,13+(j*58),Tdata);
-1320   6                  else if((Tdata>=1000)&&(Tdata<10000))
-1321   6                    Trnumber(516,13+(j*58),Tdata);
-1322   6                  else if(Tdata>=10000)
-1323   6                    Trnumber(496,13+(j*58),Tdata);                                         //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6
-             -.24
-1324   6                }
-1325   5                else                                                                      //∞ŸŒª ÆŒªŒªæ˘Œ™¡„£¨∏ˆŒ
+1166   6                }
+1167   5                else                                                                      //∞ŸŒª ÆŒªŒªæ˘Œ™¡„£¨∏ˆŒ
              -ª∑«¡„
-1326   5                {
-1327   6                  Trnumber(190,13+(j*58),Tbcd[3]);
-1328   6                  Trxtext(220,13+(j*58),".");                                              //.’º20∏ˆœÒÀÿ
-1329   6                  Trnumber(240,13+(j*58),Tbcd[2]);                                         //“ª∏ˆ ˝◊÷’º30∏ˆœÒÀÿ
-1330   6                  Trnumber(270,13+(j*58),Tbcd[1]);
-1331   6                  Trnumber(300,13+(j*58),Tbcd[0]);
-1332   6                  if(Tdata<10)
-1333   6                    Trnumber(576,13+(j*58),Tdata);                                         //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6
+1168   5                {
+1169   6                  Trnumber(190,13+(j*58),Tbcd[3]);
+1170   6                  Trxtext(220,13+(j*58),".");                                              //.’º20∏ˆœÒÀÿ
+1171   6                  Trnumber(240,13+(j*58),Tbcd[2]);                                         //“ª∏ˆ ˝◊÷’º30∏ˆœÒÀÿ
+1172   6                  Trnumber(270,13+(j*58),Tbcd[1]);
+1173   6                  Trnumber(300,13+(j*58),Tbcd[0]);
+1174   6                  if(Tdata<10)
+1175   6                    Trnumber(576,13+(j*58),Tdata);                                         //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6
              -.24
-1334   6                  else if((Tdata>=10)&&(Tdata<100))                                       //ø…“‘ø¥º˚“ª∏ˆ ˝◊÷’º20œ
+1176   6                  else if((Tdata>=10)&&(Tdata<100))                                       //ø…“‘ø¥º˚“ª∏ˆ ˝◊÷’º20œ
              -ÒÀÿ
-1335   6                    Trnumber(556,13+(j*58),Tdata);
-1336   6                  else if((Tdata>=100)&&(Tdata<1000))
-1337   6                    Trnumber(536,13+(j*58),Tdata);
-1338   6                  else if((Tdata>=1000)&&(Tdata<10000))
-1339   6                    Trnumber(516,13+(j*58),Tdata);
-1340   6                  else if(Tdata>=10000)
-1341   6                    Trnumber(496,13+(j*58),Tdata);
-1342   6                }
-1343   5            }
-1344   4              /**********º∆¡øµ•Œªœ‘ æ***********/
-1345   4              if(Flag_dw==1)                                                              //≤‚ ‘ÕÍ≥…∫Ûº”…œ2012.6.
+1177   6                    Trnumber(556,13+(j*58),Tdata);
+1178   6                  else if((Tdata>=100)&&(Tdata<1000))
+1179   6                    Trnumber(536,13+(j*58),Tdata);
+1180   6                  else if((Tdata>=1000)&&(Tdata<10000))
+1181   6                    Trnumber(516,13+(j*58),Tdata);
+1182   6                  else if(Tdata>=10000)
+1183   6                    Trnumber(496,13+(j*58),Tdata);
+1184   6                }
+1185   5            }
+1186   4              /**********º∆¡øµ•Œªœ‘ æ***********/
+1187   4              if(Flag_dw==1)                                                              //≤‚ ‘ÕÍ≥…∫Ûº”…œ2012.6.
              -24
-1346   4              {
-1347   5                Trxtext(340,13+(j*58),"u");
-1348   5              }
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 27  
+1188   4              {
+1189   5                Trxtext(340,13+(j*58),"u");
+1190   5              }
+1191   4              else if(Flag_dw==2)
+1192   4              {
+1193   5                Trxtext(340,13+(j*58),"m");
+1194   5              }
+1195   4              else if(Flag_dw==3)
+1196   4              {
+1197   5                Trxtext(340,13+(j*58),"G");
+1198   5              }
+1199   4              Alarm();                                                                    //±®æØ
+1200   4            }
+1201   3            send_buf[8*j]=Tbcd[5];                                                      //œÚNIM-B∑¢ÀÕœ‘ æ ˝æ›
+1202   3            send_buf[8*j+1]=Tbcd[4];
+1203   3            send_buf[8*j+2]=Tbcd[3];
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 23  
 
-1349   4              else if(Flag_dw==2)
-1350   4              {
-1351   5                Trxtext(340,13+(j*58),"m");
-1352   5              }
-1353   4              else if(Flag_dw==3)
-1354   4              {
-1355   5                Trxtext(340,13+(j*58),"G");
-1356   5              }
-1357   4              Alarm();                                                                    //±®æØ
-1358   4            }
-1359   3      >>>>>>> Stashed changes
-*** ERROR C141 IN LINE 1359 OF 8253count.c: syntax error near '>>', expected '__asm'
-*** ERROR C202 IN LINE 1359 OF 8253count.c: 'Stashed': undefined identifier
-1360   3            send_buf[8*j]=Tbcd[5];                                                      //œÚNIM-B∑¢ÀÕœ‘ æ ˝æ›
-1361   3            send_buf[8*j+1]=Tbcd[4];
-1362   3            send_buf[8*j+2]=Tbcd[3];
-1363   3            send_buf[8*j+3]=Tbcd[2];
-1364   3            send_buf[8*j+4]=Tbcd[1];
-1365   3            send_buf[8*j+5]=Tbcd[0];
-1366   3            send_buf[8*j+6]=Flag_dw;                                                    //∑¢ÀÕµ•Œª±Í÷æ
-1367   3            send_buf[8*j+7]=Flag_need_Flash[j];                                         //LED…¡À∏±Í÷æ
-1368   3          }
-1369   2          for(j=0;j<8;j++)                                                              //÷√DCS ˝æ›µƒ±®æØ–≈∫≈
-1370   2          {
-1371   3            if(Flag_need_Flash[j])
-1372   3            {
-1373   4              DCS_Send[64]=DCS_Send[64]|Svar1[j];
-1374   4            }
-1375   3            else
-1376   3            {
-1377   4              DCS_Send[64]=DCS_Send[64]&Svar0[j];
-1378   4            }
-1379   3          }                                                                             //8∏ˆÃΩÕ∑æ˘œ‘ æ÷¥––ÕÍ
-1380   2          Flag_Warn_Count=1;
-1381   2          jishucount++;                                                                 //º∆ ˝¥Œ ˝‘ˆº”£®À„∆Ωæ˘÷µ
+1204   3            send_buf[8*j+3]=Tbcd[2];
+1205   3            send_buf[8*j+4]=Tbcd[1];
+1206   3            send_buf[8*j+5]=Tbcd[0];
+1207   3            send_buf[8*j+6]=Flag_dw;                                                    //∑¢ÀÕµ•Œª±Í÷æ
+1208   3            send_buf[8*j+7]=Flag_need_Flash[j];                                         //LED…¡À∏±Í÷æ
+1209   3          }
+1210   2          for(j=0;j<8;j++)                                                              //÷√DCS ˝æ›µƒ±®æØ–≈∫≈
+1211   2          {
+1212   3            if(Flag_need_Flash[j])
+1213   3            {
+1214   4              DCS_Send[64]=DCS_Send[64]|Svar1[j];
+1215   4            }
+1216   3            else
+1217   3            {
+1218   4              DCS_Send[64]=DCS_Send[64]&Svar0[j];
+1219   4            }
+1220   3          }                                                                             //8∏ˆÃΩÕ∑æ˘œ‘ æ÷¥––ÕÍ
+1221   2          Flag_Warn_Count=1;
+1222   2          jishucount++;                                                                 //º∆ ˝¥Œ ˝‘ˆº”£®À„∆Ωæ˘÷µ
              - ±”√£©
-1382   2          if(jishucount==255)                                                           //º∆ ˝¥Œ ˝“ÚŒ™ «char–Õ±‰
+1223   2          if(jishucount==255)                                                           //º∆ ˝¥Œ ˝“ÚŒ™ «char–Õ±‰
              -¡ø£¨◊Ó∂‡÷ß≥÷255∏ˆ£¨À˘“‘“™÷√¡„
-1383   2            jishucount=8;
-1384   2          if(jishucount>4)
-1385   2            Flag_Meant=1;                                                               //«∞ŒÂ¥Œµƒ»°÷µ≤ª“™£¨µ⁄ŒÂ
+1224   2            jishucount=8;
+1225   2          if(jishucount>4)
+1226   2            Flag_Meant=1;                                                               //«∞ŒÂ¥Œµƒ»°÷µ≤ª“™£¨µ⁄ŒÂ
              -¥Œ≤≈ø™ º“™£¨÷√Flag_Meant=1£ª∑Ò‘Úæ˘÷√0
-1386   2          else
-1387   2            Flag_Meant=0;
-1388   2          //shortdelay(5000);                                                             //—” ±
-1389   2          //for(i=0;i<33;i++)//œ‘ æÕÍ«Â0
-1390   2          //buf[i]=0;
-1391   2        }                                                                               //≤‚¡ø±Í÷æ
-1392   1        else
-1393   1        {
-1394   2          jishuguan_data=0;                                                             //needthinkwhetherneed?4
+1227   2          else
+1228   2            Flag_Meant=0;
+1229   2          //shortdelay(5000);                                                             //—” ±
+1230   2          //for(i=0;i<33;i++)//œ‘ æÕÍ«Â0
+1231   2          //buf[i]=0;
+1232   2        }                                                                               //≤‚¡ø±Í÷æ
+1233   1        else
+1234   1        {
+1235   2          jishuguan_data=0;                                                             //needthinkwhetherneed?4
              -.21,intº∆ ˝π‹ ˝æ›£¨
-1395   2          dianlishi_data=0;                                                             //µÁ¿Î “ ˝æ›
-1396   2          jishuguan_rata=0;                                                             //º∆ ˝π‹º∆ ˝¬ 
-1397   2          jishuguan_jtemp=0;                                                            //º∆ ˝π‹º¡¡ø÷µ(µ•Œª◊™ªª∫
+1236   2          dianlishi_data=0;                                                             //µÁ¿Î “ ˝æ›
+1237   2          jishuguan_rata=0;                                                             //º∆ ˝π‹º∆ ˝¬ 
+1238   2          jishuguan_jtemp=0;                                                            //º∆ ˝π‹º¡¡ø÷µ(µ•Œª◊™ªª∫
              -Û)
-1398   2          dianlishi_jtemp=0;                                                            //µÁ¿Î “º¡¡ø÷µ£®µ•Œª◊™ªª
+1239   2          dianlishi_jtemp=0;                                                            //µÁ¿Î “º¡¡ø÷µ£®µ•Œª◊™ªª
              -∫Û£©
-1399   2          Tbcd[11]=0;
-1400   2          Tbcd[10]=0;
-1401   2          Tbcd[9]=0;
-1402   2          Tbcd[8]=0;
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 28  
-
-1403   2          Tbcd[7]=0;
-1404   2          Tbcd[6]=0;
-1405   2          Tbcd[5]=0;
-1406   2          Tbcd[4]=0;
-1407   2          Tbcd[3]=0;
-1408   2          Tbcd[2]=0;
-1409   2          Tbcd[1]=0;
-1410   2          Tbcd[0]=0;
-1411   2          j=10*biaoding_input-7;                                                        //biaodin_inputŒ™“™±Í∂®µ
+1240   2          Tbcd[11]=0;
+1241   2          Tbcd[10]=0;
+1242   2          Tbcd[9]=0;
+1243   2          Tbcd[8]=0;
+1244   2          Tbcd[7]=0;
+1245   2          Tbcd[6]=0;
+1246   2          Tbcd[5]=0;
+1247   2          Tbcd[4]=0;
+1248   2          Tbcd[3]=0;
+1249   2          Tbcd[2]=0;
+1250   2          Tbcd[1]=0;
+1251   2          Tbcd[0]=0;
+1252   2          j=10*biaoding_input-7;                                                        //biaodin_inputŒ™“™±Í∂®µ
              -ƒÃΩÕ∑–Ú∫≈
-1412   2          jishuguan_data=buf[4*biaoding_input-1]*256+buf[4*biaoding_input-2];       //œ‡µ±”⁄Tdata
-1413   2          jishuguan_rata=jishuguan_data*12;                                             //º∆ ˝¬ £¨÷±Ω”≥À“‘12?
-1414   2          dianlishi_data=buf[4*biaoding_input+1]*256+buf[4*biaoding_input];     //µÁ¿Î “Tdata
-1415   2          Para[0]=(float)(DataThouth[j]*1000+DataCent[j]*100+DataTenth[j]*10+DataGe[j]);//µ˜Ω⁄≤Œ ˝
-*** ERROR C215 IN LINE 1415 OF 8253count.c: illegal type conversion
-1416   2          Para[1]=(float)((float)(DataThouth[j+1]*1000+DataCent[j+1]*100+DataTenth[j+1]*10+DataGe[j+1])/1000000)
+1253   2          jishuguan_data=buf[4*biaoding_input-1]*256+buf[4*biaoding_input-2];       //œ‡µ±”⁄Tdata
+1254   2          jishuguan_rata=jishuguan_data*12;                                             //º∆ ˝¬ £¨÷±Ω”≥À“‘12?
+1255   2          dianlishi_data=buf[4*biaoding_input+1]*256+buf[4*biaoding_input];     //µÁ¿Î “Tdata
+1256   2          Para[0]=(float)(DataThouth[j]*1000+DataCent[j]*100+DataTenth[j]*10+DataGe[j]);//µ˜Ω⁄≤Œ ˝
+1257   2          Para[1]=(float)((float)(DataThouth[j+1]*1000+DataCent[j+1]*100+DataTenth[j+1]*10+DataGe[j+1])/1000000)
              -;
-*** ERROR C215 IN LINE 1416 OF 8253count.c: illegal type conversion
-1417   2          jishuguan_DoseRata=(float)(Para[1]*(jishuguan_rata-Para[0]));
-*** ERROR C215 IN LINE 1417 OF 8253count.c: illegal type conversion
-1418   2          if(jishuguan_DoseRata<0)
-1419   2            jishuguan_DoseRata=0.0;
-1420   2          jishuguan_jtemp=(float)jishuguan_DoseRata;
-1421   2          if((Tbcd[11]<=9)&&(Tbcd[10]<=9)&&(Tbcd[9]<=9)&&(Tbcd[8]<=9)&&(Tbcd[7]<=9)&&(Tbcd[6]<=9))//4.21À∆∫ı∂‡”‡
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 24  
+
+1258   2          jishuguan_DoseRata=(float)(Para[1]*(jishuguan_rata-Para[0]));
+1259   2          if(jishuguan_DoseRata<0)
+1260   2            jishuguan_DoseRata=0.0;
+1261   2          jishuguan_jtemp=(float)jishuguan_DoseRata;
+1262   2          if((Tbcd[11]<=9)&&(Tbcd[10]<=9)&&(Tbcd[9]<=9)&&(Tbcd[8]<=9)&&(Tbcd[7]<=9)&&(Tbcd[6]<=9))//4.21À∆∫ı∂‡”‡
              -£¨ø…≤ªø…“‘–ﬁ∏ƒµÙ
-1422   2          {
-1423   3            Tbcd[11]=(uchar)(((int)jishuguan_jtemp)/100);                               //«ßŒª
-1424   3            Tbcd[10]=(uchar)(((int)jishuguan_jtemp)%100/10);                            //∞ŸŒª
-1425   3            Tbcd[9]=(uchar)(((int)jishuguan_jtemp)%100%10);                             //∏ˆŒª
-1426   3            jishuguan_count_temp=(jishuguan_jtemp-(int)jishuguan_jtemp)*1000;
-1427   3            Tbcd[8]=(uchar)(jishuguan_count_temp/100);
-1428   3            Tbcd[7]=(uchar)(jishuguan_count_temp%100/10);
-1429   3            Tbcd[6]=(uchar)(jishuguan_count_temp%100%10);
-1430   3          }
-1431   2          Para[2]=(float)(DataThouth[j+2]*1000+DataCent[j+2]*100+DataTenth[j+2]*10+DataGe[j+2]);//µ˜Ω⁄≤Œ ˝
-*** ERROR C215 IN LINE 1431 OF 8253count.c: illegal type conversion
-1432   2          Para[3]=(float)((float)(DataThouth[j+3]*1000+DataCent[j+3]*100+DataTenth[j+3]*10+DataGe[j+3])/1000);
-*** ERROR C215 IN LINE 1432 OF 8253count.c: illegal type conversion
-1433   2          dianlishi_DoseRata=(float)(Para[3]*(dianlishi_data-Para[2]));
-*** ERROR C215 IN LINE 1433 OF 8253count.c: illegal type conversion
-1434   2          if(dianlishi_DoseRata<0)
-1435   2            dianlishi_DoseRata=0.0;
-1436   2          dianlishi_jtemp=(float)(dianlishi_DoseRata/1000);
-1437   2          if((Tbcd[5]<=9)&&(Tbcd[4]<=9)&&(Tbcd[3]<=9)&&(Tbcd[2]<=9)&&(Tbcd[1]<=9)&&(Tbcd[0]<=9))//4.21À∆∫ı∂‡”‡£¨
+1263   2          {
+1264   3            Tbcd[11]=(uchar)(((int)jishuguan_jtemp)/100);                               //«ßŒª
+1265   3            Tbcd[10]=(uchar)(((int)jishuguan_jtemp)%100/10);                            //∞ŸŒª
+1266   3            Tbcd[9]=(uchar)(((int)jishuguan_jtemp)%100%10);                             //∏ˆŒª
+1267   3            jishuguan_count_temp=(jishuguan_jtemp-(int)jishuguan_jtemp)*1000;
+1268   3            Tbcd[8]=(uchar)(jishuguan_count_temp/100);
+1269   3            Tbcd[7]=(uchar)(jishuguan_count_temp%100/10);
+1270   3            Tbcd[6]=(uchar)(jishuguan_count_temp%100%10);
+1271   3          }
+1272   2          Para[2]=(float)(DataThouth[j+2]*1000+DataCent[j+2]*100+DataTenth[j+2]*10+DataGe[j+2]);//µ˜Ω⁄≤Œ ˝
+1273   2          Para[3]=(float)((float)(DataThouth[j+3]*1000+DataCent[j+3]*100+DataTenth[j+3]*10+DataGe[j+3])/1000);
+1274   2          dianlishi_DoseRata=(float)(Para[3]*(dianlishi_data-Para[2]));
+1275   2          if(dianlishi_DoseRata<0)
+1276   2            dianlishi_DoseRata=0.0;
+1277   2          dianlishi_jtemp=(float)(dianlishi_DoseRata/1000);
+1278   2          if((Tbcd[5]<=9)&&(Tbcd[4]<=9)&&(Tbcd[3]<=9)&&(Tbcd[2]<=9)&&(Tbcd[1]<=9)&&(Tbcd[0]<=9))//4.21À∆∫ı∂‡”‡£¨
              -ø…≤ªø…“‘–ﬁ∏ƒµÙ
-1438   2          {
-1439   3            Tbcd[5]=(uchar)(((int)dianlishi_jtemp)/100);                                //«ßŒª
-1440   3            Tbcd[4]=(uchar)(((int)dianlishi_jtemp)%100/10);                             //∞ŸŒª
-1441   3            Tbcd[3]=(uchar)(((int)dianlishi_jtemp)%100%10);                             //∏ˆŒª
-1442   3            dianlishi_count_temp=(dianlishi_jtemp-(int)dianlishi_jtemp)*1000;
-1443   3            Tbcd[2]=(uchar)(dianlishi_count_temp/100);
-1444   3            Tbcd[1]=(uchar)(dianlishi_count_temp%100/10);
-1445   3            Tbcd[0]=(uchar)(dianlishi_count_temp%100%10);
-1446   3          }
-1447   2          Txtext(200,58,"±Í∂®ÃΩÕ∑");
-1448   2          Tnumber(400,58,biaoding_input);
-1449   2          Txtext(10,116,"∏«∏Ôπ‹");;
-1450   2          Txtext(160,116,":");
-1451   2          Txtext(220,174,"uGy/h");
-1452   2          Txtext(520,174,"CPM");
-1453   2          Txtext(10,290,"µÁ¿Î “");;
-1454   2          Txtext(160,290,":");
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 29  
+1279   2          {
+1280   3            Tbcd[5]=(uchar)(((int)dianlishi_jtemp)/100);                                //«ßŒª
+1281   3            Tbcd[4]=(uchar)(((int)dianlishi_jtemp)%100/10);                             //∞ŸŒª
+1282   3            Tbcd[3]=(uchar)(((int)dianlishi_jtemp)%100%10);                             //∏ˆŒª
+1283   3            dianlishi_count_temp=(dianlishi_jtemp-(int)dianlishi_jtemp)*1000;
+1284   3            Tbcd[2]=(uchar)(dianlishi_count_temp/100);
+1285   3            Tbcd[1]=(uchar)(dianlishi_count_temp%100/10);
+1286   3            Tbcd[0]=(uchar)(dianlishi_count_temp%100%10);
+1287   3          }
+1288   2          Txtext(200,58,"±Í∂®ÃΩÕ∑");
+1289   2          Tnumber(400,58,biaoding_input);
+1290   2          Txtext(10,116,"∏«∏Ôπ‹");;
+1291   2          Txtext(160,116,":");
+1292   2          Txtext(220,174,"uGy/h");
+1293   2          Txtext(520,174,"CPM");
+1294   2          Txtext(10,290,"µÁ¿Î “");;
+1295   2          Txtext(160,290,":");
+1296   2          Txtext(220,348,"mGy/h");
+1297   2          Txtext(520,348,"CP5S");
+1298   2          if(Tbcd[11]!=0)
+1299   2          {
+1300   3            Tnumber(10,174,Tbcd[11]);
+1301   3            Tnumber(40,174,Tbcd[10]);
+1302   3            Tnumber(70,174,Tbcd[9]);
+1303   3            Txtext(100,174,".");
+1304   3            Tnumber(130,174,Tbcd[8]);
+1305   3            Tnumber(160,174,Tbcd[7]);
+1306   3            Tnumber(190,174,Tbcd[6]);
+1307   3            if(jishuguan_data<10)
+1308   3              Tnumber(490,174,jishuguan_data);                                          //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6.2
+             -4
+1309   3            else if((jishuguan_data>=10)&&(jishuguan_data<100))
+1310   3              Tnumber(460,174,jishuguan_data);
+1311   3            else if((jishuguan_data>=100)&&(jishuguan_data<1000))
+1312   3              Tnumber(430,174,jishuguan_data);
+1313   3            else if((jishuguan_data>=1000)&&(jishuguan_data<10000))
+1314   3              Tnumber(400,174,jishuguan_data);
+1315   3            else if(jishuguan_data>=10000)
+1316   3              Tnumber(370,174,jishuguan_data);
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 25  
 
-1455   2          Txtext(220,348,"mGy/h");
-1456   2          Txtext(520,348,"CP5S");
-1457   2          if(Tbcd[11]!=0)
-1458   2          {
-1459   3            Tnumber(10,174,Tbcd[11]);
-1460   3            Tnumber(40,174,Tbcd[10]);
-1461   3            Tnumber(70,174,Tbcd[9]);
-1462   3            Txtext(100,174,".");
-1463   3            Tnumber(130,174,Tbcd[8]);
-1464   3            Tnumber(160,174,Tbcd[7]);
-1465   3            Tnumber(190,174,Tbcd[6]);
-1466   3            if(jishuguan_data<10)
-1467   3              Tnumber(490,174,jishuguan_data);                                          //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6.2
+1317   3          }
+1318   2          else
+1319   2          {
+1320   3            if(Tbcd[10]!=0)
+1321   3            {
+1322   4              Tnumber(40,174,Tbcd[10]);
+1323   4              Tnumber(70,174,Tbcd[9]);
+1324   4              Txtext(100,174,".");
+1325   4              Tnumber(130,174,Tbcd[8]);
+1326   4              Tnumber(160,174,Tbcd[7]);
+1327   4              Tnumber(190,174,Tbcd[6]);
+1328   4              if(jishuguan_data<10)
+1329   4              Tnumber(490,174,jishuguan_data);                                          //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6.2
              -4
-1468   3            else if((jishuguan_data>=10)&&(jishuguan_data<100))
-1469   3              Tnumber(460,174,jishuguan_data);
-1470   3            else if((jishuguan_data>=100)&&(jishuguan_data<1000))
-1471   3              Tnumber(430,174,jishuguan_data);
-1472   3            else if((jishuguan_data>=1000)&&(jishuguan_data<10000))
-1473   3              Tnumber(400,174,jishuguan_data);
-1474   3            else if(jishuguan_data>=10000)
-1475   3              Tnumber(370,174,jishuguan_data);
-1476   3          }
-1477   2          else
-1478   2          {
-1479   3            if(Tbcd[10]!=0)
-1480   3            {
-1481   4              Tnumber(40,174,Tbcd[10]);
-1482   4              Tnumber(70,174,Tbcd[9]);
-1483   4              Txtext(100,174,".");
-1484   4              Tnumber(130,174,Tbcd[8]);
-1485   4              Tnumber(160,174,Tbcd[7]);
-1486   4              Tnumber(190,174,Tbcd[6]);
-1487   4              if(jishuguan_data<10)
-1488   4              Tnumber(490,174,jishuguan_data);                                          //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6.2
+1330   4              else if((jishuguan_data>=10)&&(jishuguan_data<100))
+1331   4              Tnumber(460,174,jishuguan_data);
+1332   4              else if((jishuguan_data>=100)&&(jishuguan_data<1000))
+1333   4              Tnumber(430,174,jishuguan_data);
+1334   4              else if((jishuguan_data>=1000)&&(jishuguan_data<10000))
+1335   4              Tnumber(400,174,jishuguan_data);
+1336   4              else if(jishuguan_data>=10000)
+1337   4              Tnumber(370,174,jishuguan_data);
+1338   4            }
+1339   3            else
+1340   3            {
+1341   4              Tnumber(70,174,Tbcd[9]);
+1342   4              Txtext(100,174,".");
+1343   4              Tnumber(130,174,Tbcd[8]);
+1344   4              Tnumber(160,174,Tbcd[7]);
+1345   4              Tnumber(190,174,Tbcd[6]);
+1346   4              if(jishuguan_data<10)
+1347   4                Tnumber(490,174,jishuguan_data);                                        //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6.2
              -4
-1489   4              else if((jishuguan_data>=10)&&(jishuguan_data<100))
-1490   4              Tnumber(460,174,jishuguan_data);
-1491   4              else if((jishuguan_data>=100)&&(jishuguan_data<1000))
-1492   4              Tnumber(430,174,jishuguan_data);
-1493   4              else if((jishuguan_data>=1000)&&(jishuguan_data<10000))
-1494   4              Tnumber(400,174,jishuguan_data);
-1495   4              else if(jishuguan_data>=10000)
-1496   4              Tnumber(370,174,jishuguan_data);
-1497   4            }
-1498   3            else
-1499   3            {
-1500   4              Tnumber(70,174,Tbcd[9]);
-1501   4              Txtext(100,174,".");
-1502   4              Tnumber(130,174,Tbcd[8]);
-1503   4              Tnumber(160,174,Tbcd[7]);
-1504   4              Tnumber(190,174,Tbcd[6]);
-1505   4              if(jishuguan_data<10)
-1506   4                Tnumber(490,174,jishuguan_data);                                        //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6.2
+1348   4              else if((jishuguan_data>=10)&&(jishuguan_data<100))
+1349   4                Tnumber(460,174,jishuguan_data);
+1350   4              else if((jishuguan_data>=100)&&(jishuguan_data<1000))
+1351   4                Tnumber(430,174,jishuguan_data);
+1352   4              else if((jishuguan_data>=1000)&&(jishuguan_data<10000))
+1353   4                Tnumber(400,174,jishuguan_data);
+1354   4              else if(jishuguan_data>=10000)
+1355   4                Tnumber(370,174,jishuguan_data);
+1356   4            }
+1357   3          }
+1358   2          if(Tbcd[5]!=0)
+1359   2          {
+1360   3            Tnumber(10,348,Tbcd[5]);
+1361   3            Tnumber(40,348,Tbcd[4]);
+1362   3            Tnumber(70,348,Tbcd[3]);
+1363   3            Txtext(100,348,".");
+1364   3            Tnumber(130,348,Tbcd[2]);
+1365   3            Tnumber(160,348,Tbcd[1]);
+1366   3            Tnumber(190,348,Tbcd[0]);
+1367   3            if(dianlishi_data<10)
+1368   3              Tnumber(490,348,dianlishi_data);                                          //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6.2
              -4
-1507   4              else if((jishuguan_data>=10)&&(jishuguan_data<100))
-1508   4                Tnumber(460,174,jishuguan_data);
-1509   4              else if((jishuguan_data>=100)&&(jishuguan_data<1000))
-1510   4                Tnumber(430,174,jishuguan_data);
-1511   4              else if((jishuguan_data>=1000)&&(jishuguan_data<10000))
-1512   4                Tnumber(400,174,jishuguan_data);
-1513   4              else if(jishuguan_data>=10000)
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 30  
+1369   3            else if((dianlishi_data>=10)&&(dianlishi_data<100))
+1370   3              Tnumber(460,348,dianlishi_data);
+1371   3            else if((dianlishi_data>=100)&&(dianlishi_data<1000))
+1372   3              Tnumber(430,348,dianlishi_data);
+1373   3            else if((dianlishi_data>=1000)&&(dianlishi_data<10000))
+1374   3              Tnumber(400,348,dianlishi_data);
+1375   3            else if(dianlishi_data>=10000)
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 26  
 
-1514   4                Tnumber(370,174,jishuguan_data);
-1515   4            }
-1516   3          }
-1517   2          if(Tbcd[5]!=0)
-1518   2          {
-1519   3            Tnumber(10,348,Tbcd[5]);
-1520   3            Tnumber(40,348,Tbcd[4]);
-1521   3            Tnumber(70,348,Tbcd[3]);
-1522   3            Txtext(100,348,".");
-1523   3            Tnumber(130,348,Tbcd[2]);
-1524   3            Tnumber(160,348,Tbcd[1]);
-1525   3            Tnumber(190,348,Tbcd[0]);
-1526   3            if(dianlishi_data<10)
-1527   3              Tnumber(490,348,dianlishi_data);                                          //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6.2
+1376   3              Tnumber(370,348,dianlishi_data);
+1377   3          }
+1378   2          else
+1379   2          {
+1380   3            if(Tbcd[4]!=0)
+1381   3            {
+1382   4              Tnumber(40,348,Tbcd[4]);
+1383   4              Tnumber(70,348,Tbcd[3]);
+1384   4              Txtext(100,348,".");
+1385   4              Tnumber(130,348,Tbcd[2]);
+1386   4              Tnumber(160,348,Tbcd[1]);
+1387   4              Tnumber(190,348,Tbcd[0]);
+1388   4              if(dianlishi_data<10)
+1389   4                Tnumber(490,348,dianlishi_data);                                        //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6.2
              -4
-1528   3            else if((dianlishi_data>=10)&&(dianlishi_data<100))
-1529   3              Tnumber(460,348,dianlishi_data);
-1530   3            else if((dianlishi_data>=100)&&(dianlishi_data<1000))
-1531   3              Tnumber(430,348,dianlishi_data);
-1532   3            else if((dianlishi_data>=1000)&&(dianlishi_data<10000))
-1533   3              Tnumber(400,348,dianlishi_data);
-1534   3            else if(dianlishi_data>=10000)
-1535   3              Tnumber(370,348,dianlishi_data);
-1536   3          }
-1537   2          else
-1538   2          {
-1539   3            if(Tbcd[4]!=0)
-1540   3            {
-1541   4              Tnumber(40,348,Tbcd[4]);
-1542   4              Tnumber(70,348,Tbcd[3]);
-1543   4              Txtext(100,348,".");
-1544   4              Tnumber(130,348,Tbcd[2]);
-1545   4              Tnumber(160,348,Tbcd[1]);
-1546   4              Tnumber(190,348,Tbcd[0]);
-1547   4              if(dianlishi_data<10)
-1548   4                Tnumber(490,348,dianlishi_data);                                        //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6.2
+1390   4              else if((dianlishi_data>=10)&&(dianlishi_data<100))
+1391   4                Tnumber(460,348,dianlishi_data);
+1392   4              else if((dianlishi_data>=100)&&(dianlishi_data<1000))
+1393   4                Tnumber(430,348,dianlishi_data);
+1394   4              else if((dianlishi_data>=1000)&&(dianlishi_data<10000))
+1395   4                Tnumber(400,348,dianlishi_data);
+1396   4              else if(dianlishi_data>=10000)
+1397   4                Tnumber(370,348,dianlishi_data);
+1398   4            }
+1399   3            else
+1400   3            {
+1401   4              Tnumber(70,348,Tbcd[3]);
+1402   4              Txtext(100,348,".");
+1403   4              Tnumber(130,348,Tbcd[2]);
+1404   4              Tnumber(160,348,Tbcd[1]);
+1405   4              Tnumber(190,348,Tbcd[0]);
+1406   4              if(dianlishi_data<10)
+1407   4                Tnumber(490,348,dianlishi_data);                                        //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6.2
              -4
-1549   4              else if((dianlishi_data>=10)&&(dianlishi_data<100))
-1550   4                Tnumber(460,348,dianlishi_data);
-1551   4              else if((dianlishi_data>=100)&&(dianlishi_data<1000))
-1552   4                Tnumber(430,348,dianlishi_data);
-1553   4              else if((dianlishi_data>=1000)&&(dianlishi_data<10000))
-1554   4                Tnumber(400,348,dianlishi_data);
-1555   4              else if(dianlishi_data>=10000)
-1556   4                Tnumber(370,348,dianlishi_data);
-1557   4            }
-1558   3            else
-1559   3            {
-1560   4              Tnumber(70,348,Tbcd[3]);
-1561   4              Txtext(100,348,".");
-1562   4              Tnumber(130,348,Tbcd[2]);
-1563   4              Tnumber(160,348,Tbcd[1]);
-1564   4              Tnumber(190,348,Tbcd[0]);
-1565   4              if(dianlishi_data<10)
-1566   4                Tnumber(490,348,dianlishi_data);                                        //≤‚ ‘ÕÍ≥…∫Û»•µÙ2012.6.2
-             -4
-1567   4              else if((dianlishi_data>=10)&&(dianlishi_data<100))
-1568   4                Tnumber(460,348,dianlishi_data);
-1569   4              else if((dianlishi_data>=100)&&(dianlishi_data<1000))
-1570   4                Tnumber(430,348,dianlishi_data);
-1571   4              else if((dianlishi_data>=1000)&&(dianlishi_data<10000))
-1572   4                Tnumber(400,348,dianlishi_data);
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 31  
+1408   4              else if((dianlishi_data>=10)&&(dianlishi_data<100))
+1409   4                Tnumber(460,348,dianlishi_data);
+1410   4              else if((dianlishi_data>=100)&&(dianlishi_data<1000))
+1411   4                Tnumber(430,348,dianlishi_data);
+1412   4              else if((dianlishi_data>=1000)&&(dianlishi_data<10000))
+1413   4                Tnumber(400,348,dianlishi_data);
+1414   4              else if(dianlishi_data>=10000)
+1415   4                Tnumber(370,348,dianlishi_data);
+1416   4            }
+1417   3          }
+1418   2        }
+1419   1      }
+1420          
+1421          /************************************
+1422          *∂Ã—” ±
+1423          ************************************/
+1424          void shortdelay(uint i)
+1425          {
+1426   1        uint k;
+1427   1        uint n;
+1428   1        for(k=0;k<i;k++)
+1429   1          for(n=200;n>0;n--);
+1430   1      }
+1431          
+1432          /********************************
+1433          *÷∏ æµ∆∫Õ±®æØ
+1434          ********************************/
+1435          void Alarm()
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 27  
 
-1573   4              else if(dianlishi_data>=10000)
-1574   4                Tnumber(370,348,dianlishi_data);
-1575   4            }
-1576   3          }
-1577   2        }
-1578   1      }
-1579          
-1580          /************************************
-1581          *∂Ã—” ±
-1582          ************************************/
-1583          void shortdelay(uint i)
-1584          {
-1585   1        uint k;
-1586   1        uint n;
-1587   1        for(k=0;k<i;k++)
-1588   1          for(n=200;n>0;n--);
-1589   1      }
-1590          
-1591          /********************************
-1592          *÷∏ æµ∆∫Õ±®æØ
-1593          ********************************/
-1594          void Alarm()
-1595          {
-1596   1        uchar n;
-1597   1        for(n=0;n<10;n++)
-1598   1        {
-1599   2          Led573=Var_Led;
-1600   2          if(Flag_Warn==1)                                                                  //…˘“Ù±®æØ
-1601   2          {
-1602   3            Speak=1;
-1603   3          }
-1604   2        }
-1605   1      }
-1606          
-1607          /*******************************
-1608          *∏¸–¬÷∏ æµ∆◊¥Ã¨
-1609          *******************************/
-1610          void Updata_Flash(uchar j)
-1611          {
-1612   1        if(Flag_need_Flash[j])
-1613   1        {
-1614   2          if(State_Flash[j]==1)
-1615   2          {
-1616   3            State_Flash[j]=0;
-1617   3          }
-1618   2          else
-1619   2          {
-1620   3            State_Flash[j]=1;
-1621   3          }
-1622   2        }
-1623   1        else
-1624   1        State_Flash[j]=0;
-1625   1      }
-1626          
-1627          /***********************************
-1628          *÷∏ æµ∆…¡À∏
-1629          ************************************/
-1630          void Led_Flash(void )
-1631          {
-1632   1        uchar i;
-1633   1        for(i=0;i<8;i++)
-1634   1        {
-C51 COMPILER V9.60.7.0   8253COUNT                                                         08/16/2023 22:48:36 PAGE 32  
+1436          {
+1437   1        uchar n;
+1438   1        for(n=0;n<10;n++)
+1439   1        {
+1440   2          Led573=Var_Led;
+1441   2          if(Flag_Warn==1)                                                                  //…˘“Ù±®æØ
+1442   2          {
+1443   3            Speak=1;
+1444   3          }
+1445   2        }
+1446   1      }
+1447          
+1448          /*******************************
+1449          *∏¸–¬÷∏ æµ∆◊¥Ã¨
+1450          *******************************/
+1451          void Updata_Flash(uchar j)
+1452          {
+1453   1        if(Flag_need_Flash[j])
+1454   1        {
+1455   2          if(State_Flash[j]==1)
+1456   2          {
+1457   3            State_Flash[j]=0;
+1458   3          }
+1459   2          else
+1460   2          {
+1461   3            State_Flash[j]=1;
+1462   3          }
+1463   2        }
+1464   1        else
+1465   1        State_Flash[j]=0;
+1466   1      }
+1467          
+1468          /***********************************
+1469          *÷∏ æµ∆…¡À∏
+1470          ************************************/
+1471          void Led_Flash(void )
+1472          {
+1473   1        uchar i;
+1474   1        for(i=0;i<8;i++)
+1475   1        {
+1476   2          Updata_Flash(i);                                                                  //◊¥Ã¨»°∑¥
+1477   2          Led_Disp(i,Flag_need_Flash[i],State_Flash[i]);                                    //µ∆◊¥Ã¨œ‘ æ
+1478   2        }
+1479   1      }
+1480          
+1481          /************************************
+1482          *÷∏ æµ∆◊¥Ã¨œ‘ æ
+1483          *************************************/
+1484          void Led_Disp(uchar Num,uchar Flag,uchar State)
+1485          {
+1486   1        if(Flag)
+1487   1        {
+1488   2          if(State)
+1489   2          {
+1490   3            Var_Led=Var_Led&Svar0[Num];                                                       //÷∏ æµ∆¡¡
+1491   3            Led573=Var_Led;
+1492   3            if(Flag_Warn==1)                                                                  //–Ë“™∑‰√˘∆˜π§◊˜
+1493   3            {
+1494   4              Speak=0;                                                                          //∑‰√˘∆˜œÏ
+1495   4              shortdelay(100);
+1496   4            }
+1497   3            return;
+C51 COMPILER V9.60.7.0   8253COUNT                                                         01/26/2024 15:20:23 PAGE 28  
 
-1635   2          Updata_Flash(i);                                                                  //◊¥Ã¨»°∑¥
-1636   2          Led_Disp(i,Flag_need_Flash[i],State_Flash[i]);                                    //µ∆◊¥Ã¨œ‘ æ
-1637   2        }
-1638   1      }
-1639          
-1640          /************************************
-1641          *÷∏ æµ∆◊¥Ã¨œ‘ æ
-1642          *************************************/
-1643          void Led_Disp(uchar Num,uchar Flag,uchar State)
-1644          {
-1645   1        if(Flag)
-1646   1        {
-1647   2          if(State)
-1648   2          {
-1649   3            Var_Led=Var_Led&Svar0[Num];                                                       //÷∏ æµ∆¡¡
-1650   3            Led573=Var_Led;
-1651   3            if(Flag_Warn==1)                                                                  //–Ë“™∑‰√˘∆˜π§◊˜
-1652   3            {
-1653   4              Speak=0;                                                                          //∑‰√˘∆˜œÏ
-1654   4              shortdelay(100);
-1655   4            }
-1656   3            return;
-1657   3          }
-1658   2        }
-1659   1        Var_Led=Var_Led|Svar1[Num];                                                       //÷∏ æµ∆√
-1660   1        Led573=Var_Led;
-1661   1        if(Flag_Warn==1)                                                                  //–Ë“™∑‰√˘∆˜π§◊˜
-1662   1        {
-1663   2          Speak=1;                                                                          //∑‰√˘∆˜≤ªœÏ
-1664   2          shortdelay(100);
-1665   2        }
-1666   1      }
+1498   3          }
+1499   2        }
+1500   1        Var_Led=Var_Led|Svar1[Num];                                                       //÷∏ æµ∆√
+1501   1        Led573=Var_Led;
+1502   1        if(Flag_Warn==1)                                                                  //–Ë“™∑‰√˘∆˜π§◊˜
+1503   1        {
+1504   2          Speak=1;                                                                          //∑‰√˘∆˜≤ªœÏ
+1505   2          shortdelay(100);
+1506   2        }
+1507   1      }
 
-C51 COMPILATION COMPLETE.  0 WARNING(S),  102 ERROR(S)
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =  23522    ----
+   CONSTANT SIZE    =    153    ----
+   XDATA SIZE       =    611      41
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =     48      24
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

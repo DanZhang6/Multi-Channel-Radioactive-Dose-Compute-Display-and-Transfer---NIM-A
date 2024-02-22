@@ -1,10 +1,10 @@
-C51 COMPILER V9.60.7.0   MEASURE                                                           08/16/2023 22:48:37 PAGE 1   
+C51 COMPILER V9.60.7.0   MEASURE                                                           01/26/2024 15:20:24 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MEASURE
 OBJECT MODULE PLACED IN .\Objects\measure.obj
-COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE measure.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\m
-                    -easure.lst) TABS(2) OBJECT(.\Objects\measure.obj)
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE measure.c LARGE OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\List
+                    -ings\measure.lst) TABS(2) OBJECT(.\Objects\measure.obj)
 
 line level    source
 
@@ -62,7 +62,7 @@ line level    source
   52   2           Tnumber(342,98,Incinput);
   53   2           Txtext(390,98,"个");
   54   2           Txtext(102,166,"测量时间：");
-C51 COMPILER V9.60.7.0   MEASURE                                                           08/16/2023 22:48:37 PAGE 2   
+C51 COMPILER V9.60.7.0   MEASURE                                                           01/26/2024 15:20:24 PAGE 2   
 
   55   2           Tnumber(342,166,3);        //AA1*原为Redrawtime;
   56   2           Txtext(390,166,"秒");
@@ -83,7 +83,7 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    330    ----
+   CODE SIZE        =    350    ----
    CONSTANT SIZE    =    101    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

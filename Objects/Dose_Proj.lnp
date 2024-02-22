@@ -1,0 +1,17 @@
+".\Objects\STARTUP.obj",
+".\Objects\8253count.obj",
+".\Objects\at24c16.obj",
+".\Objects\collateral.obj",
+".\Objects\lcd.obj",
+".\Objects\main.obj",
+".\Objects\Masterdisplay.obj",
+".\Objects\measure.obj",
+".\Objects\reset.obj",
+".\Objects\serial.obj",
+".\Objects\Serial1Dip.obj",
+".\Objects\setinput.obj",
+".\Objects\setpara.obj",
+".\Objects\settime.obj",
+".\Objects\time0.obj" 
+TO ".\Objects\Dose_Proj" 
+PRINT(".\Listings\Dose_Proj.m51") RAMSIZE(256) 

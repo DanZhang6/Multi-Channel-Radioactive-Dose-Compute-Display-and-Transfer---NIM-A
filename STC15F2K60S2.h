@@ -289,8 +289,8 @@ sfr PWMFDCR     =   0xf7;   //xx00,0000 PWM外部异常检测控制寄存器
 #define PWM6T2H     (*(unsigned char volatile xdata *)0xff42)
 #define PWM6T2L     (*(unsigned char volatile xdata *)0xff43)
 #define PWM6CR      (*(unsigned char volatile xdata *)0xff44)
-#define PWM7T1      (*(unsigned int  volatile xdata *)0xff50)        
-#define PWM7T1H     (*(unsigned char volatile xdata *)0xff50)        
+#define PWM7T1      (*(unsigned int  volatile xdata *)0xff50)
+#define PWM7T1H     (*(unsigned char volatile xdata *)0xff50)
 #define PWM7T1L     (*(unsigned char volatile xdata *)0xff51)
 #define PWM7T2      (*(unsigned int  volatile xdata *)0xff52)
 #define PWM7T2H     (*(unsigned char volatile xdata *)0xff52)
@@ -300,4 +300,3 @@ sfr PWMFDCR     =   0xf7;   //xx00,0000 PWM外部异常检测控制寄存器
 /////////////////////////////////////////////////
 
 #endif
-

@@ -277,8 +277,6 @@ void Init_8253()
   {
     DoseRata[i] = 0;						//每组探头测得的剂量率
   }
-  OE_573=1;									//573输出高阻态
-  IN_573=0;
   Var_Led=0xff;                                                                   //led指示
   Led573=Var_Led;
   EX0=0;                                                                          //关外部中断0
@@ -335,15 +333,6 @@ void ShowData()
 				Count[i][1]=Count[i][2];
 				if(i<7)//前6个探头和第七个探头取计数位置不一样
 				{
-<<<<<<< Updated upstream
-					Count[i][2]=buf[4*i+5]*256+buf[4*i+4];
-					Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]);
-				}
-				else if(i==7)//前6个探头和第七个探头取计数位置不一样
-				{
-					Count[i][2]=buf[31]*256+buf[30];
-					Real_Count[i]=(uint)(buf[31]*256+buf[30]);
-=======
 					Count[i][2]=buf[4*i+5]*256+buf[4*i+4]-1;			//加一是因为在计数周期内会由硬件给一个脉冲
 					Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]-1);
 				}
@@ -351,7 +340,6 @@ void ShowData()
 				{
 					Count[i][2]=buf[31]*256+buf[30]-1;
 					Real_Count[i]=(uint)(buf[31]*256+buf[30]-1);
->>>>>>> Stashed changes
 				}
 				Calculated[i]=1;//计算过标志
 				if((Count[i][1]<(37*Refresh_Time))&&(Count[i][2]<(37*Refresh_Time))&&(i<7))//量程切换前7个探头判定条件
@@ -380,15 +368,6 @@ void ShowData()
 				Count[i][1]=Count[i][2];
 				if(i<7)//前6个探头和第七个探头取计数位置不一样
 				{
-<<<<<<< Updated upstream
-					Count[i][2]=buf[4*i+5]*256+buf[4*i+4];
-					Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]);
-				}
-				else if(i==7)//前6个探头和第七个探头取计数位置不一样
-				{
-					Count[i][2]=buf[31]*256+buf[30];
-					Real_Count[i]=(uint)(buf[31]*256+buf[30]);
-=======
 					Count[i][2]=buf[4*i+5]*256+buf[4*i+4]-1;
 					Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]-1);
 				}
@@ -396,7 +375,6 @@ void ShowData()
 				{
 					Count[i][2]=buf[31]*256+buf[30]-1;
 					Real_Count[i]=(uint)(buf[31]*256+buf[30]-1);
->>>>>>> Stashed changes
 				}
 				Calculated[i]=1;//计算过标志
 				if((Count[i][1]>(5719*Refresh_Time))&&(Count[i][2]>(5719*Refresh_Time))&&(i<7))//量程切换
@@ -461,13 +439,8 @@ void ShowData()
 			{
 				Count[i][0]=Count[i][1];
 				Count[i][1]=Count[i][2];
-<<<<<<< Updated upstream
-				Count[i][2]=buf[4*i+5]*256+buf[4*i+4];
-				Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]);
-=======
 				Count[i][2]=buf[4*i+5]*256+buf[4*i+4]-1;
 				Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]-1);
->>>>>>> Stashed changes
 				Calculated[i]=1;//计算过标志
 				if((Count[i][1]>(5411*Refresh_Time))&&(Count[i][2]>(5411*Refresh_Time)))//量程切换
 				{
@@ -514,13 +487,8 @@ void ShowData()
 			{
 				Count[i][0]=Count[i][1];
 				Count[i][1]=Count[i][2];
-<<<<<<< Updated upstream
-				Count[i][2]=buf[4*i+3]*256+buf[4*i+2];
-				Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]);
-=======
 				Count[i][2]=buf[4*i+3]*256+buf[4*i+2]-1;
 				Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]-1);
->>>>>>> Stashed changes
 				Calculated[i]=1;//计算过标志
 				if((Count[i][0]>(6019*Refresh_Time))&&(Count[i][1]>(6019*Refresh_Time))&&(Count[i][2]>(6019*Refresh_Time)))//量程切换
 				{
@@ -613,13 +581,8 @@ void ShowData()
 			{
 				Count[i][0]=Count[i][1];
 				Count[i][1]=Count[i][2];
-<<<<<<< Updated upstream
-				Count[i][2]=buf[4*i+3]*256+buf[4*i+2];
-				Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]);
-=======
 				Count[i][2]=buf[4*i+3]*256+buf[4*i+2]-1;
 				Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]-1);
->>>>>>> Stashed changes
 				Calculated[i]=1;//计算过标志
 				if((Count[i][0]>(1.32*Refresh_Time))&&(Count[i][1]>(1.32*Refresh_Time))&&(Count[i][2]>(1.32*Refresh_Time)))//量程切换
 				{
@@ -703,15 +666,6 @@ void ShowData()
 				Real_Count[i]=0;//跳转到此量程需要清零
 				if(i<7)//前6个探头和第七个探头取计数位置不一样
 				{
-<<<<<<< Updated upstream
-					Count[i][2]=buf[4*i+5]*256+buf[4*i+4];
-					Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]);
-				}
-				else if(i==7)//前6个探头和第七个探头取计数位置不一样
-				{
-					Count[i][2]=buf[31]*256+buf[30];
-					Real_Count[i]=(uint)(buf[31]*256+buf[30]);
-=======
 					Count[i][2]=buf[4*i+5]*256+buf[4*i+4]-1;
 					Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]-1);
 				}
@@ -719,7 +673,6 @@ void ShowData()
 				{
 					Count[i][2]=buf[31]*256+buf[30]-1;
 					Real_Count[i]=(uint)(buf[31]*256+buf[30]-1);
->>>>>>> Stashed changes
 				}
 				Calculated[i]=1;//计算过标志
 				Real_Count_Display[i]=(float)((Real_Count[i]*5)/Refresh_Time);
@@ -737,15 +690,6 @@ void ShowData()
 				Display_Flag[i]=0;//显示及换挡标志清零
 				if(i<7)//前6个探头和第七个探头取计数位置不一样
 				{
-<<<<<<< Updated upstream
-					Count[i][2]=buf[4*i+5]*256+buf[4*i+4];
-					Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]);
-				}
-				else if(i==7)//前6个探头和第七个探头取计数位置不一样
-				{
-					Count[i][2]=buf[31]*256+buf[30];
-					Real_Count[i]=(uint)(buf[31]*256+buf[30]);
-=======
 					Count[i][2]=buf[4*i+5]*256+buf[4*i+4]-1;
 					Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]-1);
 				}
@@ -753,7 +697,6 @@ void ShowData()
 				{
 					Count[i][2]=buf[31]*256+buf[30]-1;
 					Real_Count[i]=(uint)(buf[31]*256+buf[30]-1);
->>>>>>> Stashed changes
 				}
 				Calculated[i]=1;//计算过标志
 				Channel_Detector[i][0]=Channel_Detector[i][1];//更新量程历史状态
@@ -768,15 +711,6 @@ void ShowData()
 				Display_Flag[i]=0;//显示及换挡标志清零
 				if(i<7)//前6个探头和第七个探头取计数位置不一样
 				{
-<<<<<<< Updated upstream
-					Count[i][2]=buf[4*i+5]*256+buf[4*i+4];
-					Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]);
-				}
-				else if(i==7)//前6个探头和第七个探头取计数位置不一样
-				{
-					Count[i][2]=buf[31]*256+buf[30];
-					Real_Count[i]=(uint)(buf[31]*256+buf[30]);
-=======
 					Count[i][2]=buf[4*i+5]*256+buf[4*i+4]-1;
 					Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]-1);
 				}
@@ -784,7 +718,6 @@ void ShowData()
 				{
 					Count[i][2]=buf[31]*256+buf[30]-1;
 					Real_Count[i]=(uint)(buf[31]*256+buf[30]-1);
->>>>>>> Stashed changes
 					Channel_Detector[i][1]=3;
 					Channel_Detector[i][0]=3;
 				}
@@ -805,13 +738,8 @@ void ShowData()
 				{
 					Average_Counts[i][j]=0;//平滑平均清零
 				}
-<<<<<<< Updated upstream
-				Count[i][2]=buf[4*i+3]*256+buf[4*i+2];
-				Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]);
-=======
 				Count[i][2]=buf[4*i+3]*256+buf[4*i+2]-1;
 				Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]-1);
->>>>>>> Stashed changes
 				
 				Real_Count[i]*=20;//换算为CPM(注意对应的是3秒的 Refresh Time)
 				Average_Counts[i][Average_Times[i]]=Real_Count[i];
@@ -835,13 +763,8 @@ void ShowData()
 				{
 					Average_Counts[i][j]=0;//平滑平均清零
 				}
-<<<<<<< Updated upstream
-				Count[i][2]=buf[4*i+3]*256+buf[4*i+2];
-				Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]);
-=======
 				Count[i][2]=buf[4*i+3]*256+buf[4*i+2]-1;
 				Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]-1);
->>>>>>> Stashed changes
 				Real_Count[i]*=20;//换算为CPM(注意对应的是3秒的 Refresh Time)
 				Average_Counts[i][Average_Times[i]]=Real_Count[i];
 				Average_Times[i]+=1;
@@ -1093,87 +1016,6 @@ void ShowData()
 		//Txtext(10,13+(j*58),"Dh");
 	  //}
 	  /*AI1*******剂量率显示**********/
-<<<<<<< Updated upstream
-      Tnumber(60,13+(j*58),j+1);                                                  //显示探头号
-      Txtext(90,13+(j*58),":");                                                   //显示冒号
-	  Tnumber(470,13+(j*58),Channel_Detector[j][1]);
-	  Tnumber(440,13+(j*58),Channel_Detector[j][0]);
-	  Tnumber(390,13+(j*58),Average_Times[j]);
-      if(Tbcd[5]!=0)                                                              //若百位非零，根据数的大小来显示
-      {
-        Tnumber(130,13+(j*58),Tbcd[5]);
-        Tnumber(160,13+(j*58),Tbcd[4]);
-        Tnumber(190,13+(j*58),Tbcd[3]);
-        Txtext(220,13+(j*58),".");
-        Tnumber(240,13+(j*58),Tbcd[2]);
-        Tnumber(270,13+(j*58),Tbcd[1]);
-        Tnumber(300,13+(j*58),Tbcd[0]);
-        if(Tdata<10)                                                              //用于显示Tdata锁存的计数值显示
-        Tnumber(576,13+(j*58),Tdata);                                             //测试完成后去掉2012.6.24
-        else if((Tdata>=10)&&(Tdata<100))
-        Tnumber(556,13+(j*58),Tdata);
-        else if((Tdata>=100)&&(Tdata<1000))
-        Tnumber(536,13+(j*58),Tdata);
-        else if((Tdata>=1000)&&(Tdata<10000))
-        Tnumber(516,13+(j*58),Tdata);
-        else if(Tdata>=10000)
-        Tnumber(496,13+(j*58),Tdata);
-      }
-      else
-      {
-        if(Tbcd[4]!=0)                                                            //百位为零十位非零
-        {
-          Tnumber(160,13+(j*58),Tbcd[4]);
-          Tnumber(190,13+(j*58),Tbcd[3]);
-          Txtext(220,13+(j*58),".");
-          Tnumber(240,13+(j*58),Tbcd[2]);
-          Tnumber(270,13+(j*58),Tbcd[1]);
-          Tnumber(300,13+(j*58),Tbcd[0]);
-          if(Tdata<10)
-            Tnumber(576,13+(j*58),Tdata);                                         //测试完成后去掉2012.6.24
-          else if((Tdata>=10)&&(Tdata<100))
-            Tnumber(556,13+(j*58),Tdata);
-          else if((Tdata>=100)&&(Tdata<1000))
-            Tnumber(536,13+(j*58),Tdata);
-          else if((Tdata>=1000)&&(Tdata<10000))
-            Tnumber(516,13+(j*58),Tdata);
-          else if(Tdata>=10000)
-            Tnumber(496,13+(j*58),Tdata);                                         //测试完成后去掉2012.6.24
-        }
-        else                                                                      //百位十位位均为零，个位非零
-        {
-          Tnumber(190,13+(j*58),Tbcd[3]);
-          Txtext(220,13+(j*58),".");                                              //.占20个像素
-          Tnumber(240,13+(j*58),Tbcd[2]);                                         //一个数字占30个像素
-          Tnumber(270,13+(j*58),Tbcd[1]);
-          Tnumber(300,13+(j*58),Tbcd[0]);
-          if(Tdata<10)
-            Tnumber(576,13+(j*58),Tdata);                                         //测试完成后去掉2012.6.24
-          else if((Tdata>=10)&&(Tdata<100))                                       //可以看见一个数字占20像素
-            Tnumber(556,13+(j*58),Tdata);
-          else if((Tdata>=100)&&(Tdata<1000))
-            Tnumber(536,13+(j*58),Tdata);
-          else if((Tdata>=1000)&&(Tdata<10000))
-            Tnumber(516,13+(j*58),Tdata);
-          else if(Tdata>=10000)
-            Tnumber(496,13+(j*58),Tdata);
-        }
-	  }
-      /**********计量单位显示***********/
-      if(Flag_dw==1)                                                              //测试完成后加上2012.6.24
-      {
-        Txtext(340,13+(j*58),"u");
-      }
-      else if(Flag_dw==2)
-      {
-        Txtext(340,13+(j*58),"m");
-      }
-      else if(Flag_dw==3)
-      {
-        Txtext(340,13+(j*58),"G");
-      }
-      Alarm();                                                                    //报警
-=======
 	  if(Flag_need_Flash[j]==0)
 	  {
 	  	if((Channel_Display[j]==0)||(Channel_Display[j]==1))
@@ -1252,15 +1094,15 @@ void ShowData()
       	/**********计量单位显示***********/
       	if(Flag_dw==1)                                                              //测试完成后加上2012.6.24
       	{
-        	Txtext(340,13+(j*58),"uGy/h");
+        	Txtext(340,13+(j*58),"u");
       	}
       	else if(Flag_dw==2)
       	{
-        	Txtext(340,13+(j*58),"mGy/h");
+        	Txtext(340,13+(j*58),"m");
       	}
       	else if(Flag_dw==3)
       	{
-        	Txtext(340,13+(j*58),"Gy/h");
+        	Txtext(340,13+(j*58),"G");
       	}
       	Alarm();                                                                    //报警
 	  	}
@@ -1356,7 +1198,6 @@ void ShowData()
       	}
       	Alarm();                                                                    //报警
 	  	}
->>>>>>> Stashed changes
       send_buf[8*j]=Tbcd[5];                                                      //向NIM-B发送显示数据
       send_buf[8*j+1]=Tbcd[4];
       send_buf[8*j+2]=Tbcd[3];

@@ -1,10 +1,10 @@
-C51 COMPILER V9.60.7.0   TIME0                                                             08/16/2023 22:48:38 PAGE 1   
+C51 COMPILER V9.60.7.0   TIME0                                                             01/26/2024 15:20:25 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE TIME0
 OBJECT MODULE PLACED IN .\Objects\time0.obj
-COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE time0.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\tim
-                    -e0.lst) TABS(2) OBJECT(.\Objects\time0.obj)
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE time0.c LARGE OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listin
+                    -gs\time0.lst) TABS(2) OBJECT(.\Objects\time0.obj)
 
 line level    source
 
@@ -62,72 +62,63 @@ line level    source
   51   3            GATE=1;
   52   3          }
   53   2            NumT0 = ++NumT0;
-C51 COMPILER V9.60.7.0   TIME0                                                             08/16/2023 22:48:38 PAGE 2   
+C51 COMPILER V9.60.7.0   TIME0                                                             01/26/2024 15:20:25 PAGE 2   
 
-  54   2          if(NumT0==100)            //计数期间给一个脉冲给计数器，防止计数器计数不更新
-  55   2          {
-  56   3            OE_573=0;
-  57   3            IN_573=0;
-  58   3            IN_573=1;
-  59   3            OE_573=1;
-  60   3          }
-  61   2          if(NumT0 >=(200*Refresh_Time))         //AA1*,1S钟中断200次，Redrawtime时间内中断200*Redrawtime次,即中断1秒
+  54   2          if(NumT0 >=(200*Refresh_Time))         //AA1*,1S钟中断200次，Redrawtime时间内中断200*Redrawtime次,即中断1秒
              -后执行,关闭8253门控信号
-  62   2          {
-  63   3            GATE = 0;               //关闭8253门控信号
-  64   3            NumT0 = 0;
-  65   3            Flag_Tim0 = 1;              //计时器结束标志，在main函数中不断检测是否为1，为一时进入循环
-  66   3            Flag8253Cnting = 0;           //定时计数标志清零
-  67   3          }
-  68   2        }
-  69   1        if(FlagColling)                           //数据采集间隔时间定时
-  70   1        {
-  71   2          if(++CntColTimer >= TimeOneHundred)     //100ms刷新一次
-  72   2          {
-  73   3            FlagCollErr = 1;
-  74   3            CntColTimer = 0;
-  75   3          }
-  76   2        }
-  77   1        if(Flag_Collateral)                       //主从机通信握手定时
-  78   1        {
-  79   2          if(++CmOverTime >=TimeThreeThousand)
-  80   2          {
-  81   3            FlagCollFall = 1;
-  82   3            CmOverTime = 0;
-  83   3          }
-  84   2        }
-  85   1      }
-  86          
-  87          /*************************************
-  88          *         定时器0初始化
-  89          **************************************/
-  90          void Init_Time0()
-  91          {
-  92   1        TMOD=0x01;                  //定时器0工作在方式1
-  93   1        TH0=0xDC;                   //预置定时初值DC00H,晶振频率22.1184MHz,定时时长约5ms
-  94   1        TL0=0x00;
-  95   1        NumT0=0;                    //中断计数初始化
-  96   1        CntFlhWarnT0 = 0;
-  97   1        CntWarn = 0;
-  98   1        CntS1Warn = 0;
-  99   1        CmOverTime = 0;
- 100   1        CntColTimer = 0;
- 101   1        EA=1;                       //开启总中断
- 102   1        ET0=1;                      //开启定时器0使能
- 103   1        TR0=1;                    //开启定时器0
- 104   1      }
+  55   2          {
+  56   3            GATE = 0;               //关闭8253门控信号
+  57   3            NumT0 = 0;
+  58   3            Flag_Tim0 = 1;              //计时器结束标志，在main函数中不断检测是否为1，为一时进入循环
+  59   3            Flag8253Cnting = 0;           //定时计数标志清零
+  60   3          }
+  61   2        }
+  62   1        if(FlagColling)                           //数据采集间隔时间定时
+  63   1        {
+  64   2          if(++CntColTimer >= TimeOneHundred)     //100ms刷新一次
+  65   2          {
+  66   3            FlagCollErr = 1;
+  67   3            CntColTimer = 0;
+  68   3          }
+  69   2        }
+  70   1        if(Flag_Collateral)                       //主从机通信握手定时
+  71   1        {
+  72   2          if(++CmOverTime >=TimeThreeThousand)
+  73   2          {
+  74   3            FlagCollFall = 1;
+  75   3            CmOverTime = 0;
+  76   3          }
+  77   2        }
+  78   1      }
+  79          
+  80          /*************************************
+  81          *         定时器0初始化
+  82          **************************************/
+  83          void Init_Time0()
+  84          {
+  85   1        TMOD=0x01;                  //定时器0工作在方式1
+  86   1        TH0=0xDC;                   //预置定时初值DC00H,晶振频率22.1184MHz,定时时长约5ms
+  87   1        TL0=0x00;
+  88   1        NumT0=0;                    //中断计数初始化
+  89   1        CntFlhWarnT0 = 0;
+  90   1        CntWarn = 0;
+  91   1        CntS1Warn = 0;
+  92   1        CmOverTime = 0;
+  93   1        CntColTimer = 0;
+  94   1        EA=1;                       //开启总中断
+  95   1        ET0=1;                      //开启定时器0使能
+  96   1        TR0=1;                    //开启定时器0
+  97   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    250    ----
+   CODE SIZE        =    294    ----
    CONSTANT SIZE    =   ----    ----
-   XDATA SIZE       =   ----    ----
+   XDATA SIZE       =     10    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =     10    ----
+   DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =      3    ----
-C51 COMPILER V9.60.7.0   TIME0                                                             08/16/2023 22:48:38 PAGE 3   
-
 END OF MODULE INFORMATION.
 
 

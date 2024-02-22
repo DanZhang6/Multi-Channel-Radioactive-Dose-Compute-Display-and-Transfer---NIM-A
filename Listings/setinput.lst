@@ -1,10 +1,10 @@
-C51 COMPILER V9.60.7.0   SETINPUT                                                          08/16/2023 22:48:37 PAGE 1   
+C51 COMPILER V9.60.7.0   SETINPUT                                                          01/26/2024 15:20:25 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE SETINPUT
 OBJECT MODULE PLACED IN .\Objects\setinput.obj
-COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE setinput.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
-                    -setinput.lst) TABS(2) OBJECT(.\Objects\setinput.obj)
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE setinput.c LARGE OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Lis
+                    -tings\setinput.lst) TABS(2) OBJECT(.\Objects\setinput.obj)
 
 line level    source
 
@@ -62,7 +62,7 @@ line level    source
   52   2          {
   53   3             measure_flag=1;
   54   3             Clear();
-C51 COMPILER V9.60.7.0   SETINPUT                                                          08/16/2023 22:48:37 PAGE 2   
+C51 COMPILER V9.60.7.0   SETINPUT                                                          01/26/2024 15:20:25 PAGE 2   
 
   55   3             Lcd_Clear();
   56   3             Txtext(104,216,"设置测量探头共计："); 
@@ -84,7 +84,7 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    283    ----
+   CODE SIZE        =    308    ----
    CONSTANT SIZE    =     43    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
