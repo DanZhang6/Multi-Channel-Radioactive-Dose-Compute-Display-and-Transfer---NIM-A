@@ -43,7 +43,7 @@
 #define C825351D XBYTE[0xa100]
 #define C825352D XBYTE[0xa200]
 
-uchar buf[32];                                                          //AB1*从8253中读到的计数器数据，15个计数器，低八位高八位，从3-32，1为探头个数，2为测量时间
+uchar buf[32];                                                                    //AB1*从8253中读到的计数器数据，15个计数器，低八位高八位，从3-32，1为探头个数，2为测量时间
 uchar Channel_Detector[8][2];                                                     //AC1+通道探头选择标志，1:电离室0:计数管
 uchar DataGe[75];                                                                 //探测器标定参数的个位，初始时个十百千均为0
 uchar DataTenth[75];                                                              //探测器标定参数的十分位
@@ -61,7 +61,7 @@ uchar Flag_dw;                                                                  
 uchar Max_Time;                                                                   //AA1+所有通道最长的计数时间
 uint Tdata;                                                                 //探头计数率
 uint Real_Count[8];
-ulong Count[8][3];																	//一秒计数历史
+ulong Count[8][3];																//一秒计数历史
 uint idata jishuguan_data;                                                        //标定时的计数管计数值相当于Tdata
 uint idata dianlishi_data;                                                        //标定时的电离室计数值相当于Tdata
 uchar idata Var_Signal1;                                                          //探头控制信号1，接计数管，默认ff均接计数管
@@ -295,58 +295,43 @@ void ShowData()
   double yu,yudata,mtemp;
   uchar Tbcd[12];                                                                 //测得的数据的bcd码数组
   Lcd_Clear();
-  /*AC1+在这里buf(十六位高低计数数据)要转换成uint 类型的Tdata数据,并且探头数目要清楚
-  加入选探头标志*/
-  /*AJ1-,改为新算法
-  for(i=0;i<=7;i++)                                                               //七个探头逐个检测
-  {
-    if(i<7)
-    {
-      if(Channel_Detector[i]==0)                                                  //如果探头使用的是电离室
-      {
-          Real_Count[i]=buf[4*i+4]*256+buf[4*i+3];
-      }
-      else
-      {
-          Real_Count[i]=buf[4*i+6]*256+buf[4*i+5];
-      }
-     }
-    else
-    {
-        Real_Count[i]=buf[32]*256+buf[31];
-    }
-  }
-  -----------------*/
-  /*程序说明:
+  /**程序说明:
   **1,为保证即使多个通道不在同一量程，高量程的通道也能有其响应更快的更新速度，程序一秒计数一次，10秒计数为十次一秒计数的相加
   **  ，剂量率显示一秒刷新一次。
   **2,程序中计数率计算、量程换挡、剂量计算显示各部分分开执行
   */
   for(i=0;i<=7;i++)                                                               //8个探头逐个检测
   {
+      /**
+       * 1.遍历每一个探头（0~7）；
+       * 2.先从buf（从8253计数器中取回的计数）中计算计数，高8位*256+低8位，记录历次计数值，每3秒计数一次防止溢出；
+       * 3.根据每次的计数（3S计数时长）以及当前量程和预先确定的换挡频率，判断换挡和执行并记录历次量程档位信息；
+       * 4.需要根据历史的档位信息进行判断，换挡后的操作与不换挡的操作不同，故分开执行；
+       * 5.
+       **/
 		if(Channel_Detector[i][0]==Channel_Detector[i][1])//当前一次量程和此次量程一样时
 		{
 			if((Channel_Detector[i][1]==4)&&(Calculated[i]==0))//DL3量程，定时计数3秒，直接用来计算
 			{
 				Real_Count[i]=0;//此量程每次都要清零
-				Count[i][0]=Count[i][1];
+				Count[i][0]=Count[i][1];//历史计数更新
 				Count[i][1]=Count[i][2];
 				if(i<7)//前6个探头和第七个探头取计数位置不一样
 				{
-					Count[i][2]=buf[4*i+5]*256+buf[4*i+4]-1;			//加一是因为在计数周期内会由硬件给一个脉冲
-					Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]-1);
+					Count[i][2]=buf[4*i+5]*256+buf[4*i+4];			//加一是因为在计数周期内会由硬件给一个脉冲
+					Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]);
 				}
 				else if(i==7)//前6个探头和第七个探头取计数位置不一样
 				{
-					Count[i][2]=buf[31]*256+buf[30]-1;
-					Real_Count[i]=(uint)(buf[31]*256+buf[30]-1);
+					Count[i][2]=buf[31]*256+buf[30];
+					Real_Count[i]=(uint)(buf[31]*256+buf[30]);
 				}
 				Calculated[i]=1;//计算过标志
 				if((Count[i][1]<(37*Refresh_Time))&&(Count[i][2]<(37*Refresh_Time))&&(i<7))//量程切换前7个探头判定条件
 				{
 					Channel_Detector[i][0]=Channel_Detector[i][1];
 					Channel_Detector[i][1]=3;
-					Var_Signal1=Var_Signal1&Svar0[i];                                       //控制信号1接计数管，低电平
+					Var_Signal1=Var_Signal1|Svar1[i];                                       //控制信号1接计数管，高电平高压关
           			Var_Signal2=Var_Signal2|Svar1[i];                                       //控制信号2接电离室10(8),高电平
           			Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
 				}
@@ -354,7 +339,7 @@ void ShowData()
 				{
 					Channel_Detector[i][0]=Channel_Detector[i][1];
 					Channel_Detector[i][1]=3;
-					Var_Signal1=Var_Signal1&Svar0[i];                                       //控制信号1接计数管，低电平
+					Var_Signal1=Var_Signal1|Svar1[i];                                       //控制信号1接计数管，高电平高压关
           			Var_Signal2=Var_Signal2|Svar1[i];                                       //控制信号2接电离室10(8),高电平
           			Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
 				}
@@ -368,20 +353,20 @@ void ShowData()
 				Count[i][1]=Count[i][2];
 				if(i<7)//前6个探头和第七个探头取计数位置不一样
 				{
-					Count[i][2]=buf[4*i+5]*256+buf[4*i+4]-1;
-					Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]-1);
+					Count[i][2]=buf[4*i+5]*256+buf[4*i+4];
+					Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]);
 				}
 				else if(i==7)//前6个探头和第七个探头取计数位置不一样
 				{
-					Count[i][2]=buf[31]*256+buf[30]-1;
-					Real_Count[i]=(uint)(buf[31]*256+buf[30]-1);
+					Count[i][2]=buf[31]*256+buf[30];
+					Real_Count[i]=(uint)(buf[31]*256+buf[30]);
 				}
 				Calculated[i]=1;//计算过标志
 				if((Count[i][1]>(5719*Refresh_Time))&&(Count[i][2]>(5719*Refresh_Time))&&(i<7))//量程切换
 				{
 					Channel_Detector[i][0]=Channel_Detector[i][1];
 					Channel_Detector[i][1]=4;
-					Var_Signal1=Var_Signal1&Svar0[i];                                       //控制信号1接计数管，低电平
+					Var_Signal1=Var_Signal1|Svar1[i];                                       //控制信号1接计数管，高电平高压关
           			Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),高电平
           			Var_Signal3=Var_Signal3|Svar1[i];                                       //控制信号2接电离室10(6),低电平
 				}
@@ -389,7 +374,7 @@ void ShowData()
 				{
 					Channel_Detector[i][0]=Channel_Detector[i][1];
 					Channel_Detector[i][1]=4;
-					Var_Signal1=Var_Signal1&Svar0[i];                                       //控制信号1接计数管，低电平
+					Var_Signal1=Var_Signal1|Svar1[i];                                       //控制信号1接计数管，高电平高压关
           			Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),高电平
           			Var_Signal3=Var_Signal3|Svar1[i];                                       //控制信号2接电离室10(6),低电平
 				}
@@ -397,7 +382,7 @@ void ShowData()
 				{
 					Channel_Detector[i][0]=Channel_Detector[i][1];
 					Channel_Detector[i][1]=2;
-					Var_Signal1=Var_Signal1&Svar0[i];                                       //控制信号1接计数管，低电平
+					Var_Signal1=Var_Signal1|Svar1[i];                                       //控制信号1接计数管，高电平高压关
           			Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),高电平
           			Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
 				}
@@ -412,7 +397,7 @@ void ShowData()
 					Channel_Detector[i][0]=Channel_Detector[i][1];
 					Channel_Detector[i][1]=4;
 					Display_Flag[i]=0;
-					Var_Signal1=Var_Signal1&Svar0[i];                                       //控制信号1接计数管，低电平
+					Var_Signal1=Var_Signal1|Svar1[i];                                       //控制信号1接计数管，高电平高压关
           			Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),高电平
           			Var_Signal3=Var_Signal3|Svar1[i];                                       //控制信号2接电离室10(6),低电平
 				}
@@ -421,7 +406,7 @@ void ShowData()
 					Channel_Detector[i][0]=Channel_Detector[i][1];
 					Channel_Detector[i][1]=4;
 					Display_Flag[i]=0;
-					Var_Signal1=Var_Signal1&Svar0[i];                                       //控制信号1接计数管，低电平
+					Var_Signal1=Var_Signal1|Svar1[i];                                       //控制信号1接计数管，高电平高压关
           			Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),高电平
           			Var_Signal3=Var_Signal3|Svar1[i];                                       //控制信号2接电离室10(6),低电平
 				}
@@ -430,7 +415,7 @@ void ShowData()
 					Channel_Detector[i][0]=Channel_Detector[i][1];
 					Channel_Detector[i][1]=2;
 					Display_Flag[i]=0;
-					Var_Signal1=Var_Signal1&Svar0[i];                                       //控制信号1接计数管，低电平
+					Var_Signal1=Var_Signal1|Svar1[i];                                       //控制信号1接计数管，高电平高压关
           			Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),高电平
           			Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
 				}
@@ -439,14 +424,14 @@ void ShowData()
 			{
 				Count[i][0]=Count[i][1];
 				Count[i][1]=Count[i][2];
-				Count[i][2]=buf[4*i+5]*256+buf[4*i+4]-1;
-				Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]-1);
+				Count[i][2]=buf[4*i+5]*256+buf[4*i+4];
+				Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]);
 				Calculated[i]=1;//计算过标志
 				if((Count[i][1]>(5411*Refresh_Time))&&(Count[i][2]>(5411*Refresh_Time)))//量程切换
 				{
 					Channel_Detector[i][0]=Channel_Detector[i][1];
 					Channel_Detector[i][1]=3;
-					Var_Signal1=Var_Signal1&Svar0[i];                                       //控制信号1接计数管，低电平
+					Var_Signal1=Var_Signal1|Svar1[i];                                       //控制信号1接计数管，高电平高压关
           			Var_Signal2=Var_Signal2|Svar1[i];                                       //控制信号2接电离室10(8),高电平
           			Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
 				}
@@ -454,7 +439,7 @@ void ShowData()
 				{
 					Channel_Detector[i][0]=Channel_Detector[i][1];
 					Channel_Detector[i][1]=1;
-					Var_Signal1=Var_Signal1|Svar1[i];                                       //控制信号1接计数管，为高电平
+					Var_Signal1=Var_Signal1&Svar0[i];                                       //控制信号1接计数管，低电平高压开
           			Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),低电平
           			Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
 				}
@@ -469,7 +454,7 @@ void ShowData()
 						Channel_Detector[i][0]=Channel_Detector[i][1];
 						Channel_Detector[i][1]=3;
 						Display_Flag[i]=0;
-						Var_Signal1=Var_Signal1&Svar0[i];                                       //控制信号1接计数管，低电平
+						Var_Signal1=Var_Signal1|Svar1[i];                                       //控制信号1接计数管，高电平高压关
           				Var_Signal2=Var_Signal2|Svar1[i];                                       //控制信号2接电离室10(8),高电平
           				Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
 					}
@@ -478,7 +463,7 @@ void ShowData()
 						Channel_Detector[i][0]=Channel_Detector[i][1];
 						Channel_Detector[i][1]=1;
 						Display_Flag[i]=0;
-						Var_Signal1=Var_Signal1|Svar1[i];                                       //控制信号1接计数管，为高电平
+						Var_Signal1=Var_Signal1&Svar0[i];                                       //控制信号1接计数管，低电平高压开
           				Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),低电平
           				Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
 					}
@@ -487,14 +472,14 @@ void ShowData()
 			{
 				Count[i][0]=Count[i][1];
 				Count[i][1]=Count[i][2];
-				Count[i][2]=buf[4*i+3]*256+buf[4*i+2]-1;
-				Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]-1);
+				Count[i][2]=buf[4*i+3]*256+buf[4*i+2];
+				Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]);
 				Calculated[i]=1;//计算过标志
 				if((Count[i][0]>(6019*Refresh_Time))&&(Count[i][1]>(6019*Refresh_Time))&&(Count[i][2]>(6019*Refresh_Time)))//量程切换
 				{
 					Channel_Detector[i][0]=Channel_Detector[i][1];
 					Channel_Detector[i][1]=2;
-					Var_Signal1=Var_Signal1&Svar0[i];                                       //控制信号1接计数管，低电平
+					Var_Signal1=Var_Signal1|Svar1[i];                                       //控制信号1接计数管，高电平高压关
           			Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),低电平
           			Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
 				}
@@ -502,7 +487,7 @@ void ShowData()
 				{
 					Channel_Detector[i][0]=Channel_Detector[i][1];
 					Channel_Detector[i][1]=0;
-					Var_Signal1=Var_Signal1|Svar1[i];                                       //控制信号1接计数管，为高电平
+					Var_Signal1=Var_Signal1&Svar0[i];                                       //控制信号1接计数管，低电平高压开
           			Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),低电平
           			Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
 				}
@@ -581,14 +566,14 @@ void ShowData()
 			{
 				Count[i][0]=Count[i][1];
 				Count[i][1]=Count[i][2];
-				Count[i][2]=buf[4*i+3]*256+buf[4*i+2]-1;
-				Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]-1);
+				Count[i][2]=buf[4*i+3]*256+buf[4*i+2];
+				Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]);
 				Calculated[i]=1;//计算过标志
 				if((Count[i][0]>(1.32*Refresh_Time))&&(Count[i][1]>(1.32*Refresh_Time))&&(Count[i][2]>(1.32*Refresh_Time)))//量程切换
 				{
 					Channel_Detector[i][0]=Channel_Detector[i][1];
 					Channel_Detector[i][1]=1;
-					Var_Signal1=Var_Signal1|Svar1[i];                                       //控制信号1接计数管，为高电平
+					Var_Signal1=Var_Signal1&Svar0[i];                                       //控制信号1接计数管，低电平高压开
           			Var_Signal2=Var_Signal2&Svar0[i];                                       //控制信号2接电离室10(8),低电平
           			Var_Signal3=Var_Signal3&Svar0[i];                                       //控制信号2接电离室10(6),低电平
 				}
@@ -666,13 +651,13 @@ void ShowData()
 				Real_Count[i]=0;//跳转到此量程需要清零
 				if(i<7)//前6个探头和第七个探头取计数位置不一样
 				{
-					Count[i][2]=buf[4*i+5]*256+buf[4*i+4]-1;
-					Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]-1);
+					Count[i][2]=buf[4*i+5]*256+buf[4*i+4];
+					Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]);
 				}
 				else if(i==7)//前6个探头和第七个探头取计数位置不一样
 				{
-					Count[i][2]=buf[31]*256+buf[30]-1;
-					Real_Count[i]=(uint)(buf[31]*256+buf[30]-1);
+					Count[i][2]=buf[31]*256+buf[30];
+					Real_Count[i]=(uint)(buf[31]*256+buf[30]);
 				}
 				Calculated[i]=1;//计算过标志
 				Real_Count_Display[i]=(float)((Real_Count[i]*5)/Refresh_Time);
@@ -690,13 +675,13 @@ void ShowData()
 				Display_Flag[i]=0;//显示及换挡标志清零
 				if(i<7)//前6个探头和第七个探头取计数位置不一样
 				{
-					Count[i][2]=buf[4*i+5]*256+buf[4*i+4]-1;
-					Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]-1);
+					Count[i][2]=buf[4*i+5]*256+buf[4*i+4];
+					Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]);
 				}
 				else if(i==7)//前6个探头和第七个探头取计数位置不一样
 				{
-					Count[i][2]=buf[31]*256+buf[30]-1;
-					Real_Count[i]=(uint)(buf[31]*256+buf[30]-1);
+					Count[i][2]=buf[31]*256+buf[30];
+					Real_Count[i]=(uint)(buf[31]*256+buf[30]);
 				}
 				Calculated[i]=1;//计算过标志
 				Channel_Detector[i][0]=Channel_Detector[i][1];//更新量程历史状态
@@ -711,13 +696,13 @@ void ShowData()
 				Display_Flag[i]=0;//显示及换挡标志清零
 				if(i<7)//前6个探头和第七个探头取计数位置不一样
 				{
-					Count[i][2]=buf[4*i+5]*256+buf[4*i+4]-1;
-					Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]-1);
+					Count[i][2]=buf[4*i+5]*256+buf[4*i+4];
+					Real_Count[i]=(uint)(buf[4*i+5]*256+buf[4*i+4]);
 				}
 				else if(i==7)//前6个探头和第七个探头取计数位置不一样
 				{
-					Count[i][2]=buf[31]*256+buf[30]-1;
-					Real_Count[i]=(uint)(buf[31]*256+buf[30]-1);
+					Count[i][2]=buf[31]*256+buf[30];
+					Real_Count[i]=(uint)(buf[31]*256+buf[30]);
 					Channel_Detector[i][1]=3;
 					Channel_Detector[i][0]=3;
 				}
@@ -738,8 +723,8 @@ void ShowData()
 				{
 					Average_Counts[i][j]=0;//平滑平均清零
 				}
-				Count[i][2]=buf[4*i+3]*256+buf[4*i+2]-1;
-				Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]-1);
+				Count[i][2]=buf[4*i+3]*256+buf[4*i+2];
+				Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]);
 				
 				Real_Count[i]*=20;//换算为CPM(注意对应的是3秒的 Refresh Time)
 				Average_Counts[i][Average_Times[i]]=Real_Count[i];
@@ -763,8 +748,8 @@ void ShowData()
 				{
 					Average_Counts[i][j]=0;//平滑平均清零
 				}
-				Count[i][2]=buf[4*i+3]*256+buf[4*i+2]-1;
-				Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]-1);
+				Count[i][2]=buf[4*i+3]*256+buf[4*i+2];
+				Real_Count[i]=(uint)(buf[4*i+3]*256+buf[4*i+2]);
 				Real_Count[i]*=20;//换算为CPM(注意对应的是3秒的 Refresh Time)
 				Average_Counts[i][Average_Times[i]]=Real_Count[i];
 				Average_Times[i]+=1;
@@ -800,6 +785,7 @@ void ShowData()
       m=j*10;                                                                     //保留
       /*********判断计数率***********/
       /*********前七个探头探测器设置，取得8253计数值记录在Tdata*/
+      /**【2024】根据通道序号计算标定参数，用于CPM和剂量率的转换**/
 	  if(j<7)                                                                     //(3)前七个探头既有电离室也有计数器，第八个只有电离室故分开处理
       {
       		Display_Flag[j]=0;
@@ -852,15 +838,12 @@ void ShowData()
 			}
 		}
       /**********单位换算后为jtemp************/
-	  if(DoseRata[j]==0)
-	  {
-		Flag_dw=1;
-	  }
       if(DoseRata[j]<0)                                                         //修改2012.6.15通过均值计算
       {
         jtemp=0.0;
+        Flag_dw=1;
       }
-      else if(DoseRata[j]>=0)                                                   //Mean_Value平均值单位为uGy/h
+      else if(DoseRata[j]>=0)                                                   //单位为uGy/h
       {
         if(DoseRata[j]<1000)                                                    //Mean_Value<1000表示单位为uGy/h
         {

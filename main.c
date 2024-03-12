@@ -68,12 +68,12 @@ bdata bit Flag_Meant;
 bdata bit Flag_NIMB_Sended;						//已经从NIM-B接收数据标志
 //bit Flag_Commond;
 uchar dt_in[331];                       	 //IIC存储数组，四位一组，共83组,芯片内部默认0为255
-uchar data Keyvar=0xFF;                    //按键变量
+uchar data Keyvar=0xFF;                   //按键变量
 uchar jishucount;							//第几次计数，用来求平均值时知道这是第几次计数
 uchar  Average_Times[8];								//AJ1+滑动平均次数
 uint Average_Counts[8][5];//平滑平均变量
 uchar Display_Flag[8];
-uchar Refresh_Time=3;
+uchar Refresh_Time=3;                       //【2024】3秒，中断时间即计数时间
 uchar DCS_Send[67];
 
 
@@ -135,10 +135,7 @@ void main()
 			GetAndDisdata(); 	                 //从8253的锁存器得到测量计数器结果,存入至buf数组
 			ShowData();                          //显示测量数据
 			//shortdelay(1000);	          		
-			if(Zhu_Cong==1)						//只有当主从机按钮为松开状态才会从NIM-B获取数据
-			{
-	    		Transfer();                          //并行传输数据
-			}
+			if(Zhu_Cong==1)Transfer();                          //只有当主从机按钮为松开状态才会从NIM-B获取数据，并行传输数据
 	    	Transfer_DCS();
 //			bakeup_conv_data();
 			Init_8253();   						//初始化8253

@@ -6,7 +6,7 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.26"
@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Multi_Channel_Radioactive_Dose_Compute_Display_and_Transfer___NIM_A::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Multi_Channel_Radioactive_Dose_Compute_Display_and_Transfer___NIM_A-Debug-133c4cd30029b28c127f.json",
+					"jsonFile" : "target-Multi_Channel_Radioactive_Dose_Compute_Display_and_Transfer___NIM_A-Debug-f6a68f31cfdd43af6d34.json",
 					"name" : "Multi_Channel_Radioactive_Dose_Compute_Display_and_Transfer___NIM_A",
 					"projectIndex" : 0
 				}
@@ -49,12 +49,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/1HTR001AR/Desktop/Dose/Multi-Channel-Radioactive-Dose-Compute-Display-and-Transfer---NIM-A/cmake-build-debug",
-		"source" : "C:/Users/1HTR001AR/Desktop/Dose/Multi-Channel-Radioactive-Dose-Compute-Display-and-Transfer---NIM-A"
+		"build" : "/Users/zhangdan/Desktop/Multi-Channel-Radioactive-Dose-Compute-Display-and-Transfer---NIM-A/cmake-build-debug",
+		"source" : "/Users/zhangdan/Desktop/Multi-Channel-Radioactive-Dose-Compute-Display-and-Transfer---NIM-A"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 5
+		"minor" : 6
 	}
 }

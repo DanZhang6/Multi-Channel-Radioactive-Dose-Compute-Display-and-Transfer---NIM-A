@@ -16,6 +16,7 @@ typedef unsigned long ulong;
 #define TimeFiveHundred 100              //定时500ms
 #define TimeThreeThousand 600        //定时1s
 #define TimeOneHundred  1000              //定时100ms
+
 extern uchar DataGe[75];             //个位
 extern uchar DataTenth[75];          //十分位
 extern uchar DataCent[75];           //百分位
@@ -36,7 +37,7 @@ extern uchar dt_in[331];
 extern uchar Flag_need_Flash[8];
 extern uchar State_Flash[8];
 extern uchar receive_buf[57];
-extern uchar Channel_Display[8];//用于显示的通道量程
+extern uchar Channel_Display[8];//用于显示的通道量程（0、1、2、3、4,对应GM1~DL3）
 extern uchar biaoding_input;
 extern uchar Max_Time;
 extern uchar Flag_dw;
@@ -45,10 +46,10 @@ extern uchar Flag_dw;
 extern uchar data_A[8];
 extern uchar data_B[12];
 extern uchar count_change_flag[8];
-extern double Real_Count_Display[8];
+extern double Real_Count_Display[8];        //【2024】显示在屏幕上的计数CPM，
 extern uchar Setted_Time[8];
-extern float DoseRata[8];                                                                //每组探头测得的剂量率
-extern uint Real_Count[8];
+extern float DoseRata[8];                   //【2024】根据CPM和标定参数计算出的剂量率（uSv）                                             //每组探头测得的剂量率
+extern uint Real_Count[8];                  //【2024】从8253计数器中取出来的计数，计数时间3秒
 extern uchar Init_Time;
 extern uchar Inctime;
 extern uchar Incinput;

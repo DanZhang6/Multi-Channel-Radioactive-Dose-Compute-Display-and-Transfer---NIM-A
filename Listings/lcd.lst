@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   LCD                                                               01/26/2024 15:20:24 PAGE 1   
+C51 COMPILER V9.60.7.0   LCD                                                               03/04/2024 16:00:22 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE LCD
@@ -62,7 +62,7 @@ line level    source
   52   1      }
   53          
   54          
-C51 COMPILER V9.60.7.0   LCD                                                               01/26/2024 15:20:24 PAGE 2   
+C51 COMPILER V9.60.7.0   LCD                                                               03/04/2024 16:00:22 PAGE 2   
 
   55          /**************************
   56          *  向串口2发送一个字
@@ -126,7 +126,7 @@ line level    source
  114   3               Txbyte(d+0x30);
  115   3               Txbyte(e+0x30);
  116   3               } 
-C51 COMPILER V9.60.7.0   LCD                                                               01/26/2024 15:20:24 PAGE 3   
+C51 COMPILER V9.60.7.0   LCD                                                               03/04/2024 16:00:22 PAGE 3   
 
  117   2              else
  118   2               {
@@ -190,7 +190,7 @@ line level    source
  176   1         {
  177   2            if(b!=0)
  178   2             {
-C51 COMPILER V9.60.7.0   LCD                                                               01/26/2024 15:20:24 PAGE 4   
+C51 COMPILER V9.60.7.0   LCD                                                               03/04/2024 16:00:22 PAGE 4   
 
  179   3             Txbyte(b+0x30);
  180   3             Txbyte(c+0x30);
@@ -254,7 +254,7 @@ line level    source
  238          *       串口2文本显示
  239          ******************************/
  240          void Txtext(uint idata x,uint idata y,uchar *s)
-C51 COMPILER V9.60.7.0   LCD                                                               01/26/2024 15:20:24 PAGE 5   
+C51 COMPILER V9.60.7.0   LCD                                                               03/04/2024 16:00:22 PAGE 5   
 
  241            {
  242   1           Txbyte(0xAA);      //帧头0xAA
@@ -318,7 +318,7 @@ line level    source
  300   1        Txbyte(0x1F);
  301   1        Txbyte(0x05);
  302   1          TxEOF();
-C51 COMPILER V9.60.7.0   LCD                                                               01/26/2024 15:20:24 PAGE 6   
+C51 COMPILER V9.60.7.0   LCD                                                               03/04/2024 16:00:22 PAGE 6   
 
  303   1      }
  304          
@@ -382,7 +382,7 @@ line level    source
  362   1         }
  363          
  364          
-C51 COMPILER V9.60.7.0   LCD                                                               01/26/2024 15:20:24 PAGE 7   
+C51 COMPILER V9.60.7.0   LCD                                                               03/04/2024 16:00:22 PAGE 7   
 
  365          /*****************************
  366          *       串口2蓝色显示
