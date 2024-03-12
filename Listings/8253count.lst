@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 1   
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE 8253COUNT
@@ -62,7 +62,7 @@ line level    source
   46          uchar buf[32];                                                                    //AB1*´Ó8253ÖÐ¶Áµ½µÄ¼ÆÊý
              -Æ÷Êý¾Ý£¬15¸ö¼ÆÊýÆ÷£¬µÍ°ËÎ»¸ß°ËÎ»£¬´Ó3-32£¬1ÎªÌ½Í·¸öÊý£¬2Îª²âÁ¿Ê±¼ä
   47          uchar Channel_Detector[8][2];                                                     //AC1+Í¨µÀÌ½Í·Ñ¡Ôñ±êÖ¾£¬
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 2   
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 2   
 
              -1:µçÀëÊÒ0:¼ÆÊý¹Ü
   48          uchar DataGe[75];                                                                 //Ì½²âÆ÷±ê¶¨²ÎÊýµÄ¸öÎ»£¬
@@ -126,7 +126,7 @@ line level    source
   96          /*************************************
   97          *8253¼ÆÊýÖµ
   98          **************************************/
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 3   
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 3   
 
   99          void GetAndDisdata()                                                              //¼ÆÊýÍê³ÉºóµÚÒ»¸öÔËÐÐµÄ
              -³ÌÐò
@@ -190,7 +190,7 @@ line level    source
  145   1        buf[12]=0xff-tl;
  146   1        th=C825320D;
  147   1        buf[13]=0xff-th;
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 4   
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 4   
 
  148   1      
  149   1        C82533C=0x84;                                                                   //Ëø´æµÚÈýÆ¬8253¼ÆÊýÆ÷2µ
@@ -254,7 +254,7 @@ line level    source
  192   1        tl=C825351D;                                                                    //read825316bitsdata(fir
              -stLthenH)
  193   1        buf[28]=0xff-tl;
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 5   
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 5   
 
  194   1        th=C825351D;
  195   1        buf[29]=0xff-th;
@@ -318,7 +318,7 @@ line level    source
  249   1        C82534C=0xb4;                                                                   //10110100
  250   1        C825342D=0xff;
  251   1        C825342D=0xff;
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 6   
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 6   
 
  252   1      
  253   1        C82534C=0x74;                                                                   //01110100
@@ -382,7 +382,7 @@ line level    source
              -Ö¹Òç³ö£»
  308   2             * 3.¸ù¾ÝÃ¿´ÎµÄ¼ÆÊý£¨3S¼ÆÊýÊ±³¤£©ÒÔ¼°µ±Ç°Á¿³ÌºÍÔ¤ÏÈÈ·¶¨µÄ»»µ²ÆµÂÊ£¬ÅÐ¶Ï»»µ²ºÍÖ´ÐÐ²¢¼ÇÂ¼Àú´ÎÁ¿³ÌµµÎ»Ð
              -ÅÏ¢£»
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 7   
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 7   
 
  309   2             * 4.ÐèÒª¸ù¾ÝÀúÊ·µÄµµÎ»ÐÅÏ¢½øÐÐÅÐ¶Ï£¬»»µ²ºóµÄ²Ù×÷Óë²»»»µ²µÄ²Ù×÷²»Í¬£¬¹Ê·Ö¿ªÖ´ÐÐ£»
  310   2             * 5.
@@ -446,7 +446,7 @@ line level    source
  361   5                Count[i][2]=buf[31]*256+buf[30];
  362   5                Real_Count[i]=(uint)(buf[31]*256+buf[30]);
  363   5              }
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 8   
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 8   
 
  364   4              Calculated[i]=1;//¼ÆËã¹ý±êÖ¾
  365   4              if((Count[i][1]>(5719*Refresh_Time))&&(Count[i][2]>(5719*Refresh_Time))&&(i<7))//Á¿³ÌÇÐ»»
@@ -510,7 +510,7 @@ line level    source
  409   5                Var_Signal1=Var_Signal1|Svar1[i];                                       //¿ØÖÆÐÅºÅ1½Ó¼ÆÊý¹Ü£¬¸ßµçÆ½¸ß
              -Ñ¹¹Ø
  410   5                      Var_Signal2=Var_Signal2&Svar0[i];                                       //¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 9   
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 9   
 
              -(8),¸ßµçÆ½
  411   5                      Var_Signal3=Var_Signal3|Svar1[i];                                       //¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10
@@ -574,7 +574,7 @@ line level    source
  457   5                  Var_Signal1=Var_Signal1|Svar1[i];                                       //¿ØÖÆÐÅºÅ1½Ó¼ÆÊý¹Ü£¬¸ßµçÆ½¸
              -ßÑ¹¹Ø
  458   5                        Var_Signal2=Var_Signal2|Svar1[i];                                       //¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ1
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 10  
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 10  
 
              -0(8),¸ßµçÆ½
  459   5                        Var_Signal3=Var_Signal3&Svar0[i];                                       //¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ1
@@ -638,7 +638,7 @@ line level    source
              -4; break;
  504   6                  case 4: Real_Count_Display[i]=Average_Counts[i][0]*a2+Average_Counts[i][1]*a2+Average_Counts[i][2]*a
              -3+Average_Counts[i][3]*a4; break;
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 11  
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 11  
 
  505   6                }
  506   5                Display_Flag[i]=1;
@@ -702,7 +702,7 @@ line level    source
  559   4                //Display_Flag[i]=0;
  560   4                //Var_Signal1=Var_Signal1|Svar1[i];                                       //¿ØÖÆÐÅºÅ1½Ó¼ÆÊý¹Ü£¬Îª¸ßµç
              -Æ½
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 12  
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 12  
 
  561   4                      //Var_Signal2=Var_Signal2&Svar0[i];                                       //¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ
              -10(8),µÍµçÆ½
@@ -766,7 +766,7 @@ line level    source
  611   4                //  Real_Count[i]=0;
  612   4                //}
  613   4                //if((Average_Times[i]>=2)&&(Average_Times[i]<=5))//ÔÚÓÐ2¸ö¼ÆÊýÖµºó¿ªÊ¼ËãÆ½¾ùÖµ²¢ÏÔÊ¾
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 13  
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 13  
 
  614   4                //{
  615   4                  //for(j=0;j<Average_Times[i];j++)
@@ -830,7 +830,7 @@ line level    source
  669   3            {
  670   4              for(k=0;k<=2;k++)
  671   4              {
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 14  
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 14  
 
  672   5                Count[i][k]=2000*Refresh_Time;//Ò»Ãë¼ÆÊýÊ¹Æä²»»»µµ
  673   5              }
@@ -894,7 +894,7 @@ line level    source
  731   4              Average_Times[i]+=1;
  732   4              Real_Count_Display[i]=Average_Counts[i][Average_Times[i]];
  733   4              Display_Flag[i]=1;
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 15  
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 15  
 
  734   4              Channel_Display[i]=1;
  735   4              Calculated[i]=1;//¼ÆËã¹ý±êÖ¾
@@ -958,7 +958,7 @@ line level    source
  789   3          if(j<7)                                                                     //(3)Ç°Æß¸öÌ½Í·¼ÈÓÐµçÀëÊÒÒ²
              -ÓÐ¼ÆÊýÆ÷£¬µÚ°Ë¸öÖ»ÓÐµçÀëÊÒ¹Ê·Ö¿ª´¦Àí
  790   3            {
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 16  
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 16  
 
  791   4                Display_Flag[j]=0;
  792   4            if(Channel_Display[j]==0)
@@ -1022,7 +1022,7 @@ line level    source
  844   4              Flag_dw=1;
  845   4            }
  846   3            else if(DoseRata[j]>=0)                                                   //µ¥Î»ÎªuGy/h
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 17  
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 17  
 
  847   3            {
  848   4              if(DoseRata[j]<1000)                                                    //Mean_Value<1000±íÊ¾µ¥Î»Î
@@ -1086,7 +1086,7 @@ line level    source
  902   5                DCS_Send[j*4+5]=(uchar)((int)temp%100/10)+0x30;
  903   5                DCS_Send[j*4+6]=(uchar)((int)temp%100%10)+0x30;
  904   5                DCS_Send[j*4+7]=0x33;
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 18  
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 18  
 
  905   5              }
  906   4              else if((DoseRata[j]>=1000)&&(DoseRata[j]<10000))
@@ -1150,7 +1150,7 @@ line level    source
  962   4              Tbcd[2]=(uchar)(count_temp/100);                                           //Ð¡Ð¡ÊýÊ®·ÖÎ»
  963   4              Tbcd[1]=(uchar)(count_temp%100/10);                                        //Ð¡Êý°Ù·ÖÎ»
  964   4              Tbcd[0]=(uchar)(count_temp%100%10);                                        //Ð¡ÊýÇ§·ÖÎ»
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 19  
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 19  
 
  965   4              if(Flag_dw==1)                                                              //¸ù¾ÝTbcd[]¼ÆËãyudeci
              -de(float)ÓÃÀ´ÅÐ¶Ï¼ÁÁ¿ÂÊÊÇ·ñ³¬¹ýãÐÖµ
@@ -1214,7 +1214,7 @@ line level    source
              -óÐ¡À´ÏÔÊ¾
 1018   4              {
 1019   5                Tnumber(130,13+(j*58),Tbcd[5]);
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 20  
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 20  
 
 1020   5                Tnumber(160,13+(j*58),Tbcd[4]);
 1021   5                Tnumber(190,13+(j*58),Tbcd[3]);
@@ -1278,7 +1278,7 @@ line level    source
 1072   6                    Tnumber(516,13+(j*58),Tdata);
 1073   6                  else if(Tdata>=10000)
 1074   6                    Tnumber(496,13+(j*58),Tdata);
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 21  
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 21  
 
 1075   6                }
 1076   5            }
@@ -1342,7 +1342,7 @@ line level    source
 1130   4              {
 1131   5                if(Tbcd[4]!=0)                                                            //°ÙÎ»ÎªÁãÊ®Î»·ÇÁã
 1132   5                {
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 22  
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 22  
 
 1133   6                  Trnumber(160,13+(j*58),Tbcd[4]);
 1134   6                  Trnumber(190,13+(j*58),Tbcd[3]);
@@ -1406,7 +1406,7 @@ line level    source
 1186   3            send_buf[8*j+2]=Tbcd[3];
 1187   3            send_buf[8*j+3]=Tbcd[2];
 1188   3            send_buf[8*j+4]=Tbcd[1];
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 23  
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 23  
 
 1189   3            send_buf[8*j+5]=Tbcd[0];
 1190   3            send_buf[8*j+6]=Flag_dw;                                                    //·¢ËÍµ¥Î»±êÖ¾
@@ -1470,7 +1470,7 @@ line level    source
              -;
 1241   2          jishuguan_DoseRata=(float)(Para[1]*(jishuguan_rata-Para[0]));
 1242   2          if(jishuguan_DoseRata<0)
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 24  
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 24  
 
 1243   2            jishuguan_DoseRata=0.0;
 1244   2          jishuguan_jtemp=(float)jishuguan_DoseRata;
@@ -1534,7 +1534,7 @@ line level    source
 1299   3              Tnumber(370,174,jishuguan_data);
 1300   3          }
 1301   2          else
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 25  
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 25  
 
 1302   2          {
 1303   3            if(Tbcd[10]!=0)
@@ -1598,7 +1598,7 @@ line level    source
 1358   3            else if(dianlishi_data>=10000)
 1359   3              Tnumber(370,348,dianlishi_data);
 1360   3          }
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 26  
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 26  
 
 1361   2          else
 1362   2          {
@@ -1662,7 +1662,7 @@ line level    source
 1418          void Alarm()
 1419          {
 1420   1        uchar n;
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 27  
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 27  
 
 1421   1        for(n=0;n<10;n++)
 1422   1        {
@@ -1726,7 +1726,7 @@ line level    source
 1480   3            return;
 1481   3          }
 1482   2        }
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/04/2024 16:00:22 PAGE 28  
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/13/2024 15:17:26 PAGE 28  
 
 1483   1        Var_Led=Var_Led|Svar1[Num];                                                       //Ö¸Ê¾µÆÃð
 1484   1        Led573=Var_Led;

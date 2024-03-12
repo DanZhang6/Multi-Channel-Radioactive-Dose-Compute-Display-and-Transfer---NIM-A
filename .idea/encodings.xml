@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/8253count.c" charset="GBK" />
     <file url="file://$PROJECT_DIR$/STC15F2K60S2.h" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/main.c" charset="GB2312" />
     <file url="PROJECT" charset="GBK" />
   </component>
 </project>

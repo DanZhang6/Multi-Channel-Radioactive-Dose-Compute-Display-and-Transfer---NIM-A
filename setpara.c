@@ -134,6 +134,7 @@ void Side_RChange()
 			         xh=1;                       //探头显示标志不能超过探头个数
 					 bz=1;
 		        }
+                Lcd_Clear();                    //【2024】3-12解决重叠显示修改
 			}  
 			
 			if((xh%2)==0)                         //单号探头转双号探头处理
@@ -547,7 +548,17 @@ void dispaly_para()
 	    } 
     }
     else if(Flag_RefrPara==1)
-    {   
+    {
+       Lcd_Clear();                    //【2024】3-12解决重叠显示修改
+
+       Txtext(200,12,"第");
+       Txtext(296,12,"个探头");
+       Txtext(112,80,"报警阈值:");
+       Txtext(456,80,".");
+       Txtext(16,148,"N0:");
+       Txtext(336,148,"f0:");
+       Txtext(16,216,"N1:");
+       Txtext(336,216,"f1:");
 	   Tnumber(260,12,xh);
        Tnumber(432,80,YuThouth[xh-1]);
 	   Tnumber(480,80,YuCent[xh-1]);
@@ -574,6 +585,12 @@ void dispaly_para()
 	   Tnumber(576,216,DataGe[xh*10-6]);
 	    if(xh<=7)                            //第八个探头只有三段参数
 	     {
+           Txtext(16,284,"N2:");
+           Txtext(336,284,"f2:");
+           Txtext(16,352,"N3:");
+           Txtext(336,352,"f3:");
+           Txtext(16,420,"N4:");
+           Txtext(336,420,"f4:");
 		   Tnumber(112,284,DataThouth[xh*10-5]);
 		   Tnumber(160,284,DataCent[xh*10-5]);
 		   Tnumber(208,284,DataTenth[xh*10-5]);
