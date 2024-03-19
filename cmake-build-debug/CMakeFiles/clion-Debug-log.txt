@@ -1,10 +1,10 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja -G Ninja -S /Users/zhangdan/Desktop/Multi-Channel-Radioactive-Dose-Compute-Display-and-Transfer---NIM-A -B /Users/zhangdan/Desktop/Multi-Channel-Radioactive-Dose-Compute-Display-and-Transfer---NIM-A/cmake-build-debug
--- The C compiler identification is AppleClang 15.0.0.15000100
+"C:\Program Files\JetBrains\CLion 2023.2\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" -S C:\Users\1HTR001AR\Desktop\htr-10-regional-dosage-monitoring-system_nim-a -B C:\Users\1HTR001AR\Desktop\htr-10-regional-dosage-monitoring-system_nim-a\cmake-build-debug
+-- The C compiler identification is GNU 13.1.0
 -- Detecting C compiler ABI info
 -- Detecting C compiler ABI info - done
--- Check for working C compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc - skipped
+-- Check for working C compiler: C:/Program Files/JetBrains/CLion 2023.2/bin/mingw/bin/gcc.exe - skipped
 -- Detecting C compile features
 -- Detecting C compile features - done
--- Configuring done (4.5s)
--- Generating done (0.0s)
--- Build files have been written to: /Users/zhangdan/Desktop/Multi-Channel-Radioactive-Dose-Compute-Display-and-Transfer---NIM-A/cmake-build-debug
+-- Configuring done (3.6s)
+-- Generating done (0.1s)
+-- Build files have been written to: C:/Users/1HTR001AR/Desktop/htr-10-regional-dosage-monitoring-system_nim-a/cmake-build-debug

@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   TIME0                                                             03/13/2024 15:17:28 PAGE 1   
+C51 COMPILER V9.60.7.0   TIME0                                                             03/19/2024 15:40:30 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE TIME0
@@ -62,7 +62,7 @@ line level    source
   51   3            GATE=1;
   52   3          }
   53   2            NumT0 = ++NumT0;
-C51 COMPILER V9.60.7.0   TIME0                                                             03/13/2024 15:17:28 PAGE 2   
+C51 COMPILER V9.60.7.0   TIME0                                                             03/19/2024 15:40:30 PAGE 2   
 
   54   2          if(NumT0 >=(200*Refresh_Time))         //AA1*,1S钟中断200次，Redrawtime时间内中断200*Redrawtime次,即中断1秒
              -后执行,关闭8253门控信号

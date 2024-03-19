@@ -2,7 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Multi_Channel_Radioactive_Dose_Compute_Display_and_Transfer___NIM_A"
+			"path" : "Multi_Channel_Radioactive_Dose_Compute_Display_and_Transfer___NIM_A.exe"
+		},
+		{
+			"path" : "Multi_Channel_Radioactive_Dose_Compute_Display_and_Transfer___NIM_A.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -42,14 +45,14 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -std=gnu11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -fcolor-diagnostics"
+					"fragment" : "-g -std=gnu11 -fdiagnostics-color=always"
 				}
 			],
 			"includes" : 
 			[
 				{
 					"backtrace" : 2,
-					"path" : "/Users/zhangdan/Desktop/Multi-Channel-Radioactive-Dose-Compute-Display-and-Transfer---NIM-A/C:/Keil_v5/C51/INC"
+					"path" : "C:/Keil_v5/C51/INC"
 				}
 			],
 			"language" : "C",
@@ -92,12 +95,16 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
+			},
+			{
+				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
+				"role" : "libraries"
 			}
 		],
 		"language" : "C"
 	},
 	"name" : "Multi_Channel_Radioactive_Dose_Compute_Display_and_Transfer___NIM_A",
-	"nameOnDisk" : "Multi_Channel_Radioactive_Dose_Compute_Display_and_Transfer___NIM_A",
+	"nameOnDisk" : "Multi_Channel_Radioactive_Dose_Compute_Display_and_Transfer___NIM_A.exe",
 	"paths" : 
 	{
 		"build" : ".",

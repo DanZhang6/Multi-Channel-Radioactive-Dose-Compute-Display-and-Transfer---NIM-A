@@ -1,3 +1,3 @@
-/Users/zhangdan/Desktop/Multi-Channel-Radioactive-Dose-Compute-Display-and-Transfer---NIM-A/cmake-build-debug/CMakeFiles/Multi_Channel_Radioactive_Dose_Compute_Display_and_Transfer___NIM_A.dir
-/Users/zhangdan/Desktop/Multi-Channel-Radioactive-Dose-Compute-Display-and-Transfer---NIM-A/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/zhangdan/Desktop/Multi-Channel-Radioactive-Dose-Compute-Display-and-Transfer---NIM-A/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/1HTR001AR/Desktop/htr-10-regional-dosage-monitoring-system_nim-a/cmake-build-debug/CMakeFiles/Multi_Channel_Radioactive_Dose_Compute_Display_and_Transfer___NIM_A.dir
+C:/Users/1HTR001AR/Desktop/htr-10-regional-dosage-monitoring-system_nim-a/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/1HTR001AR/Desktop/htr-10-regional-dosage-monitoring-system_nim-a/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -17,6 +17,7 @@ typedef unsigned long ulong;
 #define TimeThreeThousand 600        //定时1s
 #define TimeOneHundred  1000              //定时100ms
 
+
 extern uchar DataGe[75];             //个位
 extern uchar DataTenth[75];          //十分位
 extern uchar DataCent[75];           //百分位
@@ -30,7 +31,7 @@ extern uchar Flag_need_warn[8];                   //需要报警标志
 extern uchar State_On_Off[8];                     //指示灯状态标志
 extern uchar buf[32];               //AB1*要发送的数据的高低位
 extern uchar Channel_Detector[8][2];			//AC1+通道探头选择标志，1:电离室0:计数管
-extern uint Average_Counts[8][5];
+extern double Average_Counts[8][5];
 extern ulong Count[8][3];						//历史计数
 extern uchar send_buf[65];            //add 8  Flag_need_Flash  delect 32 yuzhi   4.21
 extern uchar dt_in[331];
@@ -49,7 +50,7 @@ extern uchar count_change_flag[8];
 extern double Real_Count_Display[8];        //【2024】显示在屏幕上的计数CPM，
 extern uchar Setted_Time[8];
 extern float DoseRata[8];                   //【2024】根据CPM和标定参数计算出的剂量率（uSv）                                             //每组探头测得的剂量率
-extern uint Real_Count[8];                  //【2024】从8253计数器中取出来的计数，计数时间3秒
+extern double Real_Count[8];                  //【2024】从8253计数器中取出来的计数，计数时间3秒
 extern uchar Init_Time;
 extern uchar Inctime;
 extern uchar Incinput;

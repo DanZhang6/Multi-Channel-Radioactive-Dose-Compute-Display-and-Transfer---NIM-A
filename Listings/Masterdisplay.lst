@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   MASTERDISPLAY                                                     03/13/2024 15:17:27 PAGE 1   
+C51 COMPILER V9.60.7.0   MASTERDISPLAY                                                     03/19/2024 15:40:29 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MASTERDISPLAY
@@ -62,7 +62,7 @@ line level    source
   52   4              Tnumber(430,42+(j*58),receive_buf[8*j+4]);
   53   4              Tnumber(470,42+(j*58),receive_buf[8*j+5]);
   54   4            }
-C51 COMPILER V9.60.7.0   MASTERDISPLAY                                                     03/13/2024 15:17:27 PAGE 2   
+C51 COMPILER V9.60.7.0   MASTERDISPLAY                                                     03/19/2024 15:40:29 PAGE 2   
 
   55   3            else
   56   3            {
@@ -126,7 +126,7 @@ line level    source
  114   3            State_On_Off[j]=0;
  115   3          }
  116   2          else
-C51 COMPILER V9.60.7.0   MASTERDISPLAY                                                     03/13/2024 15:17:27 PAGE 3   
+C51 COMPILER V9.60.7.0   MASTERDISPLAY                                                     03/19/2024 15:40:29 PAGE 3   
 
  117   2          {
  118   3            State_On_Off[j]=1;

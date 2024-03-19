@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   MAIN                                                              03/13/2024 15:17:27 PAGE 1   
+C51 COMPILER V9.60.7.0   MAIN                                                              03/19/2024 15:40:29 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
@@ -62,7 +62,7 @@ line level    source
   47          bdata bit Flag_Mast;                             //Ö÷´Ó»ú±êÖ¾
   48          bdata bit Flag_RefrInput;                        //Ì½Í·¸öÊý°´¼üÔÙ´Î°´ÏÂ±êÖ¾
   49          bdata bit Flag_RefrTime;                         //²âÁ¿Ê±¼ä°´¼üÔÙ´Î°´ÏÂ±êÖ¾
-C51 COMPILER V9.60.7.0   MAIN                                                              03/13/2024 15:17:27 PAGE 2   
+C51 COMPILER V9.60.7.0   MAIN                                                              03/19/2024 15:40:29 PAGE 2   
 
   50          bdata bit Flag_RefrPara;                         //ÊäÈë²ÎÊý°´¼üÔÙ´Î°´ÏÂ±êÖ¾
   51          bdata bit Flag_RefrRight;                        //ÓÒÒÆ°´¼üÔÙ´Î°´ÏÂ±êÖ¾
@@ -88,7 +88,7 @@ line level    source
   71          uchar data Keyvar=0xFF;                   //°´¼ü±äÁ¿
   72          uchar jishucount;             //µÚ¼¸´Î¼ÆÊý£¬ÓÃÀ´ÇóÆ½¾ùÖµÊ±ÖªµÀÕâÊÇµÚ¼¸´Î¼ÆÊý
   73          uchar  Average_Times[8];                //AJ1+»¬¶¯Æ½¾ù´ÎÊý
-  74          uint Average_Counts[8][5];//Æ½»¬Æ½¾ù±äÁ¿
+  74          double Average_Counts[8][5];//Æ½»¬Æ½¾ù±äÁ¿
   75          uchar Display_Flag[8];
   76          uchar Refresh_Time=3;                       //¡¾2024¡¿3Ãë£¬ÖÐ¶ÏÊ±¼ä¼´¼ÆÊýÊ±¼ä
   77          uchar DCS_Send[67];
@@ -126,7 +126,7 @@ line level    source
  109   1        Init_MCU();                                   //Ö÷º¯Êý³õÊ¼»¯£¬T0¶¨Ê±Æ÷¹¤×÷ÔÚ·½Ê½1³õÊ¼»¯£¬ÏÔÊ¾"ÇëÉÔµÈ£¬³õÊ
              -¼»¯ÖÐ",GATE=0,
  110   1        Init_RAM();                                   //Î»±äÁ¿³õÊ¼»¯
-C51 COMPILER V9.60.7.0   MAIN                                                              03/13/2024 15:17:27 PAGE 3   
+C51 COMPILER V9.60.7.0   MAIN                                                              03/19/2024 15:40:29 PAGE 3   
 
  111   1        Init_Para();                                  //²ÎÊý³õÊ¼»¯,³õÊ¼»¯²ÎÊý£¬´ÓIIC¶ÁÈ¡ãÐÖµµÈÐÅÏ¢¸³Óè¸ø²ÎÁ¿
  112   1        Init_Buf();                 //²¢¿ÚÍ¨Ñ¶Êý×é³õÊ¼»¯
@@ -190,7 +190,7 @@ line level    source
  166   1        uint  idata i;
  167   1        uchar idata Ptem1,Ptem2;
  168   1        ES=0;                                           //½ûÖ¹´®¿ÚÖÐ¶Ï
-C51 COMPILER V9.60.7.0   MAIN                                                              03/13/2024 15:17:27 PAGE 4   
+C51 COMPILER V9.60.7.0   MAIN                                                              03/19/2024 15:40:29 PAGE 4   
 
  169   1        IE2=0x00;                                       //½ûÖ¹´®¿Ú2ÖÐ¶Ï
  170   1        EX0=0;                                          //½ûÖ¹Íâ²¿0ÖÐ¶Ï
@@ -254,7 +254,7 @@ line level    source
  227          /****************************************
  228          *         ²ÎÊý³õÊ¼»¯
  229          ****************************************/
-C51 COMPILER V9.60.7.0   MAIN                                                              03/13/2024 15:17:27 PAGE 5   
+C51 COMPILER V9.60.7.0   MAIN                                                              03/19/2024 15:40:29 PAGE 5   
 
  230          void Init_Para()
  231          {
@@ -318,7 +318,7 @@ line level    source
  289   2          if(dt_in[x*4]==255)
  290   2          {
  291   3            dt_in[4*x]=0;
-C51 COMPILER V9.60.7.0   MAIN                                                              03/13/2024 15:17:27 PAGE 6   
+C51 COMPILER V9.60.7.0   MAIN                                                              03/19/2024 15:40:29 PAGE 6   
 
  292   3          }
  293   2          if(dt_in[x*4+1]==255)
@@ -382,7 +382,7 @@ line level    source
  350   2        }
  351   1      }
  352          
-C51 COMPILER V9.60.7.0   MAIN                                                              03/13/2024 15:17:27 PAGE 7   
+C51 COMPILER V9.60.7.0   MAIN                                                              03/19/2024 15:40:29 PAGE 7   
 
  353          /************************************
  354          *          Î»±êÊ¶³õÊ¼»¯
@@ -446,7 +446,7 @@ line level    source
  412   1        FlagCollErr = 0;
  413   1          CntColTimer = 0;
  414   1          FlagColling = 0;
-C51 COMPILER V9.60.7.0   MAIN                                                              03/13/2024 15:17:27 PAGE 8   
+C51 COMPILER V9.60.7.0   MAIN                                                              03/19/2024 15:40:29 PAGE 8   
 
  415   1        Flag_ParaChange = 0;
  416   1        Flag_InputChange = 0;
@@ -510,7 +510,7 @@ line level    source
  474                      bRet = 0;          //²»²É¼¯´Ó»úÊý¾Ý
  475                 }
  476                  else
-C51 COMPILER V9.60.7.0   MAIN                                                              03/13/2024 15:17:27 PAGE 9   
+C51 COMPILER V9.60.7.0   MAIN                                                              03/19/2024 15:40:29 PAGE 9   
 
  477                   {
  478                bRet = 1;          //²É¼¯´Ó»úÊý¾Ý
@@ -574,7 +574,7 @@ line level    source
  535   2          bSsOld=bSsNew;
  536   2          }
  537   1          return bspeak;
-C51 COMPILER V9.60.7.0   MAIN                                                              03/13/2024 15:17:27 PAGE 10  
+C51 COMPILER V9.60.7.0   MAIN                                                              03/19/2024 15:40:29 PAGE 10  
 
  538   1      }
  539          /**********************************
@@ -638,7 +638,7 @@ line level    source
  594          void Transfer()
  595          {
  596   1           if(Flag_Mast==0)                                  //´Ó»ú
-C51 COMPILER V9.60.7.0   MAIN                                                              03/13/2024 15:17:27 PAGE 11  
+C51 COMPILER V9.60.7.0   MAIN                                                              03/19/2024 15:40:29 PAGE 11  
 
  597   1             {
  598   2                Flag_Collateral = 1;
@@ -676,9 +676,9 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   1829    ----
+   CODE SIZE        =   1862    ----
    CONSTANT SIZE    =   ----    ----
-   XDATA SIZE       =    496       3
+   XDATA SIZE       =    576       4
    PDATA SIZE       =   ----    ----
    DATA SIZE        =      1    ----
    IDATA SIZE       =   ----       4
