@@ -17,6 +17,34 @@ typedef unsigned long ulong;
 #define TimeThreeThousand 600  // 定时1s
 #define TimeOneHundred 1000    // 定时100ms
 
+#define DETECTOR_CTRL_SIGNAL_SET_TO_GM(i)     \
+    do {                                      \
+        Var_Signal1 = Var_Signal1 & Svar0[i]; \
+        Var_Signal2 = Var_Signal2 & Svar0[i]; \
+        Var_Signal3 = Var_Signal3 & Svar0[i]; \
+    } while (0)
+
+#define DETECTOR_CTRL_SIGNAL_SET_TO_DL1(i)    \
+    do {                                      \
+        Var_Signal1 = Var_Signal1 | Svar1[i]; \
+        Var_Signal2 = Var_Signal2 & Svar0[i]; \
+        Var_Signal3 = Var_Signal3 & Svar0[i]; \
+    } while (0)
+
+#define DETECTOR_CTRL_SIGNAL_SET_TO_DL2(i)    \
+    do {                                      \
+        Var_Signal1 = Var_Signal1 | Svar1[i]; \
+        Var_Signal2 = Var_Signal2 | Svar1[i]; \
+        Var_Signal3 = Var_Signal3 & Svar0[i]; \
+    } while (0)
+
+#define DETECTOR_CTRL_SIGNAL_SET_TO_DL3(i)    \
+    do {                                      \
+        Var_Signal1 = Var_Signal1 | Svar1[i]; \
+        Var_Signal2 = Var_Signal2 & Svar0[i]; \
+        Var_Signal3 = Var_Signal3 | Svar1[i]; \
+    } while (0)
+
 extern uchar DataGe[75];      // 个位
 extern uchar DataTenth[75];   // 十分位
 extern uchar DataCent[75];    // 百分位
