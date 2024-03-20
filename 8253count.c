@@ -714,8 +714,8 @@ void ShowData()
                 Real_Count[i] *= 20.0;  // 换算为CPM(注意对应的是3秒的 Refresh Time)
 
                 Average_Counts[i][Average_Times[i]] = Real_Count[i];
-                Average_Times[i] += 1;
                 Real_Count_Display[i] = Average_Counts[i][Average_Times[i]];
+                Average_Times[i] += 1;
                 Display_Flag[i] = 1;
                 Channel_Display[i] = 1;
                 Calculated[i] = 1;                                // 计算过标志
@@ -735,10 +735,9 @@ void ShowData()
                 Count[i][2] = buf[4 * i + 3] * 256 + buf[4 * i + 2];
                 Real_Count[i] = (double)(buf[4 * i + 3] * 256 + buf[4 * i + 2]);
                 Real_Count[i] *= 20.0;  // 换算为CPM(注意对应的是3秒的 Refresh Time)
-
                 Average_Counts[i][Average_Times[i]] = Real_Count[i];
-                Average_Times[i] += 1;
                 Real_Count_Display[i] = Average_Counts[i][Average_Times[i]];
+                Average_Times[i] += 1;
                 Display_Flag[i] = 1;
                 Channel_Display[i] = 0;
                 Calculated[i] = 1;                                // 计算过标志
