@@ -332,7 +332,7 @@ void ShowData()
                     Channel_Detector[i][1] = 3;
                     DETECTOR_CTRL_SIGNAL_SET_TO_DL2(i);
                 }
-                Real_Count_Display[i] = (double)(Real_Count[i])*20.0;
+                Real_Count_Display[i] = (double)(Real_Count[i]) * 20.0;
                 Channel_Display[i] = 4;
                 Display_Flag[i] = 1;  // 直接允许显示
             }
@@ -450,6 +450,7 @@ void ShowData()
                     DETECTOR_CTRL_SIGNAL_SET_TO_GM(i);
                 }
                 Real_Count[i] *= 20.0;  // 换算为CPM(注意对应的是3秒的 Refresh Time)
+#if GM2_COUNT_NEED_WEIGHTED_MOVING_AVERAGE
                 Average_Counts[i][Average_Times[i]] = Real_Count[i];
                 Average_Times[i] += 1;
                 if (Average_Times[i] < 5) {
@@ -476,6 +477,9 @@ void ShowData()
                     }
                     Average_Times[i] -= 1;  // 为了让次数
                 }
+#else
+                Real_Count_Display[i] = Real_Count[i];
+#endif
                 Display_Flag[i] = 1;
                 Channel_Display[i] = 1;
                 // if(Count_Times[i]==2)
@@ -537,6 +541,7 @@ void ShowData()
                     DETECTOR_CTRL_SIGNAL_SET_TO_GM(i);
                 }
                 Real_Count[i] *= 20.0;  // 换算为CPM(注意对应的是3秒的 Refresh Time)
+#if GM1_COUNT_NEED_WEIGHTED_MOVING_AVERAGE
                 Average_Counts[i][Average_Times[i]] = Real_Count[i];
                 Average_Times[i] += 1;
                 if (Average_Times[i] < 5) {
@@ -562,6 +567,9 @@ void ShowData()
                     }
                     Average_Times[i] -= 1;  // 为了让次数
                 }
+#else
+                Real_Count_Display[i] = Real_Count[i];
+#endif
                 Display_Flag[i] = 1;
                 Channel_Display[i] = 0;
                 // if(Count_Times[i]==2)
@@ -640,7 +648,7 @@ void ShowData()
                     Count[i][2] = buf[31] * 256 + buf[30];
                     Real_Count[i] = (double)(buf[31] * 256 + buf[30]);
                 }
-                Calculated[i] = 1;                                // 计算过标志
+                Calculated[i] = 1;  // 计算过标志
                 Real_Count_Display[i] = (double)(Real_Count[i]) * 20.0;
                 Channel_Display[i] = 3;
                 Channel_Detector[i][0] = Channel_Detector[i][1];  // 更新量程历史状态
@@ -663,7 +671,7 @@ void ShowData()
                     Channel_Detector[i][1] = 3;
                     Channel_Detector[i][0] = 3;
                 }
-                Calculated[i] = 1;                                // 计算过标志
+                Calculated[i] = 1;  // 计算过标志
                 Real_Count_Display[i] = (double)(Real_Count[i]) * 20.0;
                 Channel_Display[i] = 2;
                 Channel_Detector[i][0] = Channel_Detector[i][1];  // 更新量程历史状态
@@ -682,10 +690,13 @@ void ShowData()
                 Count[i][2] = buf[4 * i + 3] * 256 + buf[4 * i + 2];
                 Real_Count[i] = (double)(buf[4 * i + 3] * 256 + buf[4 * i + 2]);
                 Real_Count[i] *= 20.0;  // 换算为CPM(注意对应的是3秒的 Refresh Time)
-
+#if GM2_COUNT_NEED_WEIGHTED_MOVING_AVERAGE
                 Average_Counts[i][Average_Times[i]] = Real_Count[i];
                 Real_Count_Display[i] = Average_Counts[i][Average_Times[i]];
                 Average_Times[i] += 1;
+#else
+                Real_Count_Display[i] = Real_Count[i];
+#endif
                 Display_Flag[i] = 1;
                 Channel_Display[i] = 1;
                 Calculated[i] = 1;                                // 计算过标志
@@ -705,9 +716,13 @@ void ShowData()
                 Count[i][2] = buf[4 * i + 3] * 256 + buf[4 * i + 2];
                 Real_Count[i] = (double)(buf[4 * i + 3] * 256 + buf[4 * i + 2]);
                 Real_Count[i] *= 20.0;  // 换算为CPM(注意对应的是3秒的 Refresh Time)
+#if GM1_COUNT_NEED_WEIGHTED_MOVING_AVERAGE
                 Average_Counts[i][Average_Times[i]] = Real_Count[i];
                 Real_Count_Display[i] = Average_Counts[i][Average_Times[i]];
                 Average_Times[i] += 1;
+#else
+                Real_Count_Display[i] = Real_Count[i];
+#endif
                 Display_Flag[i] = 1;
                 Channel_Display[i] = 0;
                 Calculated[i] = 1;                                // 计算过标志
@@ -725,7 +740,11 @@ void ShowData()
     {
         for (j = 0; j < 8; j++)  //(2)存计数区为buf[3]-buf[32];探头个数标志
         {
+#if COUNT_FOR_DISPLAY
             Tdata = (uint)(Count[j][2] / 3);  // 探头计数率uint ,紫色为全局变量，蓝色为局部变量
+#else
+            Tdata = (uint)Count[j][2];
+#endif
             jtemp = 0;                        // float
             yudata = 0;                       // double
             mtemp = 0;                        // double
