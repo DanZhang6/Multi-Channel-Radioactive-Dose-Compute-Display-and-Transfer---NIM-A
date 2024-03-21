@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   TIME0                                                             03/19/2024 15:40:30 PAGE 1   
+C51 COMPILER V9.60.7.0   TIME0                                                             03/21/2024 10:17:26 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE TIME0
@@ -16,99 +16,97 @@ line level    source
    6          
    7          ***********************************************************/
    8          #include "STC15F2K60S2.h"
-   9          #include "intrins.h"
+   9          #include "absacc.h"
   10          #include "config.h"
-  11          #include "absacc.h"
-  12          uint NumT0;                                //8253¶¨Ê±ÖÐ¶Ï´ÎÊý,ÔÚ°´ÏÂ²âÁ¿°´¼üºó³õÊ¼»¯Îª0;
-  13          uint CntFlhWarnT0;                         //Ö÷»ú²É¼¯Êý¾ÝÊ±µÆÉÁË¸¶¨Ê±ÖÐ¶Ï´ÎÊý
-  14          uint CntWarn;                              //LEDµÆÉÁË¸¶¨Ê±ÖÐ¶Ï´ÎÊý
-  15          uint CntS1Warn;                            //±¸ÓÃÏÔÊ¾ÆÁÉÏµÆÉÁË¸¶¨Ê±ÖÐ¶Ï´ÎÊý
-  16          uint CmOverTime;                           //Ö÷´Ó»úÍ¨ÐÅÎÕÊÖ¶¨Ê±ÖÐ¶Ï´ÎÊý
-  17          bit Flag_Warn_Serial1;                     //±¸ÓÃÏÔÊ¾µÆ¶¨Ê±½áÊø±êÊ¶
-  18          bit Flag_Tim0;                             //¶¨Ê±Æ÷0½áÊø±êÖ¾£¬Ä¬ÈÏ0£»
-  19          bit FlagCollFall;                          //Ö÷´ÓÍ¨ÐÅÊ§°Ü±êÖ¾£¬0
+  11          #include "intrins.h"
+  12          uint NumT0;             // 8253¶¨Ê±ÖÐ¶Ï´ÎÊý,ÔÚ°´ÏÂ²âÁ¿°´¼üºó³õÊ¼»¯Îª0;
+  13          uint CntFlhWarnT0;      // Ö÷»ú²É¼¯Êý¾ÝÊ±µÆÉÁË¸¶¨Ê±ÖÐ¶Ï´ÎÊý
+  14          uint CntWarn;           // LEDµÆÉÁË¸¶¨Ê±ÖÐ¶Ï´ÎÊý
+  15          uint CntS1Warn;         // ±¸ÓÃÏÔÊ¾ÆÁÉÏµÆÉÁË¸¶¨Ê±ÖÐ¶Ï´ÎÊý
+  16          uint CmOverTime;        // Ö÷´Ó»úÍ¨ÐÅÎÕÊÖ¶¨Ê±ÖÐ¶Ï´ÎÊý
+  17          bit Flag_Warn_Serial1;  // ±¸ÓÃÏÔÊ¾µÆ¶¨Ê±½áÊø±êÊ¶
+  18          bit Flag_Tim0;          // ¶¨Ê±Æ÷0½áÊø±êÖ¾£¬Ä¬ÈÏ0£»
+  19          bit FlagCollFall;       // Ö÷´ÓÍ¨ÐÅÊ§°Ü±êÖ¾£¬0
   20          /*************************************
-  21          *         ¶¨Ê±Æ÷0ÖÐ¶Ï³ÌÐò
-  22          **************************************/
-  23          void Tim0(void) interrupt 1                 //tim0¶¨Ê±½áÊøºóÔËÐÐÖÕ¶Ë³ÌÐò(¶¨Ê±ÖÐ¶Ï)
+  21           *         ¶¨Ê±Æ÷0ÖÐ¶Ï³ÌÐò
+  22           **************************************/
+  23          void Tim0(void) interrupt 1  // tim0¶¨Ê±½áÊøºóÔËÐÐÖÕ¶Ë³ÌÐò(¶¨Ê±ÖÐ¶Ï)
   24          {
-  25   1        TF0=0;                                    //ÉèÖÃ¶¨Ê±Æ÷¿ØÖÆ¶¨Ê±Æ÷,ÖØÖÃ¶¨Ê±Æ÷³õÖµ
-  26   1          TH0=0xDC;                                 //¶¨Ê±Æ÷0Ã¿5msÖÐ¶ÏÒ»´Î
-  27   1          TL0=0x00;
-  28   1        if(Flag_Mast)                             //ÈôÖ÷´Ó»ú°´Å¥ÎªÖ÷»ú
-  29   1        {
-  30   2            if(FlagMasColSlavOK)                    //Ö÷»ú²É¼¯Êý¾ÝÊ±µÆÉÁË¸¶¨Ê±
-  31   2            {
-  32   3                if(++CntFlhWarnT0 >= TimeFiveHundred) //TimeFiveHundred=100,¶¨Ê±Æ÷5msÖÐ¶ÏÒ»´Î,±¨¾¯µÆÔò500msË¢ÐÂÒ»´
-             -Î
-  33   3                {
-  34   4                  CntFlhWarnT0 = 0;
-  35   4                  Flag_Warn_Led = 1;                  //µÆ×´Ì¬¿ªÊ¼±ä»»±êÖ¾
-  36   4                }
-  37   3            }
+  25   1          TF0 = 0;     // ÉèÖÃ¶¨Ê±Æ÷¿ØÖÆ¶¨Ê±Æ÷,ÖØÖÃ¶¨Ê±Æ÷³õÖµ
+  26   1          TH0 = 0xDC;  // ¶¨Ê±Æ÷0Ã¿5msÖÐ¶ÏÒ»´Î
+  27   1          TL0 = 0x00;
+  28   1          if (Flag_Mast)  // ÈôÖ÷´Ó»ú°´Å¥ÎªÖ÷»ú
+  29   1          {
+  30   2              if (FlagMasColSlavOK)  // Ö÷»ú²É¼¯Êý¾ÝÊ±µÆÉÁË¸¶¨Ê±
+  31   2              {
+  32   3                  if (++CntFlhWarnT0 >= TimeFiveHundred)  // TimeFiveHundred=100,¶¨Ê±Æ÷5msÖÐ¶ÏÒ»´Î,±¨¾¯µÆÔò500ms
+             -Ë¢ÐÂÒ»´Î
+  33   3                  {
+  34   4                      CntFlhWarnT0 = 0;
+  35   4                      Flag_Warn_Led = 1;  // µÆ×´Ì¬¿ªÊ¼±ä»»±êÖ¾
+  36   4                  }
+  37   3              }
   38   2          }
-  39   1          if(Flag_Warn_Count)                       //°´¼ü²âÁ¿Ê±µÆÉÁË¸¶¨Ê±
+  39   1          if (Flag_Warn_Count)  // °´¼ü²âÁ¿Ê±µÆÉÁË¸¶¨Ê±
   40   1          {
-  41   2            if(++CntWarn >= TimeFiveHundred)        //500msË¢ÐÂÒ»´Î
-  42   2            {
-  43   3                CntWarn = 0;
-  44   3                Flag_Warn_Flash = 1;                  //µÆ×´Ì¬¿ªÊ¼±ä»»±êÖ¾
-  45   3            }
+  41   2              if (++CntWarn >= TimeFiveHundred)  // 500msË¢ÐÂÒ»´Î
+  42   2              {
+  43   3                  CntWarn = 0;
+  44   3                  Flag_Warn_Flash = 1;  // µÆ×´Ì¬¿ªÊ¼±ä»»±êÖ¾
+  45   3              }
   46   2          }
-  47   1        if(Flag8253Cnting)              //8253¼ÆÊý¶¨Ê±¿ªÊ¼±êÖ¾ÖÐ¶Ï,°´ÏÂ²âÁ¿°´¼üºó=1 ¿ªÊ¼¶¨Ê±
-  48   1        {
-  49   2          if(NumT0==0)
-  50   2          {
-  51   3            GATE=1;
-  52   3          }
-  53   2            NumT0 = ++NumT0;
-C51 COMPILER V9.60.7.0   TIME0                                                             03/19/2024 15:40:30 PAGE 2   
+  47   1          if (Flag8253Cnting)  // 8253¼ÆÊý¶¨Ê±¿ªÊ¼±êÖ¾ÖÐ¶Ï,°´ÏÂ²âÁ¿°´¼üºó=1 ¿ªÊ¼¶¨Ê±
+  48   1          {
+  49   2              if (NumT0 == 0) {
+  50   3                  GATE = 1;
+  51   3              }
+  52   2              NumT0 = ++NumT0;
+  53   2              if (NumT0 >= (200 * Refresh_Time))  // AA1*,1SÖÓÖÐ¶Ï200´Î£¬RedrawtimeÊ±¼äÄÚÖÐ¶Ï200*Redrawtime´Î,¼´
+C51 COMPILER V9.60.7.0   TIME0                                                             03/21/2024 10:17:26 PAGE 2   
 
-  54   2          if(NumT0 >=(200*Refresh_Time))         //AA1*,1SÖÓÖÐ¶Ï200´Î£¬RedrawtimeÊ±¼äÄÚÖÐ¶Ï200*Redrawtime´Î,¼´ÖÐ¶Ï1Ãë
-             -ºóÖ´ÐÐ,¹Ø±Õ8253ÃÅ¿ØÐÅºÅ
-  55   2          {
-  56   3            GATE = 0;               //¹Ø±Õ8253ÃÅ¿ØÐÅºÅ
-  57   3            NumT0 = 0;
-  58   3            Flag_Tim0 = 1;              //¼ÆÊ±Æ÷½áÊø±êÖ¾£¬ÔÚmainº¯ÊýÖÐ²»¶Ï¼ì²âÊÇ·ñÎª1£¬ÎªÒ»Ê±½øÈëÑ­»·
-  59   3            Flag8253Cnting = 0;           //¶¨Ê±¼ÆÊý±êÖ¾ÇåÁã
-  60   3          }
-  61   2        }
-  62   1        if(FlagColling)                           //Êý¾Ý²É¼¯¼ä¸ôÊ±¼ä¶¨Ê±
-  63   1        {
-  64   2          if(++CntColTimer >= TimeOneHundred)     //100msË¢ÐÂÒ»´Î
-  65   2          {
-  66   3            FlagCollErr = 1;
-  67   3            CntColTimer = 0;
-  68   3          }
-  69   2        }
-  70   1        if(Flag_Collateral)                       //Ö÷´Ó»úÍ¨ÐÅÎÕÊÖ¶¨Ê±
-  71   1        {
-  72   2          if(++CmOverTime >=TimeThreeThousand)
-  73   2          {
-  74   3            FlagCollFall = 1;
-  75   3            CmOverTime = 0;
-  76   3          }
-  77   2        }
-  78   1      }
-  79          
-  80          /*************************************
-  81          *         ¶¨Ê±Æ÷0³õÊ¼»¯
-  82          **************************************/
-  83          void Init_Time0()
-  84          {
-  85   1        TMOD=0x01;                  //¶¨Ê±Æ÷0¹¤×÷ÔÚ·½Ê½1
-  86   1        TH0=0xDC;                   //Ô¤ÖÃ¶¨Ê±³õÖµDC00H,¾§ÕñÆµÂÊ22.1184MHz,¶¨Ê±Ê±³¤Ô¼5ms
-  87   1        TL0=0x00;
-  88   1        NumT0=0;                    //ÖÐ¶Ï¼ÆÊý³õÊ¼»¯
-  89   1        CntFlhWarnT0 = 0;
-  90   1        CntWarn = 0;
-  91   1        CntS1Warn = 0;
-  92   1        CmOverTime = 0;
-  93   1        CntColTimer = 0;
-  94   1        EA=1;                       //¿ªÆô×ÜÖÐ¶Ï
-  95   1        ET0=1;                      //¿ªÆô¶¨Ê±Æ÷0Ê¹ÄÜ
-  96   1        TR0=1;                    //¿ªÆô¶¨Ê±Æ÷0
-  97   1      }
+             -ÖÐ¶Ï1ÃëºóÖ´ÐÐ,¹Ø±Õ8253ÃÅ¿ØÐÅºÅ
+  54   2              {
+  55   3                  GATE = 0;  // ¹Ø±Õ8253ÃÅ¿ØÐÅºÅ
+  56   3                  NumT0 = 0;
+  57   3                  Flag_Tim0 = 1;       // ¼ÆÊ±Æ÷½áÊø±êÖ¾£¬ÔÚmainº¯ÊýÖÐ²»¶Ï¼ì²âÊÇ·ñÎª1£¬ÎªÒ»Ê±½øÈëÑ­»·
+  58   3                  Flag8253Cnting = 0;  // ¶¨Ê±¼ÆÊý±êÖ¾ÇåÁã
+  59   3              }
+  60   2          }
+  61   1          if (FlagColling)  // Êý¾Ý²É¼¯¼ä¸ôÊ±¼ä¶¨Ê±
+  62   1          {
+  63   2              if (++CntColTimer >= TimeOneHundred)  // 100msË¢ÐÂÒ»´Î
+  64   2              {
+  65   3                  FlagCollErr = 1;
+  66   3                  CntColTimer = 0;
+  67   3              }
+  68   2          }
+  69   1          if (Flag_Collateral)  // Ö÷´Ó»úÍ¨ÐÅÎÕÊÖ¶¨Ê±
+  70   1          {
+  71   2              if (++CmOverTime >= TimeThreeThousand) {
+  72   3                  FlagCollFall = 1;
+  73   3                  CmOverTime = 0;
+  74   3              }
+  75   2          }
+  76   1      }
+  77          
+  78          /*************************************
+  79           *         ¶¨Ê±Æ÷0³õÊ¼»¯
+  80           **************************************/
+  81          void Init_Time0()
+  82          {
+  83   1          TMOD = 0x01;  // ¶¨Ê±Æ÷0¹¤×÷ÔÚ·½Ê½1
+  84   1          TH0 = 0xDC;   // Ô¤ÖÃ¶¨Ê±³õÖµDC00H,¾§ÕñÆµÂÊ22.1184MHz,¶¨Ê±Ê±³¤Ô¼5ms
+  85   1          TL0 = 0x00;
+  86   1          NumT0 = 0;  // ÖÐ¶Ï¼ÆÊý³õÊ¼»¯
+  87   1          CntFlhWarnT0 = 0;
+  88   1          CntWarn = 0;
+  89   1          CntS1Warn = 0;
+  90   1          CmOverTime = 0;
+  91   1          CntColTimer = 0;
+  92   1          EA = 1;   // ¿ªÆô×ÜÖÐ¶Ï
+  93   1          ET0 = 1;  // ¿ªÆô¶¨Ê±Æ÷0Ê¹ÄÜ
+  94   1          TR0 = 1;  // ¿ªÆô¶¨Ê±Æ÷0
+  95   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE

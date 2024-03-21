@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   RESET                                                             03/19/2024 15:40:30 PAGE 1   
+C51 COMPILER V9.60.7.0   RESET                                                             03/21/2024 10:17:26 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE RESET
@@ -16,31 +16,31 @@ line level    source
    6          
    7          ****************************************************/
    8          #include "STC15F2K60S2.h"
-   9          #include "intrins.h"
-  10          #include "config.h" 
-  11          #include "absacc.h"
+   9          #include "absacc.h"
+  10          #include "config.h"
+  11          #include "intrins.h"
   12          
   13          void ReSet()
   14          {
-  15   1         Clear();
-  16   1         Lcd_Clear(); 
-  17   1         Txtext(188,216,"重 新 设 置"); 
-  18   1         IE0 = 0;                                     //将外部中断0清0    
-  19   1         ES = 0;                                      //禁止串口中断
-  20   1         IE2 = 0x00;                                  //禁止串口2中断
-  21   1         Incdata = YuThouth[0];
-  22   1         Incdataright = 1;                //右移按键增加标志?
-  23   1         Inctime = 1;                                 //时间按键增加标志
-  24   1         Incinput = 8 ;                               //默认显示探头个数为8个
-  25   1         wb = 1;
-  26   1           xh = 1;
-  27   1         bz = 1;
-  28   1         Flag_RefrInput = 0;
-  29   1         Flag_RefrPara = 0;
-  30   1         Flag_RefrRight = 0;
-  31   1         Flag_RefrTime = 0;
-  32   1         EX0 = 1;
-  33   1      }        
+  15   1          Clear();
+  16   1          Lcd_Clear();
+  17   1          Txtext(188, 216, "重 新 设 置");
+  18   1          IE0 = 0;     // 将外部中断0清0
+  19   1          ES = 0;      // 禁止串口中断
+  20   1          IE2 = 0x00;  // 禁止串口2中断
+  21   1          Incdata = YuThouth[0];
+  22   1          Incdataright = 1;  // 右移按键增加标志?
+  23   1          Inctime = 1;       // 时间按键增加标志
+  24   1          Incinput = 8;      // 默认显示探头个数为8个
+  25   1          wb = 1;
+  26   1          xh = 1;
+  27   1          bz = 1;
+  28   1          Flag_RefrInput = 0;
+  29   1          Flag_RefrPara = 0;
+  30   1          Flag_RefrRight = 0;
+  31   1          Flag_RefrTime = 0;
+  32   1          EX0 = 1;
+  33   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE

@@ -444,7 +444,7 @@ void ShowData()
                     Channel_Detector[i][1] = 2;
                     DETECTOR_CTRL_SIGNAL_SET_TO_DL1(i);
                 }
-                if ((Count[i][0] < (1.32 * Refresh_Time)) && (Count[i][1] < (1.32 * Refresh_Time)) && (Count[i][2] < (1.32 * Refresh_Time))) {
+                if ((Count[i][0] < (2 * Refresh_Time)) && (Count[i][1] < (2 * Refresh_Time)) && (Count[i][2] < (2 * Refresh_Time))) {
                     Channel_Detector[i][0] = Channel_Detector[i][1];
                     Channel_Detector[i][1] = 0;
                     DETECTOR_CTRL_SIGNAL_SET_TO_GM(i);
@@ -534,7 +534,7 @@ void ShowData()
                 Count[i][2] = buf[4 * i + 3] * 256 + buf[4 * i + 2];
                 Real_Count[i] = (double)(buf[4 * i + 3] * 256 + buf[4 * i + 2]);
                 Calculated[i] = 1;                                                                                                            // 计算过标志
-                if ((Count[i][0] > (1.32 * Refresh_Time)) && (Count[i][1] > (1.32 * Refresh_Time)) && (Count[i][2] > (1.32 * Refresh_Time)))  // 量程切换
+                if ((Count[i][0] > (3 * Refresh_Time)) && (Count[i][1] > (3 * Refresh_Time)) && (Count[i][2] > (3 * Refresh_Time)))  // 量程切换
                 {
                     Channel_Detector[i][0] = Channel_Detector[i][1];
                     Channel_Detector[i][1] = 1;
