@@ -17,6 +17,7 @@
 #include "intrins.h"
 #include "math.h"
 #include "stdio.h"
+#include "stdlib.h"
 
 #define C82531C XBYTE[0x8300]   // 8253的命令端口（地址），CS4=1,CS3=1,CS2=1,CS1=1,CS0=0,A1A0=11；
 #define C825310D XBYTE[0x8000]  // 计数器0CS4=1,CS3=1,CS2=1,CS1=1,CS0=0,A1A0=00；
@@ -73,6 +74,9 @@ bit Flag_Warn_Count;       // 默认0；
 uchar Flag_need_Flash[8];  // LED闪烁标志
 uchar State_Flash[8];
 uchar count_change_flag[8];  // 计数改变标志？
+double Weights[12] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+double Detector_Counts_History[7][12];
+extern uchar Average_Times[8];  // AJ1+滑动平均次数
 float code a0 = 0.0625;
 float code a1 = 0.0625;
 float code a2 = 0.125;
@@ -81,19 +85,73 @@ float code a4 = 0.5;
 uchar code Svar1[8] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80};  // 信号数组
 uchar code Svar0[8] = {0xFE, 0xFD, 0xFB, 0xF7, 0xEF, 0xDF, 0xBF, 0x7F};
 extern uchar jishucount;
-extern uchar Average_Times[8];  // AJ1+滑动平均次数
 extern uchar Display_Flag[8];
-
 extern bit Speak_Alarm();
-
 void shortdelay(uint i);
 void Alarm();
 void Led_Disp(uchar Num, uchar Flag, uchar State);
 void Updata_Flash(uchar j);
 extern bitSpeak_Alarm();
+
+#if GM1_DOSE_NEED_WEIGHTED_MOVING_AVERAGE
+
+/**
+ * @brief  compare to descending order
+ */
+int compare(const void *a, const void *b)
+{
+    double arg1 = *(const double *)a;
+    double arg2 = *(const double *)b;
+
+    if (arg1 < arg2)
+        return 1;
+    if (arg1 > arg2)
+        return -1;
+    return 0;
+}
+
+/**
+ * @brief  根据本量程测量次数生成加权滑动平均权重，加权长度12，小于12的按比例分配；
+ * @param  n: number of weights
+ * @param  output: output array
+ * @author Dan Zhang
+ */
+void generate_weights_output(int n, double *weights_output)
+{
+    double Weights_[12] = {0.3, 0.2, 0.15, 0.11, 0.08, 0.05, 0.035, 0.024, 0.019, 0.0152, 0.0084, 0.0084};
+    double sum = 0.0;
+    int i;
+
+    if (n < 12) {
+        for (i = 0; i < n - 1; i++) {
+            weights_output[i] = Weights_[i];
+            sum += Weights_[i];
+        }
+        weights_output[n - 1] = 1 - sum;
+    } else if (n == 12) {
+        for (i = 0; i < n; i++) {
+            weights_output[i] = Weights[i];
+        }
+    }
+#if 0  // use qsort to sort the weights
+    qsort(output, n, sizeof(float), compare);
+#else  // traditional bubble sort
+    for (i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (weights_output[j] < weights_output[j + 1]) {
+                double temp = weights_output[j];
+                weights_output[j] = weights_output[j + 1];
+                weights_output[j + 1] = temp;
+            }
+        }
+    }
+#endif
+}
+#endif
 /*************************************
  *8253计数值
  **************************************/
+
 void GetAndDisdata()  // 计数完成后第一个运行的程序
 {
     uchar j;
@@ -745,11 +803,11 @@ void ShowData()
 #else
             Tdata = (uint)Count[j][2];
 #endif
-            jtemp = 0;                        // float
-            yudata = 0;                       // double
-            mtemp = 0;                        // double
-            yu = 0;                           // double
-            Tbcd[5] = 0;                      // uchar 数组共12位，测得的数据的bcd码数组
+            jtemp = 0;    // float
+            yudata = 0;   // double
+            mtemp = 0;    // double
+            yu = 0;       // double
+            Tbcd[5] = 0;  // uchar 数组共12位，测得的数据的bcd码数组
             Tbcd[4] = 0;
             Tbcd[3] = 0;
             Tbcd[2] = 0;
@@ -795,6 +853,32 @@ void ShowData()
                     DoseRata[j] = (float)(Para[3] * ((float)Real_Count_Display[j] - Para[2]));
                 }
             }
+#if GM1_DOSE_NEED_WEIGHTED_MOVING_AVERAGE
+            if (Channel_Display[j] == 0) {  // 如果是GM1量程，进行滑动平均,第8个通道没有GM1量程所以进不来
+                if (Average_Times[j] == 0) {
+                    Detector_Counts_History[j][0] = DoseRata[j];
+                } else if (Average_Times[j] != 0) {
+                    for (int l = Average_Times[j]; l > 0; l--) {
+                        Detector_Counts_History[j][l] = Detector_Counts_History[j][l - 1];
+                    }
+                    Detector_Counts_History[j][0] = DoseRata[j];
+                    generate_weights_output(Average_Times[j] + 1, &Weights);
+                    for (int l = 0; l < Average_Times[j] + 1; l++) {
+                        DoseRata[j] += (float)(Detector_Counts_History[j][l] * Weights[l]);
+                    }
+                }
+                Average_Times[j] += 1;
+                if (Average_Times[j] == 12) {
+                    Average_Times[j] = 11;
+                }
+            } else if (Channel_Display[j] != 0) {  // 如果不是GM1量程，清空所有滑动平均相关数据
+                Average_Times[j] = 0;
+                for (int l = 0; l < 12; l++) {
+                    Detector_Counts_History[j][l] = 0.0;
+                    Weights[l] = 0.0;
+                }
+            }
+#endif
             /**********单位换算后为jtemp************/
             if (DoseRata[j] < 0)  // 修改2012.6.15通过均值计算
             {
