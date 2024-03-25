@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/19/2024 15:40:29 PAGE 1   
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/21/2024 10:17:25 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE 8253COUNT
@@ -62,7 +62,7 @@ line level    source
   51          uchar DataThouth[75];          // Ì½²âÆ÷±ê¶¨²ÎÊýµÄÇ§·ÖÎ»
   52          uchar send_buf[65];            // NIM_AÏòNIM_B·¢ËÍÊý¾ÝµÄÊý×é
   53          uchar Incinput;                // Ì½Í·¸öÊý±êÖ¾£¬Ä¬ÈÏÏÔÊ¾Ì½Í·¸öÊýÎª8¸ö
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/19/2024 15:40:29 PAGE 2   
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/21/2024 10:17:25 PAGE 2   
 
   54          float idata Para[10];          // Éè¶¨ºÃµÄ²ÎÊýÊý×é
   55          float DoseRata[8];             // Ã¿×éÌ½Í·²âµÃµÄ¼ÁÁ¿ÂÊ
@@ -126,7 +126,7 @@ line level    source
  113   1          buf[3] = 0xff - th;
  114   1      
  115   1          C82531C = 0x44;  // Ëø´æµÚÒ»Æ¬8253¼ÆÊýÆ÷1µÄ¼ÆÊýÖµ
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/19/2024 15:40:29 PAGE 3   
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/21/2024 10:17:25 PAGE 3   
 
  116   1          tl = C825311D;   // read825316bitsdata(firstLthenH)
  117   1          buf[4] = 0xff - tl;
@@ -190,7 +190,7 @@ line level    source
  175   1          C82534C = 0x04;  // Ëø´æµÚËÄÆ¬8253¼ÆÊýÆ÷0µÄ¼ÆÊýÖµ
  176   1          tl = C825340D;   // read825316bitsdata(firstLthenH)
  177   1          buf[24] = 0xff - tl;
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/19/2024 15:40:29 PAGE 4   
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/21/2024 10:17:25 PAGE 4   
 
  178   1          th = C825340D;
  179   1          buf[25] = 0xff - th;
@@ -254,7 +254,7 @@ line level    source
  236   1      
  237   1          C82533C = 0x74;  // 01110100
  238   1          C825331D = 0xff;
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/19/2024 15:40:29 PAGE 5   
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/21/2024 10:17:25 PAGE 5   
 
  239   1          C825331D = 0xff;
  240   1      
@@ -318,7 +318,7 @@ line level    source
  297   1          for (i = 0; i <= 7; i++)  // 8¸öÌ½Í·Öð¸ö¼ì²â
  298   1          {
  299   2              /**
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/19/2024 15:40:29 PAGE 6   
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/21/2024 10:17:25 PAGE 6   
 
  300   2               * 1.±éÀúÃ¿Ò»¸öÌ½Í·£¨0~7£©£»
  301   2               * 2.ÏÈ´Óbuf£¨´Ó8253¼ÆÊýÆ÷ÖÐÈ¡»ØµÄ¼ÆÊý£©ÖÐ¼ÆËã¼ÆÊý£¬¸ß8Î»*256+µÍ8Î»£¬¼ÇÂ¼Àú´Î¼ÆÊýÖµ£¬Ã¿3Ãë¼ÆÊýÒ»´Î
@@ -353,373 +353,373 @@ line level    source
  324   4                      {
  325   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
  326   5                          Channel_Detector[i][1] = 3;
- 327   5                          Var_Signal1 = Var_Signal1 | Svar1[i];  // ¿ØÖÆÐÅºÅ1½Ó¼ÆÊý¹Ü£¬¸ßµçÆ½¸ßÑ¹¹Ø
- 328   5                          Var_Signal2 = Var_Signal2 | Svar1[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(8),¸ßµçÆ½
- 329   5                          Var_Signal3 = Var_Signal3 & Svar0[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(6),µÍµçÆ½
- 330   5                      }
- 331   4                      if ((Count[i][1] < (28 * Refresh_Time)) && (Count[i][2] < (28 * Refresh_Time)) && (i == 7)
+ 327   5                          DETECTOR_CTRL_SIGNAL_SET_TO_DL2(i);
+ 328   5                      }
+ 329   4                      if ((Count[i][1] < (28 * Refresh_Time)) && (Count[i][2] < (28 * Refresh_Time)) && (i == 7)
              -)  // Á¿³ÌÇÐ»»µÚ°Ë¸öÌ½Í·ÅÐ¶¨Ìõ¼þ
- 332   4                      {
- 333   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
- 334   5                          Channel_Detector[i][1] = 3;
- 335   5                          Var_Signal1 = Var_Signal1 | Svar1[i];  // ¿ØÖÆÐÅºÅ1½Ó¼ÆÊý¹Ü£¬¸ßµçÆ½¸ßÑ¹¹Ø
- 336   5                          Var_Signal2 = Var_Signal2 | Svar1[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(8),¸ßµçÆ½
- 337   5                          Var_Signal3 = Var_Signal3 & Svar0[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(6),µÍµçÆ½
- 338   5                      }
- 339   4                      Real_Count_Display[i] = (double)(Real_Count[i])*20.0;
- 340   4                      Channel_Display[i] = 4;
- 341   4                      Display_Flag[i] = 1;  // Ö±½ÓÔÊÐíÏÔÊ¾
- 342   4                  }
- 343   3                  if ((Channel_Detector[i][1] == 3) && (Calculated[i] == 0))  // DL2Á¿³Ì£¬Á½´Î¶¨Ê±¼ÆÊýÒ»ÃëÏà¼Ó
- 344   3                  {
- 345   4                      Count[i][0] = Count[i][1];
- 346   4                      Count[i][1] = Count[i][2];
- 347   4                      if (i < 7)  // Ç°6¸öÌ½Í·ºÍµÚÆß¸öÌ½Í·È¡¼ÆÊýÎ»ÖÃ²»Ò»Ñù
+ 330   4                      {
+ 331   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
+ 332   5                          Channel_Detector[i][1] = 3;
+ 333   5                          DETECTOR_CTRL_SIGNAL_SET_TO_DL2(i);
+ 334   5                      }
+ 335   4                      Real_Count_Display[i] = (double)(Real_Count[i]) * 20.0;
+ 336   4                      Channel_Display[i] = 4;
+ 337   4                      Display_Flag[i] = 1;  // Ö±½ÓÔÊÐíÏÔÊ¾
+ 338   4                  }
+ 339   3                  if ((Channel_Detector[i][1] == 3) && (Calculated[i] == 0))  // DL2Á¿³Ì£¬Á½´Î¶¨Ê±¼ÆÊýÒ»ÃëÏà¼Ó
+ 340   3                  {
+ 341   4                      Count[i][0] = Count[i][1];
+ 342   4                      Count[i][1] = Count[i][2];
+ 343   4                      if (i < 7)  // Ç°6¸öÌ½Í·ºÍµÚÆß¸öÌ½Í·È¡¼ÆÊýÎ»ÖÃ²»Ò»Ñù
+ 344   4                      {
+ 345   5                          Count[i][2] = buf[4 * i + 5] * 256 + buf[4 * i + 4];
+ 346   5                          Real_Count[i] = (double)(buf[4 * i + 5] * 256 + buf[4 * i + 4]);
+ 347   5                      } else if (i == 7)  // Ç°6¸öÌ½Í·ºÍµÚÆß¸öÌ½Í·È¡¼ÆÊýÎ»ÖÃ²»Ò»Ñù
  348   4                      {
- 349   5                          Count[i][2] = buf[4 * i + 5] * 256 + buf[4 * i + 4];
- 350   5                          Real_Count[i] = (double)(buf[4 * i + 5] * 256 + buf[4 * i + 4]);
- 351   5                      } else if (i == 7)  // Ç°6¸öÌ½Í·ºÍµÚÆß¸öÌ½Í·È¡¼ÆÊýÎ»ÖÃ²»Ò»Ñù
- 352   4                      {
- 353   5                          Count[i][2] = buf[31] * 256 + buf[30];
- 354   5                          Real_Count[i] = (double)(buf[31] * 256 + buf[30]);
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/19/2024 15:40:29 PAGE 7   
-
- 355   5                      }
- 356   4                      Calculated[i] = 1;                                                                        
+ 349   5                          Count[i][2] = buf[31] * 256 + buf[30];
+ 350   5                          Real_Count[i] = (double)(buf[31] * 256 + buf[30]);
+ 351   5                      }
+ 352   4                      Calculated[i] = 1;                                                                        
              -      // ¼ÆËã¹ý±êÖ¾
- 357   4                      if ((Count[i][1] > (5719 * Refresh_Time)) && (Count[i][2] > (5719 * Refresh_Time)) && (i <
+ 353   4                      if ((Count[i][1] > (5719 * Refresh_Time)) && (Count[i][2] > (5719 * Refresh_Time)) && (i <
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/21/2024 10:17:25 PAGE 7   
+
              - 7))  // Á¿³ÌÇÐ»»
- 358   4                      {
- 359   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
- 360   5                          Channel_Detector[i][1] = 4;
- 361   5                          Var_Signal1 = Var_Signal1 | Svar1[i];  // ¿ØÖÆÐÅºÅ1½Ó¼ÆÊý¹Ü£¬¸ßµçÆ½¸ßÑ¹¹Ø
- 362   5                          Var_Signal2 = Var_Signal2 & Svar0[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(8),¸ßµçÆ½
- 363   5                          Var_Signal3 = Var_Signal3 | Svar1[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(6),µÍµçÆ½
- 364   5                      }
- 365   4                      if ((Count[i][1] > (7447 * Refresh_Time)) && (Count[i][2] > (7447 * Refresh_Time)) && (i =
+ 354   4                      {
+ 355   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
+ 356   5                          Channel_Detector[i][1] = 4;
+ 357   5                          DETECTOR_CTRL_SIGNAL_SET_TO_DL3(i);
+ 358   5                      }
+ 359   4                      if ((Count[i][1] > (7447 * Refresh_Time)) && (Count[i][2] > (7447 * Refresh_Time)) && (i =
              -= 7))  // Á¿³ÌÇÐ»»
+ 360   4                      {
+ 361   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
+ 362   5                          Channel_Detector[i][1] = 4;
+ 363   5                          DETECTOR_CTRL_SIGNAL_SET_TO_DL3(i);
+ 364   5                      }
+ 365   4                      if (((Count[i][1] < (35 * Refresh_Time)) && (Count[i][2] < (35 * Refresh_Time))) && (i != 
+             -7))  // µÚÆß¸öÌ½Í·Ö»ÓÐÁ½¸öÁ¿³Ì
  366   4                      {
  367   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
- 368   5                          Channel_Detector[i][1] = 4;
- 369   5                          Var_Signal1 = Var_Signal1 | Svar1[i];  // ¿ØÖÆÐÅºÅ1½Ó¼ÆÊý¹Ü£¬¸ßµçÆ½¸ßÑ¹¹Ø
- 370   5                          Var_Signal2 = Var_Signal2 & Svar0[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(8),¸ßµçÆ½
- 371   5                          Var_Signal3 = Var_Signal3 | Svar1[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(6),µÍµçÆ½
- 372   5                      }
- 373   4                      if (((Count[i][1] < (35 * Refresh_Time)) && (Count[i][2] < (35 * Refresh_Time))) && (i != 
-             -7))  // µÚÆß¸öÌ½Í·Ö»ÓÐÁ½¸öÁ¿³Ì
- 374   4                      {
- 375   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
- 376   5                          Channel_Detector[i][1] = 2;
- 377   5                          Var_Signal1 = Var_Signal1 | Svar1[i];  // ¿ØÖÆÐÅºÅ1½Ó¼ÆÊý¹Ü£¬¸ßµçÆ½¸ßÑ¹¹Ø
- 378   5                          Var_Signal2 = Var_Signal2 & Svar0[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(8),¸ßµçÆ½
- 379   5                          Var_Signal3 = Var_Signal3 & Svar0[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(6),µÍµçÆ½
- 380   5                      }
- 381   4                      Real_Count_Display[i] = (double)(Real_Count[i]) * 20.0;
- 382   4                      Display_Flag[i] = 1;  // ÔÊÐíÏÔÊ¾
- 383   4                      Channel_Display[i] = 3;
- 384   4                      Real_Count[i] = 0;
- 385   4                      if ((Display_Flag[i] == 1) && ((Real_Count_Display[i] / 5) > 5719) && (Channel_Detector[i]
+ 368   5                          Channel_Detector[i][1] = 2;
+ 369   5                          DETECTOR_CTRL_SIGNAL_SET_TO_DL1(i);
+ 370   5                      }
+ 371   4                      Real_Count_Display[i] = (double)(Real_Count[i]) * 20.0;
+ 372   4                      Display_Flag[i] = 1;  // ÔÊÐíÏÔÊ¾
+ 373   4                      Channel_Display[i] = 3;
+ 374   4                      Real_Count[i] = 0;
+ 375   4                      if ((Display_Flag[i] == 1) && ((Real_Count_Display[i] / 5) > 5719) && (Channel_Detector[i]
              -[0] == Channel_Detector[i][1]) &&
- 386   4                          (i < 7))  // Á¿³ÌÇÐ»»,¼ÓºóÁ½¾äÊÇ·ÀÖ¹ÖØ¸´»»µ²
- 387   4                      {
- 388   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
- 389   5                          Channel_Detector[i][1] = 4;
- 390   5                          Display_Flag[i] = 0;
- 391   5                          Var_Signal1 = Var_Signal1 | Svar1[i];  // ¿ØÖÆÐÅºÅ1½Ó¼ÆÊý¹Ü£¬¸ßµçÆ½¸ßÑ¹¹Ø
- 392   5                          Var_Signal2 = Var_Signal2 & Svar0[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(8),¸ßµçÆ½
- 393   5                          Var_Signal3 = Var_Signal3 | Svar1[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(6),µÍµçÆ½
- 394   5                      }
- 395   4                      if ((Display_Flag[i] == 1) && ((Real_Count_Display[i] / 5) > 7447) && (Channel_Detector[i]
+ 376   4                          (i < 7))  // Á¿³ÌÇÐ»»,¼ÓºóÁ½¾äÊÇ·ÀÖ¹ÖØ¸´»»µ²
+ 377   4                      {
+ 378   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
+ 379   5                          Channel_Detector[i][1] = 4;
+ 380   5                          Display_Flag[i] = 0;
+ 381   5                          DETECTOR_CTRL_SIGNAL_SET_TO_DL3(i);
+ 382   5                      }
+ 383   4                      if ((Display_Flag[i] == 1) && ((Real_Count_Display[i] / 5) > 7447) && (Channel_Detector[i]
              -[0] == Channel_Detector[i][1]) &&
- 396   4                          (i == 7))  // Á¿³ÌÇÐ»»,¼ÓºóÁ½¾äÊÇ·ÀÖ¹ÖØ¸´»»µ²
- 397   4                      {
- 398   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
- 399   5                          Channel_Detector[i][1] = 4;
- 400   5                          Display_Flag[i] = 0;
- 401   5                          Var_Signal1 = Var_Signal1 | Svar1[i];  // ¿ØÖÆÐÅºÅ1½Ó¼ÆÊý¹Ü£¬¸ßµçÆ½¸ßÑ¹¹Ø
- 402   5                          Var_Signal2 = Var_Signal2 & Svar0[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(8),¸ßµçÆ½
- 403   5                          Var_Signal3 = Var_Signal3 | Svar1[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(6),µÍµçÆ½
- 404   5                      }
- 405   4                      if ((Display_Flag[i] == 1) && ((Real_Count_Display[i] / 5) < 35) && (Channel_Detector[i][0
+ 384   4                          (i == 7))  // Á¿³ÌÇÐ»»,¼ÓºóÁ½¾äÊÇ·ÀÖ¹ÖØ¸´»»µ²
+ 385   4                      {
+ 386   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
+ 387   5                          Channel_Detector[i][1] = 4;
+ 388   5                          Display_Flag[i] = 0;
+ 389   5                          DETECTOR_CTRL_SIGNAL_SET_TO_DL3(i);
+ 390   5                      }
+ 391   4                      if ((Display_Flag[i] == 1) && ((Real_Count_Display[i] / 5) < 35) && (Channel_Detector[i][0
              -] == Channel_Detector[i][1]) && (i != 7)) {
- 406   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
- 407   5                          Channel_Detector[i][1] = 2;
- 408   5                          Display_Flag[i] = 0;
- 409   5                          Var_Signal1 = Var_Signal1 | Svar1[i];  // ¿ØÖÆÐÅºÅ1½Ó¼ÆÊý¹Ü£¬¸ßµçÆ½¸ßÑ¹¹Ø
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/19/2024 15:40:29 PAGE 8   
-
- 410   5                          Var_Signal2 = Var_Signal2 & Svar0[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(8),¸ßµçÆ½
- 411   5                          Var_Signal3 = Var_Signal3 & Svar0[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(6),µÍµçÆ½
- 412   5                      }
- 413   4                  }
- 414   3                  if ((Channel_Detector[i][1] == 2) && (Calculated[i] == 0))  // DL1Á¿³Ì£¬5´Î¶¨Ê±¼ÆÊýÒ»ÃëÏà¼Ó
- 415   3                  {
- 416   4                      Count[i][0] = Count[i][1];
- 417   4                      Count[i][1] = Count[i][2];
- 418   4                      Count[i][2] = buf[4 * i + 5] * 256 + buf[4 * i + 4];
- 419   4                      Real_Count[i] = (double)(buf[4 * i + 5] * 256 + buf[4 * i + 4]);
- 420   4                      Calculated[i] = 1;                                                                   // ¼Æ
+ 392   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
+ 393   5                          Channel_Detector[i][1] = 2;
+ 394   5                          Display_Flag[i] = 0;
+ 395   5                          DETECTOR_CTRL_SIGNAL_SET_TO_DL1(i);
+ 396   5                      }
+ 397   4                  }
+ 398   3                  if ((Channel_Detector[i][1] == 2) && (Calculated[i] == 0))  // DL1Á¿³Ì£¬5´Î¶¨Ê±¼ÆÊýÒ»ÃëÏà¼Ó
+ 399   3                  {
+ 400   4                      Count[i][0] = Count[i][1];
+ 401   4                      Count[i][1] = Count[i][2];
+ 402   4                      Count[i][2] = buf[4 * i + 5] * 256 + buf[4 * i + 4];
+ 403   4                      Real_Count[i] = (double)(buf[4 * i + 5] * 256 + buf[4 * i + 4]);
+ 404   4                      Calculated[i] = 1;                                                                   // ¼Æ
              -Ëã¹ý±êÖ¾
- 421   4                      if ((Count[i][1] > (5411 * Refresh_Time)) && (Count[i][2] > (5411 * Refresh_Time)))  // Á¿
+ 405   4                      if ((Count[i][1] > (5411 * Refresh_Time)) && (Count[i][2] > (5411 * Refresh_Time)))  // Á¿
              -³ÌÇÐ»»
- 422   4                      {
- 423   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
- 424   5                          Channel_Detector[i][1] = 3;
- 425   5                          Var_Signal1 = Var_Signal1 | Svar1[i];  // ¿ØÖÆÐÅºÅ1½Ó¼ÆÊý¹Ü£¬¸ßµçÆ½¸ßÑ¹¹Ø
- 426   5                          Var_Signal2 = Var_Signal2 | Svar1[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(8),¸ßµçÆ½
- 427   5                          Var_Signal3 = Var_Signal3 & Svar0[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(6),µÍµçÆ½
- 428   5                      }
- 429   4                      if ((Count[i][1] < (158 * Refresh_Time)) && (Count[i][2] < (158 * Refresh_Time))) {
- 430   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
- 431   5                          Channel_Detector[i][1] = 1;
- 432   5                          Var_Signal1 = Var_Signal1 & Svar0[i];  // ¿ØÖÆÐÅºÅ1½Ó¼ÆÊý¹Ü£¬µÍµçÆ½¸ßÑ¹¿ª
- 433   5                          Var_Signal2 = Var_Signal2 & Svar0[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(8),µÍµçÆ½
- 434   5                          Var_Signal3 = Var_Signal3 & Svar0[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(6),µÍµçÆ½
- 435   5                      }
- 436   4                      Real_Count_Display[i] = (double)(Real_Count[i]) * 20.0;
- 437   4                      Display_Flag[i] = 1;  // ÔÊÐíÏÔÊ¾
- 438   4                      Channel_Display[i] = 2;
- 439   4                      Real_Count[i] = 0;
- 440   4                      if ((Display_Flag[i] == 1) && ((Real_Count_Display[i] / 5) > 5411) && (Channel_Detector[i]
+ 406   4                      {
+ 407   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/21/2024 10:17:25 PAGE 8   
+
+ 408   5                          Channel_Detector[i][1] = 3;
+ 409   5                          DETECTOR_CTRL_SIGNAL_SET_TO_DL2(i);
+ 410   5                      }
+ 411   4                      if ((Count[i][1] < (158 * Refresh_Time)) && (Count[i][2] < (158 * Refresh_Time))) {
+ 412   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
+ 413   5                          Channel_Detector[i][1] = 1;
+ 414   5                          DETECTOR_CTRL_SIGNAL_SET_TO_GM(i);
+ 415   5                      }
+ 416   4                      Real_Count_Display[i] = (double)(Real_Count[i]) * 20.0;
+ 417   4                      Display_Flag[i] = 1;  // ÔÊÐíÏÔÊ¾
+ 418   4                      Channel_Display[i] = 2;
+ 419   4                      Real_Count[i] = 0;
+ 420   4                      if ((Display_Flag[i] == 1) && ((Real_Count_Display[i] / 5) > 5411) && (Channel_Detector[i]
              -[0] == Channel_Detector[i][1]))  // Á¿³ÌÇÐ»»
- 441   4                      {
- 442   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
- 443   5                          Channel_Detector[i][1] = 3;
- 444   5                          Display_Flag[i] = 0;
- 445   5                          Var_Signal1 = Var_Signal1 | Svar1[i];  // ¿ØÖÆÐÅºÅ1½Ó¼ÆÊý¹Ü£¬¸ßµçÆ½¸ßÑ¹¹Ø
- 446   5                          Var_Signal2 = Var_Signal2 | Svar1[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(8),¸ßµçÆ½
- 447   5                          Var_Signal3 = Var_Signal3 & Svar0[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(6),µÍµçÆ½
- 448   5                      }
- 449   4                      if ((Display_Flag[i] == 1) && ((Real_Count_Display[i] / 5) < 158) && (Channel_Detector[i][
+ 421   4                      {
+ 422   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
+ 423   5                          Channel_Detector[i][1] = 3;
+ 424   5                          Display_Flag[i] = 0;
+ 425   5                          DETECTOR_CTRL_SIGNAL_SET_TO_DL2(i);
+ 426   5                      }
+ 427   4                      if ((Display_Flag[i] == 1) && ((Real_Count_Display[i] / 5) < 158) && (Channel_Detector[i][
              -0] == Channel_Detector[i][1])) {
- 450   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
- 451   5                          Channel_Detector[i][1] = 1;
- 452   5                          Display_Flag[i] = 0;
- 453   5                          Var_Signal1 = Var_Signal1 & Svar0[i];  // ¿ØÖÆÐÅºÅ1½Ó¼ÆÊý¹Ü£¬µÍµçÆ½¸ßÑ¹¿ª
- 454   5                          Var_Signal2 = Var_Signal2 & Svar0[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(8),µÍµçÆ½
- 455   5                          Var_Signal3 = Var_Signal3 & Svar0[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(6),µÍµçÆ½
- 456   5                      }
- 457   4                  }
- 458   3                  if ((Channel_Detector[i][1] == 1) && (Calculated[i] == 0))  // GM2Á¿³Ì£¬10´Î¶¨Ê±¼ÆÊýÒ»ÃëÏà¼Ó£¬
+ 428   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
+ 429   5                          Channel_Detector[i][1] = 1;
+ 430   5                          Display_Flag[i] = 0;
+ 431   5                          DETECTOR_CTRL_SIGNAL_SET_TO_GM(i);
+ 432   5                      }
+ 433   4                  }
+ 434   3                  if ((Channel_Detector[i][1] == 1) && (Calculated[i] == 0))  // GM2Á¿³Ì£¬10´Î¶¨Ê±¼ÆÊýÒ»ÃëÏà¼Ó£¬
              -5´ÎÆ½»¬Æ½¾ù
- 459   3                  {
- 460   4                      Count[i][0] = Count[i][1];
- 461   4                      Count[i][1] = Count[i][2];
- 462   4                      Count[i][2] = buf[4 * i + 3] * 256 + buf[4 * i + 2];
- 463   4                      Real_Count[i] = (double)(buf[4 * i + 3] * 256 + buf[4 * i + 2]);
- 464   4                      Calculated[i] = 1;                                                                        
+ 435   3                  {
+ 436   4                      Count[i][0] = Count[i][1];
+ 437   4                      Count[i][1] = Count[i][2];
+ 438   4                      Count[i][2] = buf[4 * i + 3] * 256 + buf[4 * i + 2];
+ 439   4                      Real_Count[i] = (double)(buf[4 * i + 3] * 256 + buf[4 * i + 2]);
+ 440   4                      Calculated[i] = 1;                                                                        
              -                                    // ¼ÆËã¹ý±êÖ¾
- 465   4                      if ((Count[i][0] > (6019 * Refresh_Time)) && (Count[i][1] > (6019 * Refresh_Time)) && (Cou
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/19/2024 15:40:29 PAGE 9   
-
+ 441   4                      if ((Count[i][0] > (6019 * Refresh_Time)) && (Count[i][1] > (6019 * Refresh_Time)) && (Cou
              -nt[i][2] > (6019 * Refresh_Time)))  // Á¿³ÌÇÐ»»
- 466   4                      {
- 467   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
- 468   5                          Channel_Detector[i][1] = 2;
- 469   5                          Var_Signal1 = Var_Signal1 | Svar1[i];  // ¿ØÖÆÐÅºÅ1½Ó¼ÆÊý¹Ü£¬¸ßµçÆ½¸ßÑ¹¹Ø
- 470   5                          Var_Signal2 = Var_Signal2 & Svar0[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(8),µÍµçÆ½
- 471   5                          Var_Signal3 = Var_Signal3 & Svar0[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(6),µÍµçÆ½
- 472   5                      }
- 473   4                      if ((Count[i][0] < (1.32 * Refresh_Time)) && (Count[i][1] < (1.32 * Refresh_Time)) && (Cou
-             -nt[i][2] < (1.32 * Refresh_Time))) {
- 474   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
- 475   5                          Channel_Detector[i][1] = 0;
- 476   5                          Var_Signal1 = Var_Signal1 & Svar0[i];  // ¿ØÖÆÐÅºÅ1½Ó¼ÆÊý¹Ü£¬µÍµçÆ½¸ßÑ¹¿ª
- 477   5                          Var_Signal2 = Var_Signal2 & Svar0[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(8),µÍµçÆ½
- 478   5                          Var_Signal3 = Var_Signal3 & Svar0[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(6),µÍµçÆ½
- 479   5                      }
- 480   4                      Real_Count[i] *= 20.0;  // »»ËãÎªCPM(×¢Òâ¶ÔÓ¦µÄÊÇ3ÃëµÄ Refresh Time)
- 481   4                      Average_Counts[i][Average_Times[i]] = Real_Count[i];
- 482   4                      Average_Times[i] += 1;
- 483   4                      if (Average_Times[i] < 5) {
- 484   5                          switch (Average_Times[i]) {
- 485   6                          case 1:
- 486   6                              Real_Count_Display[i] = Average_Counts[i][0];
- 487   6                              break;
- 488   6                          case 2:
- 489   6                              Real_Count_Display[i] = Average_Counts[i][0] * 0.4 + Average_Counts[i][1] * 0.6;
- 490   6                              break;
- 491   6                          case 3:
- 492   6                              Real_Count_Display[i] = Average_Counts[i][0] * a3 + Average_Counts[i][1] * a3 + Av
-             -erage_Counts[i][2] * a4;
- 493   6                              break;
- 494   6                          case 4:
- 495   6                              Real_Count_Display[i] = Average_Counts[i][0] * a2 + Average_Counts[i][1] * a2 + Av
-             -erage_Counts[i][2] * a3 + Average_Counts[i][3] * a4;
- 496   6                              break;
- 497   6                          }
- 498   5                      }
- 499   4                      if (Average_Times[i] == 5) {
- 500   5                          Real_Count_Display[i] = Average_Counts[i][0] * a0 + Average_Counts[i][1] * a1 + Averag
-             -e_Counts[i][2] * a2 + Average_Counts[i][3] * a3 +
- 501   5                                                  Average_Counts[i][4] * a4;
- 502   5                          for (j = 0; j < 4; j++) {
- 503   6                              Average_Counts[i][j] = Average_Counts[i][j + 1];
- 504   6                          }
- 505   5                          Average_Times[i] -= 1;  // ÎªÁËÈÃ´ÎÊý
- 506   5                      }
- 507   4                      Display_Flag[i] = 1;
- 508   4                      Channel_Display[i] = 1;
- 509   4                      // if(Count_Times[i]==2)
- 510   4                      //{
- 511   4                      // Average_Counts[i][Average_Times[i]]=Real_Count[i];//½«¼ÆÊýÂÊ¸³Öµ¸øÆ½¾ùÖµ
- 512   4                      // Average_Times[i]+=1;//Æ½»¬Æ½¾ù´ÎÊý¼Ó1
- 513   4                      // Count_Times[i]=0;
- 514   4                      // Real_Count[i]=0;
- 515   4                      //}
- 516   4                      // if((Average_Times[i]>=2)&&(Average_Times[i]<=5))//ÔÚÓÐ2¸ö¼ÆÊýÖµºó¿ªÊ¼ËãÆ½¾ùÖµ²¢ÏÔÊ¾
- 517   4                      //{
- 518   4                      // for(j=0;j<Average_Times[i];j++)
- 519   4                      //{
- 520   4                      // Real_Count_Display[i]+=(float)(Average_Counts[i][j]);
- 521   4                      //}
- 522   4                      // Real_Count_Display[i]/=(float)(Average_Times[i]);
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/19/2024 15:40:29 PAGE 10  
+ 442   4                      {
+ 443   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
+ 444   5                          Channel_Detector[i][1] = 2;
+ 445   5                          DETECTOR_CTRL_SIGNAL_SET_TO_DL1(i);
+ 446   5                      }
+ 447   4                      if ((Count[i][0] < (2 * Refresh_Time)) && (Count[i][1] < (2 * Refresh_Time)) && (Count[i][
+             -2] < (2 * Refresh_Time))) {
+ 448   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
+ 449   5                          Channel_Detector[i][1] = 0;
+ 450   5                          DETECTOR_CTRL_SIGNAL_SET_TO_GM(i);
+ 451   5                      }
+ 452   4                      Real_Count[i] *= 20.0;  // »»ËãÎªCPM(×¢Òâ¶ÔÓ¦µÄÊÇ3ÃëµÄ Refresh Time)
+ 453   4      #if GM2_COUNT_NEED_WEIGHTED_MOVING_AVERAGE
+                              Average_Counts[i][Average_Times[i]] = Real_Count[i];
+                              Average_Times[i] += 1;
+                              if (Average_Times[i] < 5) {
+                                  switch (Average_Times[i]) {
+                                  case 1:
+                                      Real_Count_Display[i] = Average_Counts[i][0];
+                                      break;
+                                  case 2:
+                                      Real_Count_Display[i] = Average_Counts[i][0] * 0.4 + Average_Counts[i][1] * 0.6;
+                                      break;
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/21/2024 10:17:25 PAGE 9   
 
- 523   4                      // Real_Count_Display[i]*=(60/(Refresh_Time*2));//ÒòÎªÒª»»Ëã³ÉCPM
- 524   4                      // Display_Flag[i]=1;//ÔÊÐíÏÔÊ¾
- 525   4                      // Channel_Display[i]=0;
- 526   4                      // if(Average_Times[i]==5)
- 527   4                      //{
- 528   4                      // for(j=0;j<(Average_Times[i]-1);j++)
- 529   4                      //{
- 530   4                      // Average_Counts[i][j]=Average_Counts[i][j+1];
- 531   4                      //}
- 532   4                      // Average_Times[i]-=1;//ÎªÁËÈÃ´ÎÊý
- 533   4                      //}
- 534   4                      //}
- 535   4                      // if((Display_Flag[i]==1)&&((Real_Count_Display[i]/60)>6019)&&(Channel_Detector[i][0]==Ch
+                                  case 3:
+                                      Real_Count_Display[i] = Average_Counts[i][0] * a3 + Average_Counts[i][1] * a3 + Av
+             -erage_Counts[i][2] * a4;
+                                      break;
+                                  case 4:
+                                      Real_Count_Display[i] = Average_Counts[i][0] * a2 + Average_Counts[i][1] * a2 + Av
+             -erage_Counts[i][2] * a3 + Average_Counts[i][3] * a4;
+                                      break;
+                                  }
+                              }
+                              if (Average_Times[i] == 5) {
+                                  Real_Count_Display[i] = Average_Counts[i][0] * a0 + Average_Counts[i][1] * a1 + Averag
+             -e_Counts[i][2] * a2 + Average_Counts[i][3] * a3 +
+                                                          Average_Counts[i][4] * a4;
+                                  for (j = 0; j < 4; j++) {
+                                      Average_Counts[i][j] = Average_Counts[i][j + 1];
+                                  }
+                                  Average_Times[i] -= 1;  // ÎªÁËÈÃ´ÎÊý
+                              }
+              #else
+ 481   4                      Real_Count_Display[i] = Real_Count[i];
+ 482   4      #endif
+ 483   4                      Display_Flag[i] = 1;
+ 484   4                      Channel_Display[i] = 1;
+ 485   4                      // if(Count_Times[i]==2)
+ 486   4                      //{
+ 487   4                      // Average_Counts[i][Average_Times[i]]=Real_Count[i];//½«¼ÆÊýÂÊ¸³Öµ¸øÆ½¾ùÖµ
+ 488   4                      // Average_Times[i]+=1;//Æ½»¬Æ½¾ù´ÎÊý¼Ó1
+ 489   4                      // Count_Times[i]=0;
+ 490   4                      // Real_Count[i]=0;
+ 491   4                      //}
+ 492   4                      // if((Average_Times[i]>=2)&&(Average_Times[i]<=5))//ÔÚÓÐ2¸ö¼ÆÊýÖµºó¿ªÊ¼ËãÆ½¾ùÖµ²¢ÏÔÊ¾
+ 493   4                      //{
+ 494   4                      // for(j=0;j<Average_Times[i];j++)
+ 495   4                      //{
+ 496   4                      // Real_Count_Display[i]+=(float)(Average_Counts[i][j]);
+ 497   4                      //}
+ 498   4                      // Real_Count_Display[i]/=(float)(Average_Times[i]);
+ 499   4                      // Real_Count_Display[i]*=(60/(Refresh_Time*2));//ÒòÎªÒª»»Ëã³ÉCPM
+ 500   4                      // Display_Flag[i]=1;//ÔÊÐíÏÔÊ¾
+ 501   4                      // Channel_Display[i]=0;
+ 502   4                      // if(Average_Times[i]==5)
+ 503   4                      //{
+ 504   4                      // for(j=0;j<(Average_Times[i]-1);j++)
+ 505   4                      //{
+ 506   4                      // Average_Counts[i][j]=Average_Counts[i][j+1];
+ 507   4                      //}
+ 508   4                      // Average_Times[i]-=1;//ÎªÁËÈÃ´ÎÊý
+ 509   4                      //}
+ 510   4                      //}
+ 511   4                      // if((Display_Flag[i]==1)&&((Real_Count_Display[i]/60)>6019)&&(Channel_Detector[i][0]==Ch
              -annel_Detector[i][1]))//Á¿³ÌÇÐ»»
- 536   4                      //{
- 537   4                      // Channel_Detector[i][0]=Channel_Detector[i][1];
- 538   4                      // Channel_Detector[i][1]=2;
- 539   4                      // Display_Flag[i]=0;
- 540   4                      // Var_Signal1=Var_Signal1&Svar0[i];                                       //¿ØÖÆÐÅºÅ1½Ó¼Æ
+ 512   4                      //{
+ 513   4                      // Channel_Detector[i][0]=Channel_Detector[i][1];
+ 514   4                      // Channel_Detector[i][1]=2;
+ 515   4                      // Display_Flag[i]=0;
+ 516   4                      // Var_Signal1=Var_Signal1&Svar0[i];                                       //¿ØÖÆÐÅºÅ1½Ó¼Æ
              -Êý¹Ü£¬µÍµçÆ½
- 541   4                      // Var_Signal2=Var_Signal2&Svar0[i];                                       //¿ØÖÆÐÅºÅ2½Óµç
+ 517   4                      // Var_Signal2=Var_Signal2&Svar0[i];                                       //¿ØÖÆÐÅºÅ2½Óµç
              -ÀëÊÒ10(8),µÍµçÆ½
- 542   4                      // Var_Signal3=Var_Signal3&Svar0[i];                                       //¿ØÖÆÐÅºÅ2½Óµç
+ 518   4                      // Var_Signal3=Var_Signal3&Svar0[i];                                       //¿ØÖÆÐÅºÅ2½Óµç
              -ÀëÊÒ10(6),µÍµçÆ½
- 543   4                      // }
- 544   4                      // if((Display_Flag[i]==1)&&((Real_Count_Display[i]/60)<1.32)&&(Channel_Detector[i][0]==Ch
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/21/2024 10:17:25 PAGE 10  
+
+ 519   4                      // }
+ 520   4                      // if((Display_Flag[i]==1)&&((Real_Count_Display[i]/60)<1.32)&&(Channel_Detector[i][0]==Ch
              -annel_Detector[i][1]))
- 545   4                      //{
- 546   4                      // Channel_Detector[i][0]=Channel_Detector[i][1];
- 547   4                      // Channel_Detector[i][1]=0;
- 548   4                      // Display_Flag[i]=0;
- 549   4                      // Var_Signal1=Var_Signal1|Svar1[i];                                       //¿ØÖÆÐÅºÅ1½Ó¼Æ
+ 521   4                      //{
+ 522   4                      // Channel_Detector[i][0]=Channel_Detector[i][1];
+ 523   4                      // Channel_Detector[i][1]=0;
+ 524   4                      // Display_Flag[i]=0;
+ 525   4                      // Var_Signal1=Var_Signal1|Svar1[i];                                       //¿ØÖÆÐÅºÅ1½Ó¼Æ
              -Êý¹Ü£¬Îª¸ßµçÆ½
- 550   4                      // Var_Signal2=Var_Signal2&Svar0[i];                                       //¿ØÖÆÐÅºÅ2½Óµç
+ 526   4                      // Var_Signal2=Var_Signal2&Svar0[i];                                       //¿ØÖÆÐÅºÅ2½Óµç
              -ÀëÊÒ10(8),µÍµçÆ½
- 551   4                      // Var_Signal3=Var_Signal3&Svar0[i];                                       //¿ØÖÆÐÅºÅ2½Óµç
+ 527   4                      // Var_Signal3=Var_Signal3&Svar0[i];                                       //¿ØÖÆÐÅºÅ2½Óµç
              -ÀëÊÒ10(6),µÍµçÆ½
- 552   4                      // }
- 553   4                  }
- 554   3                  if ((Channel_Detector[i][1] == 0) && (Calculated[i] == 0))  // GM1Á¿³Ì£¬2´Î¶¨Ê±¼ÆÊý3ÃëÏà¼Ó£¬5´
+ 528   4                      // }
+ 529   4                  }
+ 530   3                  if ((Channel_Detector[i][1] == 0) && (Calculated[i] == 0))  // GM1Á¿³Ì£¬2´Î¶¨Ê±¼ÆÊý3ÃëÏà¼Ó£¬5´
              -ÎÆ½»¬Æ½¾ù
- 555   3                  {
- 556   4                      Count[i][0] = Count[i][1];
- 557   4                      Count[i][1] = Count[i][2];
- 558   4                      Count[i][2] = buf[4 * i + 3] * 256 + buf[4 * i + 2];
- 559   4                      Real_Count[i] = (double)(buf[4 * i + 3] * 256 + buf[4 * i + 2]);
- 560   4                      Calculated[i] = 1;                                                                        
+ 531   3                  {
+ 532   4                      Count[i][0] = Count[i][1];
+ 533   4                      Count[i][1] = Count[i][2];
+ 534   4                      Count[i][2] = buf[4 * i + 3] * 256 + buf[4 * i + 2];
+ 535   4                      Real_Count[i] = (double)(buf[4 * i + 3] * 256 + buf[4 * i + 2]);
+ 536   4                      Calculated[i] = 1;                                                                        
              -                                    // ¼ÆËã¹ý±êÖ¾
- 561   4                      if ((Count[i][0] > (1.32 * Refresh_Time)) && (Count[i][1] > (1.32 * Refresh_Time)) && (Cou
-             -nt[i][2] > (1.32 * Refresh_Time)))  // Á¿³ÌÇÐ»»
- 562   4                      {
- 563   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
- 564   5                          Channel_Detector[i][1] = 1;
- 565   5                          Var_Signal1 = Var_Signal1 & Svar0[i];  // ¿ØÖÆÐÅºÅ1½Ó¼ÆÊý¹Ü£¬µÍµçÆ½¸ßÑ¹¿ª
- 566   5                          Var_Signal2 = Var_Signal2 & Svar0[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(8),µÍµçÆ½
- 567   5                          Var_Signal3 = Var_Signal3 & Svar0[i];  // ¿ØÖÆÐÅºÅ2½ÓµçÀëÊÒ10(6),µÍµçÆ½
- 568   5                      }
- 569   4                      Real_Count[i] *= 20.0;  // »»ËãÎªCPM(×¢Òâ¶ÔÓ¦µÄÊÇ3ÃëµÄ Refresh Time)
- 570   4                      Average_Counts[i][Average_Times[i]] = Real_Count[i];
- 571   4                      Average_Times[i] += 1;
- 572   4                      if (Average_Times[i] < 5) {
- 573   5                          switch (Average_Times[i]) {
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/19/2024 15:40:29 PAGE 11  
-
- 574   6                          case 1:
- 575   6                              Real_Count_Display[i] = Average_Counts[i][0];
- 576   6                              break;
- 577   6                          case 2:
- 578   6                              Real_Count_Display[i] = Average_Counts[i][0] * 0.4 + Average_Counts[i][1] * 0.6;
- 579   6                              break;
- 580   6                          case 3:
- 581   6                              Real_Count_Display[i] = Average_Counts[i][0] * a3 + Average_Counts[i][1] * a3 + Av
+ 537   4                      if ((Count[i][0] > (3 * Refresh_Time)) && (Count[i][1] > (3 * Refresh_Time)) && (Count[i][
+             -2] > (3 * Refresh_Time)))  // Á¿³ÌÇÐ»»
+ 538   4                      {
+ 539   5                          Channel_Detector[i][0] = Channel_Detector[i][1];
+ 540   5                          Channel_Detector[i][1] = 1;
+ 541   5                          DETECTOR_CTRL_SIGNAL_SET_TO_GM(i);
+ 542   5                      }
+ 543   4                      Real_Count[i] *= 20.0;  // »»ËãÎªCPM(×¢Òâ¶ÔÓ¦µÄÊÇ3ÃëµÄ Refresh Time)
+ 544   4      #if GM1_COUNT_NEED_WEIGHTED_MOVING_AVERAGE
+                              Average_Counts[i][Average_Times[i]] = Real_Count[i];
+                              Average_Times[i] += 1;
+                              if (Average_Times[i] < 5) {
+                                  switch (Average_Times[i]) {
+                                  case 1:
+                                      Real_Count_Display[i] = Average_Counts[i][0];
+                                      break;
+                                  case 2:
+                                      Real_Count_Display[i] = Average_Counts[i][0] * 0.4 + Average_Counts[i][1] * 0.6;
+                                      break;
+                                  case 3:
+                                      Real_Count_Display[i] = Average_Counts[i][0] * a3 + Average_Counts[i][1] * a3 + Av
              -erage_Counts[i][2] * a4;
- 582   6                              break;
- 583   6                          case 4:
- 584   6                              Real_Count_Display[i] = Average_Counts[i][0] * a2 + Average_Counts[i][1] * a2 + Av
+                                      break;
+                                  case 4:
+                                      Real_Count_Display[i] = Average_Counts[i][0] * a2 + Average_Counts[i][1] * a2 + Av
              -erage_Counts[i][2] * a3 + Average_Counts[i][3] * a4;
- 585   6                              break;
- 586   6                          }
- 587   5                      } else if (Average_Times[i] == 5) {
- 588   5                          Real_Count_Display[i] = Average_Counts[i][0] * a0 + Average_Counts[i][1] * a1 + Averag
+                                      break;
+                                  }
+                              } else if (Average_Times[i] == 5) {
+                                  Real_Count_Display[i] = Average_Counts[i][0] * a0 + Average_Counts[i][1] * a1 + Averag
              -e_Counts[i][2] * a2 + Average_Counts[i][3] * a3 +
- 589   5                                                  Average_Counts[i][4] * a4;
- 590   5                          for (j = 0; j < 4; j++) {
- 591   6                              Average_Counts[i][j] = Average_Counts[i][j + 1];
- 592   6                          }
- 593   5                          Average_Times[i] -= 1;  // ÎªÁËÈÃ´ÎÊý
- 594   5                      }
- 595   4                      Display_Flag[i] = 1;
- 596   4                      Channel_Display[i] = 0;
- 597   4                      // if(Count_Times[i]==2)
- 598   4                      //{
- 599   4                      //  Average_Counts[i][Average_Times[i]]=Real_Count[i];//½«¼ÆÊýÂÊ¸³Öµ¸øÆ½¾ùÖµ
- 600   4                      //  Average_Times[i]+=1;//Æ½»¬Æ½¾ù´ÎÊý¼Ó1
- 601   4                      //  Count_Times[i]=0;
- 602   4                      //  Real_Count[i]=0;
- 603   4                      // }
- 604   4                      // if((Average_Times[i]>=2)&&(Average_Times[i]<=5))//ÔÚÓÐ2¸ö¼ÆÊýÖµºó¿ªÊ¼ËãÆ½¾ùÖµ²¢ÏÔÊ¾
- 605   4                      //{
- 606   4                      // for(j=0;j<Average_Times[i];j++)
- 607   4                      //{
- 608   4                      // Real_Count_Display[i]+=(float)(Average_Counts[i][j]);
- 609   4                      //}
- 610   4                      // Real_Count_Display[i]/=(float)(Average_Times[i]);
- 611   4                      // Real_Count_Display[i]*=(60/(Refresh_Time*2));//ÒòÎªÒª»»Ëã³ÉCPM
- 612   4                      // Display_Flag[i]=1;//ÔÊÐíÏÔÊ¾
- 613   4                      // Channel_Display[i]=0;
- 614   4                      // if(Average_Times[i]==5)
- 615   4                      //{
- 616   4                      // for(j=0;j<(Average_Times[i]-1);j++)
- 617   4                      //{
- 618   4                      // Average_Counts[i][j]=Average_Counts[i][j+1];
- 619   4                      //}
- 620   4                      // Average_Times[i]-=1;//ÎªÁËÈÃ´ÎÊý
- 621   4                      //}
- 622   4                      //}
- 623   4                      // if((Display_Flag[i]==1)&&((Real_Count_Display[i]/60)>1.32)&&(Channel_Detector[i][0]==Ch
-             -annel_Detector[i][1]))//Á¿³ÌÇÐ»»
- 624   4                      //{
- 625   4                      // Channel_Detector[i][0]=Channel_Detector[i][1];
- 626   4                      // Channel_Detector[i][1]=1;
- 627   4                      // Display_Flag[i]=0;
- 628   4                      // Var_Signal1=Var_Signal1|Svar1[i];                                       //¿ØÖÆÐÅºÅ1½Ó¼Æ
-             -Êý¹Ü£¬Îª¸ßµçÆ½
- 629   4                      // Var_Signal2=Var_Signal2&Svar0[i];                                       //¿ØÖÆÐÅºÅ2½Óµç
-             -ÀëÊÒ10(8),µÍµçÆ½
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/19/2024 15:40:29 PAGE 12  
+                                                          Average_Counts[i][4] * a4;
+                                  for (j = 0; j < 4; j++) {
+                                      Average_Counts[i][j] = Average_Counts[i][j + 1];
+                                  }
+                                  Average_Times[i] -= 1;  // ÎªÁËÈÃ´ÎÊý
+                              }
+              #else
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/21/2024 10:17:25 PAGE 11  
 
- 630   4                      // Var_Signal3=Var_Signal3&Svar0[i];                                       //¿ØÖÆÐÅºÅ2½Óµç
+ 571   4                      Real_Count_Display[i] = Real_Count[i];
+ 572   4      #endif
+ 573   4                      Display_Flag[i] = 1;
+ 574   4                      Channel_Display[i] = 0;
+ 575   4                      // if(Count_Times[i]==2)
+ 576   4                      //{
+ 577   4                      //  Average_Counts[i][Average_Times[i]]=Real_Count[i];//½«¼ÆÊýÂÊ¸³Öµ¸øÆ½¾ùÖµ
+ 578   4                      //  Average_Times[i]+=1;//Æ½»¬Æ½¾ù´ÎÊý¼Ó1
+ 579   4                      //  Count_Times[i]=0;
+ 580   4                      //  Real_Count[i]=0;
+ 581   4                      // }
+ 582   4                      // if((Average_Times[i]>=2)&&(Average_Times[i]<=5))//ÔÚÓÐ2¸ö¼ÆÊýÖµºó¿ªÊ¼ËãÆ½¾ùÖµ²¢ÏÔÊ¾
+ 583   4                      //{
+ 584   4                      // for(j=0;j<Average_Times[i];j++)
+ 585   4                      //{
+ 586   4                      // Real_Count_Display[i]+=(float)(Average_Counts[i][j]);
+ 587   4                      //}
+ 588   4                      // Real_Count_Display[i]/=(float)(Average_Times[i]);
+ 589   4                      // Real_Count_Display[i]*=(60/(Refresh_Time*2));//ÒòÎªÒª»»Ëã³ÉCPM
+ 590   4                      // Display_Flag[i]=1;//ÔÊÐíÏÔÊ¾
+ 591   4                      // Channel_Display[i]=0;
+ 592   4                      // if(Average_Times[i]==5)
+ 593   4                      //{
+ 594   4                      // for(j=0;j<(Average_Times[i]-1);j++)
+ 595   4                      //{
+ 596   4                      // Average_Counts[i][j]=Average_Counts[i][j+1];
+ 597   4                      //}
+ 598   4                      // Average_Times[i]-=1;//ÎªÁËÈÃ´ÎÊý
+ 599   4                      //}
+ 600   4                      //}
+ 601   4                      // if((Display_Flag[i]==1)&&((Real_Count_Display[i]/60)>1.32)&&(Channel_Detector[i][0]==Ch
+             -annel_Detector[i][1]))//Á¿³ÌÇÐ»»
+ 602   4                      //{
+ 603   4                      // Channel_Detector[i][0]=Channel_Detector[i][1];
+ 604   4                      // Channel_Detector[i][1]=1;
+ 605   4                      // Display_Flag[i]=0;
+ 606   4                      // Var_Signal1=Var_Signal1|Svar1[i];                                       //¿ØÖÆÐÅºÅ1½Ó¼Æ
+             -Êý¹Ü£¬Îª¸ßµçÆ½
+ 607   4                      // Var_Signal2=Var_Signal2&Svar0[i];                                       //¿ØÖÆÐÅºÅ2½Óµç
+             -ÀëÊÒ10(8),µÍµçÆ½
+ 608   4                      // Var_Signal3=Var_Signal3&Svar0[i];                                       //¿ØÖÆÐÅºÅ2½Óµç
              -ÀëÊÒ10(6),µÍµçÆ½
- 631   4                      // }
- 632   4                  }
- 633   3              } else if (Channel_Detector[i][0] != Channel_Detector[i][1])  // µ±Ç°ºóÁ½´Î¼ÆÊýµÄÁ¿³Ì²»Ò»Ñù
- 634   2              {
- 635   3                  if ((Channel_Detector[i][1] == 4) && (Calculated[i] == 0))  // DL3Á¿³Ì£¬¶¨Ê±¼ÆÊýÒ»Ãë£¬Ö±½ÓÓÃÀ´
+ 609   4                      // }
+ 610   4                  }
+ 611   3              } else if (Channel_Detector[i][0] != Channel_Detector[i][1])  // µ±Ç°ºóÁ½´Î¼ÆÊýµÄÁ¿³Ì²»Ò»Ñù
+ 612   2              {
+ 613   3                  if ((Channel_Detector[i][1] == 4) && (Calculated[i] == 0))  // DL3Á¿³Ì£¬¶¨Ê±¼ÆÊýÒ»Ãë£¬Ö±½ÓÓÃÀ´
              -¼ÆËã
- 636   3                  {
- 637   4                      for (k = 0; k <= 2; k++)  // ³õÊ¼»¯µ¥´ÎÌøµµÅÐ¶Ï±äÁ¿£¬·ÀÖ¹ÒâÍâ½µµµ¡¾2024¡¿ºÃÏñÃ»Ê²Ã´±ØÒª£¬´
+ 614   3                  {
+ 615   4                      for (k = 0; k <= 2; k++)  // ³õÊ¼»¯µ¥´ÎÌøµµÅÐ¶Ï±äÁ¿£¬·ÀÖ¹ÒâÍâ½µµµ¡¾2024¡¿ºÃÏñÃ»Ê²Ã´±ØÒª£¬´
              -ýÈ·¶¨
- 638   4                      {
- 639   5                          Count[i][k] = 1000 * Refresh_Time;  // Ò»Ãë¼ÆÊýÊ¹Æä²»»»µµ
- 640   5                      }
- 641   4                      Real_Count[i] = 0;  // Ìø×ªµ½´ËÁ¿³ÌÐèÒªÇåÁã
- 642   4                      if (i < 7)          // Ç°6¸öÌ½Í·ºÍµÚÆß¸öÌ½Í·È¡¼ÆÊýÎ»ÖÃ²»Ò»Ñù
+ 616   4                      {
+ 617   5                          Count[i][k] = 1000 * Refresh_Time;  // Ò»Ãë¼ÆÊýÊ¹Æä²»»»µµ
+ 618   5                      }
+ 619   4                      Real_Count[i] = 0;  // Ìø×ªµ½´ËÁ¿³ÌÐèÒªÇåÁã
+ 620   4                      if (i < 7)          // Ç°6¸öÌ½Í·ºÍµÚÆß¸öÌ½Í·È¡¼ÆÊýÎ»ÖÃ²»Ò»Ñù
+ 621   4                      {
+ 622   5                          Count[i][2] = buf[4 * i + 5] * 256 + buf[4 * i + 4];
+ 623   5                          Real_Count[i] = (double)(buf[4 * i + 5] * 256 + buf[4 * i + 4]);
+ 624   5                      } else if (i == 7)  // Ç°6¸öÌ½Í·ºÍµÚÆß¸öÌ½Í·È¡¼ÆÊýÎ»ÖÃ²»Ò»Ñù
+ 625   4                      {
+ 626   5                          Count[i][2] = buf[31] * 256 + buf[30];
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/21/2024 10:17:25 PAGE 12  
+
+ 627   5                          Real_Count[i] = (double)(buf[31] * 256 + buf[30]);
+ 628   5                      }
+ 629   4                      Calculated[i] = 1;  // ¼ÆËã¹ý±êÖ¾
+ 630   4                      Real_Count_Display[i] = (double)(Real_Count[i]) * 20.0;
+ 631   4                      Display_Flag[i] = 1;  // Ö±½ÓÔÊÐíÏÔÊ¾
+ 632   4                      Channel_Display[i] = 4;
+ 633   4                      Channel_Detector[i][0] = Channel_Detector[i][1];  // ¸üÐÂÁ¿³ÌÀúÊ·×´Ì¬
+ 634   4                  }
+ 635   3                  if ((Channel_Detector[i][1] == 3) && (Calculated[i] == 0))  // DL2Á¿³Ì£¬Á½´Î¶¨Ê±¼ÆÊýÒ»ÃëÏà¼Ó
+ 636   3                  {
+ 637   4                      for (k = 0; k <= 2; k++) {
+ 638   5                          Count[i][k] = 2000 * Refresh_Time;  // Ò»Ãë¼ÆÊýÊ¹Æä²»»»µµ
+ 639   5                      }
+ 640   4                      Real_Count[i] = 0;    // Ìø×ªÁ¿³ÌºóÐèÒªÇåÁã
+ 641   4                      Display_Flag[i] = 0;  // ÏÔÊ¾¼°»»µ²±êÖ¾ÇåÁã
+ 642   4                      if (i < 7)            // Ç°6¸öÌ½Í·ºÍµÚÆß¸öÌ½Í·È¡¼ÆÊýÎ»ÖÃ²»Ò»Ñù
  643   4                      {
  644   5                          Count[i][2] = buf[4 * i + 5] * 256 + buf[4 * i + 4];
  645   5                          Real_Count[i] = (double)(buf[4 * i + 5] * 256 + buf[4 * i + 4]);
@@ -730,812 +730,798 @@ line level    source
  650   5                      }
  651   4                      Calculated[i] = 1;  // ¼ÆËã¹ý±êÖ¾
  652   4                      Real_Count_Display[i] = (double)(Real_Count[i]) * 20.0;
- 653   4                      Display_Flag[i] = 1;  // Ö±½ÓÔÊÐíÏÔÊ¾
- 654   4                      Channel_Display[i] = 4;
- 655   4                      Channel_Detector[i][0] = Channel_Detector[i][1];  // ¸üÐÂÁ¿³ÌÀúÊ·×´Ì¬
- 656   4                  }
- 657   3                  if ((Channel_Detector[i][1] == 3) && (Calculated[i] == 0))  // DL2Á¿³Ì£¬Á½´Î¶¨Ê±¼ÆÊýÒ»ÃëÏà¼Ó
- 658   3                  {
- 659   4                      for (k = 0; k <= 2; k++) {
- 660   5                          Count[i][k] = 2000 * Refresh_Time;  // Ò»Ãë¼ÆÊýÊ¹Æä²»»»µµ
- 661   5                      }
- 662   4                      Real_Count[i] = 0;    // Ìø×ªÁ¿³ÌºóÐèÒªÇåÁã
- 663   4                      Display_Flag[i] = 0;  // ÏÔÊ¾¼°»»µ²±êÖ¾ÇåÁã
- 664   4                      if (i < 7)            // Ç°6¸öÌ½Í·ºÍµÚÆß¸öÌ½Í·È¡¼ÆÊýÎ»ÖÃ²»Ò»Ñù
- 665   4                      {
- 666   5                          Count[i][2] = buf[4 * i + 5] * 256 + buf[4 * i + 4];
- 667   5                          Real_Count[i] = (double)(buf[4 * i + 5] * 256 + buf[4 * i + 4]);
- 668   5                      } else if (i == 7)  // Ç°6¸öÌ½Í·ºÍµÚÆß¸öÌ½Í·È¡¼ÆÊýÎ»ÖÃ²»Ò»Ñù
- 669   4                      {
- 670   5                          Count[i][2] = buf[31] * 256 + buf[30];
- 671   5                          Real_Count[i] = (double)(buf[31] * 256 + buf[30]);
- 672   5                      }
- 673   4                      Calculated[i] = 1;                                // ¼ÆËã¹ý±êÖ¾
- 674   4                      Real_Count_Display[i] = (double)(Real_Count[i]) * 20.0;
- 675   4                      Channel_Display[i] = 3;
- 676   4                      Channel_Detector[i][0] = Channel_Detector[i][1];  // ¸üÐÂÁ¿³ÌÀúÊ·×´Ì¬
- 677   4                  }
- 678   3                  if ((Channel_Detector[i][1] == 2) && (Calculated[i] == 0))  // DL1Á¿³Ì£¬5´Î¶¨Ê±¼ÆÊýÒ»ÃëÏà¼Ó
- 679   3                  {
- 680   4                      for (k = 0; k <= 2; k++) {
- 681   5                          Count[i][k] = 2000 * Refresh_Time;  // Ò»Ãë¼ÆÊýÊ¹Æä²»»»µµ
- 682   5                      }
- 683   4                      Real_Count[i] = 0;    // Ìø×ªÁ¿³ÌºóÐèÒªÇåÁã
- 684   4                      Display_Flag[i] = 0;  // ÏÔÊ¾¼°»»µ²±êÖ¾ÇåÁã
- 685   4                      if (i < 7)            // Ç°6¸öÌ½Í·ºÍµÚÆß¸öÌ½Í·È¡¼ÆÊýÎ»ÖÃ²»Ò»Ñù
- 686   4                      {
- 687   5                          Count[i][2] = buf[4 * i + 5] * 256 + buf[4 * i + 4];
- 688   5                          Real_Count[i] = (double)(buf[4 * i + 5] * 256 + buf[4 * i + 4]);
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/19/2024 15:40:29 PAGE 13  
-
- 689   5                      } else if (i == 7)  // Ç°6¸öÌ½Í·ºÍµÚÆß¸öÌ½Í·È¡¼ÆÊýÎ»ÖÃ²»Ò»Ñù
- 690   4                      {
- 691   5                          Count[i][2] = buf[31] * 256 + buf[30];
- 692   5                          Real_Count[i] = (double)(buf[31] * 256 + buf[30]);
- 693   5                          Channel_Detector[i][1] = 3;
- 694   5                          Channel_Detector[i][0] = 3;
- 695   5                      }
- 696   4                      Calculated[i] = 1;                                // ¼ÆËã¹ý±êÖ¾
- 697   4                      Real_Count_Display[i] = (double)(Real_Count[i]) * 20.0;
- 698   4                      Channel_Display[i] = 2;
- 699   4                      Channel_Detector[i][0] = Channel_Detector[i][1];  // ¸üÐÂÁ¿³ÌÀúÊ·×´Ì¬
- 700   4                  }
- 701   3                  if ((Channel_Detector[i][1] == 1) && (Calculated[i] == 0))  // GM2Á¿³Ì£¬10´Î¶¨Ê±¼ÆÊýÒ»ÃëÏà¼Ó£¬
+ 653   4                      Channel_Display[i] = 3;
+ 654   4                      Channel_Detector[i][0] = Channel_Detector[i][1];  // ¸üÐÂÁ¿³ÌÀúÊ·×´Ì¬
+ 655   4                  }
+ 656   3                  if ((Channel_Detector[i][1] == 2) && (Calculated[i] == 0))  // DL1Á¿³Ì£¬5´Î¶¨Ê±¼ÆÊýÒ»ÃëÏà¼Ó
+ 657   3                  {
+ 658   4                      for (k = 0; k <= 2; k++) {
+ 659   5                          Count[i][k] = 2000 * Refresh_Time;  // Ò»Ãë¼ÆÊýÊ¹Æä²»»»µµ
+ 660   5                      }
+ 661   4                      Real_Count[i] = 0;    // Ìø×ªÁ¿³ÌºóÐèÒªÇåÁã
+ 662   4                      Display_Flag[i] = 0;  // ÏÔÊ¾¼°»»µ²±êÖ¾ÇåÁã
+ 663   4                      if (i < 7)            // Ç°6¸öÌ½Í·ºÍµÚÆß¸öÌ½Í·È¡¼ÆÊýÎ»ÖÃ²»Ò»Ñù
+ 664   4                      {
+ 665   5                          Count[i][2] = buf[4 * i + 5] * 256 + buf[4 * i + 4];
+ 666   5                          Real_Count[i] = (double)(buf[4 * i + 5] * 256 + buf[4 * i + 4]);
+ 667   5                      } else if (i == 7)  // Ç°6¸öÌ½Í·ºÍµÚÆß¸öÌ½Í·È¡¼ÆÊýÎ»ÖÃ²»Ò»Ñù
+ 668   4                      {
+ 669   5                          Count[i][2] = buf[31] * 256 + buf[30];
+ 670   5                          Real_Count[i] = (double)(buf[31] * 256 + buf[30]);
+ 671   5                          Channel_Detector[i][1] = 3;
+ 672   5                          Channel_Detector[i][0] = 3;
+ 673   5                      }
+ 674   4                      Calculated[i] = 1;  // ¼ÆËã¹ý±êÖ¾
+ 675   4                      Real_Count_Display[i] = (double)(Real_Count[i]) * 20.0;
+ 676   4                      Channel_Display[i] = 2;
+ 677   4                      Channel_Detector[i][0] = Channel_Detector[i][1];  // ¸üÐÂÁ¿³ÌÀúÊ·×´Ì¬
+ 678   4                  }
+ 679   3                  if ((Channel_Detector[i][1] == 1) && (Calculated[i] == 0))  // GM2Á¿³Ì£¬10´Î¶¨Ê±¼ÆÊýÒ»ÃëÏà¼Ó£¬
              -5´ÎÆ½»¬Æ½¾ù
- 702   3                  {
- 703   4                      for (k = 0; k <= 2; k++) {
- 704   5                          Count[i][k] = 1000 * Refresh_Time;  // Ò»Ãë¼ÆÊýÊ¹Æä²»»»µµ
- 705   5                      }
- 706   4                      Real_Count[i] = 0;     // Ìø×ªÁ¿³ÌºóÐèÒªÇåÁã
- 707   4                      Display_Flag[i] = 0;   // ÏÔÊ¾¼°»»µ²±êÖ¾ÇåÁã
- 708   4                      Average_Times[i] = 0;  // Æ½»¬Æ½¾ù´ÎÊýÇåÁã
- 709   4                      for (j = 0; j < 10; j++) {
- 710   5                          Average_Counts[i][j] = 0;  // Æ½»¬Æ½¾ùÇåÁã
- 711   5                      }
- 712   4                      Count[i][2] = buf[4 * i + 3] * 256 + buf[4 * i + 2];
- 713   4                      Real_Count[i] = (double)(buf[4 * i + 3] * 256 + buf[4 * i + 2]);
- 714   4                      Real_Count[i] *= 20.0;  // »»ËãÎªCPM(×¢Òâ¶ÔÓ¦µÄÊÇ3ÃëµÄ Refresh Time)
- 715   4      
- 716   4                      Average_Counts[i][Average_Times[i]] = Real_Count[i];
- 717   4                      Average_Times[i] += 1;
- 718   4                      Real_Count_Display[i] = Average_Counts[i][Average_Times[i]];
- 719   4                      Display_Flag[i] = 1;
- 720   4                      Channel_Display[i] = 1;
- 721   4                      Calculated[i] = 1;                                // ¼ÆËã¹ý±êÖ¾
- 722   4                      Channel_Detector[i][0] = Channel_Detector[i][1];  // ¸üÐÂÁ¿³ÌÀúÊ·×´Ì¬
- 723   4                  }
- 724   3                  if ((Channel_Detector[i][1] == 0) && (Calculated[i] == 0))  // GM1Á¿³Ì£¬10´Î¶¨Ê±¼ÆÊýÒ»ÃëÏà¼Ó£¬
-             -5´ÎÆ½»¬Æ½¾ù
- 725   3                  {
- 726   4                      for (k = 0; k <= 2; k++) {
- 727   5                          Count[i][k] = 1 * Refresh_Time;  // Ò»Ãë¼ÆÊýÊ¹Æä²»»»µµ
- 728   5                      }
- 729   4                      Real_Count[i] = 0;     // Ìø×ªÁ¿³ÌºóÐèÒªÇåÁã
- 730   4                      Display_Flag[i] = 0;   // ÏÔÊ¾¼°»»µ²±êÖ¾ÇåÁã
- 731   4                      Average_Times[i] = 0;  // Æ½»¬Æ½¾ù´ÎÊýÇåÁã
- 732   4                      for (j = 0; j < 10; j++) {
- 733   5                          Average_Counts[i][j] = 0;  // Æ½»¬Æ½¾ùÇåÁã
- 734   5                      }
- 735   4                      Count[i][2] = buf[4 * i + 3] * 256 + buf[4 * i + 2];
- 736   4                      Real_Count[i] = (double)(buf[4 * i + 3] * 256 + buf[4 * i + 2]);
- 737   4                      Real_Count[i] *= 20.0;  // »»ËãÎªCPM(×¢Òâ¶ÔÓ¦µÄÊÇ3ÃëµÄ Refresh Time)
- 738   4      
- 739   4                      Average_Counts[i][Average_Times[i]] = Real_Count[i];
- 740   4                      Average_Times[i] += 1;
- 741   4                      Real_Count_Display[i] = Average_Counts[i][Average_Times[i]];
- 742   4                      Display_Flag[i] = 1;
- 743   4                      Channel_Display[i] = 0;
- 744   4                      Calculated[i] = 1;                                // ¼ÆËã¹ý±êÖ¾
- 745   4                      Channel_Detector[i][0] = Channel_Detector[i][1];  // ¸üÐÂÁ¿³ÌÀúÊ·×´Ì¬
- 746   4                  }
- 747   3              }
- 748   2          }
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/19/2024 15:40:29 PAGE 14  
+ 680   3                  {
+ 681   4                      for (k = 0; k <= 2; k++) {
+ 682   5                          Count[i][k] = 1000 * Refresh_Time;  // Ò»Ãë¼ÆÊýÊ¹Æä²»»»µµ
+ 683   5                      }
+ 684   4                      Real_Count[i] = 0;     // Ìø×ªÁ¿³ÌºóÐèÒªÇåÁã
+ 685   4                      Display_Flag[i] = 0;   // ÏÔÊ¾¼°»»µ²±êÖ¾ÇåÁã
+ 686   4                      Average_Times[i] = 0;  // Æ½»¬Æ½¾ù´ÎÊýÇåÁã
+ 687   4                      for (j = 0; j < 10; j++) {
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/21/2024 10:17:25 PAGE 13  
 
- 749   1          /*½«¸ù¾Ý¼ÁÁ¿ÂÊÖµÖØÐÂÉèÖÃµÄÌ½Í·ÐÅºÅ¸Ä±ä±êÖ¾Ö´ÐÐ*/
- 750   1          Signal1 = Var_Signal1;  // Ì½Í·ÐÅºÅ×ª±ä
- 751   1          Signal2 = Var_Signal3;  // 2016-8-26µ÷»»Var_Signal2,Var_Signal3£¬ÒòÎªÁ½ÕßÔÚÓ²¼þÉÏ±»Åª»ìÁË
- 752   1          Signal3 = Var_Signal2;
- 753   1          /*AC1+ÔÚÕâÀïbuf(Ê®ÁùÎ»¸ßµÍ¼ÆÊýÊý¾Ý)Òª×ª»»³Éuint ÀàÐÍµÄTdataÊý¾Ý,²¢ÇÒÌ½Í·ÊýÄ¿ÒªÇå³þ
- 754   1          ¼ÓÈëÑ¡Ì½Í·±êÖ¾*/
- 755   1          if (measure_flag)  //(1)measure_flagÔÚInit_RAMÖÐ³õÊ¼»¯±äÎª1
- 756   1          {
- 757   2              for (j = 0; j < 8; j++)  //(2)´æ¼ÆÊýÇøÎªbuf[3]-buf[32];Ì½Í·¸öÊý±êÖ¾
- 758   2              {
- 759   3                  Tdata = (uint)(Count[j][2] / 3);  // Ì½Í·¼ÆÊýÂÊuint ,×ÏÉ«ÎªÈ«¾Ö±äÁ¿£¬À¶É«Îª¾Ö²¿±äÁ¿
- 760   3                  jtemp = 0;                        // float
- 761   3                  yudata = 0;                       // double
- 762   3                  mtemp = 0;                        // double
- 763   3                  yu = 0;                           // double
- 764   3                  Tbcd[5] = 0;                      // uchar Êý×é¹²12Î»£¬²âµÃµÄÊý¾ÝµÄbcdÂëÊý×é
- 765   3                  Tbcd[4] = 0;
- 766   3                  Tbcd[3] = 0;
- 767   3                  Tbcd[2] = 0;
- 768   3                  Tbcd[1] = 0;
- 769   3                  Tbcd[0] = 0;
- 770   3                  m = j * 10;  // ±£Áô
- 771   3                  /*********ÅÐ¶Ï¼ÆÊýÂÊ***********/
- 772   3                  /*********Ç°Æß¸öÌ½Í·Ì½²âÆ÷ÉèÖÃ£¬È¡µÃ8253¼ÆÊýÖµ¼ÇÂ¼ÔÚTdata*/
- 773   3                  /**¡¾2024¡¿¸ù¾ÝÍ¨µÀÐòºÅ¼ÆËã±ê¶¨²ÎÊý£¬ÓÃÓÚCPMºÍ¼ÁÁ¿ÂÊµÄ×ª»»**/
- 774   3                  if (j < 7)  //(3)Ç°Æß¸öÌ½Í·¼ÈÓÐµçÀëÊÒÒ²ÓÐ¼ÆÊýÆ÷£¬µÚ°Ë¸öÖ»ÓÐµçÀëÊÒ¹Ê·Ö¿ª´¦Àí
- 775   3                  {
- 776   4                      Display_Flag[j] = 0;
- 777   4                      if (Channel_Display[j] == 0) {
- 778   5                          Para[0] = (float)(DataThouth[m + 1] * 1000 + DataCent[m + 1] * 100 + DataTenth[m + 1] 
+ 688   5                          Average_Counts[i][j] = 0;  // Æ½»¬Æ½¾ùÇåÁã
+ 689   5                      }
+ 690   4                      Count[i][2] = buf[4 * i + 3] * 256 + buf[4 * i + 2];
+ 691   4                      Real_Count[i] = (double)(buf[4 * i + 3] * 256 + buf[4 * i + 2]);
+ 692   4                      Real_Count[i] *= 20.0;  // »»ËãÎªCPM(×¢Òâ¶ÔÓ¦µÄÊÇ3ÃëµÄ Refresh Time)
+ 693   4      #if GM2_COUNT_NEED_WEIGHTED_MOVING_AVERAGE
+                              Average_Counts[i][Average_Times[i]] = Real_Count[i];
+                              Real_Count_Display[i] = Average_Counts[i][Average_Times[i]];
+                              Average_Times[i] += 1;
+              #else
+ 698   4                      Real_Count_Display[i] = Real_Count[i];
+ 699   4      #endif
+ 700   4                      Display_Flag[i] = 1;
+ 701   4                      Channel_Display[i] = 1;
+ 702   4                      Calculated[i] = 1;                                // ¼ÆËã¹ý±êÖ¾
+ 703   4                      Channel_Detector[i][0] = Channel_Detector[i][1];  // ¸üÐÂÁ¿³ÌÀúÊ·×´Ì¬
+ 704   4                  }
+ 705   3                  if ((Channel_Detector[i][1] == 0) && (Calculated[i] == 0))  // GM1Á¿³Ì£¬10´Î¶¨Ê±¼ÆÊýÒ»ÃëÏà¼Ó£¬
+             -5´ÎÆ½»¬Æ½¾ù
+ 706   3                  {
+ 707   4                      for (k = 0; k <= 2; k++) {
+ 708   5                          Count[i][k] = 1 * Refresh_Time;  // Ò»Ãë¼ÆÊýÊ¹Æä²»»»µµ
+ 709   5                      }
+ 710   4                      Real_Count[i] = 0;     // Ìø×ªÁ¿³ÌºóÐèÒªÇåÁã
+ 711   4                      Display_Flag[i] = 0;   // ÏÔÊ¾¼°»»µ²±êÖ¾ÇåÁã
+ 712   4                      Average_Times[i] = 0;  // Æ½»¬Æ½¾ù´ÎÊýÇåÁã
+ 713   4                      for (j = 0; j < 10; j++) {
+ 714   5                          Average_Counts[i][j] = 0;  // Æ½»¬Æ½¾ùÇåÁã
+ 715   5                      }
+ 716   4                      Count[i][2] = buf[4 * i + 3] * 256 + buf[4 * i + 2];
+ 717   4                      Real_Count[i] = (double)(buf[4 * i + 3] * 256 + buf[4 * i + 2]);
+ 718   4                      Real_Count[i] *= 20.0;  // »»ËãÎªCPM(×¢Òâ¶ÔÓ¦µÄÊÇ3ÃëµÄ Refresh Time)
+ 719   4      #if GM1_COUNT_NEED_WEIGHTED_MOVING_AVERAGE
+                              Average_Counts[i][Average_Times[i]] = Real_Count[i];
+                              Real_Count_Display[i] = Average_Counts[i][Average_Times[i]];
+                              Average_Times[i] += 1;
+              #else
+ 724   4                      Real_Count_Display[i] = Real_Count[i];
+ 725   4      #endif
+ 726   4                      Display_Flag[i] = 1;
+ 727   4                      Channel_Display[i] = 0;
+ 728   4                      Calculated[i] = 1;                                // ¼ÆËã¹ý±êÖ¾
+ 729   4                      Channel_Detector[i][0] = Channel_Detector[i][1];  // ¸üÐÂÁ¿³ÌÀúÊ·×´Ì¬
+ 730   4                  }
+ 731   3              }
+ 732   2          }
+ 733   1          /*½«¸ù¾Ý¼ÁÁ¿ÂÊÖµÖØÐÂÉèÖÃµÄÌ½Í·ÐÅºÅ¸Ä±ä±êÖ¾Ö´ÐÐ*/
+ 734   1          Signal1 = Var_Signal1;  // Ì½Í·ÐÅºÅ×ª±ä
+ 735   1          Signal2 = Var_Signal3;  // 2016-8-26µ÷»»Var_Signal2,Var_Signal3£¬ÒòÎªÁ½ÕßÔÚÓ²¼þÉÏ±»Åª»ìÁË
+ 736   1          Signal3 = Var_Signal2;
+ 737   1          /*AC1+ÔÚÕâÀïbuf(Ê®ÁùÎ»¸ßµÍ¼ÆÊýÊý¾Ý)Òª×ª»»³Éuint ÀàÐÍµÄTdataÊý¾Ý,²¢ÇÒÌ½Í·ÊýÄ¿ÒªÇå³þ
+ 738   1          ¼ÓÈëÑ¡Ì½Í·±êÖ¾*/
+ 739   1          if (measure_flag)  //(1)measure_flagÔÚInit_RAMÖÐ³õÊ¼»¯±äÎª1
+ 740   1          {
+ 741   2              for (j = 0; j < 8; j++)  //(2)´æ¼ÆÊýÇøÎªbuf[3]-buf[32];Ì½Í·¸öÊý±êÖ¾
+ 742   2              {
+ 743   3      #if COUNT_FOR_DISPLAY
+ 744   3                  Tdata = (uint)(Count[j][2] / 3);  // Ì½Í·¼ÆÊýÂÊuint ,×ÏÉ«ÎªÈ«¾Ö±äÁ¿£¬À¶É«Îª¾Ö²¿±äÁ¿
+ 745   3      #else
+                          Tdata = (uint)Count[j][2];
+              #endif
+ 748   3                  jtemp = 0;                        // float
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/21/2024 10:17:25 PAGE 14  
+
+ 749   3                  yudata = 0;                       // double
+ 750   3                  mtemp = 0;                        // double
+ 751   3                  yu = 0;                           // double
+ 752   3                  Tbcd[5] = 0;                      // uchar Êý×é¹²12Î»£¬²âµÃµÄÊý¾ÝµÄbcdÂëÊý×é
+ 753   3                  Tbcd[4] = 0;
+ 754   3                  Tbcd[3] = 0;
+ 755   3                  Tbcd[2] = 0;
+ 756   3                  Tbcd[1] = 0;
+ 757   3                  Tbcd[0] = 0;
+ 758   3                  m = j * 10;  // ±£Áô
+ 759   3                  /*********ÅÐ¶Ï¼ÆÊýÂÊ***********/
+ 760   3                  /*********Ç°Æß¸öÌ½Í·Ì½²âÆ÷ÉèÖÃ£¬È¡µÃ8253¼ÆÊýÖµ¼ÇÂ¼ÔÚTdata*/
+ 761   3                  /**¡¾2024¡¿¸ù¾ÝÍ¨µÀÐòºÅ¼ÆËã±ê¶¨²ÎÊý£¬ÓÃÓÚCPMºÍ¼ÁÁ¿ÂÊµÄ×ª»»**/
+ 762   3                  if (j < 7)  //(3)Ç°Æß¸öÌ½Í·¼ÈÓÐµçÀëÊÒÒ²ÓÐ¼ÆÊýÆ÷£¬µÚ°Ë¸öÖ»ÓÐµçÀëÊÒ¹Ê·Ö¿ª´¦Àí
+ 763   3                  {
+ 764   4                      Display_Flag[j] = 0;
+ 765   4                      if (Channel_Display[j] == 0) {
+ 766   5                          Para[0] = (float)(DataThouth[m + 1] * 1000 + DataCent[m + 1] * 100 + DataTenth[m + 1] 
              -* 10 + DataGe[m + 1]);  // µ÷½Ú²ÎÊý
- 779   5                          Para[1] = (float)(DataThouth[m + 2] * 1000 + DataCent[m + 2] * 100 + DataTenth[m + 2] 
+ 767   5                          Para[1] = (float)(DataThouth[m + 2] * 1000 + DataCent[m + 2] * 100 + DataTenth[m + 2] 
              -* 10 + DataGe[m + 2]) / 1000000.0;
- 780   5                          DoseRata[j] = (float)(Para[1] * ((float)Real_Count_Display[j] - Para[0]));
- 781   5                      } else if (Channel_Display[j] == 1) {
- 782   5                          Para[2] = (float)(DataThouth[m + 3] * 1000 + DataCent[m + 3] * 100 + DataTenth[m + 3] 
+ 768   5                          DoseRata[j] = (float)(Para[1] * ((float)Real_Count_Display[j] - Para[0]));
+ 769   5                      } else if (Channel_Display[j] == 1) {
+ 770   5                          Para[2] = (float)(DataThouth[m + 3] * 1000 + DataCent[m + 3] * 100 + DataTenth[m + 3] 
              -* 10 + DataGe[m + 3]);  // µ÷½Ú²ÎÊý
- 783   5                          Para[3] = (float)(DataThouth[m + 4] * 1000 + DataCent[m + 4] * 100 + DataTenth[m + 4] 
+ 771   5                          Para[3] = (float)(DataThouth[m + 4] * 1000 + DataCent[m + 4] * 100 + DataTenth[m + 4] 
              -* 10 + DataGe[m + 4]) / 1000000.0;
- 784   5                          DoseRata[j] = (float)(Para[3] * ((float)Real_Count_Display[j] - Para[2]));
- 785   5                      } else if (Channel_Display[j] == 2) {
- 786   5                          Para[4] = (float)(DataThouth[m + 5] * 1000 + DataCent[m + 5] * 100 + DataTenth[m + 5] 
+ 772   5                          DoseRata[j] = (float)(Para[3] * ((float)Real_Count_Display[j] - Para[2]));
+ 773   5                      } else if (Channel_Display[j] == 2) {
+ 774   5                          Para[4] = (float)(DataThouth[m + 5] * 1000 + DataCent[m + 5] * 100 + DataTenth[m + 5] 
              -* 10 + DataGe[m + 5]);  // µ÷½Ú²ÎÊý
- 787   5                          Para[5] = (float)(DataThouth[m + 6] * 1000 + DataCent[m + 6] * 100 + DataTenth[m + 6] 
+ 775   5                          Para[5] = (float)(DataThouth[m + 6] * 1000 + DataCent[m + 6] * 100 + DataTenth[m + 6] 
              -* 10 + DataGe[m + 6]) / 1000.0;
- 788   5                          DoseRata[j] = (float)(Para[5] * ((float)Real_Count_Display[j] - Para[4]));
- 789   5                      } else if (Channel_Display[j] == 3) {
- 790   5                          Para[6] = (float)(DataThouth[m + 7] * 1000 + DataCent[m + 7] * 100 + DataTenth[m + 7] 
+ 776   5                          DoseRata[j] = (float)(Para[5] * ((float)Real_Count_Display[j] - Para[4]));
+ 777   5                      } else if (Channel_Display[j] == 3) {
+ 778   5                          Para[6] = (float)(DataThouth[m + 7] * 1000 + DataCent[m + 7] * 100 + DataTenth[m + 7] 
              -* 10 + DataGe[m + 7]);  // µ÷½Ú²ÎÊý
- 791   5                          Para[7] = (float)(DataThouth[m + 8] * 1000 + DataCent[m + 8] * 100 + DataTenth[m + 8] 
+ 779   5                          Para[7] = (float)(DataThouth[m + 8] * 1000 + DataCent[m + 8] * 100 + DataTenth[m + 8] 
              -* 10 + DataGe[m + 8]) / 10.0;
- 792   5                          DoseRata[j] = (float)(Para[7] * ((float)Real_Count_Display[j] - Para[6]));
- 793   5                      } else if (Channel_Display[j] == 4) {
- 794   5                          Para[8] = (float)(DataThouth[m + 9] * 1000 + DataCent[m + 9] * 100 + DataTenth[m + 9] 
+ 780   5                          DoseRata[j] = (float)(Para[7] * ((float)Real_Count_Display[j] - Para[6]));
+ 781   5                      } else if (Channel_Display[j] == 4) {
+ 782   5                          Para[8] = (float)(DataThouth[m + 9] * 1000 + DataCent[m + 9] * 100 + DataTenth[m + 9] 
              -* 10 + DataGe[m + 9]);  // µ÷½Ú²ÎÊý
- 795   5                          Para[9] = (float)((DataThouth[m + 10] * 1000 + DataCent[m + 10] * 100 + DataTenth[m + 
+ 783   5                          Para[9] = (float)((DataThouth[m + 10] * 1000 + DataCent[m + 10] * 100 + DataTenth[m + 
              -10] * 10 + DataGe[m + 10]) * 10.0);
- 796   5                          DoseRata[j] = (float)(Para[9] * ((float)Real_Count_Display[j] - Para[8]));
- 797   5                      }
- 798   4                  } else if (j == 7) {
- 799   4                      Display_Flag[j] = 0;
- 800   4                      if (Channel_Display[j] == 3) {
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/19/2024 15:40:29 PAGE 15  
-
- 801   5                          Para[0] = (float)(DataThouth[m + 1] * 1000 + DataCent[m + 1] * 100 + DataTenth[m + 1] 
+ 784   5                          DoseRata[j] = (float)(Para[9] * ((float)Real_Count_Display[j] - Para[8]));
+ 785   5                      }
+ 786   4                  } else if (j == 7) {
+ 787   4                      Display_Flag[j] = 0;
+ 788   4                      if (Channel_Display[j] == 3) {
+ 789   5                          Para[0] = (float)(DataThouth[m + 1] * 1000 + DataCent[m + 1] * 100 + DataTenth[m + 1] 
              -* 10 + DataGe[m + 1]);  // µ÷½Ú²ÎÊý
- 802   5                          Para[1] = (float)(DataThouth[m + 2] * 1000 + DataCent[m + 2] * 100 + DataTenth[m + 2] 
+ 790   5                          Para[1] = (float)(DataThouth[m + 2] * 1000 + DataCent[m + 2] * 100 + DataTenth[m + 2] 
              -* 10 + DataGe[m + 2]) / 10.0;
- 803   5                          DoseRata[j] = (float)(Para[1] * ((float)Real_Count_Display[j] - Para[0]));
- 804   5                      } else if (Channel_Display[j] == 4) {
- 805   5                          Para[2] = (float)(DataThouth[m + 3] * 1000 + DataCent[m + 3] * 100 + DataTenth[m + 3] 
+ 791   5                          DoseRata[j] = (float)(Para[1] * ((float)Real_Count_Display[j] - Para[0]));
+ 792   5                      } else if (Channel_Display[j] == 4) {
+ 793   5                          Para[2] = (float)(DataThouth[m + 3] * 1000 + DataCent[m + 3] * 100 + DataTenth[m + 3] 
              -* 10 + DataGe[m + 3]);  // µ÷½Ú²ÎÊý
- 806   5                          Para[3] = (float)(DataThouth[m + 4] * 1000 + DataCent[m + 4] * 100 + DataTenth[m + 4] 
+ 794   5                          Para[3] = (float)(DataThouth[m + 4] * 1000 + DataCent[m + 4] * 100 + DataTenth[m + 4] 
              -* 10 + DataGe[m + 4]) * 10.0;
- 807   5                          DoseRata[j] = (float)(Para[3] * ((float)Real_Count_Display[j] - Para[2]));
- 808   5                      }
- 809   4                  }
- 810   3                  /**********µ¥Î»»»ËãºóÎªjtemp************/
- 811   3                  if (DoseRata[j] < 0)  // ÐÞ¸Ä2012.6.15Í¨¹ý¾ùÖµ¼ÆËã
- 812   3                  {
- 813   4                      jtemp = 0.0;
- 814   4                      Flag_dw = 1;
- 815   4                  } else if (DoseRata[j] >= 0)  // µ¥Î»ÎªuGy/h
- 816   3                  {
- 817   4                      if (DoseRata[j] < 1000)  // Mean_Value<1000±íÊ¾µ¥Î»ÎªuGy/h
- 818   4                      {
- 819   5                          jtemp = (float)DoseRata[j];
- 820   5                          Flag_dw = 1;
- 821   5                      } else if ((DoseRata[j] >= 1000) && (DoseRata[j] < 1000000))  // 1000<Mean_Value<1000000±í
+ 795   5                          DoseRata[j] = (float)(Para[3] * ((float)Real_Count_Display[j] - Para[2]));
+ 796   5                      }
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/21/2024 10:17:25 PAGE 15  
+
+ 797   4                  }
+ 798   3                  /**********µ¥Î»»»ËãºóÎªjtemp************/
+ 799   3                  if (DoseRata[j] < 0)  // ÐÞ¸Ä2012.6.15Í¨¹ý¾ùÖµ¼ÆËã
+ 800   3                  {
+ 801   4                      jtemp = 0.0;
+ 802   4                      Flag_dw = 1;
+ 803   4                  } else if (DoseRata[j] >= 0)  // µ¥Î»ÎªuGy/h
+ 804   3                  {
+ 805   4                      if (DoseRata[j] < 1000)  // Mean_Value<1000±íÊ¾µ¥Î»ÎªuGy/h
+ 806   4                      {
+ 807   5                          jtemp = (float)DoseRata[j];
+ 808   5                          Flag_dw = 1;
+ 809   5                      } else if ((DoseRata[j] >= 1000) && (DoseRata[j] < 1000000))  // 1000<Mean_Value<1000000±í
              -Ê¾mGy/h
- 822   4                      {
- 823   5                          jtemp = (float)(DoseRata[j] / 1000);
- 824   5                          Flag_dw = 2;
- 825   5                      } else if (DoseRata[j] >= 1000000)  // Mean_Value>=1000000±íÊ¾Gy/h
- 826   4                      {
- 827   5                          jtemp = (float)(DoseRata[j] / 1000000);
- 828   5                          Flag_dw = 3;
- 829   5                      }
- 830   4                  }
- 831   3                  /*****DCS·¢ËÍÊý¾Ý×¼±¸****/
- 832   3                  if (DoseRata[j] < 0)  // Èô¼ÆËã¼ÁÁ¿Ð¡ÓÚÁãÏòDCS·¢ËÍ0
- 833   3                  {
- 834   4                      DCS_Send[j * 4 + 4] = 0x30;
- 835   4                      DCS_Send[j * 4 + 5] = 0x30;
- 836   4                      DCS_Send[j * 4 + 6] = 0x30;
- 837   4                      DCS_Send[j * 4 + 7] = 0x30;
- 838   4                  } else if (DoseRata[j] >= 0) {
- 839   4                      if (DoseRata[j] < 1) {
- 840   5                          temp = (float)DoseRata[j] * 1000;
+ 810   4                      {
+ 811   5                          jtemp = (float)(DoseRata[j] / 1000);
+ 812   5                          Flag_dw = 2;
+ 813   5                      } else if (DoseRata[j] >= 1000000)  // Mean_Value>=1000000±íÊ¾Gy/h
+ 814   4                      {
+ 815   5                          jtemp = (float)(DoseRata[j] / 1000000);
+ 816   5                          Flag_dw = 3;
+ 817   5                      }
+ 818   4                  }
+ 819   3                  /*****DCS·¢ËÍÊý¾Ý×¼±¸****/
+ 820   3                  if (DoseRata[j] < 0)  // Èô¼ÆËã¼ÁÁ¿Ð¡ÓÚÁãÏòDCS·¢ËÍ0
+ 821   3                  {
+ 822   4                      DCS_Send[j * 4 + 4] = 0x30;
+ 823   4                      DCS_Send[j * 4 + 5] = 0x30;
+ 824   4                      DCS_Send[j * 4 + 6] = 0x30;
+ 825   4                      DCS_Send[j * 4 + 7] = 0x30;
+ 826   4                  } else if (DoseRata[j] >= 0) {
+ 827   4                      if (DoseRata[j] < 1) {
+ 828   5                          temp = (float)DoseRata[j] * 1000;
+ 829   5                          DCS_Send[j * 4 + 4] = (uchar)((int)temp / 100) + 0x30;
+ 830   5                          DCS_Send[j * 4 + 5] = (uchar)((int)temp % 100 / 10) + 0x30;
+ 831   5                          DCS_Send[j * 4 + 6] = (uchar)((int)temp % 100 % 10) + 0x30;
+ 832   5                          DCS_Send[j * 4 + 7] = 0x30;
+ 833   5                      } else if ((DoseRata[j] >= 1) && (DoseRata[j] < 10)) {
+ 834   5                          temp = (float)DoseRata[j] * 100;
+ 835   5                          DCS_Send[j * 4 + 4] = (uchar)((int)temp / 100) + 0x30;
+ 836   5                          DCS_Send[j * 4 + 5] = (uchar)((int)temp % 100 / 10) + 0x30;
+ 837   5                          DCS_Send[j * 4 + 6] = (uchar)((int)temp % 100 % 10) + 0x30;
+ 838   5                          DCS_Send[j * 4 + 7] = 0x31;
+ 839   5                      } else if ((DoseRata[j] >= 10) && (DoseRata[j] < 100)) {
+ 840   5                          temp = (float)DoseRata[j] * 10;
  841   5                          DCS_Send[j * 4 + 4] = (uchar)((int)temp / 100) + 0x30;
  842   5                          DCS_Send[j * 4 + 5] = (uchar)((int)temp % 100 / 10) + 0x30;
  843   5                          DCS_Send[j * 4 + 6] = (uchar)((int)temp % 100 % 10) + 0x30;
- 844   5                          DCS_Send[j * 4 + 7] = 0x30;
- 845   5                      } else if ((DoseRata[j] >= 1) && (DoseRata[j] < 10)) {
- 846   5                          temp = (float)DoseRata[j] * 100;
+ 844   5                          DCS_Send[j * 4 + 7] = 0x32;
+ 845   5                      } else if ((DoseRata[j] >= 100) && (DoseRata[j] < 1000)) {
+ 846   5                          temp = (float)DoseRata[j];
  847   5                          DCS_Send[j * 4 + 4] = (uchar)((int)temp / 100) + 0x30;
  848   5                          DCS_Send[j * 4 + 5] = (uchar)((int)temp % 100 / 10) + 0x30;
  849   5                          DCS_Send[j * 4 + 6] = (uchar)((int)temp % 100 % 10) + 0x30;
- 850   5                          DCS_Send[j * 4 + 7] = 0x31;
- 851   5                      } else if ((DoseRata[j] >= 10) && (DoseRata[j] < 100)) {
- 852   5                          temp = (float)DoseRata[j] * 10;
+ 850   5                          DCS_Send[j * 4 + 7] = 0x33;
+ 851   5                      } else if ((DoseRata[j] >= 1000) && (DoseRata[j] < 10000)) {
+ 852   5                          temp = (float)DoseRata[j] / 10.0;
  853   5                          DCS_Send[j * 4 + 4] = (uchar)((int)temp / 100) + 0x30;
  854   5                          DCS_Send[j * 4 + 5] = (uchar)((int)temp % 100 / 10) + 0x30;
  855   5                          DCS_Send[j * 4 + 6] = (uchar)((int)temp % 100 % 10) + 0x30;
- 856   5                          DCS_Send[j * 4 + 7] = 0x32;
- 857   5                      } else if ((DoseRata[j] >= 100) && (DoseRata[j] < 1000)) {
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/19/2024 15:40:29 PAGE 16  
+ 856   5                          DCS_Send[j * 4 + 7] = 0x34;
+ 857   5                      } else if ((DoseRata[j] >= 10000) && (DoseRata[j] < 100000)) {
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/21/2024 10:17:25 PAGE 16  
 
- 858   5                          temp = (float)DoseRata[j];
+ 858   5                          temp = (float)DoseRata[j] / 100.0;
  859   5                          DCS_Send[j * 4 + 4] = (uchar)((int)temp / 100) + 0x30;
  860   5                          DCS_Send[j * 4 + 5] = (uchar)((int)temp % 100 / 10) + 0x30;
  861   5                          DCS_Send[j * 4 + 6] = (uchar)((int)temp % 100 % 10) + 0x30;
- 862   5                          DCS_Send[j * 4 + 7] = 0x33;
- 863   5                      } else if ((DoseRata[j] >= 1000) && (DoseRata[j] < 10000)) {
- 864   5                          temp = (float)DoseRata[j] / 10.0;
+ 862   5                          DCS_Send[j * 4 + 7] = 0x35;
+ 863   5                      } else if ((DoseRata[j] >= 100000) && (DoseRata[j] < 1000000)) {
+ 864   5                          temp = (float)DoseRata[j] / 1000.0;
  865   5                          DCS_Send[j * 4 + 4] = (uchar)((int)temp / 100) + 0x30;
  866   5                          DCS_Send[j * 4 + 5] = (uchar)((int)temp % 100 / 10) + 0x30;
  867   5                          DCS_Send[j * 4 + 6] = (uchar)((int)temp % 100 % 10) + 0x30;
- 868   5                          DCS_Send[j * 4 + 7] = 0x34;
- 869   5                      } else if ((DoseRata[j] >= 10000) && (DoseRata[j] < 100000)) {
- 870   5                          temp = (float)DoseRata[j] / 100.0;
+ 868   5                          DCS_Send[j * 4 + 7] = 0x36;
+ 869   5                      } else if ((DoseRata[j] >= 1000000) && (DoseRata[j] < 10000000)) {
+ 870   5                          temp = (float)DoseRata[j] / 10000.0;
  871   5                          DCS_Send[j * 4 + 4] = (uchar)((int)temp / 100) + 0x30;
  872   5                          DCS_Send[j * 4 + 5] = (uchar)((int)temp % 100 / 10) + 0x30;
  873   5                          DCS_Send[j * 4 + 6] = (uchar)((int)temp % 100 % 10) + 0x30;
- 874   5                          DCS_Send[j * 4 + 7] = 0x35;
- 875   5                      } else if ((DoseRata[j] >= 100000) && (DoseRata[j] < 1000000)) {
- 876   5                          temp = (float)DoseRata[j] / 1000.0;
+ 874   5                          DCS_Send[j * 4 + 7] = 0x37;
+ 875   5                      } else if ((DoseRata[j] >= 10000000) && (DoseRata[j] < 100000000)) {
+ 876   5                          temp = (float)DoseRata[j] / 100000.0;
  877   5                          DCS_Send[j * 4 + 4] = (uchar)((int)temp / 100) + 0x30;
  878   5                          DCS_Send[j * 4 + 5] = (uchar)((int)temp % 100 / 10) + 0x30;
  879   5                          DCS_Send[j * 4 + 6] = (uchar)((int)temp % 100 % 10) + 0x30;
- 880   5                          DCS_Send[j * 4 + 7] = 0x36;
- 881   5                      } else if ((DoseRata[j] >= 1000000) && (DoseRata[j] < 10000000)) {
- 882   5                          temp = (float)DoseRata[j] / 10000.0;
+ 880   5                          DCS_Send[j * 4 + 7] = 0x38;
+ 881   5                      } else if ((DoseRata[j] >= 100000000) && (DoseRata[j] < 1000000000)) {
+ 882   5                          temp = (float)DoseRata[j] / 1000000.0;
  883   5                          DCS_Send[j * 4 + 4] = (uchar)((int)temp / 100) + 0x30;
  884   5                          DCS_Send[j * 4 + 5] = (uchar)((int)temp % 100 / 10) + 0x30;
  885   5                          DCS_Send[j * 4 + 6] = (uchar)((int)temp % 100 % 10) + 0x30;
- 886   5                          DCS_Send[j * 4 + 7] = 0x37;
- 887   5                      } else if ((DoseRata[j] >= 10000000) && (DoseRata[j] < 100000000)) {
- 888   5                          temp = (float)DoseRata[j] / 100000.0;
- 889   5                          DCS_Send[j * 4 + 4] = (uchar)((int)temp / 100) + 0x30;
- 890   5                          DCS_Send[j * 4 + 5] = (uchar)((int)temp % 100 / 10) + 0x30;
- 891   5                          DCS_Send[j * 4 + 6] = (uchar)((int)temp % 100 % 10) + 0x30;
- 892   5                          DCS_Send[j * 4 + 7] = 0x38;
- 893   5                      } else if ((DoseRata[j] >= 100000000) && (DoseRata[j] < 1000000000)) {
- 894   5                          temp = (float)DoseRata[j] / 1000000.0;
- 895   5                          DCS_Send[j * 4 + 4] = (uchar)((int)temp / 100) + 0x30;
- 896   5                          DCS_Send[j * 4 + 5] = (uchar)((int)temp % 100 / 10) + 0x30;
- 897   5                          DCS_Send[j * 4 + 6] = (uchar)((int)temp % 100 % 10) + 0x30;
- 898   5                          DCS_Send[j * 4 + 7] = 0x39;
- 899   5                      }
- 900   4                  }
- 901   3                  /***********¼ÁÁ¿ÂÊ×ª»»µ¥Î»ºó×ª»»³É¿ÉÒÔÏÔÊ¾µÄBCDÂë*************/
- 902   3                  if ((Tbcd[5] <= 9) && (Tbcd[4] <= 9) && (Tbcd[3] <= 9) && (Tbcd[2] <= 9) && (Tbcd[1] <= 9) && 
+ 886   5                          DCS_Send[j * 4 + 7] = 0x39;
+ 887   5                      }
+ 888   4                  }
+ 889   3                  /***********¼ÁÁ¿ÂÊ×ª»»µ¥Î»ºó×ª»»³É¿ÉÒÔÏÔÊ¾µÄBCDÂë*************/
+ 890   3                  if ((Tbcd[5] <= 9) && (Tbcd[4] <= 9) && (Tbcd[3] <= 9) && (Tbcd[2] <= 9) && (Tbcd[1] <= 9) && 
              -(Tbcd[0] <= 9))  // 4.21ËÆºõ¶àÓà£¬¿É²»¿ÉÒÔÐÞ¸Äµô
- 903   3                  {
- 904   4                      Tbcd[5] = (uchar)(((int)jtemp) / 100);       // °ÙÎ»
- 905   4                      Tbcd[4] = (uchar)(((int)jtemp) % 100 / 10);  // Ê®Î»
- 906   4                      Tbcd[3] = (uchar)(((int)jtemp) % 100 % 10);  // ¸öÎ»
- 907   4                      count_temp = (jtemp - (int)jtemp) * 1000;    // ¼ÆËãÐ¡ÓÚ1µÄ²¿·Ö£¬°ÑÐ¡Êý²¿·Ö±ä´ó£¬±£ÁôÈýÎ»Ð
+ 891   3                  {
+ 892   4                      Tbcd[5] = (uchar)(((int)jtemp) / 100);       // °ÙÎ»
+ 893   4                      Tbcd[4] = (uchar)(((int)jtemp) % 100 / 10);  // Ê®Î»
+ 894   4                      Tbcd[3] = (uchar)(((int)jtemp) % 100 % 10);  // ¸öÎ»
+ 895   4                      count_temp = (jtemp - (int)jtemp) * 1000;    // ¼ÆËãÐ¡ÓÚ1µÄ²¿·Ö£¬°ÑÐ¡Êý²¿·Ö±ä´ó£¬±£ÁôÈýÎ»Ð
              -¡Êý
- 908   4                      Tbcd[2] = (uchar)(count_temp / 100);         // Ð¡Ð¡ÊýÊ®·ÖÎ»
- 909   4                      Tbcd[1] = (uchar)(count_temp % 100 / 10);    // Ð¡Êý°Ù·ÖÎ»
- 910   4                      Tbcd[0] = (uchar)(count_temp % 100 % 10);    // Ð¡ÊýÇ§·ÖÎ»
- 911   4                      if (Flag_dw == 1)                            // ¸ù¾ÝTbcd[]¼ÆËãyudecide(float)ÓÃÀ´ÅÐ¶Ï¼ÁÁ¿Â
+ 896   4                      Tbcd[2] = (uchar)(count_temp / 100);         // Ð¡Ð¡ÊýÊ®·ÖÎ»
+ 897   4                      Tbcd[1] = (uchar)(count_temp % 100 / 10);    // Ð¡Êý°Ù·ÖÎ»
+ 898   4                      Tbcd[0] = (uchar)(count_temp % 100 % 10);    // Ð¡ÊýÇ§·ÖÎ»
+ 899   4                      if (Flag_dw == 1)                            // ¸ù¾ÝTbcd[]¼ÆËãyudecide(float)ÓÃÀ´ÅÐ¶Ï¼ÁÁ¿Â
              -ÊÊÇ·ñ³¬¹ýãÐÖµ
- 912   4                          yudecide = (float)(Tbcd[5] * 100 + Tbcd[4] * 10 + Tbcd[3] + Tbcd[2] * 0.1 + Tbcd[1] * 
+ 900   4                          yudecide = (float)(Tbcd[5] * 100 + Tbcd[4] * 10 + Tbcd[3] + Tbcd[2] * 0.1 + Tbcd[1] * 
              -0.01 + Tbcd[0] * 0.001);
- 913   4                      if (Flag_dw == 2)
- 914   4                          yudecide = (float)((Tbcd[5] * 100 + Tbcd[4] * 10 + Tbcd[3] + Tbcd[2] * 0.1 + Tbcd[1] *
+ 901   4                      if (Flag_dw == 2)
+ 902   4                          yudecide = (float)((Tbcd[5] * 100 + Tbcd[4] * 10 + Tbcd[3] + Tbcd[2] * 0.1 + Tbcd[1] *
              - 0.01 + Tbcd[0] * 0.001) * 1000);
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/19/2024 15:40:29 PAGE 17  
-
- 915   4                      if (Flag_dw == 3)
- 916   4                          yudecide = (float)((Tbcd[5] * 100 + Tbcd[4] * 10 + Tbcd[3] + Tbcd[2] * 0.1 + Tbcd[1] *
+ 903   4                      if (Flag_dw == 3)
+ 904   4                          yudecide = (float)((Tbcd[5] * 100 + Tbcd[4] * 10 + Tbcd[3] + Tbcd[2] * 0.1 + Tbcd[1] *
              - 0.01 + Tbcd[0] * 0.001) * 1000000);
- 917   4                  }
- 918   3                  /***********ÅÐ¶ÏãÐÖµ²¢±¨¾¯*************/
- 919   3                  mtemp = (YuThouth[j] + YuCent[j] * 0.1 + YuTenth[j] * 0.01);  // ÔÝÊ±Ã»¸ù¾ÝÎ»ÊýÐÞ¸Ä2012.6.15
- 920   3                  yu = (double)(pow(10, YuGe[j]));
- 921   3                  yudata = (double)(mtemp * yu);
- 922   3                  if (yudecide >= yudata)  // Èç¹û¼ÆÊý³¬¹ýÄ³Ò»¸ö·¶Î§£¬ÔòÉùÒô±¨¾¯
- 923   3                  {
- 924   4                      if ((Judge_Speak == 0) || (Speak_Alarm() == 1))  // ·äÃùÆ÷±¨¾¯£¬Speak_Alarm·µ»Ø1·äÃùÆ÷¹¤×÷
- 925   4                      {
- 926   5                          Flag_Warn = 1;  // ±¨¾¯±êÖ¾ÖÃÒ»
- 927   5                      }
- 928   4                      Flag_need_Flash[j] = 1;  // LEDÉÁË¸±êÖ¾ÖÃ1
- 929   4                      State_Flash[j] = 1;
- 930   4                      Var_Led = Var_Led & Svar0[j];  // LED±¨¾¯Ö¸Ê¾µÆ£¨char£©Svar0[8]={0xFE,0xFD,0xFB,0xF7,0xEF,
+ 905   4                  }
+ 906   3                  /***********ÅÐ¶ÏãÐÖµ²¢±¨¾¯*************/
+ 907   3                  mtemp = (YuThouth[j] + YuCent[j] * 0.1 + YuTenth[j] * 0.01);  // ÔÝÊ±Ã»¸ù¾ÝÎ»ÊýÐÞ¸Ä2012.6.15
+ 908   3                  yu = (double)(pow(10, YuGe[j]));
+ 909   3                  yudata = (double)(mtemp * yu);
+ 910   3                  if (yudecide >= yudata)  // Èç¹û¼ÆÊý³¬¹ýÄ³Ò»¸ö·¶Î§£¬ÔòÉùÒô±¨¾¯
+ 911   3                  {
+ 912   4                      if ((Judge_Speak == 0) || (Speak_Alarm() == 1))  // ·äÃùÆ÷±¨¾¯£¬Speak_Alarm·µ»Ø1·äÃùÆ÷¹¤×÷
+ 913   4                      {
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/21/2024 10:17:25 PAGE 17  
+
+ 914   5                          Flag_Warn = 1;  // ±¨¾¯±êÖ¾ÖÃÒ»
+ 915   5                      }
+ 916   4                      Flag_need_Flash[j] = 1;  // LEDÉÁË¸±êÖ¾ÖÃ1
+ 917   4                      State_Flash[j] = 1;
+ 918   4                      Var_Led = Var_Led & Svar0[j];  // LED±¨¾¯Ö¸Ê¾µÆ£¨char£©Svar0[8]={0xFE,0xFD,0xFB,0xF7,0xEF,
              -0xDF,0xBF,0x7F}
- 931   4                  } else if (yudecide < yudata) {
- 932   4                      Flag_need_Flash[j] = 0;
- 933   4                      State_Flash[j] = 0;
- 934   4                      Var_Led = Var_Led | Svar1[j];
- 935   4                  }
- 936   3                  /*AI1*¼ÁÁ¿ÂÊÏÔÊ¾Ó¦µ±ÔÚÌ½²âÆ÷±êÖ¾¸Ä±äÖ®Ç°******¼ÁÁ¿ÂÊÏÔÊ¾**********/
- 937   3                  // if(Channel_Detector[j]==0)
- 938   3                  //{
- 939   3                  //  Txtext(10,13+(j*58),"Gh");                                                  //AH1ÏÔÊ¾Ì½Í·
- 940   3                  //}
- 941   3                  // else
- 942   3                  //{
- 943   3                  // Txtext(10,13+(j*58),"Dh");
- 944   3                  //}
- 945   3                  /*AI1*******¼ÁÁ¿ÂÊÏÔÊ¾**********/
- 946   3                  if (Flag_need_Flash[j] == 0) {
- 947   4                      if ((Channel_Display[j] == 0) || (Channel_Display[j] == 1)) {
- 948   5                          Txtext(10, 13 + (j * 58), "GM");  // AH1ÏÔÊ¾Ì½Í·
- 949   5                      } else {
- 950   5                          Txtext(10, 13 + (j * 58), "DL");
- 951   5                      }
- 952   4                      Tnumber(60, 13 + (j * 58), j + 1);  // ÏÔÊ¾Ì½Í·ºÅ
- 953   4                      Txtext(90, 13 + (j * 58), ":");     // ÏÔÊ¾Ã°ºÅ
- 954   4                      Tnumber(470, 13 + (j * 58), Channel_Detector[j][1]);
- 955   4                      Tnumber(440, 13 + (j * 58), Channel_Detector[j][0]);
- 956   4                      Tnumber(390, 13 + (j * 58), Average_Times[j]);
- 957   4                      if (Tbcd[5] != 0)  // Èô°ÙÎ»·ÇÁã£¬¸ù¾ÝÊýµÄ´óÐ¡À´ÏÔÊ¾
- 958   4                      {
- 959   5                          Tnumber(130, 13 + (j * 58), Tbcd[5]);
- 960   5                          Tnumber(160, 13 + (j * 58), Tbcd[4]);
- 961   5                          Tnumber(190, 13 + (j * 58), Tbcd[3]);
- 962   5                          Txtext(220, 13 + (j * 58), ".");
- 963   5                          Tnumber(240, 13 + (j * 58), Tbcd[2]);
- 964   5                          Tnumber(270, 13 + (j * 58), Tbcd[1]);
- 965   5                          Tnumber(300, 13 + (j * 58), Tbcd[0]);
- 966   5                          if (Tdata < 10)                          // ÓÃÓÚÏÔÊ¾TdataËø´æµÄ¼ÆÊýÖµÏÔÊ¾
- 967   5                              Tnumber(576, 13 + (j * 58), Tdata);  // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
- 968   5                          else if ((Tdata >= 10) && (Tdata < 100))
- 969   5                              Tnumber(556, 13 + (j * 58), Tdata);
- 970   5                          else if ((Tdata >= 100) && (Tdata < 1000))
- 971   5                              Tnumber(536, 13 + (j * 58), Tdata);
- 972   5                          else if ((Tdata >= 1000) && (Tdata < 10000))
- 973   5                              Tnumber(516, 13 + (j * 58), Tdata);
- 974   5                          else if (Tdata >= 10000)
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/19/2024 15:40:29 PAGE 18  
+ 919   4                  } else if (yudecide < yudata) {
+ 920   4                      Flag_need_Flash[j] = 0;
+ 921   4                      State_Flash[j] = 0;
+ 922   4                      Var_Led = Var_Led | Svar1[j];
+ 923   4                  }
+ 924   3                  /*AI1*¼ÁÁ¿ÂÊÏÔÊ¾Ó¦µ±ÔÚÌ½²âÆ÷±êÖ¾¸Ä±äÖ®Ç°******¼ÁÁ¿ÂÊÏÔÊ¾**********/
+ 925   3                  // if(Channel_Detector[j]==0)
+ 926   3                  //{
+ 927   3                  //  Txtext(10,13+(j*58),"Gh");                                                  //AH1ÏÔÊ¾Ì½Í·
+ 928   3                  //}
+ 929   3                  // else
+ 930   3                  //{
+ 931   3                  // Txtext(10,13+(j*58),"Dh");
+ 932   3                  //}
+ 933   3                  /*AI1*******¼ÁÁ¿ÂÊÏÔÊ¾**********/
+ 934   3                  if (Flag_need_Flash[j] == 0) {
+ 935   4                      if ((Channel_Display[j] == 0) || (Channel_Display[j] == 1)) {
+ 936   5                          Txtext(10, 13 + (j * 58), "GM");  // AH1ÏÔÊ¾Ì½Í·
+ 937   5                      } else {
+ 938   5                          Txtext(10, 13 + (j * 58), "DL");
+ 939   5                      }
+ 940   4                      Tnumber(60, 13 + (j * 58), j + 1);  // ÏÔÊ¾Ì½Í·ºÅ
+ 941   4                      Txtext(90, 13 + (j * 58), ":");     // ÏÔÊ¾Ã°ºÅ
+ 942   4                      Tnumber(470, 13 + (j * 58), Channel_Detector[j][1]);
+ 943   4                      Tnumber(440, 13 + (j * 58), Channel_Detector[j][0]);
+ 944   4                      Tnumber(390, 13 + (j * 58), Average_Times[j]);
+ 945   4                      if (Tbcd[5] != 0)  // Èô°ÙÎ»·ÇÁã£¬¸ù¾ÝÊýµÄ´óÐ¡À´ÏÔÊ¾
+ 946   4                      {
+ 947   5                          Tnumber(130, 13 + (j * 58), Tbcd[5]);
+ 948   5                          Tnumber(160, 13 + (j * 58), Tbcd[4]);
+ 949   5                          Tnumber(190, 13 + (j * 58), Tbcd[3]);
+ 950   5                          Txtext(220, 13 + (j * 58), ".");
+ 951   5                          Tnumber(240, 13 + (j * 58), Tbcd[2]);
+ 952   5                          Tnumber(270, 13 + (j * 58), Tbcd[1]);
+ 953   5                          Tnumber(300, 13 + (j * 58), Tbcd[0]);
+ 954   5                          if (Tdata < 10)                          // ÓÃÓÚÏÔÊ¾TdataËø´æµÄ¼ÆÊýÖµÏÔÊ¾
+ 955   5                              Tnumber(576, 13 + (j * 58), Tdata);  // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
+ 956   5                          else if ((Tdata >= 10) && (Tdata < 100))
+ 957   5                              Tnumber(556, 13 + (j * 58), Tdata);
+ 958   5                          else if ((Tdata >= 100) && (Tdata < 1000))
+ 959   5                              Tnumber(536, 13 + (j * 58), Tdata);
+ 960   5                          else if ((Tdata >= 1000) && (Tdata < 10000))
+ 961   5                              Tnumber(516, 13 + (j * 58), Tdata);
+ 962   5                          else if (Tdata >= 10000)
+ 963   5                              Tnumber(496, 13 + (j * 58), Tdata);
+ 964   5                      } else {
+ 965   5                          if (Tbcd[4] != 0)  // °ÙÎ»ÎªÁãÊ®Î»·ÇÁã
+ 966   5                          {
+ 967   6                              Tnumber(160, 13 + (j * 58), Tbcd[4]);
+ 968   6                              Tnumber(190, 13 + (j * 58), Tbcd[3]);
+ 969   6                              Txtext(220, 13 + (j * 58), ".");
+ 970   6                              Tnumber(240, 13 + (j * 58), Tbcd[2]);
+ 971   6                              Tnumber(270, 13 + (j * 58), Tbcd[1]);
+ 972   6                              Tnumber(300, 13 + (j * 58), Tbcd[0]);
+ 973   6                              if (Tdata < 10)
+ 974   6                                  Tnumber(576, 13 + (j * 58), Tdata);  // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/21/2024 10:17:25 PAGE 18  
 
- 975   5                              Tnumber(496, 13 + (j * 58), Tdata);
- 976   5                      } else {
- 977   5                          if (Tbcd[4] != 0)  // °ÙÎ»ÎªÁãÊ®Î»·ÇÁã
- 978   5                          {
- 979   6                              Tnumber(160, 13 + (j * 58), Tbcd[4]);
- 980   6                              Tnumber(190, 13 + (j * 58), Tbcd[3]);
- 981   6                              Txtext(220, 13 + (j * 58), ".");
- 982   6                              Tnumber(240, 13 + (j * 58), Tbcd[2]);
- 983   6                              Tnumber(270, 13 + (j * 58), Tbcd[1]);
- 984   6                              Tnumber(300, 13 + (j * 58), Tbcd[0]);
- 985   6                              if (Tdata < 10)
- 986   6                                  Tnumber(576, 13 + (j * 58), Tdata);  // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
- 987   6                              else if ((Tdata >= 10) && (Tdata < 100))
- 988   6                                  Tnumber(556, 13 + (j * 58), Tdata);
- 989   6                              else if ((Tdata >= 100) && (Tdata < 1000))
- 990   6                                  Tnumber(536, 13 + (j * 58), Tdata);
- 991   6                              else if ((Tdata >= 1000) && (Tdata < 10000))
- 992   6                                  Tnumber(516, 13 + (j * 58), Tdata);
- 993   6                              else if (Tdata >= 10000)
- 994   6                                  Tnumber(496, 13 + (j * 58), Tdata);  // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
- 995   6                          } else                                       // °ÙÎ»Ê®Î»Î»¾ùÎªÁã£¬¸öÎ»·ÇÁã
- 996   5                          {
- 997   6                              Tnumber(190, 13 + (j * 58), Tbcd[3]);
- 998   6                              Txtext(220, 13 + (j * 58), ".");       //.Õ¼20¸öÏñËØ
- 999   6                              Tnumber(240, 13 + (j * 58), Tbcd[2]);  // Ò»¸öÊý×ÖÕ¼30¸öÏñËØ
-1000   6                              Tnumber(270, 13 + (j * 58), Tbcd[1]);
-1001   6                              Tnumber(300, 13 + (j * 58), Tbcd[0]);
-1002   6                              if (Tdata < 10)
-1003   6                                  Tnumber(576, 13 + (j * 58), Tdata);   // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
-1004   6                              else if ((Tdata >= 10) && (Tdata < 100))  // ¿ÉÒÔ¿´¼ûÒ»¸öÊý×ÖÕ¼20ÏñËØ
-1005   6                                  Tnumber(556, 13 + (j * 58), Tdata);
-1006   6                              else if ((Tdata >= 100) && (Tdata < 1000))
-1007   6                                  Tnumber(536, 13 + (j * 58), Tdata);
-1008   6                              else if ((Tdata >= 1000) && (Tdata < 10000))
-1009   6                                  Tnumber(516, 13 + (j * 58), Tdata);
-1010   6                              else if (Tdata >= 10000)
-1011   6                                  Tnumber(496, 13 + (j * 58), Tdata);
-1012   6                          }
-1013   5                      }
-1014   4                      /**********¼ÆÁ¿µ¥Î»ÏÔÊ¾***********/
-1015   4                      if (Flag_dw == 1)  // ²âÊÔÍê³Éºó¼ÓÉÏ2012.6.24
-1016   4                      {
-1017   5                          Txtext(340, 13 + (j * 58), "u");
-1018   5                      } else if (Flag_dw == 2) {
-1019   5                          Txtext(340, 13 + (j * 58), "m");
-1020   5                      } else if (Flag_dw == 3) {
-1021   5                          Txtext(340, 13 + (j * 58), "G");
-1022   5                      }
-1023   4                      Alarm();  // ±¨¾¯
-1024   4                  }
-1025   3                  if (Flag_need_Flash[j] == 1) {
-1026   4                      if ((Channel_Display[j] == 0) || (Channel_Display[j] == 1)) {
-1027   5                          Trxtext(7, 13 + (j * 58), "  ");
-1028   5                          Trxtext(10, 13 + (j * 58), "GM                        ");  // AH1ÏÔÊ¾Ì½Í·
-1029   5                      } else {
-1030   5                          Trxtext(7, 13 + (j * 58), "  ");
-1031   5                          Trxtext(10, 13 + (j * 58), "DL                        ");
-1032   5                      }
-1033   4                      Trnumber(60, 13 + (j * 58), j + 1);  // ÏÔÊ¾Ì½Í·ºÅ
-1034   4                      Trxtext(90, 13 + (j * 58), ":");     // ÏÔÊ¾Ã°ºÅ
-1035   4                      Trnumber(470, 13 + (j * 58), Channel_Detector[j][1]);
-1036   4                      Trnumber(440, 13 + (j * 58), Channel_Detector[j][0]);
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/19/2024 15:40:29 PAGE 19  
+ 975   6                              else if ((Tdata >= 10) && (Tdata < 100))
+ 976   6                                  Tnumber(556, 13 + (j * 58), Tdata);
+ 977   6                              else if ((Tdata >= 100) && (Tdata < 1000))
+ 978   6                                  Tnumber(536, 13 + (j * 58), Tdata);
+ 979   6                              else if ((Tdata >= 1000) && (Tdata < 10000))
+ 980   6                                  Tnumber(516, 13 + (j * 58), Tdata);
+ 981   6                              else if (Tdata >= 10000)
+ 982   6                                  Tnumber(496, 13 + (j * 58), Tdata);  // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
+ 983   6                          } else                                       // °ÙÎ»Ê®Î»Î»¾ùÎªÁã£¬¸öÎ»·ÇÁã
+ 984   5                          {
+ 985   6                              Tnumber(190, 13 + (j * 58), Tbcd[3]);
+ 986   6                              Txtext(220, 13 + (j * 58), ".");       //.Õ¼20¸öÏñËØ
+ 987   6                              Tnumber(240, 13 + (j * 58), Tbcd[2]);  // Ò»¸öÊý×ÖÕ¼30¸öÏñËØ
+ 988   6                              Tnumber(270, 13 + (j * 58), Tbcd[1]);
+ 989   6                              Tnumber(300, 13 + (j * 58), Tbcd[0]);
+ 990   6                              if (Tdata < 10)
+ 991   6                                  Tnumber(576, 13 + (j * 58), Tdata);   // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
+ 992   6                              else if ((Tdata >= 10) && (Tdata < 100))  // ¿ÉÒÔ¿´¼ûÒ»¸öÊý×ÖÕ¼20ÏñËØ
+ 993   6                                  Tnumber(556, 13 + (j * 58), Tdata);
+ 994   6                              else if ((Tdata >= 100) && (Tdata < 1000))
+ 995   6                                  Tnumber(536, 13 + (j * 58), Tdata);
+ 996   6                              else if ((Tdata >= 1000) && (Tdata < 10000))
+ 997   6                                  Tnumber(516, 13 + (j * 58), Tdata);
+ 998   6                              else if (Tdata >= 10000)
+ 999   6                                  Tnumber(496, 13 + (j * 58), Tdata);
+1000   6                          }
+1001   5                      }
+1002   4                      /**********¼ÆÁ¿µ¥Î»ÏÔÊ¾***********/
+1003   4                      if (Flag_dw == 1)  // ²âÊÔÍê³Éºó¼ÓÉÏ2012.6.24
+1004   4                      {
+1005   5                          Txtext(340, 13 + (j * 58), "u");
+1006   5                      } else if (Flag_dw == 2) {
+1007   5                          Txtext(340, 13 + (j * 58), "m");
+1008   5                      } else if (Flag_dw == 3) {
+1009   5                          Txtext(340, 13 + (j * 58), "G");
+1010   5                      }
+1011   4                      Alarm();  // ±¨¾¯
+1012   4                  }
+1013   3                  if (Flag_need_Flash[j] == 1) {
+1014   4                      if ((Channel_Display[j] == 0) || (Channel_Display[j] == 1)) {
+1015   5                          Trxtext(7, 13 + (j * 58), "  ");
+1016   5                          Trxtext(10, 13 + (j * 58), "GM                        ");  // AH1ÏÔÊ¾Ì½Í·
+1017   5                      } else {
+1018   5                          Trxtext(7, 13 + (j * 58), "  ");
+1019   5                          Trxtext(10, 13 + (j * 58), "DL                        ");
+1020   5                      }
+1021   4                      Trnumber(60, 13 + (j * 58), j + 1);  // ÏÔÊ¾Ì½Í·ºÅ
+1022   4                      Trxtext(90, 13 + (j * 58), ":");     // ÏÔÊ¾Ã°ºÅ
+1023   4                      Trnumber(470, 13 + (j * 58), Channel_Detector[j][1]);
+1024   4                      Trnumber(440, 13 + (j * 58), Channel_Detector[j][0]);
+1025   4                      Trnumber(390, 13 + (j * 58), Average_Times[j]);
+1026   4                      if (Tbcd[5] != 0)  // Èô°ÙÎ»·ÇÁã£¬¸ù¾ÝÊýµÄ´óÐ¡À´ÏÔÊ¾
+1027   4                      {
+1028   5                          Trnumber(130, 13 + (j * 58), Tbcd[5]);
+1029   5                          Trnumber(160, 13 + (j * 58), Tbcd[4]);
+1030   5                          Trnumber(190, 13 + (j * 58), Tbcd[3]);
+1031   5                          Trxtext(220, 13 + (j * 58), ".");
+1032   5                          Trnumber(240, 13 + (j * 58), Tbcd[2]);
+1033   5                          Trnumber(270, 13 + (j * 58), Tbcd[1]);
+1034   5                          Trnumber(300, 13 + (j * 58), Tbcd[0]);
+1035   5                          if (Tdata < 10)                           // ÓÃÓÚÏÔÊ¾TdataËø´æµÄ¼ÆÊýÖµÏÔÊ¾
+1036   5                              Trnumber(576, 13 + (j * 58), Tdata);  // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/21/2024 10:17:25 PAGE 19  
 
-1037   4                      Trnumber(390, 13 + (j * 58), Average_Times[j]);
-1038   4                      if (Tbcd[5] != 0)  // Èô°ÙÎ»·ÇÁã£¬¸ù¾ÝÊýµÄ´óÐ¡À´ÏÔÊ¾
-1039   4                      {
-1040   5                          Trnumber(130, 13 + (j * 58), Tbcd[5]);
-1041   5                          Trnumber(160, 13 + (j * 58), Tbcd[4]);
-1042   5                          Trnumber(190, 13 + (j * 58), Tbcd[3]);
-1043   5                          Trxtext(220, 13 + (j * 58), ".");
-1044   5                          Trnumber(240, 13 + (j * 58), Tbcd[2]);
-1045   5                          Trnumber(270, 13 + (j * 58), Tbcd[1]);
-1046   5                          Trnumber(300, 13 + (j * 58), Tbcd[0]);
-1047   5                          if (Tdata < 10)                           // ÓÃÓÚÏÔÊ¾TdataËø´æµÄ¼ÆÊýÖµÏÔÊ¾
-1048   5                              Trnumber(576, 13 + (j * 58), Tdata);  // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
-1049   5                          else if ((Tdata >= 10) && (Tdata < 100))
-1050   5                              Trnumber(556, 13 + (j * 58), Tdata);
-1051   5                          else if ((Tdata >= 100) && (Tdata < 1000))
-1052   5                              Trnumber(536, 13 + (j * 58), Tdata);
-1053   5                          else if ((Tdata >= 1000) && (Tdata < 10000))
-1054   5                              Trnumber(516, 13 + (j * 58), Tdata);
-1055   5                          else if (Tdata >= 10000)
-1056   5                              Trnumber(496, 13 + (j * 58), Tdata);
-1057   5                      } else {
-1058   5                          if (Tbcd[4] != 0)  // °ÙÎ»ÎªÁãÊ®Î»·ÇÁã
-1059   5                          {
-1060   6                              Trnumber(160, 13 + (j * 58), Tbcd[4]);
-1061   6                              Trnumber(190, 13 + (j * 58), Tbcd[3]);
-1062   6                              Trxtext(220, 13 + (j * 58), ".");
-1063   6                              Trnumber(240, 13 + (j * 58), Tbcd[2]);
-1064   6                              Trnumber(270, 13 + (j * 58), Tbcd[1]);
-1065   6                              Trnumber(300, 13 + (j * 58), Tbcd[0]);
-1066   6                              if (Tdata < 10)
-1067   6                                  Trnumber(576, 13 + (j * 58), Tdata);  // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
-1068   6                              else if ((Tdata >= 10) && (Tdata < 100))
-1069   6                                  Trnumber(556, 13 + (j * 58), Tdata);
-1070   6                              else if ((Tdata >= 100) && (Tdata < 1000))
-1071   6                                  Trnumber(536, 13 + (j * 58), Tdata);
-1072   6                              else if ((Tdata >= 1000) && (Tdata < 10000))
-1073   6                                  Trnumber(516, 13 + (j * 58), Tdata);
-1074   6                              else if (Tdata >= 10000)
-1075   6                                  Trnumber(496, 13 + (j * 58), Tdata);  // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
-1076   6                          } else                                        // °ÙÎ»Ê®Î»Î»¾ùÎªÁã£¬¸öÎ»·ÇÁã
-1077   5                          {
-1078   6                              Trnumber(190, 13 + (j * 58), Tbcd[3]);
-1079   6                              Trxtext(220, 13 + (j * 58), ".");       //.Õ¼20¸öÏñËØ
-1080   6                              Trnumber(240, 13 + (j * 58), Tbcd[2]);  // Ò»¸öÊý×ÖÕ¼30¸öÏñËØ
-1081   6                              Trnumber(270, 13 + (j * 58), Tbcd[1]);
-1082   6                              Trnumber(300, 13 + (j * 58), Tbcd[0]);
-1083   6                              if (Tdata < 10)
-1084   6                                  Trnumber(576, 13 + (j * 58), Tdata);  // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
-1085   6                              else if ((Tdata >= 10) && (Tdata < 100))  // ¿ÉÒÔ¿´¼ûÒ»¸öÊý×ÖÕ¼20ÏñËØ
-1086   6                                  Trnumber(556, 13 + (j * 58), Tdata);
-1087   6                              else if ((Tdata >= 100) && (Tdata < 1000))
-1088   6                                  Trnumber(536, 13 + (j * 58), Tdata);
-1089   6                              else if ((Tdata >= 1000) && (Tdata < 10000))
-1090   6                                  Trnumber(516, 13 + (j * 58), Tdata);
-1091   6                              else if (Tdata >= 10000)
-1092   6                                  Trnumber(496, 13 + (j * 58), Tdata);
-1093   6                          }
-1094   5                      }
-1095   4                      /**********¼ÆÁ¿µ¥Î»ÏÔÊ¾***********/
-1096   4                      if (Flag_dw == 1)  // ²âÊÔÍê³Éºó¼ÓÉÏ2012.6.24
-1097   4                      {
-1098   5                          Trxtext(340, 13 + (j * 58), "u");
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/19/2024 15:40:29 PAGE 20  
+1037   5                          else if ((Tdata >= 10) && (Tdata < 100))
+1038   5                              Trnumber(556, 13 + (j * 58), Tdata);
+1039   5                          else if ((Tdata >= 100) && (Tdata < 1000))
+1040   5                              Trnumber(536, 13 + (j * 58), Tdata);
+1041   5                          else if ((Tdata >= 1000) && (Tdata < 10000))
+1042   5                              Trnumber(516, 13 + (j * 58), Tdata);
+1043   5                          else if (Tdata >= 10000)
+1044   5                              Trnumber(496, 13 + (j * 58), Tdata);
+1045   5                      } else {
+1046   5                          if (Tbcd[4] != 0)  // °ÙÎ»ÎªÁãÊ®Î»·ÇÁã
+1047   5                          {
+1048   6                              Trnumber(160, 13 + (j * 58), Tbcd[4]);
+1049   6                              Trnumber(190, 13 + (j * 58), Tbcd[3]);
+1050   6                              Trxtext(220, 13 + (j * 58), ".");
+1051   6                              Trnumber(240, 13 + (j * 58), Tbcd[2]);
+1052   6                              Trnumber(270, 13 + (j * 58), Tbcd[1]);
+1053   6                              Trnumber(300, 13 + (j * 58), Tbcd[0]);
+1054   6                              if (Tdata < 10)
+1055   6                                  Trnumber(576, 13 + (j * 58), Tdata);  // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
+1056   6                              else if ((Tdata >= 10) && (Tdata < 100))
+1057   6                                  Trnumber(556, 13 + (j * 58), Tdata);
+1058   6                              else if ((Tdata >= 100) && (Tdata < 1000))
+1059   6                                  Trnumber(536, 13 + (j * 58), Tdata);
+1060   6                              else if ((Tdata >= 1000) && (Tdata < 10000))
+1061   6                                  Trnumber(516, 13 + (j * 58), Tdata);
+1062   6                              else if (Tdata >= 10000)
+1063   6                                  Trnumber(496, 13 + (j * 58), Tdata);  // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
+1064   6                          } else                                        // °ÙÎ»Ê®Î»Î»¾ùÎªÁã£¬¸öÎ»·ÇÁã
+1065   5                          {
+1066   6                              Trnumber(190, 13 + (j * 58), Tbcd[3]);
+1067   6                              Trxtext(220, 13 + (j * 58), ".");       //.Õ¼20¸öÏñËØ
+1068   6                              Trnumber(240, 13 + (j * 58), Tbcd[2]);  // Ò»¸öÊý×ÖÕ¼30¸öÏñËØ
+1069   6                              Trnumber(270, 13 + (j * 58), Tbcd[1]);
+1070   6                              Trnumber(300, 13 + (j * 58), Tbcd[0]);
+1071   6                              if (Tdata < 10)
+1072   6                                  Trnumber(576, 13 + (j * 58), Tdata);  // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
+1073   6                              else if ((Tdata >= 10) && (Tdata < 100))  // ¿ÉÒÔ¿´¼ûÒ»¸öÊý×ÖÕ¼20ÏñËØ
+1074   6                                  Trnumber(556, 13 + (j * 58), Tdata);
+1075   6                              else if ((Tdata >= 100) && (Tdata < 1000))
+1076   6                                  Trnumber(536, 13 + (j * 58), Tdata);
+1077   6                              else if ((Tdata >= 1000) && (Tdata < 10000))
+1078   6                                  Trnumber(516, 13 + (j * 58), Tdata);
+1079   6                              else if (Tdata >= 10000)
+1080   6                                  Trnumber(496, 13 + (j * 58), Tdata);
+1081   6                          }
+1082   5                      }
+1083   4                      /**********¼ÆÁ¿µ¥Î»ÏÔÊ¾***********/
+1084   4                      if (Flag_dw == 1)  // ²âÊÔÍê³Éºó¼ÓÉÏ2012.6.24
+1085   4                      {
+1086   5                          Trxtext(340, 13 + (j * 58), "u");
+1087   5                      } else if (Flag_dw == 2) {
+1088   5                          Trxtext(340, 13 + (j * 58), "m");
+1089   5                      } else if (Flag_dw == 3) {
+1090   5                          Trxtext(340, 13 + (j * 58), "G");
+1091   5                      }
+1092   4                      Alarm();  // ±¨¾¯
+1093   4                  }
+1094   3                  send_buf[8 * j] = Tbcd[5];  // ÏòNIM-B·¢ËÍÏÔÊ¾Êý¾Ý
+1095   3                  send_buf[8 * j + 1] = Tbcd[4];
+1096   3                  send_buf[8 * j + 2] = Tbcd[3];
+1097   3                  send_buf[8 * j + 3] = Tbcd[2];
+1098   3                  send_buf[8 * j + 4] = Tbcd[1];
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/21/2024 10:17:25 PAGE 20  
 
-1099   5                      } else if (Flag_dw == 2) {
-1100   5                          Trxtext(340, 13 + (j * 58), "m");
-1101   5                      } else if (Flag_dw == 3) {
-1102   5                          Trxtext(340, 13 + (j * 58), "G");
-1103   5                      }
-1104   4                      Alarm();  // ±¨¾¯
-1105   4                  }
-1106   3                  send_buf[8 * j] = Tbcd[5];  // ÏòNIM-B·¢ËÍÏÔÊ¾Êý¾Ý
-1107   3                  send_buf[8 * j + 1] = Tbcd[4];
-1108   3                  send_buf[8 * j + 2] = Tbcd[3];
-1109   3                  send_buf[8 * j + 3] = Tbcd[2];
-1110   3                  send_buf[8 * j + 4] = Tbcd[1];
-1111   3                  send_buf[8 * j + 5] = Tbcd[0];
-1112   3                  send_buf[8 * j + 6] = Flag_dw;             // ·¢ËÍµ¥Î»±êÖ¾
-1113   3                  send_buf[8 * j + 7] = Flag_need_Flash[j];  // LEDÉÁË¸±êÖ¾
-1114   3              }
-1115   2              for (j = 0; j < 8; j++)  // ÖÃDCSÊý¾ÝµÄ±¨¾¯ÐÅºÅ
-1116   2              {
-1117   3                  if (Flag_need_Flash[j]) {
-1118   4                      DCS_Send[64] = DCS_Send[64] | Svar1[j];
-1119   4                  } else {
-1120   4                      DCS_Send[64] = DCS_Send[64] & Svar0[j];
-1121   4                  }
-1122   3              }  // 8¸öÌ½Í·¾ùÏÔÊ¾Ö´ÐÐÍê
-1123   2              Flag_Warn_Count = 1;
-1124   2              jishucount++;           // ¼ÆÊý´ÎÊýÔö¼Ó£¨ËãÆ½¾ùÖµÊ±ÓÃ£©
-1125   2              if (jishucount == 255)  // ¼ÆÊý´ÎÊýÒòÎªÊÇcharÐÍ±äÁ¿£¬×î¶àÖ§³Ö255¸ö£¬ËùÒÔÒªÖÃÁã
-1126   2                  jishucount = 8;
-1127   2              if (jishucount > 4)
-1128   2                  Flag_Meant = 1;  // Ç°Îå´ÎµÄÈ¡Öµ²»Òª£¬µÚÎå´Î²Å¿ªÊ¼Òª£¬ÖÃFlag_Meant=1£»·ñÔò¾ùÖÃ0
-1129   2              else
-1130   2                  Flag_Meant = 0;
-1131   2              // shortdelay(5000);                                                             //ÑÓÊ±
-1132   2              // for(i=0;i<33;i++)//ÏÔÊ¾ÍêÇå0
-1133   2              // buf[i]=0;
-1134   2          }  // ²âÁ¿±êÖ¾
-1135   1          else {
-1136   2              jishuguan_data = 0;   // needthinkwhetherneed?4.21,int¼ÆÊý¹ÜÊý¾Ý£¬
-1137   2              dianlishi_data = 0;   // µçÀëÊÒÊý¾Ý
-1138   2              jishuguan_rata = 0;   // ¼ÆÊý¹Ü¼ÆÊýÂÊ
-1139   2              jishuguan_jtemp = 0;  // ¼ÆÊý¹Ü¼ÁÁ¿Öµ(µ¥Î»×ª»»ºó)
-1140   2              dianlishi_jtemp = 0;  // µçÀëÊÒ¼ÁÁ¿Öµ£¨µ¥Î»×ª»»ºó£©
-1141   2              Tbcd[11] = 0;
-1142   2              Tbcd[10] = 0;
-1143   2              Tbcd[9] = 0;
-1144   2              Tbcd[8] = 0;
-1145   2              Tbcd[7] = 0;
-1146   2              Tbcd[6] = 0;
-1147   2              Tbcd[5] = 0;
-1148   2              Tbcd[4] = 0;
-1149   2              Tbcd[3] = 0;
-1150   2              Tbcd[2] = 0;
-1151   2              Tbcd[1] = 0;
-1152   2              Tbcd[0] = 0;
-1153   2              j = 10 * biaoding_input - 7;                                                                  // b
+1099   3                  send_buf[8 * j + 5] = Tbcd[0];
+1100   3                  send_buf[8 * j + 6] = Flag_dw;             // ·¢ËÍµ¥Î»±êÖ¾
+1101   3                  send_buf[8 * j + 7] = Flag_need_Flash[j];  // LEDÉÁË¸±êÖ¾
+1102   3              }
+1103   2              for (j = 0; j < 8; j++)  // ÖÃDCSÊý¾ÝµÄ±¨¾¯ÐÅºÅ
+1104   2              {
+1105   3                  if (Flag_need_Flash[j]) {
+1106   4                      DCS_Send[64] = DCS_Send[64] | Svar1[j];
+1107   4                  } else {
+1108   4                      DCS_Send[64] = DCS_Send[64] & Svar0[j];
+1109   4                  }
+1110   3              }  // 8¸öÌ½Í·¾ùÏÔÊ¾Ö´ÐÐÍê
+1111   2              Flag_Warn_Count = 1;
+1112   2              jishucount++;           // ¼ÆÊý´ÎÊýÔö¼Ó£¨ËãÆ½¾ùÖµÊ±ÓÃ£©
+1113   2              if (jishucount == 255)  // ¼ÆÊý´ÎÊýÒòÎªÊÇcharÐÍ±äÁ¿£¬×î¶àÖ§³Ö255¸ö£¬ËùÒÔÒªÖÃÁã
+1114   2                  jishucount = 8;
+1115   2              if (jishucount > 4)
+1116   2                  Flag_Meant = 1;  // Ç°Îå´ÎµÄÈ¡Öµ²»Òª£¬µÚÎå´Î²Å¿ªÊ¼Òª£¬ÖÃFlag_Meant=1£»·ñÔò¾ùÖÃ0
+1117   2              else
+1118   2                  Flag_Meant = 0;
+1119   2              // shortdelay(5000);                                                             //ÑÓÊ±
+1120   2              // for(i=0;i<33;i++)//ÏÔÊ¾ÍêÇå0
+1121   2              // buf[i]=0;
+1122   2          }  // ²âÁ¿±êÖ¾
+1123   1          else {
+1124   2              jishuguan_data = 0;   // needthinkwhetherneed?4.21,int¼ÆÊý¹ÜÊý¾Ý£¬
+1125   2              dianlishi_data = 0;   // µçÀëÊÒÊý¾Ý
+1126   2              jishuguan_rata = 0;   // ¼ÆÊý¹Ü¼ÆÊýÂÊ
+1127   2              jishuguan_jtemp = 0;  // ¼ÆÊý¹Ü¼ÁÁ¿Öµ(µ¥Î»×ª»»ºó)
+1128   2              dianlishi_jtemp = 0;  // µçÀëÊÒ¼ÁÁ¿Öµ£¨µ¥Î»×ª»»ºó£©
+1129   2              Tbcd[11] = 0;
+1130   2              Tbcd[10] = 0;
+1131   2              Tbcd[9] = 0;
+1132   2              Tbcd[8] = 0;
+1133   2              Tbcd[7] = 0;
+1134   2              Tbcd[6] = 0;
+1135   2              Tbcd[5] = 0;
+1136   2              Tbcd[4] = 0;
+1137   2              Tbcd[3] = 0;
+1138   2              Tbcd[2] = 0;
+1139   2              Tbcd[1] = 0;
+1140   2              Tbcd[0] = 0;
+1141   2              j = 10 * biaoding_input - 7;                                                                  // b
              -iaodin_inputÎªÒª±ê¶¨µÄÌ½Í·ÐòºÅ
-1154   2              jishuguan_data = buf[4 * biaoding_input - 1] * 256 + buf[4 * biaoding_input - 2];             // Ï
+1142   2              jishuguan_data = buf[4 * biaoding_input - 1] * 256 + buf[4 * biaoding_input - 2];             // Ï
              -àµ±ÓÚTdata
-1155   2              jishuguan_rata = jishuguan_data * 12;                                                         // ¼
+1143   2              jishuguan_rata = jishuguan_data * 12;                                                         // ¼
              -ÆÊýÂÊ£¬Ö±½Ó³ËÒÔ12?
-1156   2              dianlishi_data = buf[4 * biaoding_input + 1] * 256 + buf[4 * biaoding_input];                 // µ
+1144   2              dianlishi_data = buf[4 * biaoding_input + 1] * 256 + buf[4 * biaoding_input];                 // µ
              -çÀëÊÒTdata
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/19/2024 15:40:29 PAGE 21  
-
-1157   2              Para[0] = (float)(DataThouth[j] * 1000 + DataCent[j] * 100 + DataTenth[j] * 10 + DataGe[j]);  // µ
+1145   2              Para[0] = (float)(DataThouth[j] * 1000 + DataCent[j] * 100 + DataTenth[j] * 10 + DataGe[j]);  // µ
              -÷½Ú²ÎÊý
-1158   2              Para[1] = (float)((float)(DataThouth[j + 1] * 1000 + DataCent[j + 1] * 100 + DataTenth[j + 1] * 10
+1146   2              Para[1] = (float)((float)(DataThouth[j + 1] * 1000 + DataCent[j + 1] * 100 + DataTenth[j + 1] * 10
              - + DataGe[j + 1]) / 1000000);
-1159   2              jishuguan_DoseRata = (float)(Para[1] * (jishuguan_rata - Para[0]));
-1160   2              if (jishuguan_DoseRata < 0)
-1161   2                  jishuguan_DoseRata = 0.0;
-1162   2              jishuguan_jtemp = (float)jishuguan_DoseRata;
-1163   2              if ((Tbcd[11] <= 9) && (Tbcd[10] <= 9) && (Tbcd[9] <= 9) && (Tbcd[8] <= 9) && (Tbcd[7] <= 9) && (T
+1147   2              jishuguan_DoseRata = (float)(Para[1] * (jishuguan_rata - Para[0]));
+1148   2              if (jishuguan_DoseRata < 0)
+1149   2                  jishuguan_DoseRata = 0.0;
+1150   2              jishuguan_jtemp = (float)jishuguan_DoseRata;
+1151   2              if ((Tbcd[11] <= 9) && (Tbcd[10] <= 9) && (Tbcd[9] <= 9) && (Tbcd[8] <= 9) && (Tbcd[7] <= 9) && (T
              -bcd[6] <= 9))  // 4.21ËÆºõ¶àÓà£¬¿É²»¿ÉÒÔÐÞ¸Äµô
-1164   2              {
-1165   3                  Tbcd[11] = (uchar)(((int)jishuguan_jtemp) / 100);       // Ç§Î»
-1166   3                  Tbcd[10] = (uchar)(((int)jishuguan_jtemp) % 100 / 10);  // °ÙÎ»
-1167   3                  Tbcd[9] = (uchar)(((int)jishuguan_jtemp) % 100 % 10);   // ¸öÎ»
-1168   3                  jishuguan_count_temp = (jishuguan_jtemp - (int)jishuguan_jtemp) * 1000;
-1169   3                  Tbcd[8] = (uchar)(jishuguan_count_temp / 100);
-1170   3                  Tbcd[7] = (uchar)(jishuguan_count_temp % 100 / 10);
-1171   3                  Tbcd[6] = (uchar)(jishuguan_count_temp % 100 % 10);
-1172   3              }
-1173   2              Para[2] = (float)(DataThouth[j + 2] * 1000 + DataCent[j + 2] * 100 + DataTenth[j + 2] * 10 + DataG
+1152   2              {
+1153   3                  Tbcd[11] = (uchar)(((int)jishuguan_jtemp) / 100);       // Ç§Î»
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/21/2024 10:17:25 PAGE 21  
+
+1154   3                  Tbcd[10] = (uchar)(((int)jishuguan_jtemp) % 100 / 10);  // °ÙÎ»
+1155   3                  Tbcd[9] = (uchar)(((int)jishuguan_jtemp) % 100 % 10);   // ¸öÎ»
+1156   3                  jishuguan_count_temp = (jishuguan_jtemp - (int)jishuguan_jtemp) * 1000;
+1157   3                  Tbcd[8] = (uchar)(jishuguan_count_temp / 100);
+1158   3                  Tbcd[7] = (uchar)(jishuguan_count_temp % 100 / 10);
+1159   3                  Tbcd[6] = (uchar)(jishuguan_count_temp % 100 % 10);
+1160   3              }
+1161   2              Para[2] = (float)(DataThouth[j + 2] * 1000 + DataCent[j + 2] * 100 + DataTenth[j + 2] * 10 + DataG
              -e[j + 2]);  // µ÷½Ú²ÎÊý
-1174   2              Para[3] = (float)((float)(DataThouth[j + 3] * 1000 + DataCent[j + 3] * 100 + DataTenth[j + 3] * 10
+1162   2              Para[3] = (float)((float)(DataThouth[j + 3] * 1000 + DataCent[j + 3] * 100 + DataTenth[j + 3] * 10
              - + DataGe[j + 3]) / 1000);
-1175   2              dianlishi_DoseRata = (float)(Para[3] * (dianlishi_data - Para[2]));
-1176   2              if (dianlishi_DoseRata < 0)
-1177   2                  dianlishi_DoseRata = 0.0;
-1178   2              dianlishi_jtemp = (float)(dianlishi_DoseRata / 1000);
-1179   2              if ((Tbcd[5] <= 9) && (Tbcd[4] <= 9) && (Tbcd[3] <= 9) && (Tbcd[2] <= 9) && (Tbcd[1] <= 9) && (Tbc
+1163   2              dianlishi_DoseRata = (float)(Para[3] * (dianlishi_data - Para[2]));
+1164   2              if (dianlishi_DoseRata < 0)
+1165   2                  dianlishi_DoseRata = 0.0;
+1166   2              dianlishi_jtemp = (float)(dianlishi_DoseRata / 1000);
+1167   2              if ((Tbcd[5] <= 9) && (Tbcd[4] <= 9) && (Tbcd[3] <= 9) && (Tbcd[2] <= 9) && (Tbcd[1] <= 9) && (Tbc
              -d[0] <= 9))  // 4.21ËÆºõ¶àÓà£¬¿É²»¿ÉÒÔÐÞ¸Äµô
-1180   2              {
-1181   3                  Tbcd[5] = (uchar)(((int)dianlishi_jtemp) / 100);       // Ç§Î»
-1182   3                  Tbcd[4] = (uchar)(((int)dianlishi_jtemp) % 100 / 10);  // °ÙÎ»
-1183   3                  Tbcd[3] = (uchar)(((int)dianlishi_jtemp) % 100 % 10);  // ¸öÎ»
-1184   3                  dianlishi_count_temp = (dianlishi_jtemp - (int)dianlishi_jtemp) * 1000;
-1185   3                  Tbcd[2] = (uchar)(dianlishi_count_temp / 100);
-1186   3                  Tbcd[1] = (uchar)(dianlishi_count_temp % 100 / 10);
-1187   3                  Tbcd[0] = (uchar)(dianlishi_count_temp % 100 % 10);
-1188   3              }
-1189   2              Txtext(200, 58, "±ê¶¨Ì½Í·");
-1190   2              Tnumber(400, 58, biaoding_input);
-1191   2              Txtext(10, 116, "¸Ç¸ï¹Ü");
-1192   2              ;
-1193   2              Txtext(160, 116, ":");
-1194   2              Txtext(220, 174, "uGy/h");
-1195   2              Txtext(520, 174, "CPM");
-1196   2              Txtext(10, 290, "µçÀëÊÒ");
-1197   2              ;
-1198   2              Txtext(160, 290, ":");
-1199   2              Txtext(220, 348, "mGy/h");
-1200   2              Txtext(520, 348, "CP5S");
-1201   2              if (Tbcd[11] != 0) {
-1202   3                  Tnumber(10, 174, Tbcd[11]);
-1203   3                  Tnumber(40, 174, Tbcd[10]);
-1204   3                  Tnumber(70, 174, Tbcd[9]);
-1205   3                  Txtext(100, 174, ".");
-1206   3                  Tnumber(130, 174, Tbcd[8]);
-1207   3                  Tnumber(160, 174, Tbcd[7]);
-1208   3                  Tnumber(190, 174, Tbcd[6]);
-1209   3                  if (jishuguan_data < 10)
-1210   3                      Tnumber(490, 174, jishuguan_data);  // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
-1211   3                  else if ((jishuguan_data >= 10) && (jishuguan_data < 100))
-1212   3                      Tnumber(460, 174, jishuguan_data);
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/19/2024 15:40:29 PAGE 22  
+1168   2              {
+1169   3                  Tbcd[5] = (uchar)(((int)dianlishi_jtemp) / 100);       // Ç§Î»
+1170   3                  Tbcd[4] = (uchar)(((int)dianlishi_jtemp) % 100 / 10);  // °ÙÎ»
+1171   3                  Tbcd[3] = (uchar)(((int)dianlishi_jtemp) % 100 % 10);  // ¸öÎ»
+1172   3                  dianlishi_count_temp = (dianlishi_jtemp - (int)dianlishi_jtemp) * 1000;
+1173   3                  Tbcd[2] = (uchar)(dianlishi_count_temp / 100);
+1174   3                  Tbcd[1] = (uchar)(dianlishi_count_temp % 100 / 10);
+1175   3                  Tbcd[0] = (uchar)(dianlishi_count_temp % 100 % 10);
+1176   3              }
+1177   2              Txtext(200, 58, "±ê¶¨Ì½Í·");
+1178   2              Tnumber(400, 58, biaoding_input);
+1179   2              Txtext(10, 116, "¸Ç¸ï¹Ü");
+1180   2              ;
+1181   2              Txtext(160, 116, ":");
+1182   2              Txtext(220, 174, "uGy/h");
+1183   2              Txtext(520, 174, "CPM");
+1184   2              Txtext(10, 290, "µçÀëÊÒ");
+1185   2              ;
+1186   2              Txtext(160, 290, ":");
+1187   2              Txtext(220, 348, "mGy/h");
+1188   2              Txtext(520, 348, "CP5S");
+1189   2              if (Tbcd[11] != 0) {
+1190   3                  Tnumber(10, 174, Tbcd[11]);
+1191   3                  Tnumber(40, 174, Tbcd[10]);
+1192   3                  Tnumber(70, 174, Tbcd[9]);
+1193   3                  Txtext(100, 174, ".");
+1194   3                  Tnumber(130, 174, Tbcd[8]);
+1195   3                  Tnumber(160, 174, Tbcd[7]);
+1196   3                  Tnumber(190, 174, Tbcd[6]);
+1197   3                  if (jishuguan_data < 10)
+1198   3                      Tnumber(490, 174, jishuguan_data);  // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
+1199   3                  else if ((jishuguan_data >= 10) && (jishuguan_data < 100))
+1200   3                      Tnumber(460, 174, jishuguan_data);
+1201   3                  else if ((jishuguan_data >= 100) && (jishuguan_data < 1000))
+1202   3                      Tnumber(430, 174, jishuguan_data);
+1203   3                  else if ((jishuguan_data >= 1000) && (jishuguan_data < 10000))
+1204   3                      Tnumber(400, 174, jishuguan_data);
+1205   3                  else if (jishuguan_data >= 10000)
+1206   3                      Tnumber(370, 174, jishuguan_data);
+1207   3              } else {
+1208   3                  if (Tbcd[10] != 0) {
+1209   4                      Tnumber(40, 174, Tbcd[10]);
+1210   4                      Tnumber(70, 174, Tbcd[9]);
+1211   4                      Txtext(100, 174, ".");
+1212   4                      Tnumber(130, 174, Tbcd[8]);
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/21/2024 10:17:25 PAGE 22  
 
-1213   3                  else if ((jishuguan_data >= 100) && (jishuguan_data < 1000))
-1214   3                      Tnumber(430, 174, jishuguan_data);
-1215   3                  else if ((jishuguan_data >= 1000) && (jishuguan_data < 10000))
-1216   3                      Tnumber(400, 174, jishuguan_data);
-1217   3                  else if (jishuguan_data >= 10000)
-1218   3                      Tnumber(370, 174, jishuguan_data);
-1219   3              } else {
-1220   3                  if (Tbcd[10] != 0) {
-1221   4                      Tnumber(40, 174, Tbcd[10]);
-1222   4                      Tnumber(70, 174, Tbcd[9]);
-1223   4                      Txtext(100, 174, ".");
-1224   4                      Tnumber(130, 174, Tbcd[8]);
-1225   4                      Tnumber(160, 174, Tbcd[7]);
-1226   4                      Tnumber(190, 174, Tbcd[6]);
-1227   4                      if (jishuguan_data < 10)
-1228   4                          Tnumber(490, 174, jishuguan_data);  // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
-1229   4                      else if ((jishuguan_data >= 10) && (jishuguan_data < 100))
-1230   4                          Tnumber(460, 174, jishuguan_data);
-1231   4                      else if ((jishuguan_data >= 100) && (jishuguan_data < 1000))
-1232   4                          Tnumber(430, 174, jishuguan_data);
-1233   4                      else if ((jishuguan_data >= 1000) && (jishuguan_data < 10000))
-1234   4                          Tnumber(400, 174, jishuguan_data);
-1235   4                      else if (jishuguan_data >= 10000)
-1236   4                          Tnumber(370, 174, jishuguan_data);
-1237   4                  } else {
-1238   4                      Tnumber(70, 174, Tbcd[9]);
-1239   4                      Txtext(100, 174, ".");
-1240   4                      Tnumber(130, 174, Tbcd[8]);
-1241   4                      Tnumber(160, 174, Tbcd[7]);
-1242   4                      Tnumber(190, 174, Tbcd[6]);
-1243   4                      if (jishuguan_data < 10)
-1244   4                          Tnumber(490, 174, jishuguan_data);  // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
-1245   4                      else if ((jishuguan_data >= 10) && (jishuguan_data < 100))
-1246   4                          Tnumber(460, 174, jishuguan_data);
-1247   4                      else if ((jishuguan_data >= 100) && (jishuguan_data < 1000))
-1248   4                          Tnumber(430, 174, jishuguan_data);
-1249   4                      else if ((jishuguan_data >= 1000) && (jishuguan_data < 10000))
-1250   4                          Tnumber(400, 174, jishuguan_data);
-1251   4                      else if (jishuguan_data >= 10000)
-1252   4                          Tnumber(370, 174, jishuguan_data);
-1253   4                  }
-1254   3              }
-1255   2              if (Tbcd[5] != 0) {
-1256   3                  Tnumber(10, 348, Tbcd[5]);
-1257   3                  Tnumber(40, 348, Tbcd[4]);
-1258   3                  Tnumber(70, 348, Tbcd[3]);
-1259   3                  Txtext(100, 348, ".");
-1260   3                  Tnumber(130, 348, Tbcd[2]);
-1261   3                  Tnumber(160, 348, Tbcd[1]);
-1262   3                  Tnumber(190, 348, Tbcd[0]);
-1263   3                  if (dianlishi_data < 10)
-1264   3                      Tnumber(490, 348, dianlishi_data);  // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
-1265   3                  else if ((dianlishi_data >= 10) && (dianlishi_data < 100))
-1266   3                      Tnumber(460, 348, dianlishi_data);
-1267   3                  else if ((dianlishi_data >= 100) && (dianlishi_data < 1000))
-1268   3                      Tnumber(430, 348, dianlishi_data);
-1269   3                  else if ((dianlishi_data >= 1000) && (dianlishi_data < 10000))
-1270   3                      Tnumber(400, 348, dianlishi_data);
-1271   3                  else if (dianlishi_data >= 10000)
-1272   3                      Tnumber(370, 348, dianlishi_data);
-1273   3              } else {
-1274   3                  if (Tbcd[4] != 0) {
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/19/2024 15:40:29 PAGE 23  
+1213   4                      Tnumber(160, 174, Tbcd[7]);
+1214   4                      Tnumber(190, 174, Tbcd[6]);
+1215   4                      if (jishuguan_data < 10)
+1216   4                          Tnumber(490, 174, jishuguan_data);  // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
+1217   4                      else if ((jishuguan_data >= 10) && (jishuguan_data < 100))
+1218   4                          Tnumber(460, 174, jishuguan_data);
+1219   4                      else if ((jishuguan_data >= 100) && (jishuguan_data < 1000))
+1220   4                          Tnumber(430, 174, jishuguan_data);
+1221   4                      else if ((jishuguan_data >= 1000) && (jishuguan_data < 10000))
+1222   4                          Tnumber(400, 174, jishuguan_data);
+1223   4                      else if (jishuguan_data >= 10000)
+1224   4                          Tnumber(370, 174, jishuguan_data);
+1225   4                  } else {
+1226   4                      Tnumber(70, 174, Tbcd[9]);
+1227   4                      Txtext(100, 174, ".");
+1228   4                      Tnumber(130, 174, Tbcd[8]);
+1229   4                      Tnumber(160, 174, Tbcd[7]);
+1230   4                      Tnumber(190, 174, Tbcd[6]);
+1231   4                      if (jishuguan_data < 10)
+1232   4                          Tnumber(490, 174, jishuguan_data);  // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
+1233   4                      else if ((jishuguan_data >= 10) && (jishuguan_data < 100))
+1234   4                          Tnumber(460, 174, jishuguan_data);
+1235   4                      else if ((jishuguan_data >= 100) && (jishuguan_data < 1000))
+1236   4                          Tnumber(430, 174, jishuguan_data);
+1237   4                      else if ((jishuguan_data >= 1000) && (jishuguan_data < 10000))
+1238   4                          Tnumber(400, 174, jishuguan_data);
+1239   4                      else if (jishuguan_data >= 10000)
+1240   4                          Tnumber(370, 174, jishuguan_data);
+1241   4                  }
+1242   3              }
+1243   2              if (Tbcd[5] != 0) {
+1244   3                  Tnumber(10, 348, Tbcd[5]);
+1245   3                  Tnumber(40, 348, Tbcd[4]);
+1246   3                  Tnumber(70, 348, Tbcd[3]);
+1247   3                  Txtext(100, 348, ".");
+1248   3                  Tnumber(130, 348, Tbcd[2]);
+1249   3                  Tnumber(160, 348, Tbcd[1]);
+1250   3                  Tnumber(190, 348, Tbcd[0]);
+1251   3                  if (dianlishi_data < 10)
+1252   3                      Tnumber(490, 348, dianlishi_data);  // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
+1253   3                  else if ((dianlishi_data >= 10) && (dianlishi_data < 100))
+1254   3                      Tnumber(460, 348, dianlishi_data);
+1255   3                  else if ((dianlishi_data >= 100) && (dianlishi_data < 1000))
+1256   3                      Tnumber(430, 348, dianlishi_data);
+1257   3                  else if ((dianlishi_data >= 1000) && (dianlishi_data < 10000))
+1258   3                      Tnumber(400, 348, dianlishi_data);
+1259   3                  else if (dianlishi_data >= 10000)
+1260   3                      Tnumber(370, 348, dianlishi_data);
+1261   3              } else {
+1262   3                  if (Tbcd[4] != 0) {
+1263   4                      Tnumber(40, 348, Tbcd[4]);
+1264   4                      Tnumber(70, 348, Tbcd[3]);
+1265   4                      Txtext(100, 348, ".");
+1266   4                      Tnumber(130, 348, Tbcd[2]);
+1267   4                      Tnumber(160, 348, Tbcd[1]);
+1268   4                      Tnumber(190, 348, Tbcd[0]);
+1269   4                      if (dianlishi_data < 10)
+1270   4                          Tnumber(490, 348, dianlishi_data);  // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
+1271   4                      else if ((dianlishi_data >= 10) && (dianlishi_data < 100))
+1272   4                          Tnumber(460, 348, dianlishi_data);
+1273   4                      else if ((dianlishi_data >= 100) && (dianlishi_data < 1000))
+1274   4                          Tnumber(430, 348, dianlishi_data);
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/21/2024 10:17:25 PAGE 23  
 
-1275   4                      Tnumber(40, 348, Tbcd[4]);
-1276   4                      Tnumber(70, 348, Tbcd[3]);
-1277   4                      Txtext(100, 348, ".");
-1278   4                      Tnumber(130, 348, Tbcd[2]);
-1279   4                      Tnumber(160, 348, Tbcd[1]);
-1280   4                      Tnumber(190, 348, Tbcd[0]);
-1281   4                      if (dianlishi_data < 10)
-1282   4                          Tnumber(490, 348, dianlishi_data);  // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
-1283   4                      else if ((dianlishi_data >= 10) && (dianlishi_data < 100))
-1284   4                          Tnumber(460, 348, dianlishi_data);
-1285   4                      else if ((dianlishi_data >= 100) && (dianlishi_data < 1000))
-1286   4                          Tnumber(430, 348, dianlishi_data);
-1287   4                      else if ((dianlishi_data >= 1000) && (dianlishi_data < 10000))
-1288   4                          Tnumber(400, 348, dianlishi_data);
-1289   4                      else if (dianlishi_data >= 10000)
-1290   4                          Tnumber(370, 348, dianlishi_data);
-1291   4                  } else {
-1292   4                      Tnumber(70, 348, Tbcd[3]);
-1293   4                      Txtext(100, 348, ".");
-1294   4                      Tnumber(130, 348, Tbcd[2]);
-1295   4                      Tnumber(160, 348, Tbcd[1]);
-1296   4                      Tnumber(190, 348, Tbcd[0]);
-1297   4                      if (dianlishi_data < 10)
-1298   4                          Tnumber(490, 348, dianlishi_data);  // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
-1299   4                      else if ((dianlishi_data >= 10) && (dianlishi_data < 100))
-1300   4                          Tnumber(460, 348, dianlishi_data);
-1301   4                      else if ((dianlishi_data >= 100) && (dianlishi_data < 1000))
-1302   4                          Tnumber(430, 348, dianlishi_data);
-1303   4                      else if ((dianlishi_data >= 1000) && (dianlishi_data < 10000))
-1304   4                          Tnumber(400, 348, dianlishi_data);
-1305   4                      else if (dianlishi_data >= 10000)
-1306   4                          Tnumber(370, 348, dianlishi_data);
-1307   4                  }
-1308   3              }
-1309   2          }
+1275   4                      else if ((dianlishi_data >= 1000) && (dianlishi_data < 10000))
+1276   4                          Tnumber(400, 348, dianlishi_data);
+1277   4                      else if (dianlishi_data >= 10000)
+1278   4                          Tnumber(370, 348, dianlishi_data);
+1279   4                  } else {
+1280   4                      Tnumber(70, 348, Tbcd[3]);
+1281   4                      Txtext(100, 348, ".");
+1282   4                      Tnumber(130, 348, Tbcd[2]);
+1283   4                      Tnumber(160, 348, Tbcd[1]);
+1284   4                      Tnumber(190, 348, Tbcd[0]);
+1285   4                      if (dianlishi_data < 10)
+1286   4                          Tnumber(490, 348, dianlishi_data);  // ²âÊÔÍê³ÉºóÈ¥µô2012.6.24
+1287   4                      else if ((dianlishi_data >= 10) && (dianlishi_data < 100))
+1288   4                          Tnumber(460, 348, dianlishi_data);
+1289   4                      else if ((dianlishi_data >= 100) && (dianlishi_data < 1000))
+1290   4                          Tnumber(430, 348, dianlishi_data);
+1291   4                      else if ((dianlishi_data >= 1000) && (dianlishi_data < 10000))
+1292   4                          Tnumber(400, 348, dianlishi_data);
+1293   4                      else if (dianlishi_data >= 10000)
+1294   4                          Tnumber(370, 348, dianlishi_data);
+1295   4                  }
+1296   3              }
+1297   2          }
+1298   1      }
+1299          
+1300          /************************************
+1301           *¶ÌÑÓÊ±
+1302           ************************************/
+1303          void shortdelay(uint i)
+1304          {
+1305   1          uint k;
+1306   1          uint n;
+1307   1          for (k = 0; k < i; k++)
+1308   1              for (n = 200; n > 0; n--)
+1309   1                  ;
 1310   1      }
 1311          
-1312          /************************************
-1313           *¶ÌÑÓÊ±
-1314           ************************************/
-1315          void shortdelay(uint i)
+1312          /********************************
+1313           *Ö¸Ê¾µÆºÍ±¨¾¯
+1314           ********************************/
+1315          void Alarm()
 1316          {
-1317   1          uint k;
-1318   1          uint n;
-1319   1          for (k = 0; k < i; k++)
-1320   1              for (n = 200; n > 0; n--)
-1321   1                  ;
-1322   1      }
-1323          
-1324          /********************************
-1325           *Ö¸Ê¾µÆºÍ±¨¾¯
-1326           ********************************/
-1327          void Alarm()
-1328          {
-1329   1          uchar n;
-1330   1          for (n = 0; n < 10; n++) {
-1331   2              Led573 = Var_Led;
-1332   2              if (Flag_Warn == 1)  // ÉùÒô±¨¾¯
-1333   2              {
-1334   3                  Speak = 1;
-1335   3              }
-1336   2          }
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/19/2024 15:40:29 PAGE 24  
+1317   1          uchar n;
+1318   1          for (n = 0; n < 10; n++) {
+1319   2              Led573 = Var_Led;
+1320   2              if (Flag_Warn == 1)  // ÉùÒô±¨¾¯
+1321   2              {
+1322   3                  Speak = 1;
+1323   3              }
+1324   2          }
+1325   1      }
+1326          
+1327          /*******************************
+1328           *¸üÐÂÖ¸Ê¾µÆ×´Ì¬
+1329           *******************************/
+1330          void Updata_Flash(uchar j)
+1331          {
+1332   1          if (Flag_need_Flash[j]) {
+1333   2              if (State_Flash[j] == 1) {
+1334   3                  State_Flash[j] = 0;
+1335   3              } else {
+1336   3                  State_Flash[j] = 1;
+C51 COMPILER V9.60.7.0   8253COUNT                                                         03/21/2024 10:17:25 PAGE 24  
 
-1337   1      }
-1338          
-1339          /*******************************
-1340           *¸üÐÂÖ¸Ê¾µÆ×´Ì¬
-1341           *******************************/
-1342          void Updata_Flash(uchar j)
-1343          {
-1344   1          if (Flag_need_Flash[j]) {
-1345   2              if (State_Flash[j] == 1) {
-1346   3                  State_Flash[j] = 0;
-1347   3              } else {
-1348   3                  State_Flash[j] = 1;
-1349   3              }
-1350   2          } else
-1351   1              State_Flash[j] = 0;
+1337   3              }
+1338   2          } else
+1339   1              State_Flash[j] = 0;
+1340   1      }
+1341          
+1342          /***********************************
+1343           *Ö¸Ê¾µÆÉÁË¸
+1344           ************************************/
+1345          void Led_Flash(void)
+1346          {
+1347   1          uchar i;
+1348   1          for (i = 0; i < 8; i++) {
+1349   2              Updata_Flash(i);                                  // ×´Ì¬È¡·´
+1350   2              Led_Disp(i, Flag_need_Flash[i], State_Flash[i]);  // µÆ×´Ì¬ÏÔÊ¾
+1351   2          }
 1352   1      }
 1353          
-1354          /***********************************
-1355           *Ö¸Ê¾µÆÉÁË¸
-1356           ************************************/
-1357          void Led_Flash(void)
+1354          /************************************
+1355           *Ö¸Ê¾µÆ×´Ì¬ÏÔÊ¾
+1356           *************************************/
+1357          void Led_Disp(uchar Num, uchar Flag, uchar State)
 1358          {
-1359   1          uchar i;
-1360   1          for (i = 0; i < 8; i++) {
-1361   2              Updata_Flash(i);                                  // ×´Ì¬È¡·´
-1362   2              Led_Disp(i, Flag_need_Flash[i], State_Flash[i]);  // µÆ×´Ì¬ÏÔÊ¾
-1363   2          }
-1364   1      }
-1365          
-1366          /************************************
-1367           *Ö¸Ê¾µÆ×´Ì¬ÏÔÊ¾
-1368           *************************************/
-1369          void Led_Disp(uchar Num, uchar Flag, uchar State)
-1370          {
-1371   1          if (Flag) {
-1372   2              if (State) {
-1373   3                  Var_Led = Var_Led & Svar0[Num];  // Ö¸Ê¾µÆÁÁ
-1374   3                  Led573 = Var_Led;
-1375   3                  if (Flag_Warn == 1)  // ÐèÒª·äÃùÆ÷¹¤×÷
-1376   3                  {
-1377   4                      Speak = 0;  // ·äÃùÆ÷Ïì
-1378   4                      shortdelay(100);
-1379   4                  }
-1380   3                  return;
-1381   3              }
-1382   2          }
-1383   1          Var_Led = Var_Led | Svar1[Num];  // Ö¸Ê¾µÆÃð
-1384   1          Led573 = Var_Led;
-1385   1          if (Flag_Warn == 1)  // ÐèÒª·äÃùÆ÷¹¤×÷
-1386   1          {
-1387   2              Speak = 1;  // ·äÃùÆ÷²»Ïì
-1388   2              shortdelay(100);
-1389   2          }
-1390   1      }
+1359   1          if (Flag) {
+1360   2              if (State) {
+1361   3                  Var_Led = Var_Led & Svar0[Num];  // Ö¸Ê¾µÆÁÁ
+1362   3                  Led573 = Var_Led;
+1363   3                  if (Flag_Warn == 1)  // ÐèÒª·äÃùÆ÷¹¤×÷
+1364   3                  {
+1365   4                      Speak = 0;  // ·äÃùÆ÷Ïì
+1366   4                      shortdelay(100);
+1367   4                  }
+1368   3                  return;
+1369   3              }
+1370   2          }
+1371   1          Var_Led = Var_Led | Svar1[Num];  // Ö¸Ê¾µÆÃð
+1372   1          Led573 = Var_Led;
+1373   1          if (Flag_Warn == 1)  // ÐèÒª·äÃùÆ÷¹¤×÷
+1374   1          {
+1375   2              Speak = 1;  // ·äÃùÆ÷²»Ïì
+1376   2              shortdelay(100);
+1377   2          }
+1378   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =  23470    ----
+   CODE SIZE        =  20994    ----
    CONSTANT SIZE    =    153    ----
    XDATA SIZE       =    627      41
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
-C51 COMPILER V9.60.7.0   8253COUNT                                                         03/19/2024 15:40:29 PAGE 25  
-
    IDATA SIZE       =     48      24
    BIT SIZE         =      1    ----
 END OF MODULE INFORMATION.

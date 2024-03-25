@@ -165,8 +165,8 @@ void Int0() interrupt 0
     Keyvar = Keypress;
     Ptem1 = Keyvar;  // 读取端口的地址是否先给它全部置1
     Ptem1 = Ptem1 & 0x7F;
-    for (i = 0; i < 18433; i++)
-        ;  // 延时去抖【2024】22.1184晶振机器周期0.5425us，这里消抖延时太短，一般10ms，改为18433
+    for (i = 0; i < 27649; i++)
+        ;  // 延时去抖【2024】22.1184晶振机器周期0.5425us，这里消抖延时太短，一般15ms，改为27649
     Ptem2 = Keyvar;
     Ptem2 = Ptem2 & 0x7F;
     if (Ptem1 != Ptem2) {
