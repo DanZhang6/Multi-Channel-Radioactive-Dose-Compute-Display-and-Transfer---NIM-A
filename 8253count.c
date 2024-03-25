@@ -1271,7 +1271,7 @@ void ShowData()
         Txtext(220, 348, "mGy/h");
         Txtext(520, 348, "CP5S");
         if (Tbcd[11] != 0) {
-            Tnumber(10, 174, Tbcd[11]);
+            Tnumber(10, 174, Tbcd[11]);:
             Tnumber(40, 174, Tbcd[10]);
             Tnumber(70, 174, Tbcd[9]);
             Txtext(100, 174, ".");
