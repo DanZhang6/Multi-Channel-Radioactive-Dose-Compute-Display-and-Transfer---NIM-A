@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   SETPARA                                                           03/21/2024 10:17:26 PAGE 1   
+C51 COMPILER V9.60.7.0   SETPARA                                                           03/27/2024 14:56:11 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE SETPARA
@@ -62,7 +62,7 @@ line level    source
   51   3                  YuCent[xh - 1] = Incdata;
   52   3                  dt_in[bz * 4 - 2] = YuCent[xh - 1];
   53   3              } else if (Incdataright == 3) {
-C51 COMPILER V9.60.7.0   SETPARA                                                           03/21/2024 10:17:26 PAGE 2   
+C51 COMPILER V9.60.7.0   SETPARA                                                           03/27/2024 14:56:11 PAGE 2   
 
   54   3                  YuTenth[xh - 1] = Incdata;
   55   3                  dt_in[bz * 4 - 1] = YuTenth[xh - 1];
@@ -126,7 +126,7 @@ line level    source
  113   5                          xh = 1;             // 探头显示标志不能超过探头个数
  114   5                          bz = 1;
  115   5                      }
-C51 COMPILER V9.60.7.0   SETPARA                                                           03/21/2024 10:17:26 PAGE 3   
+C51 COMPILER V9.60.7.0   SETPARA                                                           03/27/2024 14:56:11 PAGE 3   
 
  116   4                      Lcd_Clear();  // 【2024】3-12解决重叠显示修改
  117   4                  }
@@ -190,7 +190,7 @@ line level    source
  175   4                      if (xh < 8) {
  176   5                          if (wb == 7) {
  177   6                              wb = 1;
-C51 COMPILER V9.60.7.0   SETPARA                                                           03/21/2024 10:17:26 PAGE 4   
+C51 COMPILER V9.60.7.0   SETPARA                                                           03/27/2024 14:56:11 PAGE 4   
 
  178   6                              Flag_Change = 1;  // 刷新探头参数设置
  179   6                          }
@@ -254,7 +254,7 @@ line level    source
  237   4                      {
  238   5                          wb--;
  239   5                          if (wb == 0) {
-C51 COMPILER V9.60.7.0   SETPARA                                                           03/21/2024 10:17:26 PAGE 5   
+C51 COMPILER V9.60.7.0   SETPARA                                                           03/27/2024 14:56:11 PAGE 5   
 
  240   6                              if (xh == 8)  // 第八个探头就一组阈值，两组参数设置，共三行
  241   6                              {
@@ -318,7 +318,7 @@ line level    source
  299           *         参数行坐标转换
  300           ****************************************/
  301          void Line_Change()
-C51 COMPILER V9.60.7.0   SETPARA                                                           03/21/2024 10:17:26 PAGE 6   
+C51 COMPILER V9.60.7.0   SETPARA                                                           03/27/2024 14:56:11 PAGE 6   
 
  302          {
  303   1          if (wb != 1) {
@@ -382,7 +382,7 @@ line level    source
  361   5                          Open(480 + Incdataright * 48 - 96, 128 + wb * 68 - 68);
  362   5                      }
  363   4                  }
-C51 COMPILER V9.60.7.0   SETPARA                                                           03/21/2024 10:17:26 PAGE 7   
+C51 COMPILER V9.60.7.0   SETPARA                                                           03/27/2024 14:56:11 PAGE 7   
 
  364   3              }
  365   2              if (Flag_Change == 1) {
@@ -446,7 +446,7 @@ line level    source
  423   2              Txtext(336, 216, "f1:");
  424   2              Tnumber(432, 216, DataThouth[xh * 10 - 6]);
  425   2              Tnumber(480, 216, DataCent[xh * 10 - 6]);
-C51 COMPILER V9.60.7.0   SETPARA                                                           03/21/2024 10:17:26 PAGE 8   
+C51 COMPILER V9.60.7.0   SETPARA                                                           03/27/2024 14:56:11 PAGE 8   
 
  426   2              Tnumber(528, 216, DataTenth[xh * 10 - 6]);
  427   2              Tnumber(576, 216, DataGe[xh * 10 - 6]);
@@ -510,7 +510,7 @@ line level    source
  485   2              Tnumber(256, 148, DataGe[xh * 10 - 9]);
  486   2      
  487   2              Tnumber(432, 148, DataThouth[xh * 10 - 8]);
-C51 COMPILER V9.60.7.0   SETPARA                                                           03/21/2024 10:17:26 PAGE 9   
+C51 COMPILER V9.60.7.0   SETPARA                                                           03/27/2024 14:56:11 PAGE 9   
 
  488   2              Tnumber(480, 148, DataCent[xh * 10 - 8]);
  489   2              Tnumber(528, 148, DataTenth[xh * 10 - 8]);
@@ -574,7 +574,7 @@ line level    source
 MODULE INFORMATION:   STATIC OVERLAYABLE
    CODE SIZE        =   4929    ----
    CONSTANT SIZE    =     62    ----
-C51 COMPILER V9.60.7.0   SETPARA                                                           03/21/2024 10:17:26 PAGE 10  
+C51 COMPILER V9.60.7.0   SETPARA                                                           03/27/2024 14:56:11 PAGE 10  
 
    XDATA SIZE       =     34    ----
    PDATA SIZE       =   ----    ----

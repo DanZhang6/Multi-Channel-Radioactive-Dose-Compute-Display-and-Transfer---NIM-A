@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   SERIAL1DIP                                                        03/21/2024 10:17:26 PAGE 1   
+C51 COMPILER V9.60.7.0   SERIAL1DIP                                                        03/27/2024 14:56:10 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE SERIAL1DIP
@@ -62,7 +62,7 @@ line level    source
   52                                          }
   53                                          else if(send_buf[8*x+7] == 0)
   54                                          {
-C51 COMPILER V9.60.7.0   SERIAL1DIP                                                        03/21/2024 10:17:26 PAGE 2   
+C51 COMPILER V9.60.7.0   SERIAL1DIP                                                        03/27/2024 14:56:10 PAGE 2   
 
   55                                                  alarm_data = 0x02;
   56                                                  backup_data[6*z] = alarm_data ;
@@ -126,7 +126,7 @@ line level    source
  113                                  backup_data[4*z+2] = data_A[4*z+1] | data_A[4*z];
  114                          }
  115          }*/
-C51 COMPILER V9.60.7.0   SERIAL1DIP                                                        03/21/2024 10:17:26 PAGE 3   
+C51 COMPILER V9.60.7.0   SERIAL1DIP                                                        03/27/2024 14:56:10 PAGE 3   
 
  116          /**********************************
  117           *         备用显示关闭处理
@@ -190,7 +190,7 @@ line level    source
  175                                          {
  176                                                  alarm_data |= 0x00;
  177                                                  backup_data[6*z+12] = alarm_data ;
-C51 COMPILER V9.60.7.0   SERIAL1DIP                                                        03/21/2024 10:17:26 PAGE 4   
+C51 COMPILER V9.60.7.0   SERIAL1DIP                                                        03/27/2024 14:56:10 PAGE 4   
 
  178                                          }
  179                                  }
@@ -254,7 +254,7 @@ line level    source
  237                                              data_B[4*z+2] = Backup_Covn(receive_buf[8*x+1],data_B[4*z+2]);
  238                                          }
  239                                          else if(receive_buf[8*x+1] == 0)   //如果百位为零
-C51 COMPILER V9.60.7.0   SERIAL1DIP                                                        03/21/2024 10:17:26 PAGE 5   
+C51 COMPILER V9.60.7.0   SERIAL1DIP                                                        03/27/2024 14:56:10 PAGE 5   
 
  240                                          {
  241                                              data_B[4*z+2] = 0x03;
@@ -318,7 +318,7 @@ line level    source
  298                          {
  299                                  Flag_Warn_Flash = 0;
  300                      Led_Flash();
-C51 COMPILER V9.60.7.0   SERIAL1DIP                                                        03/21/2024 10:17:26 PAGE 6   
+C51 COMPILER V9.60.7.0   SERIAL1DIP                                                        03/27/2024 14:56:10 PAGE 6   
 
  301                          }
  302                          if((Flag_Warn_Led==1)&&(PCOLSIG==0))  //屏幕上红灯闪烁间隔定时

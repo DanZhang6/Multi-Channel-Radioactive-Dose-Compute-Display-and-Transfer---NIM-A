@@ -45,10 +45,10 @@ typedef unsigned long ulong;
         Var_Signal3 = Var_Signal3 | Svar1[i]; \
     } while (0)
 
-#define GM2_COUNT_NEED_WEIGHTED_MOVING_AVERAGE 0 // GM2计数值是否需要加权移动平均，0表示不需要，1表示需要
-#define GM1_COUNT_NEED_WEIGHTED_MOVING_AVERAGE 0 // GM1计数值是否需要加权移动平均，0表示不需要，1表示需要
+#define GM2_COUNT_NEED_WEIGHTED_MOVING_AVERAGE 1 // GM2计数值是否需要加权移动平均，0表示不需要，1表示需要
+#define GM1_COUNT_NEED_WEIGHTED_MOVING_AVERAGE 1 // GM1计数值是否需要加权移动平均，0表示不需要，1表示需要
 
-#define GM1_DOSE_NEED_WEIGHTED_MOVING_AVERAGE 1 // GM1剂量值是否需要加权移动平均，0表示不需要，1表示需要
+#define GM1_DOSE_NEED_WEIGHTED_MOVING_AVERAGE 0 // GM1剂量值是否需要加权移动平均，0表示不需要，1表示需要
 
 #define COUNT_FOR_DISPLAY 1 // 屏幕最右侧显示计数选项，显示CPS时计数小于3会显示0，1表示显示CPS，0表示显示CP3S
 

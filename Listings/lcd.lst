@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   LCD                                                               03/21/2024 10:17:25 PAGE 1   
+C51 COMPILER V9.60.7.0   LCD                                                               03/27/2024 14:56:10 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE LCD
@@ -62,7 +62,7 @@ line level    source
   52          
   53          /**************************
   54           *  向串口2发送一个字
-C51 COMPILER V9.60.7.0   LCD                                                               03/21/2024 10:17:25 PAGE 2   
+C51 COMPILER V9.60.7.0   LCD                                                               03/27/2024 14:56:10 PAGE 2   
 
   55           ***************************/
   56          void Tword(uint idata i)
@@ -126,7 +126,7 @@ line level    source
  114   4                      Txbyte(e + 0x30);
  115   4                  } else {
  116   4                      if (d != 0) {
-C51 COMPILER V9.60.7.0   LCD                                                               03/21/2024 10:17:25 PAGE 3   
+C51 COMPILER V9.60.7.0   LCD                                                               03/27/2024 14:56:10 PAGE 3   
 
  117   5                          Txbyte(d + 0x30);
  118   5                          Txbyte(e + 0x30);
@@ -190,7 +190,7 @@ line level    source
  176   4                  }
  177   3              }
  178   2          }
-C51 COMPILER V9.60.7.0   LCD                                                               03/21/2024 10:17:25 PAGE 4   
+C51 COMPILER V9.60.7.0   LCD                                                               03/27/2024 14:56:10 PAGE 4   
 
  179   1      
  180   1          TxEOF();  // 发送结束符
@@ -254,7 +254,7 @@ line level    source
  238          {
  239   1          Txtext(250, 182, "请 稍 等");
  240   1          Txtext(120, 250, "进 行 初 始 化 中");
-C51 COMPILER V9.60.7.0   LCD                                                               03/21/2024 10:17:25 PAGE 5   
+C51 COMPILER V9.60.7.0   LCD                                                               03/27/2024 14:56:10 PAGE 5   
 
  241   1      }
  242          
@@ -318,7 +318,7 @@ line level    source
  300   1          Close(480 + Incdataright * 48 - 144, 128 + wb * 68 - 68);
  301   1      }
  302          
-C51 COMPILER V9.60.7.0   LCD                                                               03/21/2024 10:17:25 PAGE 6   
+C51 COMPILER V9.60.7.0   LCD                                                               03/27/2024 14:56:10 PAGE 6   
 
  303          /****************************************
  304           *          图片显示
@@ -382,7 +382,7 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----      14
    BIT SIZE         =   ----    ----
-C51 COMPILER V9.60.7.0   LCD                                                               03/21/2024 10:17:25 PAGE 7   
+C51 COMPILER V9.60.7.0   LCD                                                               03/27/2024 14:56:10 PAGE 7   
 
 END OF MODULE INFORMATION.
 
