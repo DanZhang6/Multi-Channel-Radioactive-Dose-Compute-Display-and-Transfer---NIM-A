@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   MASTERDISPLAY                                                     03/27/2024 14:56:10 PAGE 1   
+C51 COMPILER V9.60.7.0   MASTERDISPLAY                                                     03/28/2024 11:05:24 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MASTERDISPLAY
@@ -62,7 +62,7 @@ line level    source
   52   4                      Tnumber(390, 42 + (j * 58), receive_buf[8 * j + 3]);
   53   4                      Tnumber(430, 42 + (j * 58), receive_buf[8 * j + 4]);
   54   4                      Tnumber(470, 42 + (j * 58), receive_buf[8 * j + 5]);
-C51 COMPILER V9.60.7.0   MASTERDISPLAY                                                     03/27/2024 14:56:10 PAGE 2   
+C51 COMPILER V9.60.7.0   MASTERDISPLAY                                                     03/28/2024 11:05:24 PAGE 2   
 
   55   4                  }
   56   3              }
@@ -126,7 +126,7 @@ line level    source
  114   1          WarnLed_Off(0, 42 + (Num * 58));  // ÐÞ¸Ä
  115   1      }
 
-C51 COMPILER V9.60.7.0   MASTERDISPLAY                                                     03/27/2024 14:56:10 PAGE 3   
+C51 COMPILER V9.60.7.0   MASTERDISPLAY                                                     03/28/2024 11:05:24 PAGE 3   
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE

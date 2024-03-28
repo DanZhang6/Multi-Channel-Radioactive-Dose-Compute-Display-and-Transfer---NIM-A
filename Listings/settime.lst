@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   SETTIME                                                           03/27/2024 14:56:11 PAGE 1   
+C51 COMPILER V9.60.7.0   SETTIME                                                           03/28/2024 11:05:25 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE SETTIME
@@ -62,7 +62,7 @@ line level    source
   52   3                  Tnumber(464, 216, 0);
   53   3              } else if (Inctime == 4) {
   54   3                  Init_Time = 30;  // AA1* ԭΪRearawtime
-C51 COMPILER V9.60.7.0   SETTIME                                                           03/27/2024 14:56:11 PAGE 2   
+C51 COMPILER V9.60.7.0   SETTIME                                                           03/28/2024 11:05:25 PAGE 2   
 
   55   3                  Tnumber(368, 216, 0);
   56   3                  Tnumber(416, 216, 3);

@@ -17,7 +17,6 @@
 #include "intrins.h"
 #include "math.h"
 #include "stdio.h"
-#include "stdlib.h"
 
 #define C82531C XBYTE[0x8300]   // 8253的命令端口（地址），CS4=1,CS3=1,CS2=1,CS1=1,CS0=0,A1A0=11；
 #define C825310D XBYTE[0x8000]  // 计数器0CS4=1,CS3=1,CS2=1,CS1=1,CS0=0,A1A0=00；
@@ -53,7 +52,7 @@ uchar DataThouth[75];          // 探测器标定参数的千分位
 uchar send_buf[65];            // NIM_A向NIM_B发送数据的数组
 uchar Incinput;                // 探头个数标志，默认显示探头个数为8个
 float idata Para[10];          // 设定好的参数数组
-float DoseRata[8];             // 每组探头测得的剂量率
+float idata DoseRata[8];             // 每组探头测得的剂量率
 uchar Channel_Display[8];      // 用于显示的通道量程
 float jishuguan_DoseRata;
 float dianlishi_DoseRata;
@@ -74,14 +73,13 @@ bit Flag_Warn_Count;       // 默认0；
 uchar Flag_need_Flash[8];  // LED闪烁标志
 uchar State_Flash[8];
 uchar count_change_flag[8];  // 计数改变标志？
-double Weights[12] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-double Detector_Counts_History[7][12];
+#if GM1_DOSE_NEED_WEIGHTED_MOVING_AVERAGE
+double code Weights_[12] = {0.3, 0.2, 0.15, 0.11, 0.08, 0.05, 0.035, 0.024, 0.019, 0.0152, 0.0084, 0.0084};
+double idata Weights[12] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+double xdata Detector_Counts_History[7][12];
+#endif
 extern uchar Average_Times[8];  // AJ1+滑动平均次数
-float code a0 = 0.0625;
-float code a1 = 0.0625;
-float code a2 = 0.125;
-float code a3 = 0.25;
-float code a4 = 0.5;
+
 uchar code Svar1[8] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80};  // 信号数组
 uchar code Svar0[8] = {0xFE, 0xFD, 0xFB, 0xF7, 0xEF, 0xDF, 0xBF, 0x7F};
 extern uchar jishucount;
@@ -104,7 +102,6 @@ extern bitSpeak_Alarm();
  */
 void generate_weights_output(int n, double (*weights_output)[12])
 {
-    double Weights_[12] = {0.3, 0.2, 0.15, 0.11, 0.08, 0.05, 0.035, 0.024, 0.019, 0.0152, 0.0084, 0.0084};
     double sum = 0.0;
     int i,j;
 
@@ -113,19 +110,19 @@ void generate_weights_output(int n, double (*weights_output)[12])
             (*weights_output)[i] = Weights_[i];
             sum += Weights_[i];
         }
-        (*weights_output)[n - 1] = 1 - sum;
+        (*weights_output)[0] = 1 - sum;
+        for (i = 0; i < n - 1; i++) {
+            for (j = 0; j < n - i - 1; j++) {
+                if ((*weights_output)[j] < (*weights_output)[j + 1]) {
+                    double temp = (*weights_output)[j];
+                    (*weights_output)[j] = (*weights_output)[j + 1];
+                    (*weights_output)[j + 1] = temp;
+                }
+            }
+        }
     } else if (n == 12) {
         for (i = 0; i < n; i++) {
-            (*weights_output)[i] = Weights[i];
-        }
-    }
-    for (i = 0; i < n - 1; i++) {
-        for (j = 0; j < n - i - 1; j++) {
-            if ((*weights_output)[j] < (*weights_output)[j + 1]) {
-                double temp = (*weights_output)[j];
-                (*weights_output)[j] = (*weights_output)[j + 1];
-                (*weights_output)[j + 1] = temp;
-            }
+            (*weights_output)[i] = Weights_[i];
         }
     }
 }
@@ -835,18 +832,20 @@ void ShowData()
                     DoseRata[j] = (float)(Para[3] * ((float)Real_Count_Display[j] - Para[2]));
                 }
             }
+            if (DoseRata[j]<0){DoseRata[j]=0;}
 #if GM1_DOSE_NEED_WEIGHTED_MOVING_AVERAGE
             if (Channel_Display[j] == 0) {  // 如果是GM1量程，进行滑动平均,第8个通道没有GM1量程所以进不来
                 if (Average_Times[j] == 0) {
                     Detector_Counts_History[j][0] = DoseRata[j];
                 } else if (Average_Times[j] != 0) {
-                    for (l = Average_Times[j]; l > 0; l--) {
+                    for (l = 11; l > 0; l--) {
                         Detector_Counts_History[j][l] = Detector_Counts_History[j][l - 1];
                     }
                     Detector_Counts_History[j][0] = DoseRata[j];
+                    DoseRata[j] = 0.0;
                     generate_weights_output(Average_Times[j] + 1, &Weights);
                     for (l = 0; l < Average_Times[j] + 1; l++) {
-                        DoseRata[j] += (float)(Detector_Counts_History[j][l] * Weights[l]);
+                        DoseRata[j] += (Detector_Counts_History[j][l] * Weights[l]);
                     }
                 }
                 Average_Times[j] += 1;
@@ -1005,9 +1004,11 @@ void ShowData()
                 }
                 Tnumber(60, 13 + (j * 58), j + 1);  // 显示探头号
                 Txtext(90, 13 + (j * 58), ":");     // 显示冒号
+#if CONFIGURATION_MODE
                 Tnumber(470, 13 + (j * 58), Channel_Detector[j][1]);
                 Tnumber(440, 13 + (j * 58), Channel_Detector[j][0]);
                 Tnumber(390, 13 + (j * 58), Average_Times[j]);
+#endif
                 if (Tbcd[5] != 0)  // 若百位非零，根据数的大小来显示
                 {
                     Tnumber(130, 13 + (j * 58), Tbcd[5]);
@@ -1066,6 +1067,7 @@ void ShowData()
                     }
                 }
                 /**********计量单位显示***********/
+#if CONFIGURATION_MODE
                 if (Flag_dw == 1)  // 测试完成后加上2012.6.24
                 {
                     Txtext(340, 13 + (j * 58), "u");
@@ -1074,6 +1076,16 @@ void ShowData()
                 } else if (Flag_dw == 3) {
                     Txtext(340, 13 + (j * 58), "G");
                 }
+#else
+                if (Flag_dw == 1)  // 测试完成后加上2012.6.24
+                {
+                    Txtext(340, 13 + (j * 58), "uGy/h");
+                } else if (Flag_dw == 2) {
+                    Txtext(340, 13 + (j * 58), "mGy/h");
+                } else if (Flag_dw == 3) {
+                    Txtext(340, 13 + (j * 58), "Gy/h");
+                }
+#endif
                 Alarm();  // 报警
             }
             if (Flag_need_Flash[j] == 1) {
@@ -1086,9 +1098,11 @@ void ShowData()
                 }
                 Trnumber(60, 13 + (j * 58), j + 1);  // 显示探头号
                 Trxtext(90, 13 + (j * 58), ":");     // 显示冒号
+#if CONFIGURATION_MODE
                 Trnumber(470, 13 + (j * 58), Channel_Detector[j][1]);
                 Trnumber(440, 13 + (j * 58), Channel_Detector[j][0]);
                 Trnumber(390, 13 + (j * 58), Average_Times[j]);
+#endif
                 if (Tbcd[5] != 0)  // 若百位非零，根据数的大小来显示
                 {
                     Trnumber(130, 13 + (j * 58), Tbcd[5]);
@@ -1147,6 +1161,7 @@ void ShowData()
                     }
                 }
                 /**********计量单位显示***********/
+#if CONFIGURATION_MODE
                 if (Flag_dw == 1)  // 测试完成后加上2012.6.24
                 {
                     Trxtext(340, 13 + (j * 58), "u");
@@ -1155,6 +1170,16 @@ void ShowData()
                 } else if (Flag_dw == 3) {
                     Trxtext(340, 13 + (j * 58), "G");
                 }
+#else
+                if (Flag_dw == 1)  // 测试完成后加上2012.6.24
+                {
+                    Trxtext(340, 13 + (j * 58), "uGy/h");
+                } else if (Flag_dw == 2) {
+                    Trxtext(340, 13 + (j * 58), "mGy/h");
+                } else if (Flag_dw == 3) {
+                    Trxtext(340, 13 + (j * 58), "Gy/h");
+                }
+#endif
                 Alarm();  // 报警
             }
             send_buf[8 * j] = Tbcd[5];  // 向NIM-B发送显示数据

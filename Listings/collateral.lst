@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   COLLATERAL                                                        03/27/2024 14:56:10 PAGE 1   
+C51 COMPILER V9.60.7.0   COLLATERAL                                                        03/28/2024 11:05:24 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE COLLATERAL
@@ -62,7 +62,7 @@ line level    source
   52          /*************************************
   53           *       从机发送数据
   54           *************************************/
-C51 COMPILER V9.60.7.0   COLLATERAL                                                        03/27/2024 14:56:10 PAGE 2   
+C51 COMPILER V9.60.7.0   COLLATERAL                                                        03/28/2024 11:05:24 PAGE 2   
 
   55          void Send_Word(uchar *pbuf, uint ibyte)
   56          {
@@ -126,7 +126,7 @@ line level    source
  114   4                      CntColTimer = 0;       // 字节之间定时中断次数清零
  115   4                      FlagMasColSlavOK = 0;  // 灯闪烁定时标志清零，灯不需要闪烁
  116   4                      Flag_Warn_Led = 0;     // add 5.24
-C51 COMPILER V9.60.7.0   COLLATERAL                                                        03/27/2024 14:56:10 PAGE 3   
+C51 COMPILER V9.60.7.0   COLLATERAL                                                        03/28/2024 11:05:24 PAGE 3   
 
  117   4                      return;
  118   4                  }
@@ -190,7 +190,7 @@ line level    source
  174   5                      } else if ((temp >= 10) && (temp < 100)) {
  175   5                          temp1 = (float)temp * 10;
  176   5                          DCS_Send[t * 4 + 32 + 4] = (uchar)((int)temp1 / 100) + 0x30;
-C51 COMPILER V9.60.7.0   COLLATERAL                                                        03/27/2024 14:56:10 PAGE 4   
+C51 COMPILER V9.60.7.0   COLLATERAL                                                        03/28/2024 11:05:24 PAGE 4   
 
  177   5                          DCS_Send[t * 4 + 32 + 5] = (uchar)((int)temp1 % 100 / 10) + 0x30;
  178   5                          DCS_Send[t * 4 + 32 + 6] = (uchar)((int)temp1 % 100 % 10) + 0x30;
@@ -254,7 +254,7 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
    CODE SIZE        =   3632    ----
    CONSTANT SIZE    =     21    ----
    XDATA SIZE       =      2      21
-C51 COMPILER V9.60.7.0   COLLATERAL                                                        03/27/2024 14:56:10 PAGE 5   
+C51 COMPILER V9.60.7.0   COLLATERAL                                                        03/28/2024 11:05:24 PAGE 5   
 
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----

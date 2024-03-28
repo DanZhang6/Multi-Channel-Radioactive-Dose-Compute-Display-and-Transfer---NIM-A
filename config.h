@@ -45,12 +45,14 @@ typedef unsigned long ulong;
         Var_Signal3 = Var_Signal3 | Svar1[i]; \
     } while (0)
 
-#define GM2_COUNT_NEED_WEIGHTED_MOVING_AVERAGE 1 // GM2计数值是否需要加权移动平均，0表示不需要，1表示需要
-#define GM1_COUNT_NEED_WEIGHTED_MOVING_AVERAGE 1 // GM1计数值是否需要加权移动平均，0表示不需要，1表示需要
+#define GM2_COUNT_NEED_WEIGHTED_MOVING_AVERAGE 0 // GM2计数值是否需要加权移动平均，0表示不需要，1表示需要
+#define GM1_COUNT_NEED_WEIGHTED_MOVING_AVERAGE 0 // GM1计数值是否需要加权移动平均，0表示不需要，1表示需要
 
-#define GM1_DOSE_NEED_WEIGHTED_MOVING_AVERAGE 0 // GM1剂量值是否需要加权移动平均，0表示不需要，1表示需要
+#define GM1_DOSE_NEED_WEIGHTED_MOVING_AVERAGE 1 // GM1剂量值是否需要加权移动平均，0表示不需要，1表示需要
 
-#define COUNT_FOR_DISPLAY 1 // 屏幕最右侧显示计数选项，显示CPS时计数小于3会显示0，1表示显示CPS，0表示显示CP3S
+#define COUNT_FOR_DISPLAY 0 // 屏幕最右侧显示计数选项，显示CPS时计数小于3会显示0，1表示显示CPS，0表示显示CP3S
+
+#define CONFIGURATION_MODE 0 //为0是完整显示剂量单位，为1显示平滑次数、当前和前一次挡位
 
 extern uchar DataGe[75];      // 个位
 extern uchar DataTenth[75];   // 十分位
@@ -83,7 +85,7 @@ extern uchar data_B[12];
 extern uchar count_change_flag[8];
 extern double Real_Count_Display[8];  // 【2024】显示在屏幕上的计数CPM，
 extern uchar Setted_Time[8];
-extern float DoseRata[8];  // 【2024】根据CPM和标定参数计算出的剂量率（uSv）                                             //每组探头测得的剂量率
+extern float idata DoseRata[8];  // 【2024】根据CPM和标定参数计算出的剂量率（uSv）                                             //每组探头测得的剂量率
 extern double Real_Count[8];  // 【2024】从8253计数器中取出来的计数，计数时间3秒
 extern uchar Init_Time;
 extern uchar Inctime;
